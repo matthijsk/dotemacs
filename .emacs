@@ -9,6 +9,12 @@
 
 (server-start)
 
+;; Enable ido mode.
+(ido-mode 1)
+
+;; Highlight matching parentheses.
+(show-paren-mode 1)
+
 ;; Never indent with tabs.
 (setq-default indent-tabs-mode nil)
 
@@ -58,14 +64,35 @@
 (require 'evil-leader)
 (global-evil-leader-mode)
 (evil-leader/set-leader ",")
-(evil-leader/set-key "wc" 'delete-window
+(evil-leader/set-key "e"  '(lambda() (interactive) (find-file user-init-file))
+
+                     "wc" 'delete-window
+                     "x0" 'delete-window
+
                      "ww" 'other-window
-                     "wv" 'split-window-right
-                     "ws" 'split-window-below
+                     "xo" 'other-window
+
                      "wo" 'delete-other-windows
+                     "x1" 'delete-other-windows
+
+                     "ws" 'split-window-below
+                     "x2" 'split-window-below
+
+                     "wv" 'split-window-right
+                     "x3" 'split-window-right
+
                      "bd" 'kill-buffer
-                     "l" 'whitespace-mode
-                     "m" 'compile
+                     "xk" 'kill-buffer
+
+                     "xf" 'ido-find-file
+
+                     "l"  'whitespace-mode
+                     "hl" 'hl-line-mode
+                     "rl" 'relative-line-numbers-mode
+
+                     "m"  'compile
+                     "c"  'compile
+
                      "st" 'magit-status)
 
 ;; Start evil.

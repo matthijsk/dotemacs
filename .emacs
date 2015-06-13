@@ -18,6 +18,9 @@
 ;; Never indent with tabs.
 (setq-default indent-tabs-mode nil)
 
+;; Auto-close parenthesis, etc.
+(electric-pair-mode 1)
+
 ;; Allow for basic paging in emacs shells.
 (setenv "PAGER" "/bin/cat")
 
@@ -28,15 +31,26 @@
 ;; Load custom theme.
 (load-theme 'wombat)
 
-;; Load alternate file (useful for switching .c and .h)
-(global-set-key (kbd "<f6>") 'ff-find-other-file)
-
 ;; Disable tool bar and scroll bars
 (tool-bar-mode -1)
 (set-scroll-bar-mode nil)
 
 ;; Allow narrowing.
 (put 'narrow-to-region 'disabled nil)
+
+;; Allow upcasing and lowercasing of regions.
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+
+;; Hooks
+(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
+
+;; Key bindings
+;; Remap C-x C-b to ibuffer instead of the default
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+;; Load alternate file (useful for switching .c and .h)
+(global-set-key (kbd "<f6>") 'ff-find-other-file)
+
 
 ;; END GLOBAL EMACS
 
@@ -84,6 +98,7 @@
                      "bd" 'kill-buffer
                      "xk" 'kill-buffer
 
+                     "b"  'ido-switch-buffer
                      "xf" 'ido-find-file
 
                      "l"  'whitespace-mode
@@ -103,29 +118,30 @@
 ;; Taken from http://www.emacswiki.org/emacs/Evil#toc12
 (define-key evil-normal-state-map [tab] 'other-window)
 (define-key evil-motion-state-map [tab] 'other-window)
+
 ;; Save buffer with C-s, but only in normal mode.
 (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
+
+;; <SPC> and <DEL> behave like Emacs keys in Normal state.
+(define-key evil-normal-state-map " " 'scroll-up-command)
+(define-key evil-normal-state-map (kbd "DEL") 'scroll-down-command)
+(define-key evil-motion-state-map " " 'scroll-up-command)
+(define-key evil-motion-state-map (kbd "DEL") 'scroll-down-command)
 
 ;; When in org-mode, use expected org-mode tab behaviour when in Normal state.
 (evil-define-key 'normal org-mode-map [tab] 'org-cycle)
 
 ;; Ex commands.
 (evil-ex-define-cmd "A" 'ff-find-other-file)
-
-;; Remap <SPC> and <RET> to behave like Emacs keys when in Motion state.
-(defun my-move-key (keymap-from keymap-to key)
-  "Moves key binding from one keymap to another, deleting from the old location."
-  (define-key keymap-to key (lookup-key keymap-from key))
-  (define-key keymap-from key nil))
-(my-move-key evil-motion-state-map evil-normal-state-map (kbd "RET"))
-(my-move-key evil-motion-state-map evil-normal-state-map " ")
+(evil-ex-define-cmd "ls" 'ibuffer)
 
 ;; Set evil mode when in these modes.
 (evil-set-initial-state 'package-menu-mode 'normal)
 
 ;; Set emacs state when in these modes.
 (evil-set-initial-state 'eshell-mode 'emacs)
-(evil-set-initial-state 'shell-mode 'emacs)
+(evil-set-initial-state 'shell-mode  'emacs)
+(evil-set-initial-state 'dired-mode  'emacs)
 
 ;; END EVIL
 

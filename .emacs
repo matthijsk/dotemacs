@@ -150,3 +150,8 @@
 (setq magit-last-seen-setup-instructions "1.4.0")
 
 ;; END MAGIT
+
+;; POWERLINE
+(require 'powerline)
+(require 'powerline-evil)
+(powerline-evil-center-color-theme)

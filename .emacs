@@ -13,6 +13,7 @@
 (ido-mode 1)
 (ido-everywhere 1)
 (ido-vertical-mode 1)
+(setq ido-vertical-define-keys 'C-n-C-p-up-and-down)
 (global-set-key (kbd "M-x") 'smex)
 
 ;; Highlight matching parentheses.
@@ -100,6 +101,7 @@
 
                      "bd" 'kill-buffer
                      "xk" 'kill-buffer
+                     "rb"  'revert-buffer
 
                      "b"  'ido-switch-buffer
                      "xf" 'ido-find-file

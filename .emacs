@@ -35,7 +35,7 @@
 ;; Load custom theme.
 (load-theme 'wombat)
 
-;; Disable tool bar and scroll bars
+;; Disable tool bar and scroll bars.
 (tool-bar-mode -1)
 (set-scroll-bar-mode nil)
 
@@ -46,21 +46,30 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
-;; Hooks
+;; Hooks.
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 
-;; Key bindings
-;; Remap C-x C-b to ibuffer instead of the default
+;; Key bindings:
+;; Remap C-x C-b to ibuffer instead of the default.
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 ;; Load alternate file (useful for switching .c and .h)
 (global-set-key (kbd "<f6>") 'ff-find-other-file)
-
 
 ;; END GLOBAL EMACS
 
 ;; START ORG MODE
 
-;; Org mode babel language support
+;; Global key bindings.
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-cb" 'org-iswitchb)
+
+;; Use ido for completion.
+(setq org-completion-use-ido t)
+(setq org-outline-path-complete-in-steps nil)
+
+;; Org mode babel language support.
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((emacs-lisp . t)
@@ -134,11 +143,15 @@
 (define-key evil-motion-state-map (kbd "DEL") 'scroll-down-command)
 
 ;; When in org-mode, use expected org-mode tab behaviour when in Normal state.
-(evil-define-key 'normal org-mode-map [tab] 'org-cycle)
+;; Set jump keys to navigate org links and the mark ring.
+(evil-define-key 'normal org-mode-map [tab] 'org-cycle
+                                      (kbd "C-]") 'org-open-at-point
+                                      (kbd "C-o") 'org-mark-ring-goto)
 
 ;; Ex commands.
 (evil-ex-define-cmd "A" 'ff-find-other-file)
 (evil-ex-define-cmd "ls" 'ibuffer)
+(evil-ex-define-cmd "e" 'ido-find-file)
 
 ;; Set evil mode when in these modes.
 (evil-set-initial-state 'package-menu-mode 'normal)

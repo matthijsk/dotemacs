@@ -55,6 +55,13 @@
 ;; Load alternate file (useful for switching .c and .h)
 (global-set-key (kbd "<f6>") 'ff-find-other-file)
 
+;; Autoscroll compilation window and stop on first error.
+(setq compilation-scroll-output 'first-error)
+
+;; Exhibit expected X clipboard behaviour.
+(global-set-key (kbd "<mouse-2>") 'x-clipboard-yank)
+(setq-default x-select-enable-primary t)
+
 ;; END GLOBAL EMACS
 
 ;; START ORG MODE

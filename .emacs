@@ -76,6 +76,10 @@
 (setq org-completion-use-ido t)
 (setq org-outline-path-complete-in-steps nil)
 
+;; Save the running clock when Emacs exits.
+(setq org-clock-persist 'clock)
+(org-clock-persistence-insinuate)
+
 ;; Org mode babel language support.
 (org-babel-do-load-languages
  'org-babel-load-languages

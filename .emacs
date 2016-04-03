@@ -119,6 +119,11 @@
                      "wv" 'split-window-right
                      "x3" 'split-window-right
 
+                     "wh" 'evil-window-left
+                     "wj" 'evil-window-down
+                     "wk" 'evil-window-up
+                     "wl" 'evil-window-right
+
                      "bd" 'kill-buffer
                      "xk" 'kill-buffer
                      "rb"  'revert-buffer

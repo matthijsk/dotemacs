@@ -177,6 +177,7 @@
 (evil-set-initial-state 'shell-mode  'emacs)
 (evil-set-initial-state 'dired-mode  'emacs)
 (evil-set-initial-state 'Info-mode   'emacs)
+(evil-set-initial-state 'calendar-mode 'emacs)
 
 ;; END EVIL
 

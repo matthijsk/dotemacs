@@ -66,6 +66,8 @@
 ;; END GLOBAL EMACS
 
 ;; START ORG MODE
+(setq org-todo-keywords
+      '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
 
 ;; Global key bindings.
 (global-set-key "\C-cl" 'org-store-link)

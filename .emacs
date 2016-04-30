@@ -35,8 +35,9 @@
 ;; Load custom theme.
 (load-theme 'wombat)
 
-;; Disable tool bar and scroll bars.
+;; Disable tool bar, menu bar and scroll bars.
 (tool-bar-mode -1)
+(menu-bar-mode -1)
 (set-scroll-bar-mode nil)
 
 ;; Allow narrowing.

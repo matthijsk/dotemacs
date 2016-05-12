@@ -97,10 +97,6 @@
 ;; Evil: scroll up using C-u.
 (setq evil-want-C-u-scroll t)
 
-;; Enable evil jumper.
-(require 'evil-jumper)
-(global-evil-jumper-mode)
-
 ;; Enable evil leader.
 (require 'evil-leader)
 (global-evil-leader-mode)

@@ -6,6 +6,7 @@
 (package-initialize)
 
 ;; START GLOBAL EMACS
+(setq initial-buffer-choice t)
 
 (server-start)
 
@@ -29,7 +30,7 @@
 (setenv "PAGER" "/bin/cat")
 
 ;; Scroll by one line when reaching bottom of buffer.
-(setq scroll-conservatively 1)
+(setq scroll-conservatively 101)
 (setq scroll-margin 5)
 
 ;; Load custom theme.
@@ -66,6 +67,35 @@
 ;; END GLOBAL EMACS
 
 ;; START ORG MODE
+(defun week-number ()
+  "Returns the ISO week number for today."
+  (car
+   (calendar-iso-from-absolute
+    (calendar-absolute-from-gregorian
+     (calendar-current-date)))))
+
+(defun clock-in-monday ()
+  "Creates a new \"Week <WEEK-NUMBER>\" heading."
+  (interactive)
+  (if (not (org-at-heading-p))
+      (user-error "Not at a heading"))
+  (beginning-of-line)
+  (org-insert-heading)
+  (insert (format "Week %s" (week-number)))
+  (org-insert-heading-after-current)
+  (org-insert-time-stamp (current-time))
+  (org-demote)
+  (org-clock-in))
+
+(defun clock-in ()
+  "Clock in with org mode."
+  (interactive)
+  (if (not (org-at-heading-p))
+      (user-error "Not at a heading"))
+  (org-insert-heading-after-current)
+  (org-insert-time-stamp (current-time))
+  (org-clock-in))
+
 (setq org-todo-keywords
       '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
 
@@ -89,6 +119,13 @@
  '((emacs-lisp . t)
    (sh . t)
    (C . t)))
+
+;; Export backends
+(require 'ox-reveal)
+(require 'ox-jira)
+
+;; Do not interpret "_" and "^" for sub and superscript when ;; exporting.
+(setq org-export-with-sub-superscripts nil)
 
 ;; END ORG MODE
 
@@ -125,7 +162,8 @@
 
                      "bd" 'kill-buffer
                      "xk" 'kill-buffer
-                     "rb"  'revert-buffer
+                     "rb" 'revert-buffer
+                     "x#" 'server-edit
 
                      "b"  'ido-switch-buffer
                      "xf" 'ido-find-file
@@ -151,6 +189,9 @@
 ;; Save buffer with C-s, but only in normal mode.
 (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
 
+;; Comment lines in normal mode with C-/.
+(define-key evil-normal-state-map (kbd "C-/") 'comment-line)
+
 ;; <SPC> and <DEL> behave like Emacs keys in Normal state.
 (define-key evil-normal-state-map " " 'scroll-up-command)
 (define-key evil-normal-state-map (kbd "DEL") 'scroll-down-command)
@@ -172,11 +213,13 @@
 (evil-set-initial-state 'package-menu-mode 'normal)
 
 ;; Set emacs state when in these modes.
-(evil-set-initial-state 'eshell-mode 'emacs)
-(evil-set-initial-state 'shell-mode  'emacs)
-(evil-set-initial-state 'dired-mode  'emacs)
-(evil-set-initial-state 'Info-mode   'emacs)
-(evil-set-initial-state 'calendar-mode 'emacs)
+(evil-set-initial-state 'eshell-mode          'emacs)
+(evil-set-initial-state 'shell-mode           'emacs)
+(evil-set-initial-state 'dired-mode           'emacs)
+(evil-set-initial-state 'Info-mode            'emacs)
+(evil-set-initial-state 'calendar-mode        'emacs)
+(evil-set-initial-state 'Custom-mode          'emacs)
+(evil-set-initial-state 'messages-buffer-mode 'emacs)
 
 ;; END EVIL
 
@@ -186,7 +229,54 @@
 
 ;; END MAGIT
 
-;; POWERLINE
-(require 'powerline)
-(require 'powerline-evil)
-(powerline-evil-center-color-theme)
+;; PRETTY CONTROL-L
+(require 'pp-c-l)
+(pretty-control-l-mode t)
+;; END PRETTY CONTROL-L
+
+;; ACE JUMP MODE
+;;
+;; ace jump mode major function
+;; 
+;;(add-to-list 'load-path "/full/path/where/ace-jump-mode.el/in/")
+(autoload
+  'ace-jump-mode
+  "ace-jump-mode"
+  "Emacs quick move minor mode"
+  t)
+;; you can select the key you prefer to
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+
+;; 
+;; enable a more powerful jump back function from ace jump mode
+;;
+(autoload
+  'ace-jump-mode-pop-mark
+  "ace-jump-mode"
+  "Ace jump back:-)"
+  t)
+(eval-after-load "ace-jump-mode"
+  '(ace-jump-mode-enable-mark-sync))
+(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+
+;;If you use evil
+(define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
+
+;; END ACE JUMP MODE
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(evil-symbol-word-search t)
+ '(fill-column 100)
+ '(package-selected-packages
+   (quote
+    (ace-jump-mode pp-c-l relative-line-numbers smex ox-reveal ox-jira ido-vertical-mode evil-leader))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "#242424" :foreground "#f6f3e8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))

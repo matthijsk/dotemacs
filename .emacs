@@ -80,7 +80,7 @@
   (if (not (org-at-heading-p))
       (user-error "Not at a heading"))
   (beginning-of-line)
-  (org-insert-heading)
+  (org-insert-heading-after-current)
   (insert (format "Week %s" (week-number)))
   (org-insert-heading-after-current)
   (org-insert-time-stamp (current-time))
@@ -122,7 +122,6 @@
 
 ;; Export backends
 (require 'ox-reveal)
-(require 'ox-jira)
 
 ;; Do not interpret "_" and "^" for sub and superscript when ;; exporting.
 (setq org-export-with-sub-superscripts nil)
@@ -170,7 +169,7 @@
 
                      "l"  'whitespace-mode
                      "hl" 'hl-line-mode
-                     "rl" 'relative-line-numbers-mode
+                     "rl" 'linum-relative-mode
 
                      "m"  'compile
                      "c"  'compile
@@ -220,12 +219,30 @@
 (evil-set-initial-state 'calendar-mode        'emacs)
 (evil-set-initial-state 'Custom-mode          'emacs)
 (evil-set-initial-state 'messages-buffer-mode 'emacs)
+(evil-set-initial-state 'magit-staging-mode   'emacs)
 
 ;; END EVIL
 
 ;; START MAGIT
 
 (setq magit-last-seen-setup-instructions "1.4.0")
+(setq vc-handled-backends nil)
+(setq magit-refresh-verbose t)
+
+;; Improve staging performance on windows
+;; See https://github.com/magit/magit/issues/2395
+(define-derived-mode magit-staging-mode magit-status-mode "Magit staging"
+  "Mode for showing staged and unstaged changes."
+  :group 'magit-status)
+
+(defun magit-staging-refresh-buffer ()
+  (magit-insert-section (status)
+    (magit-insert-unstaged-changes)
+    (magit-insert-staged-changes)))
+
+(defun magit-staging ()
+  (interactive)
+  (magit-mode-setup #'magit-staging-mode))
 
 ;; END MAGIT
 
@@ -273,7 +290,7 @@
  '(fill-column 100)
  '(package-selected-packages
    (quote
-    (ace-jump-mode pp-c-l relative-line-numbers smex ox-reveal ox-jira ido-vertical-mode evil-leader))))
+    (magit linum-relative ace-jump-mode pp-c-l smex ox-reveal ox-jira ido-vertical-mode evil-leader))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

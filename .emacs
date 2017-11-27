@@ -10,12 +10,22 @@
 
 (server-start)
 
+(setq fill-column 100)
+
 ;; Enable ido mode with smex.
 (ido-mode 1)
 (ido-everywhere 1)
-(ido-vertical-mode 1)
-(setq ido-vertical-define-keys 'C-n-C-p-up-and-down)
-(global-set-key (kbd "M-x") 'smex)
+
+(use-package ido-vertical-mode
+  :ensure t
+  :config
+  (ido-vertical-mode 1)
+  (setq ido-vertical-define-keys 'C-n-C-p-up-and-down))
+
+(use-package smex
+  :ensure t
+  :config
+  (global-set-key (kbd "M-x") 'smex))
 
 ;; Highlight matching parentheses.
 (show-paren-mode 1)
@@ -67,188 +77,197 @@
 ;; END GLOBAL EMACS
 
 ;; START ORG MODE
-(defun week-number ()
-  "Returns the ISO week number for today."
-  (car
-   (calendar-iso-from-absolute
-    (calendar-absolute-from-gregorian
-     (calendar-current-date)))))
+(use-package org
+  :ensure t
+  :config
+  (defun week-number ()
+    "Returns the ISO week number for today."
+    (car
+     (calendar-iso-from-absolute
+      (calendar-absolute-from-gregorian
+       (calendar-current-date)))))
 
-(defun clock-in-monday ()
-  "Creates a new \"Week <WEEK-NUMBER>\" heading."
-  (interactive)
-  (if (not (org-at-heading-p))
-      (user-error "Not at a heading"))
-  (beginning-of-line)
-  (org-insert-heading-after-current)
-  (insert (format "Week %s" (week-number)))
-  (org-insert-heading-after-current)
-  (org-insert-time-stamp (current-time))
-  (org-demote)
-  (org-clock-in))
+  (defun clock-in-monday ()
+    "Creates a new \"Week <WEEK-NUMBER>\" heading."
+    (interactive)
+    (if (not (org-at-heading-p))
+	(user-error "Not at a heading"))
+    (beginning-of-line)
+    (org-insert-heading-after-current)
+    (insert (format "Week %s" (week-number)))
+    (org-insert-heading-after-current)
+    (org-insert-time-stamp (current-time))
+    (org-demote)
+    (org-clock-in))
 
-(defun clock-in ()
-  "Clock in with org mode."
-  (interactive)
-  (if (not (org-at-heading-p))
-      (user-error "Not at a heading"))
-  (org-insert-heading-after-current)
-  (org-insert-time-stamp (current-time))
-  (org-clock-in))
+  (defun clock-in ()
+    "Clock in with org mode."
+    (interactive)
+    (if (not (org-at-heading-p))
+	(user-error "Not at a heading"))
+    (org-insert-heading-after-current)
+    (org-insert-time-stamp (current-time))
+    (org-clock-in))
 
-(setq org-todo-keywords
-      '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
+  (setq org-todo-keywords
+	'((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
 
-;; Global key bindings.
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-cb" 'org-iswitchb)
+  ;; Global key bindings.
+  (global-set-key "\C-cl" 'org-store-link)
+  (global-set-key "\C-ca" 'org-agenda)
+  (global-set-key "\C-cc" 'org-capture)
+  (global-set-key "\C-cb" 'org-iswitchb)
 
-;; Use ido for completion.
-(setq org-completion-use-ido t)
-(setq org-outline-path-complete-in-steps nil)
+  ;; Use ido for completion.
+  (setq org-completion-use-ido t)
+  (setq org-outline-path-complete-in-steps nil)
 
-;; Save the running clock when Emacs exits.
-(setq org-clock-persist 'clock)
-(org-clock-persistence-insinuate)
+  ;; Save the running clock when Emacs exits.
+  (setq org-clock-persist 'clock)
+  (org-clock-persistence-insinuate)
 
-;; Org mode babel language support.
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((emacs-lisp . t)
-   (sh . t)
-   (C . t)))
+  ;; Org mode babel language support.
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (sh . t)
+     (C . t)))
 
-;; Export backends
-(require 'ox-reveal)
-
-;; Do not interpret "_" and "^" for sub and superscript when ;; exporting.
-(setq org-export-with-sub-superscripts nil)
+  ;; Do not interpret "_" and "^" for sub and superscript when
+  ;; exporting.
+  (setq org-export-with-sub-superscripts nil))
 
 ;; END ORG MODE
 
 ;; START EVIL
+(use-package evil
+  :ensure t
+  :config
+  ;; Start evil.
+  (evil-mode 1)
 
-;; Evil: scroll up using C-u.
-(setq evil-want-C-u-scroll t)
+  ;; Switch between windows with tab key.
+  ;; Taken from http://www.emacswiki.org/emacs/Evil#toc12
+  (define-key evil-normal-state-map [tab] 'other-window)
+  (define-key evil-motion-state-map [tab] 'other-window)
 
-;; Enable evil leader.
-(require 'evil-leader)
-(global-evil-leader-mode)
-(evil-leader/set-leader ",")
-(evil-leader/set-key "e"  '(lambda() (interactive) (find-file user-init-file))
+  ;; Save buffer with C-s, but only in normal mode.
+  (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
 
-                     "wc" 'delete-window
-                     "x0" 'delete-window
+  ;; Comment lines in normal mode with C-/.
+  (define-key evil-normal-state-map (kbd "C-/") 'comment-line)
 
-                     "ww" 'other-window
-                     "xo" 'other-window
+  ;; <SPC> and <DEL> behave like Emacs keys in Normal state.
+  (define-key evil-normal-state-map " " 'scroll-up-command)
+  (define-key evil-normal-state-map (kbd "DEL") 'scroll-down-command)
+  (define-key evil-motion-state-map " " 'scroll-up-command)
+  (define-key evil-motion-state-map (kbd "DEL") 'scroll-down-command)
 
-                     "wo" 'delete-other-windows
-                     "x1" 'delete-other-windows
+  ;; When in org-mode, use expected org-mode tab behaviour when in Normal state.
+  ;; Set jump keys to navigate org links and the mark ring.
+  (evil-define-key 'normal org-mode-map [tab] 'org-cycle
+		   (kbd "C-]") 'org-open-at-point
+		   (kbd "C-o") 'org-mark-ring-goto)
 
-                     "ws" 'split-window-below
-                     "x2" 'split-window-below
+  ;; Ex commands.
+  (evil-ex-define-cmd "A" 'ff-find-other-file)
+  (evil-ex-define-cmd "ls" 'ibuffer)
+  (evil-ex-define-cmd "e" 'ido-find-file)
 
-                     "wv" 'split-window-right
-                     "x3" 'split-window-right
+  ;; Set evil mode when in these modes.
+  (evil-set-initial-state 'package-menu-mode 'normal)
 
-                     "wh" 'evil-window-left
-                     "wj" 'evil-window-down
-                     "wk" 'evil-window-up
-                     "wl" 'evil-window-right
+  ;; Set emacs state when in these modes.
+  (evil-set-initial-state 'eshell-mode          'emacs)
+  (evil-set-initial-state 'shell-mode           'emacs)
+  (evil-set-initial-state 'dired-mode           'emacs)
+  (evil-set-initial-state 'Info-mode            'emacs)
+  (evil-set-initial-state 'calendar-mode        'emacs)
+  (evil-set-initial-state 'Custom-mode          'emacs)
+  (evil-set-initial-state 'messages-buffer-mode 'emacs)
+  (evil-set-initial-state 'magit-staging-mode   'emacs)
 
-                     "bd" 'kill-buffer
-                     "xk" 'kill-buffer
-                     "rb" 'revert-buffer
-                     "x#" 'server-edit
+  :custom
+  (evil-want-C-u-scroll t "Scroll up using C-u.")
+  (evil-symbol-word-search t))
 
-                     "b"  'ido-switch-buffer
-                     "xf" 'ido-find-file
+(use-package evil-leader
+  :ensure t
+  :config
+  ;; Enable evil leader.
+  (global-evil-leader-mode)
+  (evil-leader/set-leader ",")
+  (evil-leader/set-key "e"  '(lambda() (interactive) (find-file user-init-file))
 
-                     "l"  'whitespace-mode
-                     "hl" 'hl-line-mode
-                     "rl" 'linum-relative-mode
+		       "wc" 'delete-window
+		       "x0" 'delete-window
 
-                     "m"  'compile
-                     "c"  'compile
+		       "ww" 'other-window
+		       "xo" 'other-window
 
-                     "st" 'magit-status)
+		       "wo" 'delete-other-windows
+		       "x1" 'delete-other-windows
 
-;; Start evil.
-(require 'evil)
-(evil-mode 1)
+		       "ws" 'split-window-below
+		       "x2" 'split-window-below
 
-;; Switch between windows with tab key.
-;; Taken from http://www.emacswiki.org/emacs/Evil#toc12
-(define-key evil-normal-state-map [tab] 'other-window)
-(define-key evil-motion-state-map [tab] 'other-window)
+		       "wv" 'split-window-right
+		       "x3" 'split-window-right
 
-;; Save buffer with C-s, but only in normal mode.
-(define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
+		       "wh" 'evil-window-left
+		       "wj" 'evil-window-down
+		       "wk" 'evil-window-up
+		       "wl" 'evil-window-right
 
-;; Comment lines in normal mode with C-/.
-(define-key evil-normal-state-map (kbd "C-/") 'comment-line)
+		       "bd" 'kill-buffer
+		       "xk" 'kill-buffer
+		       "rb" 'revert-buffer
+		       "x#" 'server-edit
 
-;; <SPC> and <DEL> behave like Emacs keys in Normal state.
-(define-key evil-normal-state-map " " 'scroll-up-command)
-(define-key evil-normal-state-map (kbd "DEL") 'scroll-down-command)
-(define-key evil-motion-state-map " " 'scroll-up-command)
-(define-key evil-motion-state-map (kbd "DEL") 'scroll-down-command)
+		       "b"  'ido-switch-buffer
+		       "xf" 'ido-find-file
 
-;; When in org-mode, use expected org-mode tab behaviour when in Normal state.
-;; Set jump keys to navigate org links and the mark ring.
-(evil-define-key 'normal org-mode-map [tab] 'org-cycle
-                                      (kbd "C-]") 'org-open-at-point
-                                      (kbd "C-o") 'org-mark-ring-goto)
+		       "l"  'whitespace-mode
+		       "hl" 'hl-line-mode
+		       "rl" 'linum-relative-mode
 
-;; Ex commands.
-(evil-ex-define-cmd "A" 'ff-find-other-file)
-(evil-ex-define-cmd "ls" 'ibuffer)
-(evil-ex-define-cmd "e" 'ido-find-file)
+		       "m"  'compile
+		       "c"  'compile
 
-;; Set evil mode when in these modes.
-(evil-set-initial-state 'package-menu-mode 'normal)
-
-;; Set emacs state when in these modes.
-(evil-set-initial-state 'eshell-mode          'emacs)
-(evil-set-initial-state 'shell-mode           'emacs)
-(evil-set-initial-state 'dired-mode           'emacs)
-(evil-set-initial-state 'Info-mode            'emacs)
-(evil-set-initial-state 'calendar-mode        'emacs)
-(evil-set-initial-state 'Custom-mode          'emacs)
-(evil-set-initial-state 'messages-buffer-mode 'emacs)
-(evil-set-initial-state 'magit-staging-mode   'emacs)
+		       "st" 'magit-status))
 
 ;; END EVIL
 
 ;; START MAGIT
+(use-package magit
+  :ensure t
+  :config
+  (setq magit-last-seen-setup-instructions "1.4.0")
+  (setq vc-handled-backends nil)
+  (setq magit-refresh-verbose t)
 
-(setq magit-last-seen-setup-instructions "1.4.0")
-(setq vc-handled-backends nil)
-(setq magit-refresh-verbose t)
+  ;; Improve staging performance on windows
+  ;; See https://github.com/magit/magit/issues/2395
+  (define-derived-mode magit-staging-mode magit-status-mode "Magit staging"
+    "Mode for showing staged and unstaged changes."
+    :group 'magit-status)
 
-;; Improve staging performance on windows
-;; See https://github.com/magit/magit/issues/2395
-(define-derived-mode magit-staging-mode magit-status-mode "Magit staging"
-  "Mode for showing staged and unstaged changes."
-  :group 'magit-status)
+  (defun magit-staging-refresh-buffer ()
+    (magit-insert-section (status)
+			  (magit-insert-unstaged-changes)
+			  (magit-insert-staged-changes)))
 
-(defun magit-staging-refresh-buffer ()
-  (magit-insert-section (status)
-    (magit-insert-unstaged-changes)
-    (magit-insert-staged-changes)))
-
-(defun magit-staging ()
-  (interactive)
-  (magit-mode-setup #'magit-staging-mode))
+  (defun magit-staging ()
+    (interactive)
+    (magit-mode-setup #'magit-staging-mode)))
 
 ;; END MAGIT
 
 ;; PRETTY CONTROL-L
-(require 'pp-c-l)
-(pretty-control-l-mode t)
+(use-package pp-c-l
+  :ensure t
+  :config
+  (pretty-control-l-mode t))
 ;; END PRETTY CONTROL-L
 
 ;; ACE JUMP MODE
@@ -256,44 +275,30 @@
 ;; ace jump mode major function
 ;; 
 ;;(add-to-list 'load-path "/full/path/where/ace-jump-mode.el/in/")
-(autoload
-  'ace-jump-mode
-  "ace-jump-mode"
-  "Emacs quick move minor mode"
-  t)
-;; you can select the key you prefer to
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+(use-package ace-jump-mode
+  :ensure t
+  :config
+  (autoload
+    'ace-jump-mode
+    "ace-jump-mode"
+    "Emacs quick move minor mode"
+    t)
+  ;; you can select the key you prefer to
+  (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
-;; 
-;; enable a more powerful jump back function from ace jump mode
-;;
-(autoload
-  'ace-jump-mode-pop-mark
-  "ace-jump-mode"
-  "Ace jump back:-)"
-  t)
-(eval-after-load "ace-jump-mode"
-  '(ace-jump-mode-enable-mark-sync))
-(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+  ;;
+  ;; enable a more powerful jump back function from ace jump mode
+  ;;
+  (autoload
+    'ace-jump-mode-pop-mark
+    "ace-jump-mode"
+    "Ace jump back:-)"
+    t)
+  (eval-after-load "ace-jump-mode"
+    '(ace-jump-mode-enable-mark-sync))
+  (define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
 
-;;If you use evil
-(define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
+  ;;If you use evil
+  (define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode))
 
 ;; END ACE JUMP MODE
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(evil-symbol-word-search t)
- '(fill-column 100)
- '(package-selected-packages
-   (quote
-    (magit linum-relative ace-jump-mode pp-c-l smex ox-reveal ox-jira ido-vertical-mode evil-leader))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#242424" :foreground "#f6f3e8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))

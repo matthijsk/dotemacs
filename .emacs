@@ -5,6 +5,9 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
 
+(eval-when-compile
+  (require 'use-package))
+
 ;; START GLOBAL EMACS
 (setq initial-buffer-choice t)
 

@@ -15,21 +15,6 @@
 
 (setq fill-column 100)
 
-;; Enable ido mode with smex.
-(ido-mode 1)
-(ido-everywhere 1)
-
-(use-package ido-vertical-mode
-  :ensure t
-  :config
-  (ido-vertical-mode 1)
-  (setq ido-vertical-define-keys 'C-n-C-p-up-and-down))
-
-(use-package smex
-  :ensure t
-  :config
-  (global-set-key (kbd "M-x") 'smex))
-
 ;; Highlight matching parentheses.
 (show-paren-mode 1)
 
@@ -78,6 +63,26 @@
 (setq-default x-select-enable-primary t)
 
 ;; END GLOBAL EMACS
+
+;; START HELM
+(use-package helm
+  :ensure t
+  :config
+  (helm-mode 1)
+
+  (setq helm-split-window-inside-p t)
+  (setq helm-autoresize-mode t)
+  (setq helm-M-x-fuzzy-match t)
+
+  (global-set-key (kbd "M-x") 'helm-M-x)
+
+  (global-set-key (kbd "C-x b") 'helm-mini)
+  (setq helm-buffers-fuzzy-matching t)
+  (setq helm-recentf-fuzzy-match t)
+
+  (global-set-key (kbd "C-x C-f") 'helm-find-files))
+
+;; END HELM
 
 ;; START ORG MODE
 (use-package org
@@ -162,6 +167,9 @@
   ;; Comment lines in normal mode with C-/.
   (define-key evil-normal-state-map (kbd "C-/") 'comment-line)
 
+  ;; Use helm-occur with C-f.
+  (define-key evil-normal-state-map (kbd "C-f") 'helm-occur)
+
   ;; <SPC> and <DEL> behave like Emacs keys in Normal state.
   (define-key evil-normal-state-map " " 'scroll-up-command)
   (define-key evil-normal-state-map (kbd "DEL") 'scroll-down-command)
@@ -177,7 +185,7 @@
   ;; Ex commands.
   (evil-ex-define-cmd "A" 'ff-find-other-file)
   (evil-ex-define-cmd "ls" 'ibuffer)
-  (evil-ex-define-cmd "e" 'ido-find-file)
+  (evil-ex-define-cmd "e" 'helm-find-files)
 
   ;; Set evil mode when in these modes.
   (evil-set-initial-state 'package-menu-mode 'normal)
@@ -229,8 +237,8 @@
 		       "rb" 'revert-buffer
 		       "x#" 'server-edit
 
-		       "b"  'ido-switch-buffer
-		       "xf" 'ido-find-file
+                       "b"  'helm-mini
+		       "xf" 'helm-find-files
 
 		       "l"  'whitespace-mode
 		       "hl" 'hl-line-mode

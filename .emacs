@@ -254,6 +254,7 @@
 
   (defun magit-staging-refresh-buffer ()
     (magit-insert-section (status)
+                          (magit-insert-untracked-files)
 			  (magit-insert-unstaged-changes)
 			  (magit-insert-staged-changes)))
 

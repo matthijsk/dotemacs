@@ -94,7 +94,7 @@
   (helm-projectile-on)
 
   (setq projectile-indexing-method 'alien)
-  (setq projectile-enable-caching t)
+  (setq projectile-enable-caching t))
 
 (use-package helm-projectile
   :ensure t

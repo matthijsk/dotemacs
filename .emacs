@@ -277,7 +277,9 @@
 
   (defun magit-staging ()
     (interactive)
-    (magit-mode-setup #'magit-staging-mode)))
+    (magit-mode-setup #'magit-staging-mode))
+
+  (magit-define-popup-switch 'magit-log-popup ?f "first parent" "--first-parent"))
 
 ;; END MAGIT
 

@@ -274,6 +274,9 @@
 ;; END EVIL
 
 ;; START MAGIT
+(eval-when-compile
+  (require 'magit))
+
 (use-package magit
   :ensure t
   :defer t

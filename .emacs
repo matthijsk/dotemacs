@@ -80,9 +80,28 @@
   (setq helm-buffers-fuzzy-matching t)
   (setq helm-recentf-fuzzy-match t)
 
-  (global-set-key (kbd "C-x C-f") 'helm-find-files))
+  (global-set-key (kbd "C-x C-f") 'helm-find-files)
+  (setq helm-ff-fuzzy-matching t))
 
 ;; END HELM
+
+;; START PROJECTILE
+(use-package projectile
+  :ensure t
+  :config
+  (projectile-mode)
+  (setq projectile-completion-system 'helm)
+  (helm-projectile-on)
+
+  (setq projectile-indexing-method 'alien)
+  (setq projectile-enable-caching t)
+
+(use-package helm-projectile
+  :ensure t
+  :config
+  (setq projectile-switch-project-action 'helm-projectile))
+
+;; END PROJECTILE
 
 ;; START ORG MODE
 (use-package org

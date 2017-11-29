@@ -161,6 +161,9 @@
   (define-key evil-normal-state-map [tab] 'other-window)
   (define-key evil-motion-state-map [tab] 'other-window)
 
+  ;; Jump to tag and recenter
+  (advice-add 'evil-jump-to-tag :after 'evil-scroll-line-to-center)
+
   ;; Save buffer with C-s, but only in normal mode.
   (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
 

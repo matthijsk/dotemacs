@@ -278,7 +278,6 @@
   :ensure t
   :defer t
   :config
-  (setq magit-last-seen-setup-instructions "1.4.0")
   (setq vc-handled-backends nil)
   (setq magit-refresh-verbose t)
 

@@ -72,16 +72,22 @@
 
   (setq helm-split-window-inside-p t)
   (setq helm-autoresize-mode t)
-  (setq helm-M-x-fuzzy-match t)
 
   (global-set-key (kbd "M-x") 'helm-M-x)
+  (setq helm-M-x-fuzzy-match t)
 
+  ;; helm-mini key bindings.
   (global-set-key (kbd "C-x b") 'helm-mini)
+  (global-set-key (kbd "<C-tab>") 'helm-mini)
   (setq helm-buffers-fuzzy-matching t)
   (setq helm-recentf-fuzzy-match t)
 
   (global-set-key (kbd "C-x C-f") 'helm-find-files)
   (setq helm-ff-fuzzy-matching t))
+
+  ;; Use <C-tab> and <C-S-tab> to navigate helm buffers.
+  (define-key helm-map (kbd "<C-tab>") 'helm-next-line)
+  (define-key helm-map (kbd "<C-S-tab>") 'helm-previous-line)
 
 ;; END HELM
 

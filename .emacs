@@ -109,10 +109,7 @@
   :config
   (defun iso-week-number ()
     "Returns the ISO week number for today."
-    (car
-     (calendar-iso-from-absolute
-      (calendar-absolute-from-gregorian
-       (calendar-current-date)))))
+    (org-days-to-iso-week (org-today)))
 
   (defun clock-in-monday ()
     "Creates a new \"Week <WEEK-NUMBER>\" heading."

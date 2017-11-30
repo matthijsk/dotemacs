@@ -107,7 +107,7 @@
 (use-package org
   :ensure t
   :config
-  (defun week-number ()
+  (defun iso-week-number ()
     "Returns the ISO week number for today."
     (car
      (calendar-iso-from-absolute
@@ -121,7 +121,7 @@
 	(user-error "Not at a heading"))
     (beginning-of-line)
     (org-insert-heading-after-current)
-    (insert (format "Week %s" (week-number)))
+    (insert (format "Week %s" (iso-week-number)))
     (org-insert-heading-after-current)
     (org-insert-time-stamp (current-time))
     (org-demote)

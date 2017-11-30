@@ -211,6 +211,7 @@
 
   ;; Set evil mode when in these modes.
   (evil-set-initial-state 'package-menu-mode 'normal)
+  (add-hook 'with-editor-mode-hook 'evil-normal-state)
 
   ;; Set emacs state when in these modes.
   (evil-set-initial-state 'eshell-mode          'emacs)

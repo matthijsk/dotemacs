@@ -185,6 +185,8 @@
 
   ;; Jump to tag and recenter
   (advice-add 'evil-jump-to-tag :after 'evil-scroll-line-to-center)
+  (advice-add 'evil-jump-backward :after 'evil-scroll-line-to-center)
+  (advice-add 'evil-jump-forward  :after 'evil-scroll-line-to-center)
 
   ;; Save buffer with C-s, but only in normal mode.
   (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)

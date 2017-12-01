@@ -276,7 +276,11 @@
 		       "m"  'compile
 		       "c"  'compile
 
-		       "st" 'magit-status))
+		       "st" 'magit-status
+
+                       "pf" 'helm-projectile-find-file
+                       "psg" 'helm-projectile-grep
+                       "pa" 'helm-projectile-find-other-file))
 
 ;; END EVIL
 

@@ -75,51 +75,57 @@
 ;; START HELM
 (use-package helm
   :ensure t
+  :demand
+  :bind (("M-x"     . helm-M-x)
+         ("C-x b"   . helm-mini)
+         ("<C-tab>" . helm-mini)
+         ("C-x C-f" . helm-find-files)
+         :map helm-map
+         ;; Use <C-tab> and <C-S-tab> to navigate helm buffers.
+         ("<C-tab>"   . helm-next-line)
+         ("<C-S-tab>" . helm-previous-line))
   :config
   (helm-mode 1)
 
   (setq helm-split-window-inside-p t)
   (setq helm-autoresize-mode t)
 
-  (global-set-key (kbd "M-x") 'helm-M-x)
   (setq helm-M-x-fuzzy-match t)
 
-  ;; helm-mini key bindings.
-  (global-set-key (kbd "C-x b") 'helm-mini)
-  (global-set-key (kbd "<C-tab>") 'helm-mini)
   (setq helm-buffers-fuzzy-matching t)
   (setq helm-recentf-fuzzy-match t)
 
-  (global-set-key (kbd "C-x C-f") 'helm-find-files)
   (setq helm-ff-fuzzy-matching t))
-
-  ;; Use <C-tab> and <C-S-tab> to navigate helm buffers.
-  (define-key helm-map (kbd "<C-tab>") 'helm-next-line)
-  (define-key helm-map (kbd "<C-S-tab>") 'helm-previous-line)
 
 ;; END HELM
 
 ;; START PROJECTILE
 (use-package projectile
-  :ensure t
+  :after helm
   :config
   (projectile-mode)
   (setq projectile-completion-system 'helm)
-  (helm-projectile-on)
 
   (setq projectile-indexing-method 'alien)
   (setq projectile-enable-caching t))
 
 (use-package helm-projectile
-  :ensure t
+  :after (helm projectile)
   :config
+  (helm-projectile-on)
   (setq projectile-switch-project-action 'helm-projectile))
 
 ;; END PROJECTILE
 
 ;; START ORG MODE
 (use-package org
-  :ensure t
+  ;; Global key bindings.
+  :bind (("\C-cl" . org-store-link)
+         ("\C-ca" . org-agenda)
+         ("\C-cc" . org-capture)
+         ("\C-cb" . org-iswitchb)
+         ("\C-ci" . clock-in)
+         ("\C-co" . org-clock-out))
   :config
   (defun iso-week-number ()
     "Returns the ISO week number for today."
@@ -150,16 +156,6 @@
   (setq org-todo-keywords
 	'((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
 
-  ;; Global key bindings.
-  (global-set-key "\C-cl" 'org-store-link)
-  (global-set-key "\C-ca" 'org-agenda)
-  (global-set-key "\C-cc" 'org-capture)
-  (global-set-key "\C-cb" 'org-iswitchb)
-  (global-set-key "\C-ci" 'clock-in)
-  (global-set-key "\C-co" 'org-clock-out)
-
-  ;; Use ido for completion.
-  (setq org-completion-use-ido t)
   (setq org-outline-path-complete-in-steps nil)
 
   ;; Save the running clock when Emacs exits.
@@ -182,34 +178,29 @@
 ;; START EVIL
 (use-package evil
   :ensure t
+  :demand
+  :bind (:map evil-normal-state-map
+              ([tab] . other-window)
+              ("C-s" . save-buffer)
+              ("C-/" . comment-line)
+              ("C-f" . helm-occur)
+
+         :map evil-motion-state-map
+              ([tab] . other-window)
+              ("SPC" . scroll-up-command)
+              ("DEL" . scroll-down-command)
+
+         :map evil-insert-state-map
+              ("C-s" . save-buffer)
+         )
   :config
   ;; Start evil.
-  (evil-mode 1)
-
-  ;; Switch between windows with tab key.
-  ;; Taken from http://www.emacswiki.org/emacs/Evil#toc12
-  (define-key evil-normal-state-map [tab] 'other-window)
-  (define-key evil-motion-state-map [tab] 'other-window)
+  (evil-mode)
 
   ;; Jump to tag and recenter
   (advice-add 'evil-jump-to-tag :after 'evil-scroll-line-to-center)
   (advice-add 'evil-jump-backward :after 'evil-scroll-line-to-center)
   (advice-add 'evil-jump-forward  :after 'evil-scroll-line-to-center)
-
-  ;; Save buffer with C-s, but only in normal mode.
-  (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
-
-  ;; Comment lines in normal mode with C-/.
-  (define-key evil-normal-state-map (kbd "C-/") 'comment-line)
-
-  ;; Use helm-occur with C-f.
-  (define-key evil-normal-state-map (kbd "C-f") 'helm-occur)
-
-  ;; <SPC> and <DEL> behave like Emacs keys in Normal state.
-  (define-key evil-normal-state-map " " 'scroll-up-command)
-  (define-key evil-normal-state-map (kbd "DEL") 'scroll-down-command)
-  (define-key evil-motion-state-map " " 'scroll-up-command)
-  (define-key evil-motion-state-map (kbd "DEL") 'scroll-down-command)
 
   ;; When in org-mode, use expected org-mode tab behaviour when in Normal state.
   ;; Set jump keys to navigate org links and the mark ring.
@@ -223,7 +214,6 @@
   (evil-ex-define-cmd "e" 'helm-find-files)
 
   ;; Set evil mode when in these modes.
-  (evil-set-initial-state 'package-menu-mode 'normal)
   (add-hook 'with-editor-mode-hook 'evil-normal-state)
 
   ;; Set emacs state when in these modes.
@@ -241,8 +231,13 @@
   (evil-want-C-u-scroll t "Scroll up using C-u.")
   (evil-symbol-word-search t))
 
+;; END EVIL
+
+;; START EVIL-LEADER
 (use-package evil-leader
   :ensure t
+  :demand
+  :after evil
   :config
   ;; Enable evil leader.
   (global-evil-leader-mode)
@@ -290,14 +285,13 @@
                        "psg" 'helm-projectile-grep
                        "pa" 'helm-projectile-find-other-file))
 
-;; END EVIL
+;; END EVIL-LEADER
 
 ;; START MAGIT
 (eval-when-compile
   (require 'magit))
 
 (use-package magit
-  :ensure t
   :defer t
   :config
   (setq vc-handled-backends nil)
@@ -325,40 +319,16 @@
 
 ;; PRETTY CONTROL-L
 (use-package pp-c-l
-  :ensure t
   :config
   (pretty-control-l-mode t))
 ;; END PRETTY CONTROL-L
 
-;; ACE JUMP MODE
-;;
-;; ace jump mode major function
-;; 
-;;(add-to-list 'load-path "/full/path/where/ace-jump-mode.el/in/")
+;; START ACE-JUMP-MODE
 (use-package ace-jump-mode
-  :ensure t
-  :config
-  (autoload
-    'ace-jump-mode
-    "ace-jump-mode"
-    "Emacs quick move minor mode"
-    t)
-  ;; you can select the key you prefer to
-  (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-
-  ;;
-  ;; enable a more powerful jump back function from ace jump mode
-  ;;
-  (autoload
-    'ace-jump-mode-pop-mark
-    "ace-jump-mode"
-    "Ace jump back:-)"
-    t)
-  (eval-after-load "ace-jump-mode"
-    '(ace-jump-mode-enable-mark-sync))
-  (define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
-
-  ;;If you use evil
-  (define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode))
-
+  :after evil
+  :bind ( :map global-map
+               ("C-x SPC" . ace-jump-mode-pop-mark)
+               ("C-c SPC" . ace-jump-mode)
+          :map evil-normal-state-map
+               ("SPC" . ace-jump-mode)))
 ;; END ACE JUMP MODE

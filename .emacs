@@ -64,6 +64,14 @@
 
 ;; END GLOBAL EMACS
 
+;; START DEFAULT-TEXT-SCALE
+;; Allow scaling of all buffers.
+(use-package default-text-scale
+  :bind (("C-M-=" . default-text-scale-increase)
+         ("C-M--" . default-text-scale-decrease)))
+
+;; END DEFAULT-TEXT-SCALE
+
 ;; START HELM
 (use-package helm
   :ensure t

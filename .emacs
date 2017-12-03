@@ -7,6 +7,7 @@
 
 (eval-when-compile
   (require 'use-package))
+(require 'diminish)
 
 ;; START GLOBAL EMACS
 (setq initial-buffer-choice t)
@@ -74,6 +75,7 @@
 
 ;; START HELM
 (use-package helm
+  :diminish helm-mode
   :ensure t
   :demand
   :bind (("M-x"     . helm-M-x)
@@ -177,6 +179,7 @@
 
 ;; START EVIL
 (use-package evil
+  :diminish undo-tree-mode
   :ensure t
   :demand
   :bind (:map evil-normal-state-map

@@ -200,6 +200,7 @@
               ([tab] . other-window)
               ("SPC" . scroll-up-command)
               ("DEL" . scroll-down-command)
+              ("C-f" . helm-occur)
 
          :map evil-insert-state-map
               ("C-s" . save-buffer)

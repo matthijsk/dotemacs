@@ -106,6 +106,8 @@
 ;; START PROJECTILE
 (use-package projectile
   :after helm
+  :demand
+  :bind (("<f9>" . projectile-compile-project))
   :config
   (projectile-mode)
   (setq projectile-completion-system 'helm)

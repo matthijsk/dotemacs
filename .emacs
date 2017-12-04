@@ -7,7 +7,9 @@
 
 (eval-when-compile
   (require 'use-package))
-(require 'diminish)
+
+(use-package diminish
+  :ensure t)
 
 ;; START GLOBAL EMACS
 (setq initial-buffer-choice t)

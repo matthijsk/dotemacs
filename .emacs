@@ -283,6 +283,7 @@
 		       "c"  'compile
 
 		       "st" 'magit-status
+		       "f"  'magit-file-popup
 
                        "pf" 'helm-projectile-find-file
                        "psg" 'helm-projectile-grep

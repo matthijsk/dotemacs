@@ -49,7 +49,7 @@
 (put 'narrow-to-region 'disabled nil)
 
 ;; Allow upcasing and lowercasing of regions.
-(put 'upcase-region 'disabled nil)
+(put 'upcase-region   'disabled nil)
 (put 'downcase-region 'disabled nil)
 
 ;; Hooks.
@@ -145,7 +145,7 @@
     "Creates a new \"Week <WEEK-NUMBER>\" heading."
     (interactive)
     (if (not (org-at-heading-p))
-	(user-error "Not at a heading"))
+        (user-error "Not at a heading"))
     (beginning-of-line)
     (org-insert-heading-after-current)
     (insert (format "Week %s" (iso-week-number)))
@@ -158,13 +158,13 @@
     "Clock in with org mode."
     (interactive)
     (if (not (org-at-heading-p))
-	(user-error "Not at a heading"))
+        (user-error "Not at a heading"))
     (org-insert-heading-after-current)
     (org-insert-time-stamp (current-time))
     (org-clock-in))
 
   (setq org-todo-keywords
-	'((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
+        '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
 
   (setq org-outline-path-complete-in-steps nil)
 
@@ -210,20 +210,20 @@
   (evil-mode)
 
   ;; Jump to tag and recenter
-  (advice-add 'evil-jump-to-tag :after 'evil-scroll-line-to-center)
+  (advice-add 'evil-jump-to-tag   :after 'evil-scroll-line-to-center)
   (advice-add 'evil-jump-backward :after 'evil-scroll-line-to-center)
   (advice-add 'evil-jump-forward  :after 'evil-scroll-line-to-center)
 
   ;; When in org-mode, use expected org-mode tab behaviour when in Normal state.
   ;; Set jump keys to navigate org links and the mark ring.
   (evil-define-key 'normal org-mode-map [tab] 'org-cycle
-		   (kbd "C-]") 'org-open-at-point
-		   (kbd "C-o") 'org-mark-ring-goto)
+                   (kbd "C-]") 'org-open-at-point
+                   (kbd "C-o") 'org-mark-ring-goto)
 
   ;; Ex commands.
-  (evil-ex-define-cmd "A" 'ff-find-other-file)
+  (evil-ex-define-cmd "A"  'ff-find-other-file)
   (evil-ex-define-cmd "ls" 'ibuffer)
-  (evil-ex-define-cmd "e" 'helm-find-files)
+  (evil-ex-define-cmd "e"  'helm-find-files)
 
   ;; Set evil mode when in these modes.
   (add-hook 'with-editor-mode-hook 'evil-normal-state)
@@ -254,49 +254,49 @@
   ;; Enable evil leader.
   (global-evil-leader-mode)
   (evil-leader/set-leader ",")
-  (evil-leader/set-key "e"  '(lambda() (interactive) (find-file user-init-file))
+  (evil-leader/set-key "e"   '(lambda() (interactive) (find-file user-init-file))
 
-		       "wc" 'delete-window
-		       "x0" 'delete-window
+                       "wc"  'delete-window
+                       "x0"  'delete-window
 
-		       "ww" 'other-window
-		       "xo" 'other-window
+                       "ww"  'other-window
+                       "xo"  'other-window
 
-		       "wo" 'delete-other-windows
-		       "x1" 'delete-other-windows
+                       "wo"  'delete-other-windows
+                       "x1"  'delete-other-windows
 
-		       "ws" 'split-window-below
-		       "x2" 'split-window-below
+                       "ws"  'split-window-below
+                       "x2"  'split-window-below
 
-		       "wv" 'split-window-right
-		       "x3" 'split-window-right
+                       "wv"  'split-window-right
+                       "x3"  'split-window-right
 
-		       "wh" 'evil-window-left
-		       "wj" 'evil-window-down
-		       "wk" 'evil-window-up
-		       "wl" 'evil-window-right
+                       "wh"  'evil-window-left
+                       "wj"  'evil-window-down
+                       "wk"  'evil-window-up
+                       "wl"  'evil-window-right
 
-		       "bd" 'kill-buffer
-		       "xk" 'kill-buffer
-		       "rb" 'revert-buffer
-		       "x#" 'server-edit
+                       "bd"  'kill-buffer
+                       "xk"  'kill-buffer
+                       "rb"  'revert-buffer
+                       "x#"  'server-edit
 
-                       "b"  'helm-mini
-		       "xf" 'helm-find-files
+                       "b"   'helm-mini
+                       "xf"  'helm-find-files
 
-		       "l"  'whitespace-mode
-		       "hl" 'hl-line-mode
-		       "rl" 'linum-relative-mode
+                       "l"   'whitespace-mode
+                       "hl"  'hl-line-mode
+                       "rl"  'linum-relative-mode
 
-		       "m"  'compile
-		       "c"  'compile
+                       "m"   'compile
+                       "c"   'compile
 
-		       "st" 'magit-status
-		       "f"  'magit-file-popup
+                       "st"  'magit-status
+                       "f"   'magit-file-popup
 
-                       "pf" 'helm-projectile-find-file
+                       "pf"  'helm-projectile-find-file
                        "psg" 'helm-projectile-grep
-                       "pa" 'helm-projectile-find-other-file))
+                       "pa"  'helm-projectile-find-other-file))
 
 ;; END EVIL-LEADER
 
@@ -319,8 +319,8 @@
   (defun magit-staging-refresh-buffer ()
     (magit-insert-section (status)
                           (magit-insert-untracked-files)
-			  (magit-insert-unstaged-changes)
-			  (magit-insert-staged-changes)))
+                          (magit-insert-unstaged-changes)
+                          (magit-insert-staged-changes)))
 
   (defun magit-staging ()
     (interactive)

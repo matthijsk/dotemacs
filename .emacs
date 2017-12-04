@@ -73,6 +73,7 @@
 ;; START DEFAULT-TEXT-SCALE
 ;; Allow scaling of all buffers.
 (use-package default-text-scale
+  :ensure t
   :bind (("C-M-=" . default-text-scale-increase)
          ("C-M--" . default-text-scale-decrease)))
 

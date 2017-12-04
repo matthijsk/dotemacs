@@ -42,6 +42,9 @@
 (menu-bar-mode -1)
 (set-scroll-bar-mode nil)
 
+;; Start maximized
+(toggle-frame-maximized)
+
 ;; Allow narrowing.
 (put 'narrow-to-region 'disabled nil)
 

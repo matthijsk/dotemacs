@@ -34,6 +34,11 @@
 (setq scroll-conservatively 101)
 (setq scroll-margin 5)
 
+;; Don't speed up when scrolling faster.
+(setq mouse-wheel-progressive-speed nil)
+;; Scroll by three lines when using the mouse wheel.
+(setq mouse-wheel-scroll-amount (quote (3 ((shift) . 1) ((control)))))
+
 ;; Load custom theme.
 (load-theme 'wombat)
 

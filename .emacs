@@ -88,6 +88,9 @@
          ("C-x b"   . helm-mini)
          ("<C-tab>" . helm-mini)
          ("C-x C-f" . helm-find-files)
+         ;; Resume previous helm session with prefix to choose among existing
+         ;; helm buffers.
+         ("C-x C-h" . (lambda() (interactive) (helm-resume t)))
          :map helm-map
          ;; Use <C-tab> and <C-S-tab> to navigate helm buffers.
          ("<C-tab>"   . helm-next-line)

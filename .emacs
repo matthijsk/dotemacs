@@ -267,6 +267,8 @@
   (evil-leader/set-leader ",")
   (evil-leader/set-key "e"   '(lambda() (interactive) (find-file user-init-file))
 
+                       "sh"   'eshell
+
                        "wc"  'delete-window
                        "x0"  'delete-window
 

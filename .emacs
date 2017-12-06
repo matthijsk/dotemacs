@@ -222,9 +222,6 @@
               ("C-s" . save-buffer)
          )
   :config
-  ;; Start evil.
-  (evil-mode)
-
   ;; Jump to tag and recenter
   (advice-add 'evil-jump-to-tag   :after 'evil-scroll-line-to-center)
   (advice-add 'evil-jump-backward :after 'evil-scroll-line-to-center)
@@ -267,8 +264,6 @@
   :demand
   :after evil
   :config
-  ;; Enable evil leader.
-  (global-evil-leader-mode)
   (evil-leader/set-leader ",")
   (evil-leader/set-key "e"   '(lambda() (interactive) (find-file user-init-file))
 
@@ -312,7 +307,14 @@
 
                        "pf"  'helm-projectile-find-file
                        "psg" 'helm-projectile-grep
-                       "pa"  'helm-projectile-find-other-file))
+                       "pa"  'helm-projectile-find-other-file)
+
+  ;; Enable evil leader.
+  (global-evil-leader-mode)
+
+  ;; Start evil.
+  (evil-mode))
+
 
 ;; END EVIL-LEADER
 

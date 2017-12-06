@@ -75,6 +75,14 @@
 
 ;; END GLOBAL EMACS
 
+;; START SMART-MODE-LINE
+(use-package smart-mode-line
+  :demand
+  :config
+  (setq sml/theme 'respectful)
+  (sml/setup))
+;; END SMART-MODE-LINE
+
 ;; START DEFAULT-TEXT-SCALE
 ;; Allow scaling of all buffers.
 (use-package default-text-scale

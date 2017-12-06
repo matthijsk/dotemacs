@@ -126,8 +126,8 @@
 ;; START PROJECTILE
 (use-package projectile
   :after helm
-  :demand
-  :bind (("<f9>" . projectile-compile-project))
+  :bind-keymap ("C-c p" . projectile-command-map)
+  :bind ("<f9>" . projectile-compile-project)
   :config
   (projectile-mode)
   (setq projectile-completion-system 'helm)

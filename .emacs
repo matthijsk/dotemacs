@@ -104,6 +104,7 @@
          ;; Resume previous helm session with prefix to choose among existing
          ;; helm buffers.
          ("C-x C-h" . (lambda() (interactive) (helm-resume t)))
+         ("C-s"     . helm-occur)
          :map helm-map
          ;; Use <C-tab> and <C-S-tab> to navigate helm buffers.
          ("<C-tab>"   . helm-next-line)

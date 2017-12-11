@@ -303,7 +303,11 @@
 
                        "l"   'whitespace-mode
                        "hl"  'hl-line-mode
-                       "rl"  'linum-relative-mode
+                       "rl"  '(lambda() (interactive)
+                                (if (bound-and-true-p nlinum-mode)
+                                    (nlinum-mode -1)
+                                  (nlinum-mode 1))
+                                (nlinum-relative-on))
 
                        "m"   'compile
                        "c"   'compile
@@ -321,8 +325,17 @@
   ;; Start evil.
   (evil-mode))
 
-
 ;; END EVIL-LEADER
+
+(use-package nlinum
+  :after evil-leader
+  :defer t)
+
+(use-package nlinum-relative
+  :after (nlinum)
+  :defer t
+  :config
+  (nlinum-relative-setup-evil))
 
 ;; START MAGIT
 (eval-when-compile

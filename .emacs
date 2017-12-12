@@ -81,6 +81,7 @@
   :config
   (setq sml/theme 'respectful)
   (sml/setup))
+
 ;; END SMART-MODE-LINE
 
 ;; START DEFAULT-TEXT-SCALE
@@ -112,15 +113,7 @@
   :config
   (helm-mode 1)
 
-  (setq helm-split-window-inside-p t)
-  (setq helm-autoresize-mode t)
-
-  (setq helm-M-x-fuzzy-match t)
-
-  (setq helm-buffers-fuzzy-matching t)
-  (setq helm-recentf-fuzzy-match t)
-
-  (setq helm-ff-fuzzy-matching t))
+  (setq helm-split-window-inside-p t))
 
 ;; END HELM
 
@@ -136,13 +129,18 @@
   (setq projectile-indexing-method 'alien)
   (setq projectile-enable-caching t))
 
+;; END PROJECTILE
+
+;; START HELM-PROJECTILE
 (use-package helm-projectile
   :after (helm projectile)
   :config
   (helm-projectile-on)
-  (setq projectile-switch-project-action 'helm-projectile))
+  (setq projectile-switch-project-action 'helm-projectile)
+  :custom
+  (helm-projectile-fuzzy-match nil))
 
-;; END PROJECTILE
+;; END HELM-PROJECTILE
 
 ;; START ORG MODE
 (use-package org

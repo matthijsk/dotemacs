@@ -332,7 +332,6 @@
   :defer t
   :config
   (setq vc-handled-backends nil)
-  (setq magit-refresh-verbose t)
 
   ;; Improve staging performance on windows
   ;; See https://github.com/magit/magit/issues/2395
@@ -350,7 +349,9 @@
     (interactive)
     (magit-mode-setup #'magit-staging-mode))
 
-  (magit-define-popup-switch 'magit-log-popup ?f "first parent" "--first-parent"))
+  (magit-define-popup-switch 'magit-log-popup ?f "first parent" "--first-parent")
+  :custom
+  (magit-refresh-verbose t))
 
 ;; END MAGIT
 

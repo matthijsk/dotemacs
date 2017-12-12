@@ -144,6 +144,7 @@
 
 ;; START ORG MODE
 (use-package org
+  :after evil
   ;; Global key bindings.
   :bind (("\C-cl" . org-store-link)
          ("\C-ca" . org-agenda)
@@ -196,14 +197,24 @@
 
   ;; Do not interpret "_" and "^" for sub and superscript when
   ;; exporting.
-  (setq org-export-with-sub-superscripts nil))
+  (setq org-export-with-sub-superscripts nil)
+
+  ;; When in org-mode, use expected org-mode tab behaviour when in
+  ;; Normal and Insert state. Set jump keys to navigate org links and
+  ;; the mark ring.
+  (evil-define-key 'normal org-mode-map
+    [tab] 'org-cycle
+    (kbd "C-]") 'org-open-at-point
+    (kbd "C-o") 'org-mark-ring-goto)
+
+  (evil-define-key 'insert org-mode-map [tab] 'org-cycle))
 
 ;; END ORG MODE
 
 ;; START EVIL
 (use-package evil
-  :diminish undo-tree-mode
   :ensure t
+  :diminish undo-tree-mode
   :demand
   :bind (:map evil-normal-state-map
               ([tab] . other-window)
@@ -225,12 +236,6 @@
   (advice-add 'evil-jump-to-tag   :after 'evil-scroll-line-to-center)
   (advice-add 'evil-jump-backward :after 'evil-scroll-line-to-center)
   (advice-add 'evil-jump-forward  :after 'evil-scroll-line-to-center)
-
-  ;; When in org-mode, use expected org-mode tab behaviour when in Normal state.
-  ;; Set jump keys to navigate org links and the mark ring.
-  (evil-define-key 'normal org-mode-map [tab] 'org-cycle
-                   (kbd "C-]") 'org-open-at-point
-                   (kbd "C-o") 'org-mark-ring-goto)
 
   ;; Ex commands.
   (evil-ex-define-cmd "A"  'ff-find-other-file)

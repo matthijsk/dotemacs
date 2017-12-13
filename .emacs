@@ -5,8 +5,7 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
 
-(eval-when-compile
-  (require 'use-package))
+(require 'use-package)
 
 (use-package diminish
   :ensure t)

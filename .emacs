@@ -127,7 +127,8 @@
   (setq projectile-completion-system 'helm)
 
   (setq projectile-indexing-method 'alien)
-  (setq projectile-enable-caching t))
+  (setq projectile-enable-caching t)
+  (setq projectile-use-git-grep t))
 
 ;; END PROJECTILE
 

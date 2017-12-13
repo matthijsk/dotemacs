@@ -110,10 +110,13 @@
          ;; Use <C-tab> and <C-S-tab> to navigate helm buffers.
          ("<C-tab>"   . helm-next-line)
          ("<C-S-tab>" . helm-previous-line))
+
   :config
   (helm-mode 1)
+  (setq helm-split-window-inside-p t)
 
-  (setq helm-split-window-inside-p t))
+  :custom
+  (helm-projectile-fuzzy-match nil))
 
 ;; END HELM
 

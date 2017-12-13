@@ -112,10 +112,9 @@
 
   :config
   (helm-mode 1)
-  (setq helm-split-window-inside-p t)
 
   :custom
-  (helm-projectile-fuzzy-match nil))
+  (helm-split-window-inside-p t))
 
 ;; END HELM
 
@@ -124,13 +123,15 @@
   :after helm
   :bind-keymap ("C-c p" . projectile-command-map)
   :bind ("<f9>" . projectile-compile-project)
+
   :config
   (projectile-mode)
-  (setq projectile-completion-system 'helm)
 
-  (setq projectile-indexing-method 'alien)
-  (setq projectile-enable-caching t)
-  (setq projectile-use-git-grep t))
+  :custom
+  (projectile-completion-system 'helm)
+  (projectile-indexing-method 'alien)
+  (projectile-enable-caching t)
+  (projectile-use-git-grep t))
 
 ;; END PROJECTILE
 
@@ -139,8 +140,9 @@
   :after (helm projectile)
   :config
   (helm-projectile-on)
-  (setq projectile-switch-project-action 'helm-projectile)
+
   :custom
+  (projectile-switch-project-action 'helm-projectile)
   (helm-projectile-fuzzy-match nil))
 
 ;; END HELM-PROJECTILE
@@ -182,13 +184,6 @@
     (org-insert-time-stamp (current-time))
     (org-clock-in))
 
-  (setq org-todo-keywords
-        '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
-
-  (setq org-outline-path-complete-in-steps nil)
-
-  ;; Save the running clock when Emacs exits.
-  (setq org-clock-persist 'clock)
   (org-clock-persistence-insinuate)
 
   ;; Org mode babel language support.
@@ -210,7 +205,16 @@
     (kbd "C-]") 'org-open-at-point
     (kbd "C-o") 'org-mark-ring-goto)
 
-  (evil-define-key 'insert org-mode-map [tab] 'org-cycle))
+  (evil-define-key 'insert org-mode-map [tab] 'org-cycle)
+
+  :custom
+  (org-todo-keywords
+        '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
+
+  (org-outline-path-complete-in-steps nil)
+
+  ;; Save the running clock when Emacs exits.
+  (org-clock-persist 'clock))
 
 ;; END ORG MODE
 
@@ -346,8 +350,10 @@
 
 (use-package magit
   :defer t
-  :config
+  :init
   (setq vc-handled-backends nil)
+
+  :config
 
   ;; Improve staging performance on windows
   ;; See https://github.com/magit/magit/issues/2395
@@ -366,6 +372,7 @@
     (magit-mode-setup #'magit-staging-mode))
 
   (magit-define-popup-switch 'magit-log-popup ?f "first parent" "--first-parent")
+
   :custom
   (magit-refresh-verbose t))
 

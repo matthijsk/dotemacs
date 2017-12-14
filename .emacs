@@ -88,8 +88,11 @@
 ;; Allow scaling of all buffers.
 (use-package default-text-scale
   :ensure t
-  :bind (("C-M-=" . default-text-scale-increase)
-         ("C-M--" . default-text-scale-decrease)))
+  :bind (("C-M-="       . default-text-scale-increase)
+         ("C-<mouse-4>" . default-text-scale-increase)
+         ("C-M--"       . default-text-scale-decrease)
+         ("C-<mouse-5>" . default-text-scale-decrease)))
+
 
 ;; END DEFAULT-TEXT-SCALE
 

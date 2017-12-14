@@ -76,6 +76,7 @@
 
 ;; START SMART-MODE-LINE
 (use-package smart-mode-line
+  :ensure t
   :demand
   :config
   (setq sml/theme 'respectful)

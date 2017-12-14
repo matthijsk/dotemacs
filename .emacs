@@ -301,7 +301,6 @@
                        "wk"  'evil-window-up
                        "wl"  'evil-window-right
 
-                       "bd"  'kill-buffer
                        "xk"  'kill-buffer
                        "rb"  'revert-buffer
                        "x#"  'server-edit

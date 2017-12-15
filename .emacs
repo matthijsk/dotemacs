@@ -310,6 +310,8 @@
 
                        "b"   'helm-mini
                        "xf"  'helm-find-files
+                       "hb"  'helm-bookmarks
+                       "xh"  '(lambda() (interactive) (helm-resume t))
 
                        "l"   'whitespace-mode
                        "hl"  'hl-line-mode
@@ -375,6 +377,8 @@
     (magit-mode-setup #'magit-staging-mode))
 
   (magit-define-popup-switch 'magit-log-popup ?f "first parent" "--first-parent")
+
+  (evil-define-key 'normal magit-blame-mode-map (kbd "q") 'magit-blame-quit)
 
   :custom
   (magit-refresh-verbose t))

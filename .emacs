@@ -354,6 +354,7 @@
   (require 'magit))
 
 (use-package magit
+  :diminish auto-revert-mode
   :defer t
   :init
   (setq vc-handled-backends nil)

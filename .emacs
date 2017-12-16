@@ -317,11 +317,7 @@
 
                        "l"   'whitespace-mode
                        "hl"  'hl-line-mode
-                       "rl"  '(lambda() (interactive)
-                                (if (bound-and-true-p nlinum-mode)
-                                    (nlinum-mode -1)
-                                  (nlinum-mode 1))
-                                (nlinum-relative-on))
+                       "rl"  'toggle-nlinum-relative
 
                        "m"   'compile
                        "c"   'compile
@@ -341,15 +337,33 @@
 
 ;; END EVIL-LEADER
 
+;; START NLINUM
 (use-package nlinum
   :after evil-leader
   :defer t)
 
+;; END NLINUM
+
+;; START NLINUM-RELATIVE
 (use-package nlinum-relative
   :after (nlinum)
   :defer t
   :config
   (nlinum-relative-setup-evil))
+
+(defun toggle-nlinum-relative ()
+  "Toggles relative line numbers using `nlinum-relative'.
+
+This differs from `nlinum-relative-toggle' in that line numbers in the
+margin are enabled and disabled when toggled. `nlinum-relative-toggle'
+only toggles when `nlinum-mode' is enabled."
+  (interactive)
+  (if (bound-and-true-p nlinum-mode)
+      (nlinum-mode -1)
+    (nlinum-mode 1))
+  (nlinum-relative-on))
+
+;; END NLINUM-RELATIVE
 
 ;; START MAGIT
 (eval-when-compile

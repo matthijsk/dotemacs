@@ -244,10 +244,11 @@
          )
   :config
   ;; Jump to tag and recenter
-  (advice-add 'evil-jump-to-tag   :after 'evil-scroll-line-to-center)
-  (advice-add 'evil-jump-backward :after 'evil-scroll-line-to-center)
-  (advice-add 'evil-jump-forward  :after 'evil-scroll-line-to-center)
-  (advice-add 'evil-search-next   :after 'evil-scroll-line-to-center)
+  (advice-add 'evil-jump-to-tag     :after 'evil-scroll-line-to-center)
+  (advice-add 'evil-jump-backward   :after 'evil-scroll-line-to-center)
+  (advice-add 'evil-jump-forward    :after 'evil-scroll-line-to-center)
+  (advice-add 'evil-search-next     :after 'evil-scroll-line-to-center)
+  (advice-add 'evil-search-previous :after 'evil-scroll-line-to-center)
 
   ;; Ex commands.
   (evil-ex-define-cmd "A"  'ff-find-other-file)

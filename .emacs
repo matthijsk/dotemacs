@@ -1,3 +1,5 @@
+
+;; START GLOBAL EMACS
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (when (< emacs-major-version 24)
@@ -10,7 +12,6 @@
 (use-package diminish
   :ensure t)
 
-;; START GLOBAL EMACS
 (setq initial-buffer-choice t)
 
 (server-start)
@@ -74,6 +75,7 @@
 
 ;; END GLOBAL EMACS
 
+
 ;; START SMART-MODE-LINE
 (use-package smart-mode-line
   :ensure t
@@ -84,6 +86,7 @@
 
 ;; END SMART-MODE-LINE
 
+
 ;; START DEFAULT-TEXT-SCALE
 ;; Allow scaling of all buffers.
 (use-package default-text-scale
@@ -96,6 +99,7 @@
 
 ;; END DEFAULT-TEXT-SCALE
 
+
 ;; START HELM
 (use-package helm
   :diminish helm-mode
@@ -122,6 +126,7 @@
 
 ;; END HELM
 
+
 ;; START PROJECTILE
 (use-package projectile
   :after helm
@@ -139,6 +144,7 @@
 
 ;; END PROJECTILE
 
+
 ;; START HELM-PROJECTILE
 (use-package helm-projectile
   :after (helm projectile)
@@ -151,6 +157,7 @@
 
 ;; END HELM-PROJECTILE
 
+
 ;; START ORG MODE
 (use-package org
   :after evil
@@ -222,6 +229,7 @@
 
 ;; END ORG MODE
 
+
 ;; START EVIL
 (use-package evil
   :ensure t
@@ -275,6 +283,7 @@
 
 ;; END EVIL
 
+
 ;; START EVIL-LEADER
 (use-package evil-leader
   :ensure t
@@ -337,6 +346,7 @@
 
 ;; END EVIL-LEADER
 
+
 ;; START NLINUM
 (use-package nlinum
   :after evil-leader
@@ -365,6 +375,7 @@ only toggles when `nlinum-mode' is enabled."
 
 ;; END NLINUM-RELATIVE
 
+
 ;; START MAGIT
 (eval-when-compile
   (require 'magit))
@@ -402,12 +413,14 @@ only toggles when `nlinum-mode' is enabled."
 
 ;; END MAGIT
 
+
 ;; PRETTY CONTROL-L
 (use-package pp-c-l
   :config
   (pretty-control-l-mode t))
 ;; END PRETTY CONTROL-L
 
+
 ;; START ACE-JUMP-MODE
 (use-package ace-jump-mode
   :after evil
@@ -417,3 +430,5 @@ only toggles when `nlinum-mode' is enabled."
           :map evil-normal-state-map
                ("SPC" . ace-jump-mode)))
 ;; END ACE JUMP MODE
+
+

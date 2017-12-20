@@ -113,6 +113,7 @@
          ;; helm buffers.
          ("C-x C-h" . (lambda() (interactive) (helm-resume t)))
          ("C-s"     . helm-occur)
+         ("C-x r l" . helm-bookmarks)
          :map helm-map
          ;; Use <C-tab> and <C-S-tab> to navigate helm buffers.
          ("<C-tab>"   . helm-next-line)

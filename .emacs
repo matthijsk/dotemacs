@@ -32,7 +32,7 @@
 
 ;; Scroll by one line when reaching bottom of buffer.
 (setq scroll-conservatively 101)
-(setq scroll-margin 5)
+(setq scroll-margin 3)
 
 ;; Don't speed up when scrolling faster.
 (setq mouse-wheel-progressive-speed nil)

@@ -183,7 +183,7 @@
     (org-insert-heading-after-current)
     (insert (format "Week %s" (iso-week-number)))
     (org-insert-heading-after-current)
-    (org-insert-time-stamp (current-time))
+    (org-insert-time-stamp (current-time) nil t)
     (org-demote)
     (org-clock-in))
 
@@ -193,7 +193,7 @@
     (if (not (org-at-heading-p))
         (user-error "Not at a heading"))
     (org-insert-heading-after-current)
-    (org-insert-time-stamp (current-time))
+    (org-insert-time-stamp (current-time) nil t)
     (org-clock-in))
 
   (org-clock-persistence-insinuate)

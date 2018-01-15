@@ -180,7 +180,7 @@
     (if (not (org-at-heading-p))
         (user-error "Not at a heading"))
     (beginning-of-line)
-    (org-insert-heading-after-current)
+    (org-insert-heading)
     (insert (format "Week %s" (iso-week-number)))
     (org-insert-heading-after-current)
     (org-insert-time-stamp (current-time) nil t)

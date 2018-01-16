@@ -1,7 +1,7 @@
 
 ;; START GLOBAL EMACS
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
@@ -111,7 +111,7 @@
          ("C-x C-f" . helm-find-files)
          ;; Resume previous helm session with prefix to choose among existing
          ;; helm buffers.
-         ("C-x C-h" . (lambda() (interactive) (helm-resume t)))
+         ;("C-x C-h" . (lambda() (interactive) (helm-resume t)))
          ("C-s"     . helm-occur)
          ("C-x r l" . helm-bookmarks)
          :map helm-map
@@ -122,8 +122,8 @@
   :config
   (helm-mode 1)
 
-  :custom
-  (helm-split-window-inside-p t))
+  ;; :custom
+  (setq helm-split-window-inside-p t))
 
 ;; END HELM
 
@@ -131,17 +131,18 @@
 ;; START PROJECTILE
 (use-package projectile
   :after helm
+  :ensure t
   :bind-keymap ("C-c p" . projectile-command-map)
   :bind ("<f9>" . projectile-compile-project)
 
   :config
   (projectile-mode)
 
-  :custom
-  (projectile-completion-system 'helm)
-  (projectile-indexing-method 'alien)
-  (projectile-enable-caching t)
-  (projectile-use-git-grep t))
+  ;; :custom
+  (setq projectile-completion-system 'helm)
+  (setq projectile-indexing-method 'alien)
+  (setq projectile-enable-caching t)
+  (setq projectile-use-git-grep t))
 
 ;; END PROJECTILE
 
@@ -149,12 +150,13 @@
 ;; START HELM-PROJECTILE
 (use-package helm-projectile
   :after (helm projectile)
+  :ensure t
   :config
   (helm-projectile-on)
 
-  :custom
-  (projectile-switch-project-action 'helm-projectile)
-  (helm-projectile-fuzzy-match nil))
+  ;; :custom
+  (setq projectile-switch-project-action 'helm-projectile)
+  (setq helm-projectile-fuzzy-match nil))
 
 ;; END HELM-PROJECTILE
 
@@ -219,14 +221,14 @@
 
   (evil-define-key 'insert org-mode-map [tab] 'org-cycle)
 
-  :custom
-  (org-todo-keywords
+  ;;:custom
+  (setq org-todo-keywords
         '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
 
-  (org-outline-path-complete-in-steps nil)
+  (setq org-outline-path-complete-in-steps nil)
 
   ;; Save the running clock when Emacs exits.
-  (org-clock-persist 'clock))
+  (setq org-clock-persist 'clock))
 
 ;; END ORG MODE
 
@@ -278,9 +280,10 @@
   (evil-set-initial-state 'magit-staging-mode   'emacs)
   (evil-set-initial-state 'xref-buffer-mode     'emacs)
 
-  :custom
-  (evil-want-C-u-scroll t "Scroll up using C-u.")
-  (evil-symbol-word-search t))
+  ;; :custom
+  ;; Scroll up using C-u. Use customize to set this variable.
+  ;; (setq evil-want-C-u-scroll t)
+  (setq evil-symbol-word-search t))
 
 ;; END EVIL
 
@@ -377,11 +380,8 @@ only toggles when `nlinum-mode' is enabled."
 ;; END NLINUM-RELATIVE
 
 
-;; START MAGIT
-(eval-when-compile
-  (require 'magit))
-
 (use-package magit
+  :ensure t
   :diminish auto-revert-mode
   :defer t
   :init
@@ -409,27 +409,7 @@ only toggles when `nlinum-mode' is enabled."
 
   (evil-define-key 'normal magit-blame-mode-map (kbd "q") 'magit-blame-quit)
 
-  :custom
-  (magit-refresh-verbose t))
+  ;; :custom
+  (setq magit-refresh-verbose t))
 
 ;; END MAGIT
-
-
-;; PRETTY CONTROL-L
-(use-package pp-c-l
-  :config
-  (pretty-control-l-mode t))
-;; END PRETTY CONTROL-L
-
-
-;; START ACE-JUMP-MODE
-(use-package ace-jump-mode
-  :after evil
-  :bind ( :map global-map
-               ("C-x SPC" . ace-jump-mode-pop-mark)
-               ("C-c SPC" . ace-jump-mode)
-          :map evil-normal-state-map
-               ("SPC" . ace-jump-mode)))
-;; END ACE JUMP MODE
-
-

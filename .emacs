@@ -256,6 +256,10 @@
          :map evil-insert-state-map
               ("C-s" . save-buffer)
          )
+  :init
+  (setq evil-want-C-u-scroll t)
+  (setq evil-symbol-word-search t)
+
   :config
   ;; Jump to tag and recenter
   (advice-add 'evil-jump-to-tag     :after 'evil-scroll-line-to-center)
@@ -281,12 +285,7 @@
   (evil-set-initial-state 'Custom-mode          'emacs)
   (evil-set-initial-state 'messages-buffer-mode 'emacs)
   (evil-set-initial-state 'magit-staging-mode   'emacs)
-  (evil-set-initial-state 'xref-buffer-mode     'emacs)
-
-  ;; :custom
-  ;; Scroll up using C-u. Use customize to set this variable.
-  ;; (setq evil-want-C-u-scroll t)
-  (setq evil-symbol-word-search t))
+  (evil-set-initial-state 'xref-buffer-mode     'emacs))
 
 ;; END EVIL
 

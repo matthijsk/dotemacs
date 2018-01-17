@@ -109,9 +109,7 @@
          ("C-x b"   . helm-mini)
          ("<C-tab>" . helm-mini)
          ("C-x C-f" . helm-find-files)
-         ;; Resume previous helm session with prefix to choose among existing
-         ;; helm buffers.
-         ;("C-x C-h" . (lambda() (interactive) (helm-resume t)))
+         ("C-x C-h" . helm-resume-existing)
          ("C-s"     . helm-occur)
          ("C-x r l" . helm-bookmarks)
          :map helm-map
@@ -120,6 +118,11 @@
          ("<C-S-tab>" . helm-previous-line))
 
   :config
+  (defun helm-resume-existing ()
+    "Resume previous helm session with prefix to choose among existing helm buffers."
+    (interactive)
+    (helm-resume t))
+
   (helm-mode 1)
 
   ;; :custom
@@ -326,7 +329,7 @@
                        "b"   'helm-mini
                        "xf"  'helm-find-files
                        "hb"  'helm-bookmarks
-                       "xh"  '(lambda() (interactive) (helm-resume t))
+                       "xh"  'helm-resume-existing
 
                        "l"   'whitespace-mode
                        "hl"  'hl-line-mode

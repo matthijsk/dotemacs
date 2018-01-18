@@ -174,6 +174,10 @@
          ("\C-cb" . org-iswitchb)
          ("\C-ci" . clock-in)
          ("\C-co" . org-clock-out))
+  :init
+  (setq org-todo-keywords
+        '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
+
   :config
   (defun iso-week-number ()
     "Returns the ISO week number for today."
@@ -224,10 +228,7 @@
 
   (evil-define-key 'insert org-mode-map [tab] 'org-cycle)
 
-  ;;:custom
-  (setq org-todo-keywords
-        '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
-
+  ;; :custom
   (setq org-outline-path-complete-in-steps nil)
 
   ;; Save the running clock when Emacs exits.

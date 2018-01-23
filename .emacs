@@ -24,9 +24,6 @@
 ;; Never indent with tabs.
 (setq-default indent-tabs-mode nil)
 
-;; Auto-close parenthesis, etc.
-(electric-pair-mode 1)
-
 ;; Allow for basic paging in emacs shells.
 (setenv "PAGER" "/bin/cat")
 

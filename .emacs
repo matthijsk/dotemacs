@@ -299,19 +299,19 @@
 
                        "sh"   'eshell
 
-                       "wc"  'delete-window
+                       "wc"  'evil-window-delete
                        "x0"  'delete-window
 
-                       "ww"  'other-window
+                       "ww"  'evil-window-next
                        "xo"  'other-window
 
                        "wo"  'delete-other-windows
                        "x1"  'delete-other-windows
 
-                       "ws"  'split-window-below
+                       "ws"  'evil-window-split
                        "x2"  'split-window-below
 
-                       "wv"  'split-window-right
+                       "wv"  'evil-window-vsplit
                        "x3"  'split-window-right
 
                        "wh"  'evil-window-left

@@ -188,10 +188,8 @@
     (beginning-of-line)
     (org-insert-heading)
     (insert (format "Week %s" (iso-week-number)))
-    (org-insert-heading-after-current)
-    (org-insert-time-stamp (current-time) nil t)
-    (org-demote)
-    (org-clock-in))
+    (clock-in)
+    (org-demote))
 
   (defun clock-in ()
     "Clock in with org mode."

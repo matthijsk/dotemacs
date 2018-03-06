@@ -188,16 +188,17 @@
     (beginning-of-line)
     (org-insert-heading)
     (insert (format "Week %s" (iso-week-number)))
-    (clock-in)
-    (org-demote))
+    (clock-in t))
 
-  (defun clock-in ()
+  (defun clock-in (&optional monday)
     "Clock in with org mode."
     (interactive)
     (if (not (org-at-heading-p))
         (user-error "Not at a heading"))
     (org-insert-heading-after-current)
     (org-insert-time-stamp (current-time) nil t)
+    (if monday
+        (org-demote))
     (org-clock-in))
 
   (org-clock-persistence-insinuate)

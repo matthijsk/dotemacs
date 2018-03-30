@@ -70,6 +70,10 @@
 (global-set-key (kbd "<mouse-2>") 'x-clipboard-yank)
 (setq-default x-select-enable-primary t)
 
+;; Set c indentation to 2
+(setq c-default-style "linux"
+      c-basic-offset 2)
+
 ;; END GLOBAL EMACS
 
 

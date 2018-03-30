@@ -301,7 +301,9 @@
   (evil-set-initial-state 'Custom-mode          'emacs)
   (evil-set-initial-state 'messages-buffer-mode 'emacs)
   (evil-set-initial-state 'magit-staging-mode   'emacs)
-  (evil-set-initial-state 'xref-buffer-mode     'emacs))
+  (evil-set-initial-state 'xref-buffer-mode     'emacs)
+
+  (setq evil-shift-width 2))
 
 ;; END EVIL
 

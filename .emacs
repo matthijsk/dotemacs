@@ -74,6 +74,17 @@
 (setq c-default-style "linux"
       c-basic-offset 2)
 
+;; Set xml-mode when loading cbproj and groupproj files.
+(add-to-list 'auto-mode-alist '("\\.cbproj\\'" . xml-mode))
+(add-to-list 'auto-mode-alist '("\\.groupproj\\'" . xml-mode))
+
+;; Set c++-mode when loading .h files. All I do is c++ all day.
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+
+;; Set c++-mode when loading .rc and .rh files.
+(add-to-list 'auto-mode-alist '("\\.rh\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.rc\\'" . c++-mode))
+
 ;; Increase warning limit to 100 MB for large files.
 (setq large-file-warning-threshold (* 100 1024 1024))
 

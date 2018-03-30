@@ -402,7 +402,6 @@ only toggles when `nlinum-mode' is enabled."
 
 (use-package magit
   :ensure t
-  :diminish auto-revert-mode
   :defer t
   :init
   (setq vc-handled-backends nil)

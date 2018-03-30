@@ -346,6 +346,7 @@
                        "b"   'helm-mini
                        "xf"  'helm-find-files
                        "hb"  'helm-bookmarks
+                       "hs"  'helm-semantic
                        "xh"  'helm-resume-existing
 
                        "l"   'whitespace-mode
@@ -481,3 +482,19 @@ only toggles when `nlinum-mode' is enabled."
   (setq helm-company-fuzzy-match nil))
 
 ;; END HELM-COMPANY
+
+
+;; START SEMANTIC
+(use-package semantic
+  :ensure t
+  :init
+  (add-hook 'c++-mode-hook 'semantic-mode)
+  :after company
+  ;; :custom
+  :config
+  ;; Ensure semantic is not used by company
+  (setq company-backends (delete 'company-semantic company-backends))
+  (global-semantic-stickyfunc-mode)
+  (evil-define-key 'normal c++-mode-map (kbd "C-}") 'semantic-ia-fast-jump))
+
+;; END SEMANTIC

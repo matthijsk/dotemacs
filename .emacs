@@ -432,3 +432,26 @@ only toggles when `nlinum-mode' is enabled."
   (setq magit-refresh-verbose t))
 
 ;; END MAGIT
+
+
+;; START GTAGS
+;; Force treating of .h files as C++ source
+(setenv "GTAGSFORCECPP" "true")
+
+;; END GTAGS
+
+;; START HELM GTAGS
+(use-package helm-gtags
+  :ensure t
+  :init
+  (add-hook 'c++-mode-hook 'helm-gtags-mode)
+  ;; :custom
+  :config
+  (setq helm-gtags-path-style 'absolute)
+  (setq helm-gtags-use-input-at-cursor t)
+  (setq helm-gtags-auto-update t)
+  (setq helm-gtags-pulse-at-cursor t)
+  :config
+  (evil-define-key 'normal c++-mode-map (kbd "C-]") 'helm-gtags-dwim))
+
+;; END HELM GTAGS

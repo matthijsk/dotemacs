@@ -148,10 +148,12 @@
 
 ;; START PROJECTILE
 (use-package projectile
-  :after helm
   :ensure t
+  :after helm
   :bind-keymap ("C-c p" . projectile-command-map)
   :bind ("<f9>" . projectile-compile-project)
+  :init
+  (add-hook 'c++-mode-hook 'projectile-mode)
 
   :config
   (projectile-mode)
@@ -167,14 +169,13 @@
 
 ;; START HELM-PROJECTILE
 (use-package helm-projectile
-  :after (helm projectile)
   :ensure t
-  :config
-  (helm-projectile-on)
-
-  ;; :custom
+  :after (helm projectile)
+  :init
+  (setq helm-projectile-fuzzy-match nil)
   (setq projectile-switch-project-action 'helm-projectile)
-  (setq helm-projectile-fuzzy-match nil))
+  :config
+  (helm-projectile-on))
 
 ;; END HELM-PROJECTILE
 

@@ -455,3 +455,29 @@ only toggles when `nlinum-mode' is enabled."
   (evil-define-key 'normal c++-mode-map (kbd "C-]") 'helm-gtags-dwim))
 
 ;; END HELM GTAGS
+
+
+;; START COMPANY
+(use-package company
+  :ensure t
+  :init
+  (add-hook 'c++-mode-hook 'company-mode)
+  (add-hook 'emacs-lisp-mode-hook 'company-mode)
+  :config
+  (setq company-async-timeout 10)
+  ;; :custom
+  (setq company-idle-delay nil))
+
+;; END COMPANY
+
+
+;; START HELM-COMPANY
+(use-package helm-company
+  :ensure t
+  :bind (:map evil-insert-state-map
+              ([tab] . helm-company))
+  ;; :custom
+  :config
+  (setq helm-company-fuzzy-match nil))
+
+;; END HELM-COMPANY

@@ -74,6 +74,9 @@
 (setq c-default-style "linux"
       c-basic-offset 2)
 
+;; Increase warning limit to 100 MB for large files.
+(setq large-file-warning-threshold (* 100 1024 1024))
+
 ;; END GLOBAL EMACS
 
 

@@ -154,6 +154,7 @@
   :bind ("<f9>" . projectile-compile-project)
   :init
   (add-hook 'c++-mode-hook 'projectile-mode)
+  (add-hook 'cmake-mode-hook 'projectile-mode)
 
   :config
   (projectile-mode)

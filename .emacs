@@ -91,6 +91,13 @@
 ;; END GLOBAL EMACS
 
 
+;; START CMAKE-MODE
+(use-package cmake-mode
+  :ensure t)
+
+;; END CMAKE-MODE
+
+
 ;; START SMART-MODE-LINE
 (use-package smart-mode-line
   :ensure t

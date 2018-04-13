@@ -445,6 +445,7 @@
   :init
   (add-hook 'c++-mode-hook 'company-mode)
   (add-hook 'emacs-lisp-mode-hook 'company-mode)
+  (add-hook 'cmake-mode-hook 'company-mode)
   :config
   (setq company-async-timeout 10)
   ;; :custom

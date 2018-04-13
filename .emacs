@@ -391,7 +391,6 @@
 ;; START MAGIT
 (use-package magit
   :ensure t
-  :defer t
   :init
   (setq vc-handled-backends nil)
 

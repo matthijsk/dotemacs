@@ -148,6 +148,7 @@
   (helm-mode 1)
 
   ;; :custom
+  (setq helm-buffer-max-length nil)
   (setq helm-split-window-inside-p t))
 
 ;; END HELM

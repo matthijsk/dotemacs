@@ -98,6 +98,13 @@
 ;; END CMAKE-MODE
 
 
+;; START NINJA-MODE
+(use-package ninja-mode
+  :ensure t)
+
+;; END NINJA-MODE
+
+
 ;; START SMART-MODE-LINE
 (use-package smart-mode-line
   :ensure t

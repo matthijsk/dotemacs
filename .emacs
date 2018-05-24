@@ -197,6 +197,11 @@
 
 
 ;; START ORG MODE
+;; Org html export requires htmlize
+(use-package htmlize
+  :ensure t
+  :defer t)
+
 (use-package org
   :after evil
   ;; Global key bindings.

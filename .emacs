@@ -247,7 +247,7 @@
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
-     (sh . t)
+     (shell . t)
      (C . t)))
 
   ;; Do not interpret "_" and "^" for sub and superscript when

@@ -268,7 +268,10 @@
   (setq org-outline-path-complete-in-steps nil)
 
   ;; Save the running clock when Emacs exits.
-  (setq org-clock-persist 'clock))
+  (setq org-clock-persist 'clock)
+
+  ;; Flushright tags to column 100
+  (setq org-tags-column -100))
 
 ;; END ORG MODE
 

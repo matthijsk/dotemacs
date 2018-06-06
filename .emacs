@@ -88,6 +88,9 @@
 ;; Increase warning limit to 100 MB for large files.
 (setq large-file-warning-threshold (* 100 1024 1024))
 
+;; Default to displaying line numbers as relative.
+(setq display-line-numbers-type 'relative)
+
 ;; END GLOBAL EMACS
 
 
@@ -374,7 +377,7 @@
 
                        "l"   'whitespace-mode
                        "hl"  'hl-line-mode
-                       "rl"  'linum-relative-toggle
+                       "rl"  'display-line-numbers-mode
 
                        "m"   'compile
                        "c"   'compile
@@ -393,14 +396,6 @@
   (evil-mode))
 
 ;; END EVIL-LEADER
-
-
-;; START LINUM-RELATIVE
-(use-package linum-relative
-  :ensure t
-  :defer t)
-
-;; END LINUM-RELATIVE
 
 
 ;; START MAGIT

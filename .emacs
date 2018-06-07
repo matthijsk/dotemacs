@@ -187,7 +187,7 @@
 ;; START HELM-PROJECTILE
 (use-package helm-projectile
   :ensure t
-  :after (helm projectile)
+  :after projectile
   :init
   (setq helm-projectile-fuzzy-match nil)
   (setq projectile-switch-project-action 'helm-projectile)

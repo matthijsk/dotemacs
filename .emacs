@@ -91,6 +91,9 @@
 ;; Default to displaying line numbers as relative.
 (setq display-line-numbers-type 'relative)
 
+;; Display time as 24h
+(setq display-time-24hr-format t)
+
 ;; END GLOBAL EMACS
 
 

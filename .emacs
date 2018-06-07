@@ -96,14 +96,16 @@
 
 ;; START CMAKE-MODE
 (use-package cmake-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 ;; END CMAKE-MODE
 
 
 ;; START NINJA-MODE
 (use-package ninja-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 ;; END NINJA-MODE
 
@@ -111,7 +113,6 @@
 ;; START SMART-MODE-LINE
 (use-package smart-mode-line
   :ensure t
-  :demand
   :config
   (setq sml/theme 'respectful)
   (sml/setup))
@@ -136,7 +137,6 @@
 (use-package helm
   :diminish helm-mode
   :ensure t
-  :demand
   :bind (("M-x"     . helm-M-x)
          ("C-x b"   . helm-mini)
          ("<C-tab>" . helm-mini)
@@ -167,7 +167,6 @@
 ;; START PROJECTILE
 (use-package projectile
   :ensure t
-  :after helm
   :bind-keymap ("C-c p" . projectile-command-map)
   :bind ("<f9>" . projectile-compile-project)
   :init
@@ -175,10 +174,9 @@
   (add-hook 'cmake-mode-hook 'projectile-mode)
 
   :config
-  (projectile-mode)
+  (projectile-global-mode)
 
   ;; :custom
-  (setq projectile-completion-system 'helm)
   (setq projectile-indexing-method 'alien)
   (setq projectile-enable-caching t)
   (setq projectile-use-git-grep t))
@@ -206,7 +204,6 @@
   :defer t)
 
 (use-package org
-  :after evil
   ;; Global key bindings.
   :bind (("\C-cl" . org-store-link)
          ("\C-ca" . org-agenda)
@@ -282,8 +279,8 @@
 ;; START EVIL
 (use-package evil
   :ensure t
+  :demand t
   :diminish undo-tree-mode
-  :demand
   :bind (:map evil-normal-state-map
               ([tab] . other-window)
               ("C-s" . save-buffer)
@@ -337,7 +334,6 @@
 ;; START EVIL-LEADER
 (use-package evil-leader
   :ensure t
-  :demand
   :after evil
   :config
   (evil-leader/set-leader ",")
@@ -382,9 +378,6 @@
                        "m"   'compile
                        "c"   'compile
 
-                       "st"  'magit-status
-                       "f"   'magit-file-popup
-
                        "pf"  'helm-projectile-find-file
                        "psg" 'helm-projectile-grep
                        "pa"  'helm-projectile-find-other-file)
@@ -401,6 +394,10 @@
 ;; START MAGIT
 (use-package magit
   :ensure t
+  :defer t
+  :bind (:map evil-leader--default-map
+              ("st" . magit-staging)
+              ("f"  . magit-file-popup))
   :init
   (setq vc-handled-backends nil)
 
@@ -441,6 +438,7 @@
 ;; START HELM GTAGS
 (use-package helm-gtags
   :ensure t
+  :defer t
   :init
   (add-hook 'c++-mode-hook 'helm-gtags-mode)
   ;; :custom
@@ -458,6 +456,7 @@
 ;; START COMPANY
 (use-package company
   :ensure t
+  :defer t
   :init
   (add-hook 'c++-mode-hook 'company-mode)
   (add-hook 'emacs-lisp-mode-hook 'company-mode)
@@ -487,9 +486,9 @@
 ;; START SEMANTIC
 (use-package semantic
   :ensure t
+  :defer t
   :init
   (add-hook 'c++-mode-hook 'semantic-mode)
-  :after company
   ;; :custom
   :config
   ;; Ensure semantic is not used by company

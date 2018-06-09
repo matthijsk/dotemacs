@@ -97,22 +97,6 @@
 ;; END GLOBAL EMACS
 
 
-;; START CMAKE-MODE
-(use-package cmake-mode
-  :ensure t
-  :defer t)
-
-;; END CMAKE-MODE
-
-
-;; START NINJA-MODE
-(use-package ninja-mode
-  :ensure t
-  :defer t)
-
-;; END NINJA-MODE
-
-
 ;; START SMART-MODE-LINE
 (use-package smart-mode-line
   :ensure t
@@ -198,85 +182,6 @@
   (helm-projectile-on))
 
 ;; END HELM-PROJECTILE
-
-
-;; START ORG MODE
-;; Org html export requires htmlize
-(use-package htmlize
-  :ensure t
-  :defer t)
-
-(use-package org
-  ;; Global key bindings.
-  :bind (("\C-cl" . org-store-link)
-         ("\C-ca" . org-agenda)
-         ("\C-cc" . org-capture)
-         ("\C-cb" . org-iswitchb)
-         ("\C-ci" . clock-in)
-         ("\C-co" . org-clock-out))
-  :init
-  (setq org-todo-keywords
-        '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
-
-  :config
-  (defun iso-week-number ()
-    "Returns the ISO week number for today."
-    (org-days-to-iso-week (org-today)))
-
-  (defun clock-in-monday ()
-    "Creates a new \"Week <WEEK-NUMBER>\" heading."
-    (interactive)
-    (if (not (org-at-heading-p))
-        (user-error "Not at a heading"))
-    (beginning-of-line)
-    (org-insert-heading)
-    (insert (format "Week %s" (iso-week-number)))
-    (clock-in t))
-
-  (defun clock-in (&optional monday)
-    "Clock in with org mode."
-    (interactive)
-    (if (not (org-at-heading-p))
-        (user-error "Not at a heading"))
-    (org-insert-heading-after-current)
-    (org-insert-time-stamp (current-time) nil t)
-    (if monday
-        (org-demote))
-    (org-clock-in))
-
-  (org-clock-persistence-insinuate)
-
-  ;; Org mode babel language support.
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((emacs-lisp . t)
-     (shell . t)
-     (C . t)))
-
-  ;; Do not interpret "_" and "^" for sub and superscript when
-  ;; exporting.
-  (setq org-export-with-sub-superscripts nil)
-
-  ;; When in org-mode, use expected org-mode tab behaviour when in
-  ;; Normal and Insert state. Set jump keys to navigate org links and
-  ;; the mark ring.
-  (evil-define-key 'normal org-mode-map
-    [tab] 'org-cycle
-    (kbd "C-]") 'org-open-at-point
-    (kbd "C-o") 'org-mark-ring-goto)
-
-  (evil-define-key 'insert org-mode-map [tab] 'org-cycle)
-
-  ;; :custom
-  (setq org-outline-path-complete-in-steps nil)
-
-  ;; Save the running clock when Emacs exits.
-  (setq org-clock-persist 'clock)
-
-  ;; Flushright tags to column 100
-  (setq org-tags-column -100))
-
-;; END ORG MODE
 
 
 ;; START EVIL
@@ -394,6 +299,104 @@
 ;; END EVIL-LEADER
 
 
+;; START ORG MODE
+;; Org html export requires htmlize
+(use-package htmlize
+  :ensure t
+  :defer t)
+
+(use-package org
+  ;; Global key bindings.
+  :bind (("\C-cl" . org-store-link)
+         ("\C-ca" . org-agenda)
+         ("\C-cc" . org-capture)
+         ("\C-cb" . org-iswitchb)
+         ("\C-ci" . clock-in)
+         ("\C-co" . org-clock-out))
+  :init
+  (setq org-todo-keywords
+        '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
+
+  :config
+  (defun iso-week-number ()
+    "Returns the ISO week number for today."
+    (org-days-to-iso-week (org-today)))
+
+  (defun clock-in-monday ()
+    "Creates a new \"Week <WEEK-NUMBER>\" heading."
+    (interactive)
+    (if (not (org-at-heading-p))
+        (user-error "Not at a heading"))
+    (beginning-of-line)
+    (org-insert-heading)
+    (insert (format "Week %s" (iso-week-number)))
+    (clock-in t))
+
+  (defun clock-in (&optional monday)
+    "Clock in with org mode."
+    (interactive)
+    (if (not (org-at-heading-p))
+        (user-error "Not at a heading"))
+    (org-insert-heading-after-current)
+    (org-insert-time-stamp (current-time) nil t)
+    (if monday
+        (org-demote))
+    (org-clock-in)
+    (org-insert-heading-after-current)
+    (org-demote)
+    (insert " Standup")
+    (forward-line)
+    ;; Create table "| todo | in progress | done |"
+    (org-table-create "3x2")
+    (org-table-put 1 1 "todo")
+    (org-table-put 1 2 "in progress")
+    (org-table-put 1 3 "done" t)) ;; set align to auto align table
+
+  (org-clock-persistence-insinuate)
+
+  ;; Org mode babel language support.
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (shell . t)
+     (C . t)))
+
+  ;; Do not interpret "_" and "^" for sub and superscript when
+  ;; exporting.
+  (setq org-export-with-sub-superscripts nil)
+
+  ;; When in org-mode, use expected org-mode tab behaviour when in
+  ;; Normal and Insert state. Set jump keys to navigate org links and
+  ;; the mark ring.
+  (evil-define-key 'normal org-mode-map
+    [tab] 'org-cycle
+    (kbd "C-]") 'org-open-at-point
+    (kbd "C-o") 'org-mark-ring-goto)
+
+  (evil-define-key 'insert org-mode-map [tab] 'org-cycle)
+
+  ;; :custom
+  (setq org-outline-path-complete-in-steps nil)
+
+  ;; Save the running clock when Emacs exits.
+  (setq org-clock-persist 'clock)
+
+  ;; Flushright tags to column 100
+  (setq org-tags-column -100)
+
+  (setq org-agenda-files
+   (quote
+    ("c:/Users/matthijs/org/notes.org"
+     "c:/Users/matthijs/org/worklog.org"
+     "c:/Users/matthijs/org/diametercompensation.org"
+     "c:/Users/matthijs/org/personal.org"
+     "c:/Users/matthijs/org/cmake.org"
+     "c:/Users/matthijs/org/agenda.org"
+     ))))
+
+;; END ORG MODE
+
+
 ;; START MAGIT
 (use-package magit
   :ensure t
@@ -430,6 +433,22 @@
   (setq magit-refresh-verbose t))
 
 ;; END MAGIT
+
+
+;; START CMAKE-MODE
+(use-package cmake-mode
+  :ensure t
+  :defer t)
+
+;; END CMAKE-MODE
+
+
+;; START NINJA-MODE
+(use-package ninja-mode
+  :ensure t
+  :defer t)
+
+;; END NINJA-MODE
 
 
 ;; START GTAGS

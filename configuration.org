@@ -1,5 +1,9 @@
-
-;; START GLOBAL EMACS
+#+TITLE: Emacs Configuration
+
+* Global settings
+
+#+BEGIN_SRC emacs-lisp
+
 (require 'package)
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 (when (< emacs-major-version 24)
@@ -94,19 +98,24 @@
 ;; Display time as 24h
 (setq display-time-24hr-format t)
 
-;; END GLOBAL EMACS
+#+END_SRC
 
-
-;; START SMART-MODE-LINE
+* Smart mode line
+
+#+BEGIN_SRC emacs-lisp
+
 (use-package smart-mode-line
   :ensure t
   :config
   (setq sml/theme 'respectful)
   (sml/setup))
 
-;; END SMART-MODE-LINE
+#+END_SRC
 
-
+* Default text scale
+
+#+BEGIN_SRC emacs-lisp
+
 ;; START DEFAULT-TEXT-SCALE
 ;; Allow scaling of all buffers.
 (use-package default-text-scale
@@ -116,11 +125,12 @@
          ("C-M--"       . default-text-scale-decrease)
          ("C-<mouse-5>" . default-text-scale-decrease)))
 
+#+END_SRC
 
-;; END DEFAULT-TEXT-SCALE
+* Helm
 
-
-;; START HELM
+#+BEGIN_SRC emacs-lisp
+
 (use-package helm
   :diminish helm-mode
   :ensure t
@@ -148,10 +158,12 @@
   (setq helm-buffer-max-length nil)
   (setq helm-split-window-inside-p t))
 
-;; END HELM
+#+END_SRC
 
-
-;; START PROJECTILE
+* Projectile
+
+#+BEGIN_SRC emacs-lisp
+
 (use-package projectile
   :ensure t
   :bind-keymap ("C-c p" . projectile-command-map)
@@ -168,10 +180,12 @@
   (setq projectile-enable-caching t)
   (setq projectile-use-git-grep t))
 
-;; END PROJECTILE
+#+END_SRC
 
-
-;; START HELM-PROJECTILE
+* Helm-projectile
+
+#+BEGIN_SRC emacs-lisp
+
 (use-package helm-projectile
   :ensure t
   :after projectile
@@ -181,10 +195,12 @@
   :config
   (helm-projectile-on))
 
-;; END HELM-PROJECTILE
+#+END_SRC
 
-
-;; START EVIL
+* Evil
+
+#+BEGIN_SRC emacs-lisp
+
 (use-package evil
   :ensure t
   :demand t
@@ -236,16 +252,18 @@
   (evil-set-initial-state 'magit-staging-mode   'emacs)
   (evil-set-initial-state 'xref-buffer-mode     'emacs))
 
-;; END EVIL
+#+END_SRC
 
-
-;; START EVIL-LEADER
+* Evil-leader
+
+#+BEGIN_SRC emacs-lisp
+
 (use-package evil-leader
   :ensure t
   :after evil
   :config
   (evil-leader/set-leader ",")
-  (evil-leader/set-key "e"   '(lambda() (interactive) (find-file user-init-file))
+  (evil-leader/set-key "e"   '(lambda() (interactive) (find-file (concat user-emacs-directory "configuration.org")))
 
                        "sh"   'eshell
 
@@ -296,10 +314,12 @@
   ;; Start evil.
   (evil-mode))
 
-;; END EVIL-LEADER
+#+END_SRC
 
-
-;; START ORG MODE
+* Org mode
+
+#+BEGIN_SRC emacs-lisp
+
 ;; Org html export requires htmlize
 (use-package htmlize
   :ensure t
@@ -381,7 +401,7 @@
   ;; Save the running clock when Emacs exits.
   (setq org-clock-persist 'clock)
 
-  ;; Flushright tags to column 100
+  ;; Flushright tags to column 100.
   (setq org-tags-column -100)
 
   (setq org-agenda-files
@@ -394,10 +414,12 @@
      "c:/Users/matthijs/org/agenda.org"
      ))))
 
-;; END ORG MODE
+#+END_SRC
 
-
-;; START MAGIT
+* Magit
+
+#+BEGIN_SRC emacs-lisp
+
 (use-package magit
   :ensure t
   :defer t
@@ -432,32 +454,41 @@
   ;; :custom
   (setq magit-refresh-verbose t))
 
-;; END MAGIT
+#+END_SRC
 
-
-;; START CMAKE-MODE
+* CMake mode
+
+#+BEGIN_SRC emacs-lisp
+
 (use-package cmake-mode
   :ensure t
   :defer t)
 
-;; END CMAKE-MODE
+#+END_SRC
 
-
-;; START NINJA-MODE
+* Ninja mode
+
+#+BEGIN_SRC emacs-lisp
+
 (use-package ninja-mode
   :ensure t
   :defer t)
 
-;; END NINJA-MODE
+#+END_SRC
 
-
-;; START GTAGS
+* GTAGS
+
+#+BEGIN_SRC emacs-lisp
+
 ;; Force treating of .h files as C++ source
 (setenv "GTAGSFORCECPP" "true")
 
-;; END GTAGS
+#+END_SRC
 
-;; START HELM GTAGS
+* Helm gtags
+
+#+BEGIN_SRC emacs-lisp
+
 (use-package helm-gtags
   :ensure t
   :defer t
@@ -472,10 +503,12 @@
   :config
   (evil-define-key 'normal c++-mode-map (kbd "C-]") 'helm-gtags-dwim))
 
-;; END HELM GTAGS
+#+END_SRC
 
-
-;; START COMPANY
+* Company
+
+#+BEGIN_SRC emacs-lisp
+
 (use-package company
   :ensure t
   :defer t
@@ -490,10 +523,12 @@
   ;; :custom
   (setq company-idle-delay nil))
 
-;; END COMPANY
+#+END_SRC
 
-
-;; START HELM-COMPANY
+* Helm company
+
+#+BEGIN_SRC emacs-lisp
+
 (use-package helm-company
   :ensure t
   :bind (:map evil-insert-state-map
@@ -502,10 +537,12 @@
   :config
   (setq helm-company-fuzzy-match nil))
 
-;; END HELM-COMPANY
+#+END_SRC
 
-
-;; START SEMANTIC
+* Semantic
+
+#+BEGIN_SRC emacs-lisp
+
 (use-package semantic
   :ensure t
   :defer t
@@ -518,4 +555,4 @@
   (global-semantic-stickyfunc-mode)
   (evil-define-key 'normal c++-mode-map (kbd "C-}") 'semantic-ia-fast-jump))
 
-;; END SEMANTIC
+#+END_SRC

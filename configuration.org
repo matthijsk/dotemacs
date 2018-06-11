@@ -1,20 +1,23 @@
 #+TITLE: Emacs Configuration
 
 * Global settings
+** Packages and use-package
+  To ensure org-mode is properly initialized before loading this file using
+  ~org-babel-load-file~ the ~package-archives~ settings and the call to
+  ~package-initialize~ are done in =[[file:init.el][init.el]]=.
 
 #+BEGIN_SRC emacs-lisp
-
-(require 'package)
-(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
-(when (< emacs-major-version 24)
-  ;; For important compatibility libraries like cl-lib
-  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
-(package-initialize)
 
 (require 'use-package)
 
 (use-package diminish
   :ensure t)
+
+#+END_SRC
+
+** General
+
+#+BEGIN_SRC emacs-lisp
 
 (setq initial-buffer-choice t)
 

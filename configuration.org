@@ -1,48 +1,71 @@
 #+TITLE: Emacs Configuration
+#+OPTIONS: toc:nil
 
-* Global settings
+* Emacs settings
 ** Packages and use-package
-  To ensure org-mode is properly initialized before loading this file using
-  ~org-babel-load-file~ the ~package-archives~ settings and the call to
-  ~package-initialize~ are done in =[[file:init.el][init.el]]=.
+This configuration file is loaded using ~(org-babel-load-file)~. To ensure
+org-mode is properly initialized before loading this file ~package-archives~
+settings and the call to ~(package-initialize)~ are done in =[[file:init.el][init.el]]=.
+
+[[https://github.com/jwiegley/use-package][Use-package]] allows for automatic installation of packages, which is great when
+you want to use Emacs on multiple systems. Also, it loads packages when needed,
+keeping the Emacs startup time short.
 
 #+BEGIN_SRC emacs-lisp
-
 (require 'use-package)
-
-(use-package diminish
-  :ensure t)
-
 #+END_SRC
 
-** General
+[[https://github.com/myrjola/diminish.el][Diminish]] can be used as part of =use-package= to hide minor mode strings from
+the modeline.
 
 #+BEGIN_SRC emacs-lisp
+(use-package diminish
+  :ensure t)
+#+END_SRC
 
+** General settings
+General Emacs settings relating to fonts, themes, keybindings, etc.
+
+Set the (pretty nice, I have to admit) Consolas font, and display the scratch
+buffer when starting up.
+#+BEGIN_SRC emacs-lisp
 (setq initial-buffer-choice t)
+#+END_SRC
 
+Start Emacs as server for emacsclient processes.
+#+BEGIN_SRC emacs-lisp
 (server-start)
+#+END_SRC
 
-(setq fill-column 100)
-
-;; Highlight matching parentheses.
-(show-paren-mode 1)
-
-;; Never indent with tabs.
-(setq-default indent-tabs-mode nil)
-
-;; Allow for basic paging in emacs shells.
+Allow for basic paging in emacs shells.
+#+BEGIN_SRC emacs-lisp
 (setenv "PAGER" "/bin/cat")
+#+END_SRC
 
-;; Scroll by one line when reaching bottom of buffer.
-(setq scroll-conservatively 101)
+** Scrolling
+Settings related to scrolling buffers. 
+
+Provide some context by have the cursor offset from the top and the bottom of
+the buffer by three lines.
+#+BEGIN_SRC emacs-lisp
 (setq scroll-margin 3)
+#+END_SRC
 
-;; Don't speed up when scrolling faster.
+Scroll by one line when reaching bottom of buffer instead of recentering the
+buffer.
+#+BEGIN_SRC emacs-lisp
+(setq scroll-conservatively 101)
+#+END_SRC
+
+Don't scroll faster when the mouse wheel is turned faster. Also, use a fixed
+scroll amount of three lines.
+#+BEGIN_SRC emacs-lisp
 (setq mouse-wheel-progressive-speed nil)
-;; Scroll by three lines when using the mouse wheel.
 (setq mouse-wheel-scroll-amount (quote (3 ((shift) . 1) ((control)))))
+#+END_SRC
 
+** User interface
+#+BEGIN_SRC emacs-lisp
 ;; Load custom theme.
 (load-theme 'wombat)
 
@@ -58,14 +81,42 @@
 (put 'upcase-region   'disabled nil)
 (put 'downcase-region 'disabled nil)
 
-;; Hooks.
-(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
-
 ;; Key bindings:
 ;; Remap C-x C-b to ibuffer instead of the default.
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 ;; Load alternate file (useful for switching .c and .h)
 (global-set-key (kbd "<f6>") 'ff-find-other-file)
+
+;; Exhibit expected X clipboard behaviour.
+(global-set-key (kbd "<mouse-2>") 'x-clipboard-yank)
+(setq-default x-select-enable-primary t)
+
+;; Increase warning limit to 100 MB for large files.
+(setq large-file-warning-threshold (* 100 1024 1024))
+
+;; Default to displaying line numbers as relative.
+(setq display-line-numbers-type 'relative)
+
+;; Display time as 24h.
+(setq display-time-24hr-format t)
+
+;; Use a visible bell.
+(setq visible-bell t)
+
+#+END_SRC
+
+** Programming settings
+Settings for setting up a programming environment.
+
+#+BEGIN_SRC emacs-lisp
+;; Enable eldoc-mode for elisp buffers.
+(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
+
+;; Highlight matching parentheses.
+(show-paren-mode 1)
+
+;; Never indent with tabs.
+(setq-default indent-tabs-mode nil)
 
 ;; Autoscroll compilation window and stop on first error.
 (setq compilation-scroll-output 'first-error)
@@ -89,20 +140,7 @@
 (add-to-list 'auto-mode-alist '("\\.rh\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.rc\\'" . c++-mode))
 
-;; Increase warning limit to 100 MB for large files.
-(setq large-file-warning-threshold (* 100 1024 1024))
-
-;; Default to displaying line numbers as relative.
-(setq display-line-numbers-type 'relative)
-
-;; Display time as 24h.
-(setq display-time-24hr-format t)
-
-;; Use a visible bell.
-(setq visible-bell t)
-
 #+END_SRC
-
 * Smart mode line
 
 #+BEGIN_SRC emacs-lisp
@@ -479,7 +517,7 @@
 
 #+END_SRC
 
-* GTAGS
+* GTAGS / GNU Global
 
 #+BEGIN_SRC emacs-lisp
 

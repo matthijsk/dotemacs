@@ -472,6 +472,11 @@ Settings for setting up a programming environment.
   (setq vc-handled-backends nil)
 
   :config
+  ;; Don't show tags when displaying refs
+  (remove-hook 'magit-refs-sections-hook 'magit-insert-tags)
+
+  ;; Don't show diff when committing (use C-c C-d to show diff anyway)
+  (remove-hook 'server-switch-hook 'magit-commit-diff)
 
   ;; Improve staging performance on windows
   ;; See https://github.com/magit/magit/issues/2395

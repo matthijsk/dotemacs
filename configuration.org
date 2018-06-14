@@ -26,8 +26,7 @@ the modeline.
 ** General settings
 General Emacs settings relating to fonts, themes, keybindings, etc.
 
-Set the (pretty nice, I have to admit) Consolas font, and display the scratch
-buffer when starting up.
+Display the scratch buffer when starting up.
 #+BEGIN_SRC emacs-lisp
 (setq initial-buffer-choice t)
 #+END_SRC
@@ -40,6 +39,11 @@ Start Emacs as server for emacsclient processes.
 Allow for basic paging in emacs shells.
 #+BEGIN_SRC emacs-lisp
 (setenv "PAGER" "/bin/cat")
+#+END_SRC
+
+Increase warning limit to 100 MB for large files.
+#+BEGIN_SRC emacs-lisp
+(setq large-file-warning-threshold (* 100 1024 1024))
 #+END_SRC
 
 ** Scrolling
@@ -65,44 +69,62 @@ scroll amount of three lines.
 #+END_SRC
 
 ** User interface
+Set the [[https://pawelbx.github.io/emacs-theme-gallery/screenshots/dark/wombat/el.png][wombat]] builtin theme. Pretty neat.
 #+BEGIN_SRC emacs-lisp
-;; Load custom theme.
 (load-theme 'wombat)
+#+END_SRC
 
-;; Disable tool bar, menu bar and scroll bars.
+Disable the tool bar, the menu bar and the scroll bars.
+#+BEGIN_SRC emacs-lisp
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (set-scroll-bar-mode nil)
+#+END_SRC
 
-;; Allow narrowing.
-(put 'narrow-to-region 'disabled nil)
+Default to displaying line numbers as relative.
+#+BEGIN_SRC emacs-lisp
+(setq display-line-numbers-type 'relative)
+#+END_SRC
 
-;; Allow upcasing and lowercasing of regions.
-(put 'upcase-region   'disabled nil)
-(put 'downcase-region 'disabled nil)
+Display time as 24h.
+#+BEGIN_SRC emacs-lisp
+(setq display-time-24hr-format t)
+#+END_SRC
 
-;; Key bindings:
-;; Remap C-x C-b to ibuffer instead of the default.
+Use a visible bell.
+#+BEGIN_SRC emacs-lisp
+(setq visible-bell t)
+#+END_SRC
+
+Remap =C-x C-b= to ~ibuffer~ instead of the default.
+#+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-;; Load alternate file (useful for switching .c and .h)
-(global-set-key (kbd "<f6>") 'ff-find-other-file)
+#+END_SRC
 
-;; Exhibit expected X clipboard behaviour.
+Load alternate file with =F6= (useful for switching .c and .h).
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "<f6>") 'ff-find-other-file)
+#+END_SRC
+
+Exhibit expected X clipboard behaviour (yank with middle mouse button).
+#+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "<mouse-2>") 'x-clipboard-yank)
 (setq-default x-select-enable-primary t)
+#+END_SRC
 
-;; Increase warning limit to 100 MB for large files.
-(setq large-file-warning-threshold (* 100 1024 1024))
+** Disabled commands
+Some commands are disabled by default, enable these so Emacs doesn't
+ask for confirmation every time the command is executed.
 
-;; Default to displaying line numbers as relative.
-(setq display-line-numbers-type 'relative)
+Allow narrowing.
+#+BEGIN_SRC emacs-lisp
+(put 'narrow-to-region 'disabled nil)
+#+END_SRC
 
-;; Display time as 24h.
-(setq display-time-24hr-format t)
-
-;; Use a visible bell.
-(setq visible-bell t)
-
+Allow upcasing and lowercasing of regions.
+#+BEGIN_SRC emacs-lisp
+(put 'upcase-region   'disabled nil)
+(put 'downcase-region 'disabled nil)
 #+END_SRC
 
 ** Programming settings
@@ -141,6 +163,7 @@ Settings for setting up a programming environment.
 (add-to-list 'auto-mode-alist '("\\.rc\\'" . c++-mode))
 
 #+END_SRC
+
 * Smart mode line
 
 #+BEGIN_SRC emacs-lisp

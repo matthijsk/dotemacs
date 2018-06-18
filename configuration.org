@@ -233,7 +233,8 @@ Settings for setting up a programming environment.
   :bind-keymap ("C-c p" . projectile-command-map)
   :bind ("<f9>" . projectile-compile-project)
   :init
-  (add-hook 'c++-mode-hook 'projectile-mode)
+  (add-hook 'c-mode-hook     'projectile-mode)
+  (add-hook 'c++-mode-hook   'projectile-mode)
   (add-hook 'cmake-mode-hook 'projectile-mode)
 
   :config
@@ -563,6 +564,7 @@ Settings for setting up a programming environment.
   :ensure t
   :defer t
   :init
+  (add-hook 'c-mode-hook   'helm-gtags-mode)
   (add-hook 'c++-mode-hook 'helm-gtags-mode)
   ;; :custom
   :config
@@ -571,6 +573,7 @@ Settings for setting up a programming environment.
   (setq helm-gtags-auto-update t)
   (setq helm-gtags-pulse-at-cursor t)
   :config
+  (evil-define-key 'normal c-mode-map   (kbd "C-]") 'helm-gtags-dwim)
   (evil-define-key 'normal c++-mode-map (kbd "C-]") 'helm-gtags-dwim))
 
 #+END_SRC
@@ -583,9 +586,10 @@ Settings for setting up a programming environment.
   :ensure t
   :defer t
   :init
-  (add-hook 'c++-mode-hook 'company-mode)
+  (add-hook 'c-mode-hook          'company-mode)
+  (add-hook 'c++-mode-hook        'company-mode)
   (add-hook 'emacs-lisp-mode-hook 'company-mode)
-  (add-hook 'cmake-mode-hook 'company-mode)
+  (add-hook 'cmake-mode-hook      'company-mode)
   :config
   (setq company-dabbrev-downcase nil) ;; Be case sensitive about completion
   (setq company-dabbrev-ignore-case nil) ;; Be case sensitive about completion
@@ -617,6 +621,7 @@ Settings for setting up a programming environment.
   :ensure t
   :defer t
   :init
+  (add-hook 'c-mode-hook   'semantic-mode)
   (add-hook 'c++-mode-hook 'semantic-mode)
   ;; :custom
   :config

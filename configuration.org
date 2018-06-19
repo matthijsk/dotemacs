@@ -96,6 +96,11 @@ Use a visible bell.
 (setq visible-bell t)
 #+END_SRC
 
+Don't blink cursor
+#+BEGIN_SRC emacs-lisp
+(blink-cursor-mode 0)
+#+END_SRC
+
 Remap =C-x C-b= to ~ibuffer~ instead of the default.
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-x C-b") 'ibuffer)

@@ -141,17 +141,20 @@ Allow upcasing and lowercasing of regions.
 ** Programming settings
 Settings for setting up a programming environment.
 
+Enable eldoc-mode for elisp buffers.
 #+BEGIN_SRC emacs-lisp
-;; Enable eldoc-mode for elisp buffers.
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
+#+END_SRC
 
-;; Highlight matching parentheses.
+Highlight matching parentheses.
+#+BEGIN_SRC emacs-lisp
 (show-paren-mode 1)
 #+END_SRC
 
 Customize comment-dwim so it does exactly what I want it to do:
 - If a region is active comment it if not commented or uncomment if commented.
 - Otherwise comment or uncomment the current line and move to the next line.
+Seriously, Emacs is awesome. I love this kind of customization power.
 #+BEGIN_SRC emacs-lisp
   (defun my-comment-dwim (arg)
     "Call the comment command you want (Do What I Mean).
@@ -166,33 +169,35 @@ Customize comment-dwim so it does exactly what I want it to do:
         (comment-or-uncomment-region (region-beginning) (region-end) arg)
       (comment-line 1)))
 #+END_SRC
-Seriously, Emacs is awesome. I love this kind of customization power.
 
+Never indent with tabs.
 #+BEGIN_SRC emacs-lisp
-;; Never indent with tabs.
 (setq-default indent-tabs-mode nil)
+#+END_SRC
 
-;; Autoscroll compilation window and stop on first error.
+Autoscroll compilation window and stop on first error.
+#+BEGIN_SRC emacs-lisp
 (setq compilation-scroll-output 'first-error)
+#+END_SRC
 
-;; Exhibit expected X clipboard behaviour.
-(global-set-key (kbd "<mouse-2>") 'x-clipboard-yank)
-(setq-default x-select-enable-primary t)
-
-;; Set c indentation to 2
+Set c indentation to 2.
+#+BEGIN_SRC emacs-lisp
 (setq c-default-style "linux"
       c-basic-offset 2)
+#+END_SRC
 
-;; Set xml-mode when loading cbproj and groupproj files.
+Set some modes for specific file types.
+- Set xml-mode when loading cbproj and groupproj files.
+- Set c++-mode when loading .rc and .rh files.
+- Set c++-mode when loading .h files. All I do is c++ all day.
+#+BEGIN_SRC emacs-lisp
 (add-to-list 'auto-mode-alist '("\\.cbproj\\'" . xml-mode))
 (add-to-list 'auto-mode-alist '("\\.groupproj\\'" . xml-mode))
 
-;; Set c++-mode when loading .h files. All I do is c++ all day.
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-
-;; Set c++-mode when loading .rc and .rh files.
 (add-to-list 'auto-mode-alist '("\\.rh\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.rc\\'" . c++-mode))
+
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 #+END_SRC
 
 * Smart mode line

@@ -141,7 +141,28 @@ Settings for setting up a programming environment.
 
 ;; Highlight matching parentheses.
 (show-paren-mode 1)
+#+END_SRC
 
+Customize comment-dwim so it does exactly what I want it to do:
+- If a region is active comment it if not commented or uncomment if commented.
+- Otherwise comment or uncomment the current line and move to the next line.
+#+BEGIN_SRC emacs-lisp
+  (defun my-comment-dwim (arg)
+    "Call the comment command you want (Do What I Mean).
+  If the region is active and `transient-mark-mode' is on, call
+  `comment-region' (unless it only consists of comments, in which
+  case it calls `uncomment-region').
+  Else, it calls `comment-line'.
+  Custom implementation derived from `comment-dwim'."
+    (interactive "*P")
+    (comment-normalize-vars)
+    (if (use-region-p)
+        (comment-or-uncomment-region (region-beginning) (region-end) arg)
+      (comment-line 1)))
+#+END_SRC
+Seriously, Emacs is awesome. I love this kind of customization power.
+
+#+BEGIN_SRC emacs-lisp
 ;; Never indent with tabs.
 (setq-default indent-tabs-mode nil)
 
@@ -166,7 +187,6 @@ Settings for setting up a programming environment.
 ;; Set c++-mode when loading .rc and .rh files.
 (add-to-list 'auto-mode-alist '("\\.rh\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.rc\\'" . c++-mode))
-
 #+END_SRC
 
 * Smart mode line
@@ -278,7 +298,7 @@ Settings for setting up a programming environment.
   :bind (:map evil-normal-state-map
               ([tab] . other-window)
               ("C-s" . save-buffer)
-              ("C-/" . comment-line)
+              ("C-/" . my-comment-dwim)
               ("C-f" . helm-occur)
 
          :map evil-motion-state-map

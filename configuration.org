@@ -117,6 +117,12 @@ Exhibit expected X clipboard behaviour (yank with middle mouse button).
 (setq-default x-select-enable-primary t)
 #+END_SRC
 
+Bind mouse buttons to info-mode navigation.
+#+BEGIN_SRC emacs-lisp
+(define-key Info-mode-map (kbd "<mouse-8>") 'Info-history-back)
+(define-key Info-mode-map (kbd "<mouse-9>") 'Info-history-forward)
+#+END_SRC
+
 ** Disabled commands
 Some commands are disabled by default, enable these so Emacs doesn't
 ask for confirmation every time the command is executed.

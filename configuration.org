@@ -321,7 +321,10 @@ Settings for setting up a programming environment.
   (evil-set-initial-state 'messages-buffer-mode 'emacs)
   (evil-set-initial-state 'magit-staging-mode   'emacs)
   (evil-set-initial-state 'xref-buffer-mode     'emacs)
-  (evil-set-initial-state 'image-mode           'emacs))
+  (evil-set-initial-state 'image-mode           'emacs)
+  (evil-set-initial-state 'eww-mode             'emacs)
+  (evil-set-initial-state 'eww-buffers-mode     'emacs)
+  (evil-set-initial-state 'help-mode            'emacs))
 
 #+END_SRC
 

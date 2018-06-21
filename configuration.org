@@ -379,6 +379,8 @@ Settings for setting up a programming environment.
                        "psg" 'helm-projectile-grep
                        "pa"  'helm-projectile-find-other-file)
 
+  (evil-leader/set-key-for-mode 'org-mode "hs" 'helm-org-in-buffer-headings)
+
   ;; Enable evil leader.
   (global-evil-leader-mode)
 

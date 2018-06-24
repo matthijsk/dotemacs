@@ -400,6 +400,7 @@ Set some modes for specific file types.
                        "xk"  'kill-buffer
                        "rb"  'revert-buffer
                        "x#"  'server-edit
+                       "xc"  'save-buffers-kill-terminal
 
                        "b"   'helm-mini
                        "xf"  'helm-find-files

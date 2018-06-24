@@ -330,6 +330,8 @@ Set some modes for specific file types.
   (setq evil-shift-width 2)
 
   :config
+  (evil-define-key 'motion Man-mode-map (kbd "RET") 'man-follow)
+
   ;; Jump to tag and recenter
   (advice-add 'evil-jump-to-tag     :after 'evil-scroll-line-to-center)
   (advice-add 'evil-jump-backward   :after 'evil-scroll-line-to-center)

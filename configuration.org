@@ -212,7 +212,7 @@ Set some modes for specific file types.
 (use-package smart-mode-line
   :ensure t
   :config
-  (setq sml/theme 'respectful)
+  (setq sml/theme 'automatic)
   (sml/setup))
 
 #+END_SRC

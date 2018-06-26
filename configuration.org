@@ -445,7 +445,7 @@ Set some modes for specific file types.
   :bind (("\C-cl" . org-store-link)
          ("\C-ca" . org-agenda)
          ("\C-cc" . org-capture)
-         ("\C-cb" . org-iswitchb)
+         ("\C-cb" . org-switchb)
          ("\C-ci" . clock-in)
          ("\C-co" . org-clock-out))
   :init

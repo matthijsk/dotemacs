@@ -312,15 +312,11 @@ Set some modes for specific file types.
   :demand t
   :diminish undo-tree-mode
   :bind (:map evil-normal-state-map
-              ([tab] . other-window)
               ("C-s" . save-buffer)
               ("C-/" . my-comment-dwim)
               ("C-f" . helm-occur)
 
          :map evil-motion-state-map
-              ([tab] . other-window)
-              ("SPC" . scroll-up-command)
-              ("DEL" . scroll-down-command)
               ("C-f" . helm-occur)
 
          :map evil-insert-state-map
@@ -349,20 +345,22 @@ Set some modes for specific file types.
   ;; Set evil mode when in these modes.
   (add-hook 'with-editor-mode-hook 'evil-normal-state)
 
-  ;; Set emacs state when in these modes.
-  (evil-set-initial-state 'eshell-mode          'emacs)
-  (evil-set-initial-state 'shell-mode           'emacs)
-  (evil-set-initial-state 'dired-mode           'emacs)
-  (evil-set-initial-state 'Info-mode            'emacs)
-  (evil-set-initial-state 'calendar-mode        'emacs)
-  (evil-set-initial-state 'Custom-mode          'emacs)
-  (evil-set-initial-state 'messages-buffer-mode 'emacs)
+  ;; Ensure Emacs bindings for RET and SPC are available in motion state.
+  ;; https://www.emacswiki.org/emacs/Evil#toc12
+  (defun my-move-key (keymap-from keymap-to key)
+    "Moves key binding from one keymap to another, deleting from the old location. "
+    (define-key keymap-to key (lookup-key keymap-from key))
+    (define-key keymap-from key nil))
+  (my-move-key evil-motion-state-map evil-normal-state-map (kbd "RET"))
+  (my-move-key evil-motion-state-map evil-normal-state-map " ")
+
+  ;; Set custom evil state when in these modes.
   (evil-set-initial-state 'magit-staging-mode   'emacs)
-  (evil-set-initial-state 'xref-buffer-mode     'emacs)
   (evil-set-initial-state 'image-mode           'emacs)
-  (evil-set-initial-state 'eww-mode             'emacs)
-  (evil-set-initial-state 'eww-buffers-mode     'emacs)
-  (evil-set-initial-state 'help-mode            'emacs))
+  (evil-set-initial-state 'messages-buffer-mode 'motion)
+  (evil-set-initial-state 'eww-mode             'motion)
+  (evil-set-initial-state 'eww-buffers-mode     'motion)
+  (evil-set-initial-state 'hackernews-mode      'motion))
 
 #+END_SRC
 

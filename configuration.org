@@ -312,9 +312,10 @@ Set some modes for specific file types.
   :demand t
   :diminish undo-tree-mode
   :bind (:map evil-normal-state-map
-              ("C-s" . save-buffer)
-              ("C-/" . my-comment-dwim)
-              ("C-f" . helm-occur)
+              ("C-s"   . save-buffer)
+              ("C-/"   . my-comment-dwim)
+              ("C-f"   . helm-occur)
+              ("<SPC>" . helm-mini)
 
          :map evil-motion-state-map
               ("C-f" . helm-occur)

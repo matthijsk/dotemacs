@@ -12,15 +12,15 @@ you want to use Emacs on multiple systems. Also, it loads packages when needed,
 keeping the Emacs startup time short.
 
 #+BEGIN_SRC emacs-lisp
-(require 'use-package)
+  (require 'use-package)
 #+END_SRC
 
 [[https://github.com/myrjola/diminish.el][Diminish]] can be used as part of =use-package= to hide minor mode strings from
 the modeline.
 
 #+BEGIN_SRC emacs-lisp
-(use-package diminish
-  :ensure t)
+  (use-package diminish
+    :ensure t)
 #+END_SRC
 
 ** General settings
@@ -28,22 +28,22 @@ General Emacs settings relating to fonts, themes, keybindings, etc.
 
 Display the scratch buffer when starting up.
 #+BEGIN_SRC emacs-lisp
-(setq initial-buffer-choice t)
+  (setq initial-buffer-choice t)
 #+END_SRC
 
 Start Emacs as server for emacsclient processes.
 #+BEGIN_SRC emacs-lisp
-(server-start)
+  (server-start)
 #+END_SRC
 
 Allow for basic paging in emacs shells.
 #+BEGIN_SRC emacs-lisp
-(setenv "PAGER" "/bin/cat")
+  (setenv "PAGER" "/bin/cat")
 #+END_SRC
 
 Increase warning limit to 100 MB for large files.
 #+BEGIN_SRC emacs-lisp
-(setq large-file-warning-threshold (* 100 1024 1024))
+  (setq large-file-warning-threshold (* 100 1024 1024))
 #+END_SRC
 
 ** Scrolling
@@ -52,69 +52,69 @@ Settings related to scrolling buffers.
 Provide some context by have the cursor offset from the top and the bottom of
 the buffer by three lines.
 #+BEGIN_SRC emacs-lisp
-(setq scroll-margin 3)
+  (setq scroll-margin 3)
 #+END_SRC
 
 Scroll by one line when reaching bottom of buffer instead of recentering the
 buffer.
 #+BEGIN_SRC emacs-lisp
-(setq scroll-conservatively 101)
+  (setq scroll-conservatively 101)
 #+END_SRC
 
 Don't scroll faster when the mouse wheel is turned faster. Also, use a fixed
 scroll amount of three lines.
 #+BEGIN_SRC emacs-lisp
-(setq mouse-wheel-progressive-speed nil)
-(setq mouse-wheel-scroll-amount (quote (3 ((shift) . 1) ((control)))))
+  (setq mouse-wheel-progressive-speed nil)
+  (setq mouse-wheel-scroll-amount (quote (3 ((shift) . 1) ((control)))))
 #+END_SRC
 
 ** User interface
 Set the [[https://pawelbx.github.io/emacs-theme-gallery/screenshots/dark/wombat/el.png][wombat]] builtin theme. Pretty neat.
 #+BEGIN_SRC emacs-lisp
-(load-theme 'wombat)
+  (load-theme 'wombat)
 #+END_SRC
 
 Disable the tool bar, the menu bar and the scroll bars.
 #+BEGIN_SRC emacs-lisp
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(set-scroll-bar-mode nil)
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
+  (set-scroll-bar-mode nil)
 #+END_SRC
 
 Default to displaying line numbers as relative.
 #+BEGIN_SRC emacs-lisp
-(setq display-line-numbers-type 'relative)
+  (setq display-line-numbers-type 'relative)
 #+END_SRC
 
 Display time as 24h.
 #+BEGIN_SRC emacs-lisp
-(setq display-time-24hr-format t)
+  (setq display-time-24hr-format t)
 #+END_SRC
 
 Use a visible bell.
 #+BEGIN_SRC emacs-lisp
-(setq visible-bell t)
+  (setq visible-bell t)
 #+END_SRC
 
 Don't blink cursor
 #+BEGIN_SRC emacs-lisp
-(blink-cursor-mode 0)
+  (blink-cursor-mode 0)
 #+END_SRC
 
 Remap =C-x C-b= to ~ibuffer~ instead of the default.
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-x C-b") 'ibuffer)
+  (global-set-key (kbd "C-x C-b") 'ibuffer)
 #+END_SRC
 
 Load alternate file with =F6= (useful for switching .c and .h).
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "<f6>") 'ff-find-other-file)
+  (global-set-key (kbd "<f6>") 'ff-find-other-file)
 #+END_SRC
 
 Exhibit expected X clipboard behaviour (yank with middle mouse button).
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "<mouse-2>") 'x-clipboard-yank)
-(setq-default x-select-enable-primary t)
+  (global-set-key (kbd "<mouse-2>") 'x-clipboard-yank)
+  (setq-default x-select-enable-primary t)
 #+END_SRC
 
 Bind mouse buttons to Info-mode and help-mode navigation.
@@ -134,13 +134,13 @@ ask for confirmation every time the command is executed.
 
 Allow narrowing.
 #+BEGIN_SRC emacs-lisp
-(put 'narrow-to-region 'disabled nil)
+  (put 'narrow-to-region 'disabled nil)
 #+END_SRC
 
 Allow upcasing and lowercasing of regions.
 #+BEGIN_SRC emacs-lisp
-(put 'upcase-region   'disabled nil)
-(put 'downcase-region 'disabled nil)
+  (put 'upcase-region   'disabled nil)
+  (put 'downcase-region 'disabled nil)
 #+END_SRC
 
 ** Programming settings
@@ -148,12 +148,12 @@ Settings for setting up a programming environment.
 
 Enable eldoc-mode for elisp buffers.
 #+BEGIN_SRC emacs-lisp
-(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
+  (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 #+END_SRC
 
 Highlight matching parentheses.
 #+BEGIN_SRC emacs-lisp
-(show-paren-mode 1)
+  (show-paren-mode 1)
 #+END_SRC
 
 Customize comment-dwim so it does exactly what I want it to do:
@@ -177,18 +177,18 @@ Seriously, Emacs is awesome. I love this kind of customization power.
 
 Never indent with tabs.
 #+BEGIN_SRC emacs-lisp
-(setq-default indent-tabs-mode nil)
+  (setq-default indent-tabs-mode nil)
 #+END_SRC
 
 Autoscroll compilation window and stop on first error.
 #+BEGIN_SRC emacs-lisp
-(setq compilation-scroll-output 'first-error)
+  (setq compilation-scroll-output 'first-error)
 #+END_SRC
 
 Set c indentation to 2.
 #+BEGIN_SRC emacs-lisp
-(setq c-default-style "linux"
-      c-basic-offset 2)
+  (setq c-default-style "linux"
+        c-basic-offset 2)
 #+END_SRC
 
 Set some modes for specific file types.
@@ -196,24 +196,24 @@ Set some modes for specific file types.
 - Set c++-mode when loading .rc and .rh files.
 - Set c++-mode when loading .h files. All I do is c++ all day.
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'auto-mode-alist '("\\.cbproj\\'" . xml-mode))
-(add-to-list 'auto-mode-alist '("\\.groupproj\\'" . xml-mode))
+  (add-to-list 'auto-mode-alist '("\\.cbproj\\'" . xml-mode))
+  (add-to-list 'auto-mode-alist '("\\.groupproj\\'" . xml-mode))
 
-(add-to-list 'auto-mode-alist '("\\.rh\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.rc\\'" . c++-mode))
+  (add-to-list 'auto-mode-alist '("\\.rh\\'" . c++-mode))
+  (add-to-list 'auto-mode-alist '("\\.rc\\'" . c++-mode))
 
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+  (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 #+END_SRC
 
 * Smart mode line
 
 #+BEGIN_SRC emacs-lisp
 
-(use-package smart-mode-line
-  :ensure t
-  :config
-  (setq sml/theme 'automatic)
-  (sml/setup))
+  (use-package smart-mode-line
+    :ensure t
+    :config
+    (setq sml/theme 'automatic)
+    (sml/setup))
 
 #+END_SRC
 
@@ -221,14 +221,14 @@ Set some modes for specific file types.
 
 #+BEGIN_SRC emacs-lisp
 
-;; START DEFAULT-TEXT-SCALE
-;; Allow scaling of all buffers.
-(use-package default-text-scale
-  :ensure t
-  :bind (("C-M-="       . default-text-scale-increase)
-         ("C-<mouse-4>" . default-text-scale-increase)
-         ("C-M--"       . default-text-scale-decrease)
-         ("C-<mouse-5>" . default-text-scale-decrease)))
+  ;; START DEFAULT-TEXT-SCALE
+  ;; Allow scaling of all buffers.
+  (use-package default-text-scale
+    :ensure t
+    :bind (("C-M-="       . default-text-scale-increase)
+           ("C-<mouse-4>" . default-text-scale-increase)
+           ("C-M--"       . default-text-scale-decrease)
+           ("C-<mouse-5>" . default-text-scale-decrease)))
 
 #+END_SRC
 
@@ -236,32 +236,32 @@ Set some modes for specific file types.
 
 #+BEGIN_SRC emacs-lisp
 
-(use-package helm
-  :diminish helm-mode
-  :ensure t
-  :bind (("M-x"     . helm-M-x)
-         ("C-x b"   . helm-mini)
-         ("<C-tab>" . helm-mini)
-         ("C-x C-f" . helm-find-files)
-         ("C-x C-h" . helm-resume-existing)
-         ("C-s"     . helm-occur)
-         ("C-x r l" . helm-bookmarks)
-         :map helm-map
-         ;; Use <C-tab> and <C-S-tab> to navigate helm buffers.
-         ("<C-tab>"   . helm-next-line)
-         ("<C-S-tab>" . helm-previous-line))
+  (use-package helm
+    :diminish helm-mode
+    :ensure t
+    :bind (("M-x"     . helm-M-x)
+           ("C-x b"   . helm-mini)
+           ("<C-tab>" . helm-mini)
+           ("C-x C-f" . helm-find-files)
+           ("C-x C-h" . helm-resume-existing)
+           ("C-s"     . helm-occur)
+           ("C-x r l" . helm-bookmarks)
+           :map helm-map
+           ;; Use <C-tab> and <C-S-tab> to navigate helm buffers.
+           ("<C-tab>"   . helm-next-line)
+           ("<C-S-tab>" . helm-previous-line))
 
-  :config
-  (defun helm-resume-existing ()
-    "Resume previous helm session with prefix to choose among existing helm buffers."
-    (interactive)
-    (helm-resume t))
+    :config
+    (defun helm-resume-existing ()
+      "Resume previous helm session with prefix to choose among existing helm buffers."
+      (interactive)
+      (helm-resume t))
 
-  (helm-mode 1)
+    (helm-mode 1)
 
-  ;; :custom
-  (setq helm-buffer-max-length nil)
-  (setq helm-split-window-inside-p t))
+    ;; :custom
+    (setq helm-buffer-max-length nil)
+    (setq helm-split-window-inside-p t))
 
 #+END_SRC
 
@@ -269,22 +269,22 @@ Set some modes for specific file types.
 
 #+BEGIN_SRC emacs-lisp
 
-(use-package projectile
-  :ensure t
-  :bind-keymap ("C-c p" . projectile-command-map)
-  :bind ("<f9>" . projectile-compile-project)
-  :init
-  (add-hook 'c-mode-hook     'projectile-mode)
-  (add-hook 'c++-mode-hook   'projectile-mode)
-  (add-hook 'cmake-mode-hook 'projectile-mode)
+  (use-package projectile
+    :ensure t
+    :bind-keymap ("C-c p" . projectile-command-map)
+    :bind ("<f9>" . projectile-compile-project)
+    :init
+    (add-hook 'c-mode-hook     'projectile-mode)
+    (add-hook 'c++-mode-hook   'projectile-mode)
+    (add-hook 'cmake-mode-hook 'projectile-mode)
 
-  :config
-  (projectile-global-mode)
+    :config
+    (projectile-global-mode)
 
-  ;; :custom
-  (setq projectile-indexing-method 'alien)
-  (setq projectile-enable-caching t)
-  (setq projectile-use-git-grep t))
+    ;; :custom
+    (setq projectile-indexing-method 'alien)
+    (setq projectile-enable-caching t)
+    (setq projectile-use-git-grep t))
 
 #+END_SRC
 
@@ -292,14 +292,14 @@ Set some modes for specific file types.
 
 #+BEGIN_SRC emacs-lisp
 
-(use-package helm-projectile
-  :ensure t
-  :after projectile
-  :init
-  (setq helm-projectile-fuzzy-match nil)
-  (setq projectile-switch-project-action 'helm-projectile)
-  :config
-  (helm-projectile-on))
+  (use-package helm-projectile
+    :ensure t
+    :after projectile
+    :init
+    (setq helm-projectile-fuzzy-match nil)
+    (setq projectile-switch-project-action 'helm-projectile)
+    :config
+    (helm-projectile-on))
 
 #+END_SRC
 
@@ -307,61 +307,61 @@ Set some modes for specific file types.
 
 #+BEGIN_SRC emacs-lisp
 
-(use-package evil
-  :ensure t
-  :demand t
-  :diminish undo-tree-mode
-  :bind (:map evil-normal-state-map
-              ("C-s"   . save-buffer)
-              ("C-/"   . my-comment-dwim)
-              ("C-f"   . helm-occur)
-              ("<SPC>" . helm-mini)
+  (use-package evil
+    :ensure t
+    :demand t
+    :diminish undo-tree-mode
+    :bind (:map evil-normal-state-map
+                ("C-s"   . save-buffer)
+                ("C-/"   . my-comment-dwim)
+                ("C-f"   . helm-occur)
+                ("<SPC>" . helm-mini)
 
-         :map evil-motion-state-map
-              ("C-f" . helm-occur)
+           :map evil-motion-state-map
+                ("C-f" . helm-occur)
 
-         :map evil-insert-state-map
-              ("C-s" . save-buffer)
-         )
-  :init
-  (setq evil-want-C-u-scroll t)
-  (setq evil-symbol-word-search t)
-  (setq evil-shift-width 2)
+           :map evil-insert-state-map
+                ("C-s" . save-buffer)
+           )
+    :init
+    (setq evil-want-C-u-scroll t)
+    (setq evil-symbol-word-search t)
+    (setq evil-shift-width 2)
 
-  :config
-  (evil-define-key 'motion Man-mode-map (kbd "RET") 'man-follow)
+    :config
+    (evil-define-key 'motion Man-mode-map (kbd "RET") 'man-follow)
 
-  ;; Jump to tag and recenter
-  (advice-add 'evil-jump-to-tag     :after 'evil-scroll-line-to-center)
-  (advice-add 'evil-jump-backward   :after 'evil-scroll-line-to-center)
-  (advice-add 'evil-jump-forward    :after 'evil-scroll-line-to-center)
-  (advice-add 'evil-search-next     :after 'evil-scroll-line-to-center)
-  (advice-add 'evil-search-previous :after 'evil-scroll-line-to-center)
+    ;; Jump to tag and recenter
+    (advice-add 'evil-jump-to-tag     :after 'evil-scroll-line-to-center)
+    (advice-add 'evil-jump-backward   :after 'evil-scroll-line-to-center)
+    (advice-add 'evil-jump-forward    :after 'evil-scroll-line-to-center)
+    (advice-add 'evil-search-next     :after 'evil-scroll-line-to-center)
+    (advice-add 'evil-search-previous :after 'evil-scroll-line-to-center)
 
-  ;; Ex commands.
-  (evil-ex-define-cmd "A"  'ff-find-other-file)
-  (evil-ex-define-cmd "ls" 'ibuffer)
-  (evil-ex-define-cmd "e"  'helm-find-files)
+    ;; Ex commands.
+    (evil-ex-define-cmd "A"  'ff-find-other-file)
+    (evil-ex-define-cmd "ls" 'ibuffer)
+    (evil-ex-define-cmd "e"  'helm-find-files)
 
-  ;; Set evil mode when in these modes.
-  (add-hook 'with-editor-mode-hook 'evil-normal-state)
+    ;; Set evil mode when in these modes.
+    (add-hook 'with-editor-mode-hook 'evil-normal-state)
 
-  ;; Ensure Emacs bindings for RET and SPC are available in motion state.
-  ;; https://www.emacswiki.org/emacs/Evil#toc12
-  (defun my-move-key (keymap-from keymap-to key)
-    "Moves key binding from one keymap to another, deleting from the old location. "
-    (define-key keymap-to key (lookup-key keymap-from key))
-    (define-key keymap-from key nil))
-  (my-move-key evil-motion-state-map evil-normal-state-map (kbd "RET"))
-  (my-move-key evil-motion-state-map evil-normal-state-map " ")
+    ;; Ensure Emacs bindings for RET and SPC are available in motion state.
+    ;; https://www.emacswiki.org/emacs/Evil#toc12
+    (defun my-move-key (keymap-from keymap-to key)
+      "Moves key binding from one keymap to another, deleting from the old location. "
+      (define-key keymap-to key (lookup-key keymap-from key))
+      (define-key keymap-from key nil))
+    (my-move-key evil-motion-state-map evil-normal-state-map (kbd "RET"))
+    (my-move-key evil-motion-state-map evil-normal-state-map " ")
 
-  ;; Set custom evil state when in these modes.
-  (evil-set-initial-state 'magit-staging-mode   'emacs)
-  (evil-set-initial-state 'image-mode           'emacs)
-  (evil-set-initial-state 'messages-buffer-mode 'motion)
-  (evil-set-initial-state 'eww-mode             'motion)
-  (evil-set-initial-state 'eww-buffers-mode     'motion)
-  (evil-set-initial-state 'hackernews-mode      'motion))
+    ;; Set custom evil state when in these modes.
+    (evil-set-initial-state 'magit-staging-mode   'emacs)
+    (evil-set-initial-state 'image-mode           'emacs)
+    (evil-set-initial-state 'messages-buffer-mode 'motion)
+    (evil-set-initial-state 'eww-mode             'motion)
+    (evil-set-initial-state 'eww-buffers-mode     'motion)
+    (evil-set-initial-state 'hackernews-mode      'motion))
 
 #+END_SRC
 
@@ -369,64 +369,64 @@ Set some modes for specific file types.
 
 #+BEGIN_SRC emacs-lisp
 
-(use-package evil-leader
-  :ensure t
-  :after evil
-  :config
-  (evil-leader/set-leader ",")
-  (evil-leader/set-key "e"   '(lambda() (interactive) (find-file (concat user-emacs-directory "configuration.org")))
+  (use-package evil-leader
+    :ensure t
+    :after evil
+    :config
+    (evil-leader/set-leader ",")
+    (evil-leader/set-key "e"   '(lambda() (interactive) (find-file (concat user-emacs-directory "configuration.org")))
 
-                       "sh"   'eshell
+                          "sh"   'eshell
 
-                       "wc"  'evil-window-delete
-                       "x0"  'delete-window
+                          "wc"  'evil-window-delete
+                          "x0"  'delete-window
 
-                       "ww"  'evil-window-next
-                       "xo"  'other-window
+                          "ww"  'evil-window-next
+                          "xo"  'other-window
 
-                       "wo"  'delete-other-windows
-                       "x1"  'delete-other-windows
+                          "wo"  'delete-other-windows
+                          "x1"  'delete-other-windows
 
-                       "ws"  'evil-window-split
-                       "x2"  'split-window-below
+                          "ws"  'evil-window-split
+                          "x2"  'split-window-below
 
-                       "wv"  'evil-window-vsplit
-                       "x3"  'split-window-right
+                          "wv"  'evil-window-vsplit
+                          "x3"  'split-window-right
 
-                       "wh"  'evil-window-left
-                       "wj"  'evil-window-down
-                       "wk"  'evil-window-up
-                       "wl"  'evil-window-right
+                          "wh"  'evil-window-left
+                          "wj"  'evil-window-down
+                          "wk"  'evil-window-up
+                          "wl"  'evil-window-right
 
-                       "xk"  'kill-buffer
-                       "rb"  'revert-buffer
-                       "x#"  'server-edit
-                       "xc"  'save-buffers-kill-terminal
+                          "xk"  'kill-buffer
+                          "rb"  'revert-buffer
+                          "x#"  'server-edit
+                          "xc"  'save-buffers-kill-terminal
 
-                       "b"   'helm-mini
-                       "xf"  'helm-find-files
-                       "hb"  'helm-bookmarks
-                       "hs"  'helm-semantic
-                       "xh"  'helm-resume-existing
+                          "b"   'helm-mini
+                          "xf"  'helm-find-files
+                          "hb"  'helm-bookmarks
+                          "hs"  'helm-semantic
+                          "xh"  'helm-resume-existing
 
-                       "l"   'whitespace-mode
-                       "hl"  'hl-line-mode
-                       "rl"  'display-line-numbers-mode
+                          "l"   'whitespace-mode
+                          "hl"  'hl-line-mode
+                          "rl"  'display-line-numbers-mode
 
-                       "m"   'compile
-                       "c"   'compile
+                          "m"   'compile
+                          "c"   'compile
 
-                       "pf"  'helm-projectile-find-file
-                       "psg" 'helm-projectile-grep
-                       "pa"  'helm-projectile-find-other-file)
+                          "pf"  'helm-projectile-find-file
+                          "psg" 'helm-projectile-grep
+                          "pa"  'helm-projectile-find-other-file)
 
-  (evil-leader/set-key-for-mode 'org-mode "hs" 'helm-org-in-buffer-headings)
+    (evil-leader/set-key-for-mode 'org-mode "hs" 'helm-org-in-buffer-headings)
 
-  ;; Enable evil leader.
-  (global-evil-leader-mode)
+    ;; Enable evil leader.
+    (global-evil-leader-mode)
 
-  ;; Start evil.
-  (evil-mode))
+    ;; Start evil.
+    (evil-mode))
 
 #+END_SRC
 
@@ -434,99 +434,99 @@ Set some modes for specific file types.
 
 #+BEGIN_SRC emacs-lisp
 
-;; Org html export requires htmlize
-(use-package htmlize
-  :ensure t
-  :defer t)
+  ;; Org html export requires htmlize
+  (use-package htmlize
+    :ensure t
+    :defer t)
 
-(use-package org
-  ;; Global key bindings.
-  :bind (("\C-cl" . org-store-link)
-         ("\C-ca" . org-agenda)
-         ("\C-cc" . org-capture)
-         ("\C-cb" . org-switchb)
-         ("\C-ci" . clock-in)
-         ("\C-co" . org-clock-out))
-  :init
-  (setq org-todo-keywords
-        '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
+  (use-package org
+    ;; Global key bindings.
+    :bind (("\C-cl" . org-store-link)
+           ("\C-ca" . org-agenda)
+           ("\C-cc" . org-capture)
+           ("\C-cb" . org-switchb)
+           ("\C-ci" . clock-in)
+           ("\C-co" . org-clock-out))
+    :init
+    (setq org-todo-keywords
+          '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
 
-  :config
-  (defun iso-week-number ()
-    "Returns the ISO week number for today."
-    (org-days-to-iso-week (org-today)))
+    :config
+    (defun iso-week-number ()
+      "Returns the ISO week number for today."
+      (org-days-to-iso-week (org-today)))
 
-  (defun clock-in-monday ()
-    "Creates a new \"Week <WEEK-NUMBER>\" heading."
-    (interactive)
-    (if (not (org-at-heading-p))
-        (user-error "Not at a heading"))
-    (beginning-of-line)
-    (org-insert-heading)
-    (insert (format "Week %s" (iso-week-number)))
-    (clock-in t))
+    (defun clock-in-monday ()
+      "Creates a new \"Week <WEEK-NUMBER>\" heading."
+      (interactive)
+      (if (not (org-at-heading-p))
+          (user-error "Not at a heading"))
+      (beginning-of-line)
+      (org-insert-heading)
+      (insert (format "Week %s" (iso-week-number)))
+      (clock-in t))
 
-  (defun clock-in (&optional monday)
-    "Clock in with org mode."
-    (interactive)
-    (if (not (org-at-heading-p))
-        (user-error "Not at a heading"))
-    (org-insert-heading-after-current)
-    (org-insert-time-stamp (current-time) nil t)
-    (if monday
-        (org-demote))
-    (org-clock-in)
-    (org-insert-heading-after-current)
-    (org-demote)
-    (insert " Standup")
-    (forward-line)
-    ;; Create table "| todo | in progress | done |"
-    (org-table-create "3x2")
-    (org-table-put 1 1 "todo")
-    (org-table-put 1 2 "in progress")
-    (org-table-put 1 3 "done" t)) ;; set align to auto align table
+    (defun clock-in (&optional monday)
+      "Clock in with org mode."
+      (interactive)
+      (if (not (org-at-heading-p))
+          (user-error "Not at a heading"))
+      (org-insert-heading-after-current)
+      (org-insert-time-stamp (current-time) nil t)
+      (if monday
+          (org-demote))
+      (org-clock-in)
+      (org-insert-heading-after-current)
+      (org-demote)
+      (insert " Standup")
+      (forward-line)
+      ;; Create table "| todo | in progress | done |"
+      (org-table-create "3x2")
+      (org-table-put 1 1 "todo")
+      (org-table-put 1 2 "in progress")
+      (org-table-put 1 3 "done" t)) ;; set align to auto align table
 
-  (org-clock-persistence-insinuate)
+    (org-clock-persistence-insinuate)
 
-  ;; Org mode babel language support.
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((emacs-lisp . t)
-     (shell . t)
-     (C . t)))
+    ;; Org mode babel language support.
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((emacs-lisp . t)
+       (shell . t)
+       (C . t)))
 
-  ;; Do not interpret "_" and "^" for sub and superscript when
-  ;; exporting.
-  (setq org-export-with-sub-superscripts nil)
+    ;; Do not interpret "_" and "^" for sub and superscript when
+    ;; exporting.
+    (setq org-export-with-sub-superscripts nil)
 
-  ;; When in org-mode, use expected org-mode tab behaviour when in
-  ;; Normal and Insert state. Set jump keys to navigate org links and
-  ;; the mark ring.
-  (evil-define-key 'normal org-mode-map
-    [tab] 'org-cycle
-    (kbd "C-]") 'org-open-at-point
-    (kbd "C-o") 'org-mark-ring-goto)
+    ;; When in org-mode, use expected org-mode tab behaviour when in
+    ;; Normal and Insert state. Set jump keys to navigate org links and
+    ;; the mark ring.
+    (evil-define-key 'normal org-mode-map
+      [tab] 'org-cycle
+      (kbd "C-]") 'org-open-at-point
+      (kbd "C-o") 'org-mark-ring-goto)
 
-  (evil-define-key 'insert org-mode-map [tab] 'org-cycle)
+    (evil-define-key 'insert org-mode-map [tab] 'org-cycle)
 
-  ;; :custom
-  (setq org-outline-path-complete-in-steps nil)
+    ;; :custom
+    (setq org-outline-path-complete-in-steps nil)
 
-  ;; Save the running clock when Emacs exits.
-  (setq org-clock-persist 'clock)
+    ;; Save the running clock when Emacs exits.
+    (setq org-clock-persist 'clock)
 
-  ;; Flushright tags to column 100.
-  (setq org-tags-column -100)
+    ;; Flushright tags to column 100.
+    (setq org-tags-column -100)
 
-  (setq org-agenda-files
-   (quote
-    ("c:/Users/matthijs/org/notes.org"
-     "c:/Users/matthijs/org/worklog.org"
-     "c:/Users/matthijs/org/diametercompensation.org"
-     "c:/Users/matthijs/org/personal.org"
-     "c:/Users/matthijs/org/cmake.org"
-     "c:/Users/matthijs/org/agenda.org"
-     ))))
+    (setq org-agenda-files
+     (quote
+      ("c:/Users/matthijs/org/notes.org"
+       "c:/Users/matthijs/org/worklog.org"
+       "c:/Users/matthijs/org/diametercompensation.org"
+       "c:/Users/matthijs/org/personal.org"
+       "c:/Users/matthijs/org/cmake.org"
+       "c:/Users/matthijs/org/agenda.org"
+       ))))
 
 #+END_SRC
 
@@ -534,44 +534,44 @@ Set some modes for specific file types.
 
 #+BEGIN_SRC emacs-lisp
 
-(use-package magit
-  :ensure t
-  :defer t
-  :bind (:map evil-leader--default-map
-              ("st" . magit-staging)
-              ("f"  . magit-file-popup))
-  :init
-  (setq vc-handled-backends nil)
+  (use-package magit
+    :ensure t
+    :defer t
+    :bind (:map evil-leader--default-map
+                ("st" . magit-staging)
+                ("f"  . magit-file-popup))
+    :init
+    (setq vc-handled-backends nil)
 
-  :config
-  ;; Don't show tags when displaying refs
-  (remove-hook 'magit-refs-sections-hook 'magit-insert-tags)
+    :config
+    ;; Don't show tags when displaying refs
+    (remove-hook 'magit-refs-sections-hook 'magit-insert-tags)
 
-  ;; Don't show diff when committing (use C-c C-d to show diff anyway)
-  (remove-hook 'server-switch-hook 'magit-commit-diff)
+    ;; Don't show diff when committing (use C-c C-d to show diff anyway)
+    (remove-hook 'server-switch-hook 'magit-commit-diff)
 
-  ;; Improve staging performance on windows
-  ;; See https://github.com/magit/magit/issues/2395
-  (define-derived-mode magit-staging-mode magit-status-mode "Magit staging"
-    "Mode for showing staged and unstaged changes."
-    :group 'magit-status)
+    ;; Improve staging performance on windows
+    ;; See https://github.com/magit/magit/issues/2395
+    (define-derived-mode magit-staging-mode magit-status-mode "Magit staging"
+      "Mode for showing staged and unstaged changes."
+      :group 'magit-status)
 
-  (defun magit-staging-refresh-buffer ()
-    (magit-insert-section (status)
-                          (magit-insert-untracked-files)
-                          (magit-insert-unstaged-changes)
-                          (magit-insert-staged-changes)))
+    (defun magit-staging-refresh-buffer ()
+      (magit-insert-section (status)
+                            (magit-insert-untracked-files)
+                            (magit-insert-unstaged-changes)
+                            (magit-insert-staged-changes)))
 
-  (defun magit-staging ()
-    (interactive)
-    (magit-mode-setup #'magit-staging-mode))
+    (defun magit-staging ()
+      (interactive)
+      (magit-mode-setup #'magit-staging-mode))
 
-  (magit-define-popup-switch 'magit-log-popup ?f "first parent" "--first-parent")
+    (magit-define-popup-switch 'magit-log-popup ?f "first parent" "--first-parent")
 
-  (evil-define-key 'normal magit-blame-mode-map (kbd "q") 'magit-blame-quit)
+    (evil-define-key 'normal magit-blame-mode-map (kbd "q") 'magit-blame-quit)
 
-  ;; :custom
-  (setq magit-refresh-verbose t))
+    ;; :custom
+    (setq magit-refresh-verbose t))
 
 #+END_SRC
 
@@ -579,9 +579,9 @@ Set some modes for specific file types.
 
 #+BEGIN_SRC emacs-lisp
 
-(use-package cmake-mode
-  :ensure t
-  :defer t)
+  (use-package cmake-mode
+    :ensure t
+    :defer t)
 
 #+END_SRC
 
@@ -589,9 +589,9 @@ Set some modes for specific file types.
 
 #+BEGIN_SRC emacs-lisp
 
-(use-package ninja-mode
-  :ensure t
-  :defer t)
+  (use-package ninja-mode
+    :ensure t
+    :defer t)
 
 #+END_SRC
 
@@ -599,8 +599,8 @@ Set some modes for specific file types.
 
 #+BEGIN_SRC emacs-lisp
 
-;; Force treating of .h files as C++ source
-(setenv "GTAGSFORCECPP" "true")
+  ;; Force treating of .h files as C++ source
+  (setenv "GTAGSFORCECPP" "true")
 
 #+END_SRC
 
@@ -608,21 +608,21 @@ Set some modes for specific file types.
 
 #+BEGIN_SRC emacs-lisp
 
-(use-package helm-gtags
-  :ensure t
-  :defer t
-  :init
-  (add-hook 'c-mode-hook   'helm-gtags-mode)
-  (add-hook 'c++-mode-hook 'helm-gtags-mode)
-  ;; :custom
-  :config
-  (setq helm-gtags-path-style 'absolute)
-  (setq helm-gtags-use-input-at-cursor t)
-  (setq helm-gtags-auto-update t)
-  (setq helm-gtags-pulse-at-cursor t)
-  :config
-  (evil-define-key 'normal c-mode-map   (kbd "C-]") 'helm-gtags-dwim)
-  (evil-define-key 'normal c++-mode-map (kbd "C-]") 'helm-gtags-dwim))
+  (use-package helm-gtags
+    :ensure t
+    :defer t
+    :init
+    (add-hook 'c-mode-hook   'helm-gtags-mode)
+    (add-hook 'c++-mode-hook 'helm-gtags-mode)
+    ;; :custom
+    :config
+    (setq helm-gtags-path-style 'absolute)
+    (setq helm-gtags-use-input-at-cursor t)
+    (setq helm-gtags-auto-update t)
+    (setq helm-gtags-pulse-at-cursor t)
+    :config
+    (evil-define-key 'normal c-mode-map   (kbd "C-]") 'helm-gtags-dwim)
+    (evil-define-key 'normal c++-mode-map (kbd "C-]") 'helm-gtags-dwim))
 
 #+END_SRC
 
@@ -630,20 +630,20 @@ Set some modes for specific file types.
 
 #+BEGIN_SRC emacs-lisp
 
-(use-package company
-  :ensure t
-  :defer t
-  :init
-  (add-hook 'c-mode-hook          'company-mode)
-  (add-hook 'c++-mode-hook        'company-mode)
-  (add-hook 'emacs-lisp-mode-hook 'company-mode)
-  (add-hook 'cmake-mode-hook      'company-mode)
-  :config
-  (setq company-dabbrev-downcase nil) ;; Be case sensitive about completion
-  (setq company-dabbrev-ignore-case nil) ;; Be case sensitive about completion
-  (setq company-async-timeout 10)
-  ;; :custom
-  (setq company-idle-delay nil))
+  (use-package company
+    :ensure t
+    :defer t
+    :init
+    (add-hook 'c-mode-hook          'company-mode)
+    (add-hook 'c++-mode-hook        'company-mode)
+    (add-hook 'emacs-lisp-mode-hook 'company-mode)
+    (add-hook 'cmake-mode-hook      'company-mode)
+    :config
+    (setq company-dabbrev-downcase nil) ;; Be case sensitive about completion
+    (setq company-dabbrev-ignore-case nil) ;; Be case sensitive about completion
+    (setq company-async-timeout 10)
+    ;; :custom
+    (setq company-idle-delay nil))
 
 #+END_SRC
 
@@ -651,13 +651,13 @@ Set some modes for specific file types.
 
 #+BEGIN_SRC emacs-lisp
 
-(use-package helm-company
-  :ensure t
-  :bind (:map evil-insert-state-map
-              ([tab] . helm-company))
-  ;; :custom
-  :config
-  (setq helm-company-fuzzy-match nil))
+  (use-package helm-company
+    :ensure t
+    :bind (:map evil-insert-state-map
+                ([tab] . helm-company))
+    ;; :custom
+    :config
+    (setq helm-company-fuzzy-match nil))
 
 #+END_SRC
 
@@ -665,17 +665,17 @@ Set some modes for specific file types.
 
 #+BEGIN_SRC emacs-lisp
 
-(use-package semantic
-  :ensure t
-  :defer t
-  :init
-  (add-hook 'c-mode-hook   'semantic-mode)
-  (add-hook 'c++-mode-hook 'semantic-mode)
-  ;; :custom
-  :config
-  ;; Ensure semantic is not used by company
-  (setq company-backends (delete 'company-semantic company-backends))
-  (global-semantic-stickyfunc-mode)
-  (evil-define-key 'normal c++-mode-map (kbd "C-}") 'semantic-ia-fast-jump))
+  (use-package semantic
+    :ensure t
+    :defer t
+    :init
+    (add-hook 'c-mode-hook   'semantic-mode)
+    (add-hook 'c++-mode-hook 'semantic-mode)
+    ;; :custom
+    :config
+    ;; Ensure semantic is not used by company
+    (setq company-backends (delete 'company-semantic company-backends))
+    (global-semantic-stickyfunc-mode)
+    (evil-define-key 'normal c++-mode-map (kbd "C-}") 'semantic-ia-fast-jump))
 
 #+END_SRC

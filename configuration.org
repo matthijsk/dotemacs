@@ -280,7 +280,9 @@ Set some modes for specific file types.
   (use-package projectile
     :ensure t
     :bind-keymap ("C-c p" . projectile-command-map)
-    :bind ("<f9>" . projectile-compile-project)
+    :bind (:map projectile-mode-map
+                ("<f9>" . projectile-run-project)
+                ("C-<f9>" . projectile-compile-project))
     :init
     (add-hook 'c-mode-hook     'projectile-mode)
     (add-hook 'c++-mode-hook   'projectile-mode)

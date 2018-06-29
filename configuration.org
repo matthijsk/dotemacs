@@ -200,9 +200,9 @@ Set c indentation to 2.
 #+END_SRC
 
 Set some modes for specific file types.
-- Set xml-mode when loading cbproj and groupproj files.
-- Set c++-mode when loading .rc and .rh files.
-- Set c++-mode when loading .h files. All I do is c++ all day.
+- Set ~xml-mode~ when loading =cbproj= and =groupproj= files.
+- Set ~c++-mode~ when loading =.rc= and =.rh= files.
+- Set ~c++-mode~ when loading =.h= files. All I do is c++ all day.
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'auto-mode-alist '("\\.cbproj\\'" . xml-mode))
   (add-to-list 'auto-mode-alist '("\\.groupproj\\'" . xml-mode))

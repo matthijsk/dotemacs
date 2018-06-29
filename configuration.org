@@ -101,6 +101,7 @@ Don't blink cursor
   (blink-cursor-mode 0)
 #+END_SRC
 
+** Key bindings
 Remap =C-x C-b= to ~ibuffer~ instead of the default.
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -128,7 +129,14 @@ Bind mouse buttons to Info-mode and help-mode navigation.
             (define-key help-mode-map (kbd "<mouse-9>") 'help-go-forward)))
 #+END_SRC
 
-** Disabled commands
+Disable =C-h h= which is bound to ~view-hello-file~. I sometimes press this
+accidentally. As opening the HELLO file takes long enough to be annoying disable
+this binding here.
+#+BEGIN_SRC emacs-lisp
+  (global-unset-key (kbd "C-h h"))
+#+END_SRC
+
+** Enable disabled commands
 Some commands are disabled by default, enable these so Emacs doesn't
 ask for confirmation every time the command is executed.
 

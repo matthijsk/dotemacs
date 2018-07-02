@@ -527,17 +527,7 @@ Set some modes for specific file types.
     (setq org-clock-persist 'clock)
 
     ;; Flushright tags to column 100.
-    (setq org-tags-column -100)
-
-    (setq org-agenda-files
-     (quote
-      ("c:/Users/matthijs/org/notes.org"
-       "c:/Users/matthijs/org/worklog.org"
-       "c:/Users/matthijs/org/diametercompensation.org"
-       "c:/Users/matthijs/org/personal.org"
-       "c:/Users/matthijs/org/cmake.org"
-       "c:/Users/matthijs/org/agenda.org"
-       ))))
+    (setq org-tags-column -100))
 
 #+END_SRC
 

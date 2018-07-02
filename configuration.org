@@ -385,6 +385,7 @@ Set some modes for specific file types.
     :config
     (evil-leader/set-leader ",")
     (evil-leader/set-key "e"   '(lambda() (interactive) (find-file (concat user-emacs-directory "configuration.org")))
+                         "i"   '(lambda() (interactive) (find-file user-init-file))
 
                           "sh"   'eshell
 

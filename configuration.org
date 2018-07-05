@@ -136,6 +136,17 @@ this binding here.
   (global-unset-key (kbd "C-h h"))
 #+END_SRC
 
+Some sane bindings for making and deleting frames (an Emacs 'frame' is a
+'window' in modern terms). =C-x 5 2= and =C-x 5 0= are just...too much. So
+instead use =C-c n= for a new frame and =C-c x= (and =M-<f4>=) to delete the
+frame.
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c n") 'make-frame-command) 
+
+  (global-set-key (kbd "C-c x") 'delete-frame)
+  (global-set-key (kbd "M-<f4>") 'delete-frame)
+#+END_SRC
+
 ** Enable disabled commands
 Some commands are disabled by default, enable these so Emacs doesn't
 ask for confirmation every time the command is executed.

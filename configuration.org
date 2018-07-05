@@ -391,6 +391,7 @@ Set some modes for specific file types.
     (my-move-key evil-motion-state-map evil-normal-state-map " ")
 
     ;; Set custom evil state when in these modes.
+    (evil-set-initial-state 'eshell-mode          'emacs)
     (evil-set-initial-state 'magit-staging-mode   'emacs)
     (evil-set-initial-state 'image-mode           'emacs)
     (evil-set-initial-state 'messages-buffer-mode 'motion)

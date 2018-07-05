@@ -306,7 +306,8 @@ Set some modes for specific file types.
     :bind-keymap ("C-c p" . projectile-command-map)
     :bind (:map projectile-mode-map
                 ("<f9>" . projectile-run-project)
-                ("C-<f9>" . projectile-compile-project))
+                ("C-<f9>" . projectile-compile-project)
+                ("M-<f9>" . projectile-test-project))
     :init
     (add-hook 'c-mode-hook     'projectile-mode)
     (add-hook 'c++-mode-hook   'projectile-mode)
@@ -450,6 +451,8 @@ Set some modes for specific file types.
 
                           "m"   'compile
                           "c"   'compile
+
+                          "pp"  'projectile-test-project
 
                           "pf"  'helm-projectile-find-file
                           "psg" 'helm-projectile-grep

@@ -147,6 +147,19 @@ frame.
   (global-set-key (kbd "M-<f4>") 'delete-frame)
 #+END_SRC
 
+When I call kill-buffer I pretty much always mean to kill the current
+buffer. The default functionality is to prompt for a buffer name. Instead, I
+want the buffer to be killed immediately. Inspiration:
+http://pragmaticemacs.com/emacs/dont-kill-buffer-kill-this-buffer-instead/.
+#+BEGIN_SRC emacs-lisp
+  (defun my-kill-buffer ()
+    "Kill the current buffer without prompting."
+    (interactive)
+    (kill-buffer (current-buffer)))
+
+  (global-set-key (kbd "C-x k") 'my-kill-buffer)
+#+END_SRC
+
 ** Enable disabled commands
 Some commands are disabled by default, enable these so Emacs doesn't
 ask for confirmation every time the command is executed.
@@ -420,7 +433,7 @@ Set some modes for specific file types.
                           "wk"  'evil-window-up
                           "wl"  'evil-window-right
 
-                          "xk"  'kill-buffer
+                          "xk"  'my-kill-buffer
                           "rb"  'revert-buffer
                           "x#"  'server-edit
                           "xc"  'save-buffers-kill-terminal

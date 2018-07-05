@@ -58,7 +58,7 @@ the buffer by three lines.
 Scroll by one line when reaching bottom of buffer instead of recentering the
 buffer.
 #+BEGIN_SRC emacs-lisp
-  (setq scroll-conservatively 101)
+  (setq scroll-conservatively most-positive-fixnum)
 #+END_SRC
 
 Don't scroll faster when the mouse wheel is turned faster. Also, use a fixed

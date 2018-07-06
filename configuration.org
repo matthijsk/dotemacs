@@ -10,14 +10,12 @@ settings and the call to ~(package-initialize)~ are done in =[[file:init.el][ini
 [[https://github.com/jwiegley/use-package][Use-package]] allows for automatic installation of packages, which is great when
 you want to use Emacs on multiple systems. Also, it loads packages when needed,
 keeping the Emacs startup time short.
-
 #+BEGIN_SRC emacs-lisp
   (require 'use-package)
 #+END_SRC
 
 [[https://github.com/myrjola/diminish.el][Diminish]] can be used as part of =use-package= to hide minor mode strings from
 the modeline.
-
 #+BEGIN_SRC emacs-lisp
   (use-package diminish
     :ensure t)
@@ -238,15 +236,14 @@ Set some modes for specific file types.
 #+END_SRC
 
 * Smart mode line
-
+Use [[https://github.com/Malabarba/smart-mode-line/issues][smart-mode-line]] as a mode-line. Nothing too fancy but offers more
+than the default.
 #+BEGIN_SRC emacs-lisp
-
   (use-package smart-mode-line
     :ensure t
     :config
     (setq sml/theme 'automatic)
     (sml/setup))
-
 #+END_SRC
 
 * Default text scale
@@ -413,7 +410,7 @@ Set some modes for specific file types.
     (evil-leader/set-key "e"   '(lambda() (interactive) (find-file (concat user-emacs-directory "configuration.org")))
                          "i"   '(lambda() (interactive) (find-file user-init-file))
 
-                          "sh"   'eshell
+                          "sh"  'eshell
 
                           "wc"  'evil-window-delete
                           "x0"  'delete-window

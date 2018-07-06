@@ -435,6 +435,7 @@ than the default.
                           "xk"  'my-kill-buffer
                           "rb"  'revert-buffer
                           "x#"  'server-edit
+                          "n"   'server-edit
                           "xc"  'save-buffers-kill-terminal
 
                           "b"   'helm-mini

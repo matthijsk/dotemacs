@@ -235,6 +235,18 @@ Set some modes for specific file types.
   (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 #+END_SRC
 
+** Default search function
+Just a wrapper around whatever search function strikes my fancy
+today. This makes it easier to change functionality without the tedium
+of having to rebind all keys.
+#+BEGIN_SRC emacs-lisp
+  (defun my-search ()
+    (interactive)
+    (swiper-helm))
+    ;; (swiper))
+    ;; (helm-occur))
+    ;; (helm-swoop))
+#+END_SRC
 * Smart mode line
 Use [[https://github.com/Malabarba/smart-mode-line/issues][smart-mode-line]] as a mode-line. Nothing too fancy but offers more
 than the default.
@@ -273,7 +285,7 @@ than the default.
            ("<C-tab>" . helm-mini)
            ("C-x C-f" . helm-find-files)
            ("C-x C-h" . helm-resume-existing)
-           ("C-s"     . helm-occur)
+           ("C-s"     . my-search)
            ("C-x r l" . helm-bookmarks)
            :map helm-map
            ;; Use <C-tab> and <C-S-tab> to navigate helm buffers.
@@ -346,11 +358,11 @@ than the default.
     :bind (:map evil-normal-state-map
                 ("C-s"   . save-buffer)
                 ("C-/"   . my-comment-dwim)
-                ("C-f"   . helm-occur)
+                ("C-f"   . my-search
                 ("<SPC>" . helm-mini)
 
            :map evil-motion-state-map
-                ("C-f" . helm-occur)
+                ("C-f" . my-search)
 
            :map evil-insert-state-map
                 ("C-s" . save-buffer)

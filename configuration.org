@@ -248,7 +248,7 @@ of having to rebind all keys.
     ;; (helm-swoop))
 #+END_SRC
 * Smart mode line
-Use [[https://github.com/Malabarba/smart-mode-line/issues][smart-mode-line]] as a mode-line. Nothing too fancy but offers more
+Use [[https://github.com/Malabarba/smart-mode-line][smart-mode-line]] as a mode-line. Nothing too fancy but offers more
 than the default.
 #+BEGIN_SRC emacs-lisp
   (use-package smart-mode-line

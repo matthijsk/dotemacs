@@ -358,7 +358,7 @@ than the default.
     :bind (:map evil-normal-state-map
                 ("C-s"   . save-buffer)
                 ("C-/"   . my-comment-dwim)
-                ("C-f"   . my-search
+                ("C-f"   . my-search)
                 ("<SPC>" . helm-mini)
 
            :map evil-motion-state-map

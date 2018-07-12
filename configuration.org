@@ -743,3 +743,11 @@ than the default.
   (use-package swiper-helm
     :ensure t)
 #+END_SRC
+
+* Dired-narrow
+#+BEGIN_SRC emacs-lisp
+  (use-package dired-narrow
+    :ensure t
+    :bind (:map dired-mode-map
+                ("/" . dired-narrow)))
+#+END_SRC

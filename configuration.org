@@ -110,9 +110,9 @@ Remap =C-x C-b= to ~ibuffer~ instead of the default.
   (global-set-key (kbd "C-x C-b") 'ibuffer)
 #+END_SRC
 
-Reload ('revert') a buffer with =F5=.
+Reload ('revert') a buffer with =F5= without asking for confirmation, and
+preserve all modes.
 #+BEGIN_SRC emacs-lisp
-  ;; Don't ask for confirmation, preserve modes.
   (global-set-key (kbd "<f5>") '(lambda () (interactive) (revert-buffer nil t t)))
 #+END_SRC
 
@@ -138,7 +138,7 @@ Bind mouse buttons to Info-mode and help-mode navigation.
             (define-key help-mode-map (kbd "<mouse-9>") 'help-go-forward)))
 #+END_SRC
 
-Disable =C-h h= which is bound to ~view-hello-file~. I sometimes press this
+Disable =C-h h=, which is bound to ~view-hello-file~. I sometimes press this
 accidentally. As opening the HELLO file takes long enough to be annoying disable
 this binding here.
 #+BEGIN_SRC emacs-lisp
@@ -741,6 +741,7 @@ than the default.
 #+END_SRC
 
 * Ivy / Counsel / Swiper
+I like helm, I like swiper. Combining the two makes me happy.
 #+BEGIN_SRC emacs-lisp
   (use-package swiper
     :ensure t)

@@ -734,3 +734,12 @@ than the default.
     (evil-define-key 'normal c++-mode-map (kbd "C-}") 'semantic-ia-fast-jump))
 
 #+END_SRC
+
+* Ivy / Counsel / Swiper
+#+BEGIN_SRC emacs-lisp
+  (use-package swiper
+    :ensure t)
+
+  (use-package swiper-helm
+    :ensure t)
+#+END_SRC

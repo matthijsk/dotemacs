@@ -201,9 +201,11 @@ Seriously, Emacs is awesome. I love this kind of customization power.
     "Call the comment command you want (Do What I Mean).
   If the region is active and `transient-mark-mode' is on, call
   `comment-region' (unless it only consists of comments, in which
-  case it calls `uncomment-region').
-  Else, it calls `comment-line'.
-  Custom implementation derived from `comment-dwim'."
+  case it calls `uncomment-region').  Else, it calls
+  `comment-line'.  Custom implementation derived from
+  `comment-dwim'. The diffence is that the original function
+  appends a comment to a line while this functions comments the
+  line itself."
     (interactive "*P")
     (comment-normalize-vars)
     (if (use-region-p)

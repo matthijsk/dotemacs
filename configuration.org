@@ -105,6 +105,12 @@ Remap =C-x C-b= to ~ibuffer~ instead of the default.
   (global-set-key (kbd "C-x C-b") 'ibuffer)
 #+END_SRC
 
+Reload ('revert') a buffer with =F5=.
+#+BEGIN_SRC emacs-lisp
+  ;; Don't ask for confirmation, preserve modes.
+  (global-set-key (kbd "<f5>") '(lambda () (interactive) (revert-buffer nil t t)))
+#+END_SRC
+
 Load alternate file with =F6= (useful for switching .c and .h).
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "<f6>") 'ff-find-other-file)

@@ -255,7 +255,7 @@ of having to rebind all keys.
 #+BEGIN_SRC emacs-lisp
   (defun my-search ()
     (interactive)
-    (swiper-helm))
+    (swiper-helm (word-at-point)))
     ;; (swiper))
     ;; (helm-occur))
     ;; (helm-swoop))

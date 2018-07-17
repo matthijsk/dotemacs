@@ -778,8 +778,9 @@ scaling.
    :ensure t
    :after company
    :config
-   (evil-define-key 'insert c-mode-map   (kbd "TAB") 'helm-company)
-   (evil-define-key 'insert c++-mode-map (kbd "TAB") 'helm-company)
+   (evil-define-key 'insert c-mode-map          (kbd "TAB") 'helm-company)
+   (evil-define-key 'insert c++-mode-map        (kbd "TAB") 'helm-company)
+   (evil-define-key 'insert emacs-lisp-mode-map (kbd "TAB") 'helm-company)
    (setq helm-company-fuzzy-match nil))
 
 #+END_SRC

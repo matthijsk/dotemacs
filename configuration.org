@@ -304,7 +304,10 @@ than the default.
 #+END_SRC
 
 * Default text scale
-
+By default, scaling in Emacs (using =text-scale-adjust=) only scales
+the text in the buffer, but not in the modeline or the
+mini-buffer. The package [[https://github.com/purcell/default-text-scale][default-text-scale]] enables Emacs-wide
+scaling.
 #+BEGIN_SRC emacs-lisp
 
   ;; START DEFAULT-TEXT-SCALE

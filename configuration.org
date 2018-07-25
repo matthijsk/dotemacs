@@ -703,6 +703,7 @@ than the default.
   (use-package helm-gtags
     :ensure t
     :defer t
+    :diminish helm-gtags-mode
     :init
     (add-hook 'c-mode-hook   'helm-gtags-mode)
     (add-hook 'c++-mode-hook 'helm-gtags-mode)

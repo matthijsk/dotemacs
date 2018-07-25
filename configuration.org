@@ -406,7 +406,6 @@ scaling.
 * Evil
 
 #+BEGIN_SRC emacs-lisp
-
   (use-package evil
     :ensure t
     :demand t
@@ -456,15 +455,16 @@ scaling.
     (my-move-key evil-motion-state-map evil-normal-state-map " ")
 
     ;; Set custom evil state when in these modes.
-    (evil-set-initial-state 'eshell-mode          'emacs)
-    (evil-set-initial-state 'magit-staging-mode   'emacs)
-    (evil-set-initial-state 'image-mode           'emacs)
-    (evil-set-initial-state 'messages-buffer-mode 'motion)
-    (evil-set-initial-state 'eww-mode             'motion)
-    (evil-set-initial-state 'eww-buffers-mode     'motion)
-    (evil-set-initial-state 'hackernews-mode      'motion)
-    (evil-set-initial-state 'helpful-mode         'motion)
-    (evil-set-initial-state 'elisp-refs-mode      'motion))
+    (evil-set-initial-state 'eshell-mode           'emacs)
+    (evil-set-initial-state 'magit-staging-mode    'emacs)
+    (evil-set-initial-state 'image-mode            'emacs)
+    (evil-set-initial-state 'messages-buffer-mode  'motion)
+    (evil-set-initial-state 'eww-mode              'motion)
+    (evil-set-initial-state 'eww-buffers-mode      'motion)
+    (evil-set-initial-state 'hackernews-mode       'motion)
+    (evil-set-initial-state 'helpful-mode          'motion)
+    (evil-set-initial-state 'elisp-refs-mode       'motion)
+    (evil-set-initial-state 'with-editor-mode-hook 'normal))
 #+END_SRC
 
 * Evil-leader

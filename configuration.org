@@ -113,7 +113,12 @@ Remap =C-x C-b= to ~ibuffer~ instead of the default.
 Reload ('revert') a buffer with =F5= without asking for confirmation, and
 preserve all modes.
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "<f5>") '(lambda () (interactive) (revert-buffer nil t t)))
+  (defun my-revert-buffer ()
+    "Revert a buffer without asking for confirmation and preserve all modes."
+    (interactive)
+    (revert-buffer nil t t))
+
+  (global-set-key (kbd "<f5>") 'my-revert-buffer)
 #+END_SRC
 
 Load alternate file with =F6= (useful for switching .c and .h).
@@ -260,6 +265,23 @@ of having to rebind all keys.
     ;; (helm-occur))
     ;; (helm-swoop))
 #+END_SRC
+
+** Find configuration files
+#+BEGIN_SRC emacs-lisp
+  (defun my-find-configuration-file ()
+    "Opens the configuration file in a new buffer.
+  Opens the configuration file that is loaded by
+  `user-init-file'. Use `my-find-init-file' to open
+  `user-init-file'."
+    (interactive)
+    (find-file (concat user-emacs-directory "configuration.org")))
+
+  (defun my-find-init-file ()
+    "Opens `user-init-file' in a new buffer."
+    (interactive)
+    (find-file user-init-file))
+#+END_SRC
+
 * Smart mode line
 Use [[https://github.com/Malabarba/smart-mode-line][smart-mode-line]] as a mode-line. Nothing too fancy but offers more
 than the default.
@@ -313,11 +335,13 @@ than the default.
 
     (helm-mode 1)
 
-    (add-hook 'eshell-mode-hook
-            (lambda ()
-              (eshell-cmpl-initialize)
-              (define-key eshell-mode-map [remap eshell-pcomplete] 'helm-esh-pcomplete)
-              (define-key eshell-mode-map (kbd "M-p") 'helm-eshell-history)))
+    (defun my-setup-eshell-completion ()
+      "Setup helm completion for use with eshell."
+      (eshell-cmpl-initialize)
+      (define-key eshell-mode-map [remap eshell-pcomplete] 'helm-esh-pcomplete)
+      (define-key eshell-mode-map (kbd "M-p") 'helm-eshell-history))
+  
+    (add-hook 'eshell-mode-hook 'my-setup-eshell-completion)
 
     ;; :custom
     (setq helm-buffer-max-length nil)
@@ -438,8 +462,8 @@ than the default.
     :after evil
     :config
     (evil-leader/set-leader ",")
-    (evil-leader/set-key "e"   '(lambda() (interactive) (find-file (concat user-emacs-directory "configuration.org")))
-                         "i"   '(lambda() (interactive) (find-file user-init-file))
+    (evil-leader/set-key "e"   'my-find-configuration-file
+                         "i"   'my-find-init-file
 
                           "sh"  'eshell
 

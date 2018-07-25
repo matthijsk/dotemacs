@@ -459,8 +459,9 @@ than the default.
     (evil-set-initial-state 'messages-buffer-mode 'motion)
     (evil-set-initial-state 'eww-mode             'motion)
     (evil-set-initial-state 'eww-buffers-mode     'motion)
-    (evil-set-initial-state 'hackernews-mode      'motion))
-
+    (evil-set-initial-state 'hackernews-mode      'motion)
+    (evil-set-initial-state 'helpful-mode         'motion)
+    (evil-set-initial-state 'elisp-refs-mode      'motion))
 #+END_SRC
 
 * Evil-leader

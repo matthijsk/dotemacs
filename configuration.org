@@ -296,6 +296,16 @@ of having to rebind all keys.
     (find-file user-init-file))
 #+END_SRC
 
+** Spell check
+   Use hunspell as spell checker. Neato.
+   Enable flyspell for text mode.
+#+BEGIN_SRC emacs-lisp
+  (setq ispell-program-name "hunspell")
+  (setq ispell-really-hunspell t)
+  (add-hook 'text-mode-hook 'flyspell-mode)
+  (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+#+END_SRC
+
 * Smart mode line
 Use [[https://github.com/Malabarba/smart-mode-line][smart-mode-line]] as a mode-line. Nothing too fancy but offers more
 than the default.

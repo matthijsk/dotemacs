@@ -173,6 +173,11 @@ http://pragmaticemacs.com/emacs/dont-kill-buffer-kill-this-buffer-instead/.
   (global-set-key (kbd "C-x k") 'my-kill-buffer)
 #+END_SRC
 
+Bind =hippie-expand= to =M-/=.
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "M-/") 'hippie-expand)
+#+END_SRC
+
 ** Enable disabled commands
 Some commands are disabled by default, enable these so Emacs doesn't
 ask for confirmation every time the command is executed.
@@ -425,6 +430,8 @@ scaling.
     (setq evil-want-C-u-scroll t)
     (setq evil-symbol-word-search t)
     (setq evil-shift-width 2)
+    (setq evil-complete-next-func 'hippie-expand)
+    (setq evil-complete-previous-func 'hippie-expand)
 
     :config
     (evil-define-key 'motion Man-mode-map (kbd "RET") 'man-follow)

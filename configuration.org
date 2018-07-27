@@ -408,6 +408,7 @@ scaling.
 
   (use-package helm-projectile
     :ensure t
+    :defer t
     :after projectile
     :init
     (setq helm-projectile-fuzzy-match nil)
@@ -420,6 +421,7 @@ scaling.
 * Evil
 
 #+BEGIN_SRC emacs-lisp
+
   (use-package evil
     :ensure t
     :demand t
@@ -768,6 +770,7 @@ scaling.
 
   (use-package helm-company
    :ensure t
+   :after company
    :config
    (evil-define-key 'insert c-mode-map   (kbd "TAB") 'helm-company)
    (evil-define-key 'insert c++-mode-map (kbd "TAB") 'helm-company)
@@ -798,9 +801,11 @@ scaling.
 I like helm, I like swiper. Combining the two makes me happy.
 #+BEGIN_SRC emacs-lisp
   (use-package swiper
+    :defer t
     :ensure t)
 
   (use-package swiper-helm
+    :defer t
     :ensure t)
 #+END_SRC
 

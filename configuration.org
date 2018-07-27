@@ -754,6 +754,7 @@ scaling.
     (add-hook 'emacs-lisp-mode-hook 'company-mode)
     (add-hook 'cmake-mode-hook      'company-mode)
     :config
+    (setq company-backends (delete 'company-semantic company-backends)) ;; Ensure semantic is not used by company
     (setq company-dabbrev-downcase nil) ;; Do not downcase returned candidates.
     (setq company-dabbrev-ignore-case t) ;; Ignore case for completion
     (setq company-dabbrev-code-ignore-case t) ;; Ignore case for completion
@@ -785,12 +786,11 @@ scaling.
     :ensure t
     :defer t
     :init
-    (add-hook 'c-mode-hook   'semantic-mode)
-    (add-hook 'c++-mode-hook 'semantic-mode)
+    (add-hook 'c-mode-hook          'semantic-mode)
+    (add-hook 'c++-mode-hook        'semantic-mode)
+    (add-hook 'emacs-lisp-mode-hook 'semantic-mode)
     ;; :custom
     :config
-    ;; Ensure semantic is not used by company
-    (setq company-backends (delete 'company-semantic company-backends))
     (global-semantic-stickyfunc-mode)
     (evil-define-key 'normal c++-mode-map (kbd "C-}") 'semantic-ia-fast-jump))
 

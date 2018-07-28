@@ -602,7 +602,7 @@ scaling.
       (org-clock-in)
       (org-insert-heading-after-current)
       (org-demote)
-      (insert " Standup")
+      (insert " Stand-up")
       (forward-line)
       ;; Create table "| todo | in progress | done |"
       (org-table-create "3x2")

@@ -734,7 +734,9 @@ scaling.
     (setq helm-gtags-pulse-at-cursor t)
     :config
     (evil-define-key 'normal c-mode-map   (kbd "C-]") 'helm-gtags-dwim)
-    (evil-define-key 'normal c++-mode-map (kbd "C-]") 'helm-gtags-dwim))
+    (evil-define-key 'normal c++-mode-map (kbd "C-]") 'helm-gtags-dwim)
+
+    (advice-add 'helm-gtags-dwim :before 'evil--jumps-push))
 
 #+END_SRC
 

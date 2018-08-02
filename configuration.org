@@ -460,9 +460,6 @@ scaling.
     (evil-ex-define-cmd "ls" 'ibuffer)
     (evil-ex-define-cmd "e"  'helm-find-files)
 
-    ;; Set evil mode when in these modes.
-    (add-hook 'with-editor-mode-hook 'evil-normal-state)
-
     ;; Ensure Emacs bindings for RET and SPC are available in motion state.
     ;; https://www.emacswiki.org/emacs/Evil#toc12
     (defun my-move-key (keymap-from keymap-to key)
@@ -473,9 +470,12 @@ scaling.
     (my-move-key evil-motion-state-map evil-normal-state-map " ")
 
     ;; Set custom evil state when in these modes.
+    (add-hook 'with-editor-mode-hook 'evil-normal-state)
+
     (evil-set-initial-state 'eshell-mode           'emacs)
     (evil-set-initial-state 'magit-staging-mode    'emacs)
     (evil-set-initial-state 'image-mode            'emacs)
+    (evil-set-initial-state 'dired-mode            'emacs)
     (evil-set-initial-state 'messages-buffer-mode  'motion)
     (evil-set-initial-state 'eww-mode              'motion)
     (evil-set-initial-state 'eww-buffers-mode      'motion)

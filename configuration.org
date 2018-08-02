@@ -247,6 +247,7 @@ Set some modes for specific file types.
 - Set ~xml-mode~ when loading =cbproj= and =groupproj= files.
 - Set ~c++-mode~ when loading =.rc= and =.rh= files.
 - Set ~c++-mode~ when loading =.h= files. All I do is c++ all day.
+- Set ~conf-mode~ when loading a Doxygen configuration file.
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'auto-mode-alist '("\\.cbproj\\'" . xml-mode))
   (add-to-list 'auto-mode-alist '("\\.groupproj\\'" . xml-mode))
@@ -255,6 +256,8 @@ Set some modes for specific file types.
   (add-to-list 'auto-mode-alist '("\\.rc\\'" . c++-mode))
 
   (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+
+  (add-to-list 'auto-mode-alist '("Doxyfile" . conf-mode))
 #+END_SRC
 
 Highlight TODO keywords in all programming modes.
@@ -711,10 +714,10 @@ scaling.
 * GTAGS / GNU Global
 
 #+BEGIN_SRC emacs-lisp
-
   ;; Force treating of .h files as C++ source
   (setenv "GTAGSFORCECPP" "true")
 
+  (add-to-list 'auto-mode-alist '("\\.globalrc" . conf-mode))
 #+END_SRC
 
 * Helm gtags

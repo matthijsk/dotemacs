@@ -481,8 +481,7 @@ scaling.
     (evil-set-initial-state 'eww-buffers-mode      'motion)
     (evil-set-initial-state 'hackernews-mode       'motion)
     (evil-set-initial-state 'helpful-mode          'motion)
-    (evil-set-initial-state 'elisp-refs-mode       'motion)
-    (evil-set-initial-state 'with-editor-mode-hook 'normal))
+    (evil-set-initial-state 'elisp-refs-mode       'motion))
 #+END_SRC
 
 * Evil-leader

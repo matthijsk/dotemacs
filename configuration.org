@@ -460,6 +460,9 @@ scaling.
     (evil-ex-define-cmd "ls" 'ibuffer)
     (evil-ex-define-cmd "e"  'helm-find-files)
 
+    ;; Set evil mode when in these modes.
+    (add-hook 'with-editor-mode-hook 'evil-normal-state)
+
     ;; Ensure Emacs bindings for RET and SPC are available in motion state.
     ;; https://www.emacswiki.org/emacs/Evil#toc12
     (defun my-move-key (keymap-from keymap-to key)

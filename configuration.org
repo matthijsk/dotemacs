@@ -572,6 +572,7 @@ scaling.
            ("\C-cc" . org-capture)
            ("\C-cb" . org-switchb)
            ("\C-ci" . clock-in)
+           ("\C-cj" . org-clock-goto)
            ("\C-co" . org-clock-out))
     :init
     (setq org-todo-keywords

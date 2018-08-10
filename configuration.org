@@ -475,6 +475,7 @@ scaling.
     ;; Set custom evil state when in these modes.
     (add-hook 'with-editor-mode-hook 'evil-normal-state)
 
+    (evil-set-initial-state 'shell-mode            'emacs)
     (evil-set-initial-state 'eshell-mode           'emacs)
     (evil-set-initial-state 'magit-staging-mode    'emacs)
     (evil-set-initial-state 'image-mode            'emacs)

@@ -531,7 +531,7 @@ scaling.
                           "b"   'helm-mini
                           "xf"  'helm-find-files
                           "hb"  'helm-bookmarks
-                          "hs"  'helm-semantic
+                          "hs"  'helm-semantic-or-imenu
                           "xh"  'helm-resume-existing
 
                           "l"   'whitespace-mode

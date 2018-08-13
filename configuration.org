@@ -306,7 +306,6 @@ of having to rebind all keys.
   (setq ispell-program-name "hunspell")
   (setq ispell-really-hunspell t)
   (add-hook 'text-mode-hook 'flyspell-mode)
-  (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 #+END_SRC
 
 * Smart mode line

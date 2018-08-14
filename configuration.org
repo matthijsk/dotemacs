@@ -98,7 +98,7 @@ Use a visible bell.
   (setq visible-bell t)
 #+END_SRC
 
-Don't blink cursor
+Don't blink the cursor.
 #+BEGIN_SRC emacs-lisp
   (blink-cursor-mode 0)
 #+END_SRC
@@ -260,10 +260,12 @@ Set some modes for specific file types.
   (add-to-list 'auto-mode-alist '("Doxyfile" . conf-mode))
 #+END_SRC
 
-Highlight TODO keywords in all programming modes.
+Highlight TODO keywords in all programming modes using the =org-todo=
+face.
 #+BEGIN_SRC emacs-lisp
   (defun my-prog-mode-todo-font-lock ()
-    "Font lock for \"TODO\" strings in prog-mode major modes."
+    "Font lock for \"TODO\" strings in prog-mode major modes.
+  Sets face to `org-todo'."
     (font-lock-add-keywords nil
                             '(("\\<\\(TODO\\).*:" 1 'org-todo prepend))))
 
@@ -284,6 +286,12 @@ of having to rebind all keys.
 #+END_SRC
 
 ** Find configuration files
+This configuration file is written in =org-mode=. The file is
+tangled into an =.el= file using an ~(org-babel-load-file)~ call in
+=init.el= when Emacs starts.
+
+These functions enable quick access to the configuration file and the
+Emacs init file.
 #+BEGIN_SRC emacs-lisp
   (defun my-find-configuration-file ()
     "Opens the configuration file in a new buffer.
@@ -300,8 +308,8 @@ of having to rebind all keys.
 #+END_SRC
 
 ** Spell check
-   Use hunspell as spell checker. Neato.
-   Enable flyspell for text mode.
+Use hunspell as spell checker. Neato.
+Enable flyspell for text mode.
 #+BEGIN_SRC emacs-lisp
   (setq ispell-program-name "hunspell")
   (setq ispell-really-hunspell t)
@@ -325,22 +333,17 @@ the text in the buffer, but not in the modeline or the
 mini-buffer. The package [[https://github.com/purcell/default-text-scale][default-text-scale]] enables Emacs-wide
 scaling.
 #+BEGIN_SRC emacs-lisp
-
-  ;; START DEFAULT-TEXT-SCALE
-  ;; Allow scaling of all buffers.
   (use-package default-text-scale
     :ensure t
     :bind (("C-M-="       . default-text-scale-increase)
            ("C-<mouse-4>" . default-text-scale-increase)
            ("C-M--"       . default-text-scale-decrease)
            ("C-<mouse-5>" . default-text-scale-decrease)))
-
 #+END_SRC
 
 * Helm
-
+Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
 #+BEGIN_SRC emacs-lisp
-
   (use-package helm
     :diminish helm-mode
     :ensure t
@@ -375,13 +378,12 @@ scaling.
     ;; :custom
     (setq helm-buffer-max-length nil)
     (setq helm-split-window-inside-p t))
-
 #+END_SRC
 
 * Projectile
-
+Use [[https://github.com/bbatsov/projectile][Projectile]] for project interaction. Works really well with
+Git repositories for quick navigation.
 #+BEGIN_SRC emacs-lisp
-
   (use-package projectile
     :ensure t
     :bind-keymap ("C-c p" . projectile-command-map)
@@ -401,13 +403,12 @@ scaling.
     (setq projectile-indexing-method 'alien)
     (setq projectile-enable-caching t)
     (setq projectile-use-git-grep t))
-
 #+END_SRC
 
 * Helm-projectile
-
+Combine Helm and Projectile for awesome project navigation with
+awesome completion.
 #+BEGIN_SRC emacs-lisp
-
   (use-package helm-projectile
     :ensure t
     :defer t
@@ -417,13 +418,15 @@ scaling.
     (setq projectile-switch-project-action 'helm-projectile)
     :config
     (helm-projectile-on))
-
 #+END_SRC
 
 * Evil
-
+I used to be a Vim user. To be honest, I guess I still am. Else why
+commit the sacrilege of using Vim bindings in Emacs? The modal editing
+model of Vim works really well for me, and [[https://github.com/emacs-evil/evil][Evil]] is hands down the best
+Vim emulator for Emacs. This gives me the best of both worlds: the
+modal editing of Vim combined with the extensibility of Emacs.
 #+BEGIN_SRC emacs-lisp
-
   (use-package evil
     :ensure t
     :demand t
@@ -490,7 +493,6 @@ scaling.
 * Evil-leader
 
 #+BEGIN_SRC emacs-lisp
-
   (use-package evil-leader
     :ensure t
     :after evil
@@ -553,7 +555,6 @@ scaling.
 
     ;; Start evil.
     (evil-mode))
-
 #+END_SRC
 
 * Org mode

@@ -581,10 +581,6 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
           '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
 
     :config
-    (defun iso-week-number ()
-      "Returns the ISO week number for today."
-      (org-days-to-iso-week (org-today)))
-
     (defun clock-in-monday ()
       "Creates a new \"Week <WEEK-NUMBER>\" heading."
       (interactive)
@@ -592,7 +588,7 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
           (user-error "Not at a heading"))
       (beginning-of-line)
       (org-insert-heading)
-      (insert (format "Week %s" (iso-week-number)))
+      (insert (format "Week %s" (org-days-to-iso-week (org-today))))
       (clock-in t))
 
     (defun clock-in (&optional monday)

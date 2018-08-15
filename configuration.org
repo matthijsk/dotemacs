@@ -491,7 +491,8 @@ modal editing of Vim combined with the extensibility of Emacs.
 #+END_SRC
 
 * Evil-leader
-
+Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys with Evil.
+** TODO Bind keys in appropriate ~use-package~ declarations
 #+BEGIN_SRC emacs-lisp
   (use-package evil-leader
     :ensure t

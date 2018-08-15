@@ -559,9 +559,16 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
 #+END_SRC
 
 * Org mode
+[[https://orgmode.org/][Org-mode]] is, for me, a compelling reason to use Emacs. At the very
+least, it is useful for note taking and managing work using TODO
+lists. More recently, I have also started using org-mode to keep track
+of time spent on individual tasks, in addition to simply keeping track
+of the total amount of time spent at work during a day, which I have
+been doing for some years now.
 
+The ~(my-clock-in)~ and ~(my-clock-in-monday)~ functions are used for
+keeping track of time spent at work.
 #+BEGIN_SRC emacs-lisp
-
   ;; Org html export requires htmlize
   (use-package htmlize
     :ensure t
@@ -573,7 +580,7 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
            ("\C-ca" . org-agenda)
            ("\C-cc" . org-capture)
            ("\C-cb" . org-switchb)
-           ("\C-ci" . clock-in)
+           ("\C-ci" . my-clock-in)
            ("\C-cj" . org-clock-goto)
            ("\C-co" . org-clock-out))
     :init
@@ -581,18 +588,25 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
           '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
 
     :config
-    (defun clock-in-monday ()
-      "Creates a new \"Week <WEEK-NUMBER>\" heading."
+    (defun my-clock-in-monday ()
+      "Create a heading \"Week <WEEK-NUMBER>\" above the current heading,
+  then calls `my-clock-in' with argument MONDAY set to t. The week
+  number is the ISO week number."
       (interactive)
       (if (not (org-at-heading-p))
           (user-error "Not at a heading"))
       (beginning-of-line)
       (org-insert-heading)
       (insert (format "Week %s" (org-days-to-iso-week (org-today))))
-      (clock-in t))
+      (my-clock-in t))
 
-    (defun clock-in (&optional monday)
-      "Clock in with org mode."
+    (defun my-clock-in (&optional monday)
+      "Create a heading after the current heading and clock in.
+  The heading has the format \"[timestamp]\", where timestamp is an
+  inactive org timestamp.
+
+  If the optional argument MONDAY is t the heading is also
+  demoted by one level."
       (interactive)
       (if (not (org-at-heading-p))
           (user-error "Not at a heading"))

@@ -814,6 +814,20 @@ keeping track of time spent at work.
 
 #+END_SRC
 
+* Git diff path
+Check if Git for Windows is installed when running on a Windows system. If so,
+add the Git installation to ~exec-path~ and the PATH environment variable. This
+way Emacs can use the diff.exe bundled with the Git installation when running
+Ediff, for example.
+#+BEGIN_SRC emacs-lisp
+  (when (string-equal system-type "windows-nt")
+    (let ((git-path "C:/Program Files/Git/usr/bin"))
+      (when (file-exists-p git-path)
+        (progn (add-to-list 'exec-path git-path t)
+               ;; Also trick the git programs to look in /usr/bin (useful when using diff3)
+               (setenv "PATH" (concat (getenv "PATH") "/usr/bin;"))))))
+#+END_SRC
+
 * Ivy / Counsel / Swiper
 I like helm, I like swiper. Combining the two makes me happy.
 #+BEGIN_SRC emacs-lisp

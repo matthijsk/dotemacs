@@ -104,11 +104,6 @@ Don't blink the cursor.
 #+END_SRC
 
 ** Key bindings
-Remap =C-x C-b= to ~ibuffer~ instead of the default.
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-x C-b") 'ibuffer)
-#+END_SRC
-
 Reload ('revert') a buffer with =F5= without asking for confirmation, and
 preserve all modes.
 #+BEGIN_SRC emacs-lisp
@@ -316,6 +311,34 @@ Enable flyspell for text mode.
   (add-hook 'text-mode-hook 'flyspell-mode)
 #+END_SRC
 
+** IBuffer
+Remap =C-x C-b= to ~ibuffer~ instead of the default.
+
+Use a human-readable Size column for =ibuffer=. Taken from [[https://www.emacswiki.org/emacs/IbufferMode#toc12][Emacs Wiki]].
+#+BEGIN_SRC emacs-lisp
+  (use-package ibuffer
+    :bind (("C-x C-b" . ibuffer))
+    :config
+    ;; Use human readable Size column instead of original one
+    (define-ibuffer-column size-h
+      (:name "Size" :inline t)
+      (cond
+       ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
+       ((> (buffer-size) 100000) (format "%7.0fk" (/ (buffer-size) 1000.0)))
+       ((> (buffer-size) 1000) (format "%7.1fk" (/ (buffer-size) 1000.0)))
+       (t (format "%8d" (buffer-size)))))
+
+    ;; Modify the default ibuffer-formats
+    (setq ibuffer-formats
+          '((mark modified read-only " "
+                  (name 18 18 :left :elide)
+                  " "
+                  (size-h 9 -1 :right)
+                  " "
+                  (mode 16 16 :left :elide)
+                  " "
+                  filename-and-process))))
+#+END_SRC
 * Smart mode line
 Use [[https://github.com/Malabarba/smart-mode-line][smart-mode-line]] as a mode-line. Nothing too fancy but offers more
 than the default.

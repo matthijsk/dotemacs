@@ -859,9 +859,9 @@ Ediff, for example.
   (when (string-equal system-type "windows-nt")
     (let ((git-path "C:/Program Files/Git/usr/bin"))
       (when (file-exists-p git-path)
-        (progn (add-to-list 'exec-path git-path t)
-               ;; Also trick the git programs to look in /usr/bin (useful when using diff3)
-               (setenv "PATH" (concat (getenv "PATH") "/usr/bin;"))))))
+        (add-to-list 'exec-path git-path t)
+        ;; Also trick the git programs to look in /usr/bin (useful when using diff3)
+        (setenv "PATH" (concat (getenv "PATH") "/usr/bin;")))))
 #+END_SRC
 
 * Ivy / Counsel / Swiper

@@ -497,6 +497,18 @@ modal editing of Vim combined with the extensibility of Emacs.
     (my-move-key evil-motion-state-map evil-normal-state-map (kbd "RET"))
     (my-move-key evil-motion-state-map evil-normal-state-map " ")
 
+    (defun my-evil-c-end-of-statement ()
+      "Go to the end of the innermost C statement.
+  Calls `c-end-of-statement' after incrementing `point' by 1.
+  Enables use of of this function while in evil normal state. See
+  Info node `(evil)Modes and states'."
+      (interactive)
+      (evil-goto-char (+ 1 (point)))
+      (c-end-of-statement))
+
+    (evil-define-key 'normal c-mode-map (kbd "M-e") 'my-evil-c-end-of-statement)
+    (evil-define-key 'normal c++-mode-map (kbd "M-e") 'my-evil-c-end-of-statement)
+
     ;; Set custom evil state when in these modes.
     (add-hook 'with-editor-mode-hook 'evil-normal-state)
 

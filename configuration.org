@@ -278,6 +278,8 @@ of having to rebind all keys.
     ;; (swiper))
     ;; (helm-occur))
     ;; (helm-swoop))
+
+  (global-set-key (kbd "C-s") 'my-search)
 #+END_SRC
 
 ** Find configuration files
@@ -375,7 +377,6 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
            ("<C-tab>" . helm-mini)
            ("C-x C-f" . helm-find-files)
            ("C-x C-h" . helm-resume-existing)
-           ("C-s"     . my-search)
            ("C-x r l" . helm-bookmarks)
            :map helm-map
            ;; Use <C-tab> and <C-S-tab> to navigate helm buffers.

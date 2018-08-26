@@ -877,6 +877,7 @@ I like helm, I like swiper. Combining the two makes me happy.
 #+END_SRC
 
 * Dired-narrow
+Dired-narrow is a nice package to do quick filtering in dired buffers.
 #+BEGIN_SRC emacs-lisp
   (use-package dired-narrow
     :ensure t

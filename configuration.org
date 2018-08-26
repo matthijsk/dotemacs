@@ -704,8 +704,6 @@ keeping track of time spent at work.
     :init
     (evil-set-initial-state 'magit-staging-mode 'emacs)
 
-    (setq vc-handled-backends nil)
-
     :config
     ;; Don't show tags when displaying refs.
     (remove-hook 'magit-refs-sections-hook 'magit-insert-tags)

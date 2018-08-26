@@ -445,7 +445,6 @@ modal editing of Vim combined with the extensibility of Emacs.
 
 * Evil-leader
 Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys with Evil.
-** TODO Bind keys in appropriate ~use-package~ declarations
 #+BEGIN_SRC emacs-lisp
   (use-package evil-leader
     :ensure t
@@ -483,26 +482,12 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
                           "n"   'server-edit
                           "xc"  'save-buffers-kill-terminal
 
-                          "b"   'helm-mini
-                          "xf"  'helm-find-files
-                          "hb"  'helm-bookmarks
-                          "hs"  'helm-semantic-or-imenu
-                          "xh"  'helm-resume-existing
-
                           "l"   'whitespace-mode
                           "hl"  'hl-line-mode
                           "rl"  'display-line-numbers-mode
 
                           "m"   'compile
-                          "c"   'compile
-
-                          "pp"  'projectile-test-project
-
-                          "pf"  'helm-projectile-find-file
-                          "psg" 'helm-projectile-grep
-                          "pa"  'helm-projectile-find-other-file)
-
-    (evil-leader/set-key-for-mode 'org-mode "hs" 'helm-org-in-buffer-headings)
+                          "c"   'compile)
 
     ;; Enable evil leader.
     (global-evil-leader-mode)
@@ -529,7 +514,14 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
            ("<C-S-tab>" . helm-previous-line)
 
            :map evil-normal-state-map
-           ("<SPC>" . helm-mini))
+           ("<SPC>" . helm-mini)
+
+           :map evil-leader--default-map
+           ("b"  . helm-mini)
+           ("xf" . helm-find-files)
+           ("hb" . helm-bookmarks)
+           ("hs" . helm-semantic-or-imenu)
+           ("xh" . helm-resume-existing))
 
     :config
     (defun helm-resume-existing ()
@@ -549,7 +541,9 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
 
     ;; :custom
     (setq helm-buffer-max-length nil)
-    (setq helm-split-window-inside-p t))
+    (setq helm-split-window-inside-p t)
+
+    (evil-leader/set-key-for-mode 'org-mode "hs" 'helm-org-in-buffer-headings))
 #+END_SRC
 
 * Projectile
@@ -585,9 +579,15 @@ awesome completion.
     :ensure t
     :defer t
     :after projectile
+    :bind(:map evil-leader--default-map
+               ("pf"  . helm-projectile-find-file)
+               ("psg" . helm-projectile-grep)
+               ("pa"  . helm-projectile-find-other-file))
+
     :init
     (setq helm-projectile-fuzzy-match nil)
     (setq projectile-switch-project-action 'helm-projectile)
+
     :config
     (helm-projectile-on))
 #+END_SRC

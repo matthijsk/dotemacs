@@ -321,7 +321,7 @@ Use a human-readable Size column for =ibuffer=. Taken from [[https://www.emacswi
   (use-package ibuffer
     :bind (("C-x C-b" . ibuffer))
     :config
-    ;; Use human readable Size column instead of original one
+    ;; Use human readable Size column instead of original one.
     (define-ibuffer-column size-h
       (:name "Size" :inline t)
       (cond
@@ -330,7 +330,7 @@ Use a human-readable Size column for =ibuffer=. Taken from [[https://www.emacswi
        ((> (buffer-size) 1000) (format "%7.1fk" (/ (buffer-size) 1000.0)))
        (t (format "%8d" (buffer-size)))))
 
-    ;; Modify the default ibuffer-formats
+    ;; Modify the default ibuffer-formats.
     (setq ibuffer-formats
           '((mark modified read-only " "
                   (name 18 18 :left :elide)
@@ -477,7 +477,7 @@ modal editing of Vim combined with the extensibility of Emacs.
     :config
     (evil-define-key 'motion Man-mode-map (kbd "RET") 'man-follow)
 
-    ;; Jump to tag and recenter
+    ;; Jump to tag and recenter.
     (advice-add 'evil-jump-to-tag     :after 'evil-scroll-line-to-center)
     (advice-add 'evil-jump-backward   :after 'evil-scroll-line-to-center)
     (advice-add 'evil-jump-forward    :after 'evil-scroll-line-to-center)
@@ -604,7 +604,7 @@ been doing for some years now.
 The ~(my-clock-in)~ and ~(my-clock-in-monday)~ functions are used for
 keeping track of time spent at work.
 #+BEGIN_SRC emacs-lisp
-  ;; Org html export requires htmlize
+  ;; Org html export requires htmlize.
   (use-package htmlize
     :ensure t
     :defer t)
@@ -654,7 +654,7 @@ keeping track of time spent at work.
       (org-demote)
       (insert " Stand-up")
       (forward-line)
-      ;; Create table "| todo | in progress | done |"
+      ;; Create table "| todo | in progress | done |".
       (org-table-create "3x2")
       (org-table-put 1 1 "todo")
       (org-table-put 1 2 "in progress")
@@ -708,13 +708,13 @@ keeping track of time spent at work.
     (setq vc-handled-backends nil)
 
     :config
-    ;; Don't show tags when displaying refs
+    ;; Don't show tags when displaying refs.
     (remove-hook 'magit-refs-sections-hook 'magit-insert-tags)
 
-    ;; Don't show diff when committing (use C-c C-d to show diff anyway)
+    ;; Don't show diff when committing (use C-c C-d to show diff anyway).
     (remove-hook 'server-switch-hook 'magit-commit-diff)
 
-    ;; Improve staging performance on windows
+    ;; Improve staging performance on Windows.
     ;; See https://github.com/magit/magit/issues/2395
     (define-derived-mode magit-staging-mode magit-status-mode "Magit staging"
       "Mode for showing staged and unstaged changes."
@@ -762,7 +762,7 @@ keeping track of time spent at work.
 * GTAGS / GNU Global
 
 #+BEGIN_SRC emacs-lisp
-  ;; Force treating of .h files as C++ source
+  ;; Force treating of .h files as C++ source.
   (setenv "GTAGSFORCECPP" "true")
 
   (add-to-list 'auto-mode-alist '("\\.globalrc" . conf-mode))
@@ -806,10 +806,10 @@ keeping track of time spent at work.
     (add-hook 'emacs-lisp-mode-hook 'company-mode)
     (add-hook 'cmake-mode-hook      'company-mode)
     :config
-    (setq company-backends (delete 'company-semantic company-backends)) ;; Ensure semantic is not used by company
+    (setq company-backends (delete 'company-semantic company-backends)) ;; Ensure semantic is not used by company.
     (setq company-dabbrev-downcase nil) ;; Do not downcase returned candidates.
-    (setq company-dabbrev-ignore-case t) ;; Ignore case for completion
-    (setq company-dabbrev-code-ignore-case t) ;; Ignore case for completion
+    (setq company-dabbrev-ignore-case t) ;; Ignore case for completion.
+    (setq company-dabbrev-code-ignore-case t) ;; Ignore case for completion.
     (setq company-async-timeout 10)
     ;; :custom
     (setq company-idle-delay nil))
@@ -860,7 +860,7 @@ Ediff, for example.
     (let ((git-path "C:/Program Files/Git/usr/bin"))
       (when (file-exists-p git-path)
         (add-to-list 'exec-path git-path t)
-        ;; Also trick the git programs to look in /usr/bin (useful when using diff3)
+        ;; Also trick the git programs to look in /usr/bin (useful when using diff3).
         (setenv "PATH" (concat (getenv "PATH") "/usr/bin;")))))
 #+END_SRC
 

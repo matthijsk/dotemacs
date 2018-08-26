@@ -518,7 +518,6 @@ modal editing of Vim combined with the extensibility of Emacs.
     (evil-set-initial-state 'magit-staging-mode    'emacs)
     (evil-set-initial-state 'image-mode            'emacs)
     (evil-set-initial-state 'dired-mode            'emacs)
-    (evil-set-initial-state 'hackernews-mode       'emacs)
     (evil-set-initial-state 'messages-buffer-mode  'motion)
     (evil-set-initial-state 'eww-mode              'motion)
     (evil-set-initial-state 'eww-buffers-mode      'motion)
@@ -868,4 +867,11 @@ Dired-narrow is a nice package to do quick filtering in dired buffers.
     :ensure t
     :bind (:map dired-mode-map
                 ("/" . dired-narrow)))
+#+END_SRC
+
+* Hackernews
+#+BEGIN_SRC emacs-lisp
+  (use-package hackernews
+    :init
+    (evil-set-initial-state 'hackernews-mode 'emacs))
 #+END_SRC

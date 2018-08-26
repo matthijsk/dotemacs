@@ -49,7 +49,7 @@ Fix slow redisplay when certain special characters are on screen.
 #+END_SRC
 
 ** Scrolling
-Settings related to scrolling buffers. 
+Settings related to scrolling buffers.
 
 Provide some context by have the cursor offset from the top and the bottom of
 the buffer by three lines.
@@ -149,7 +149,7 @@ Some sane bindings for making and deleting frames (an Emacs 'frame' is a
 instead use =C-c n= for a new frame and =C-c x= (and =M-<f4>=) to delete the
 frame.
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-c n") 'make-frame-command) 
+  (global-set-key (kbd "C-c n") 'make-frame-command)
 
   (global-set-key (kbd "C-c x") 'delete-frame)
   (global-set-key (kbd "M-<f4>") 'delete-frame)
@@ -396,7 +396,7 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
       (eshell-cmpl-initialize)
       (define-key eshell-mode-map [remap eshell-pcomplete] 'helm-esh-pcomplete)
       (define-key eshell-mode-map (kbd "M-p") 'helm-eshell-history))
-  
+
     (add-hook 'eshell-mode-hook 'my-setup-eshell-completion)
 
     ;; :custom
@@ -691,13 +691,11 @@ keeping track of time spent at work.
 
     ;; Flushright tags to column 100.
     (setq org-tags-column -100))
-
 #+END_SRC
 
 * Magit
 
 #+BEGIN_SRC emacs-lisp
-
   (use-package magit
     :ensure t
     :defer t
@@ -736,27 +734,22 @@ keeping track of time spent at work.
 
     ;; :custom
     (setq magit-refresh-verbose t))
-
 #+END_SRC
 
 * CMake mode
 
 #+BEGIN_SRC emacs-lisp
-
   (use-package cmake-mode
     :ensure t
     :defer t)
-
 #+END_SRC
 
 * Ninja mode
 
 #+BEGIN_SRC emacs-lisp
-
   (use-package ninja-mode
     :ensure t
     :defer t)
-
 #+END_SRC
 
 * GTAGS / GNU Global
@@ -771,7 +764,6 @@ keeping track of time spent at work.
 * Helm gtags
 
 #+BEGIN_SRC emacs-lisp
-
   (use-package helm-gtags
     :ensure t
     :defer t
@@ -790,13 +782,11 @@ keeping track of time spent at work.
     (evil-define-key 'normal c++-mode-map (kbd "C-]") 'helm-gtags-dwim)
 
     (advice-add 'helm-gtags-dwim :before 'evil--jumps-push))
-
 #+END_SRC
 
 * Company
 
 #+BEGIN_SRC emacs-lisp
-
   (use-package company
     :ensure t
     :defer t
@@ -813,13 +803,11 @@ keeping track of time spent at work.
     (setq company-async-timeout 10)
     ;; :custom
     (setq company-idle-delay nil))
-
 #+END_SRC
 
 * Helm company
 
 #+BEGIN_SRC emacs-lisp
-
   (use-package helm-company
    :ensure t
    :after company
@@ -829,13 +817,11 @@ keeping track of time spent at work.
    (evil-define-key 'insert emacs-lisp-mode-map       (kbd "TAB") 'helm-company)
    (evil-define-key 'insert lisp-interaction-mode-map (kbd "TAB") 'helm-company)
    (setq helm-company-fuzzy-match nil))
-
 #+END_SRC
 
 * Semantic
 
 #+BEGIN_SRC emacs-lisp
-
   (use-package semantic
     :ensure t
     :defer t
@@ -847,7 +833,6 @@ keeping track of time spent at work.
     :config
     (global-semantic-stickyfunc-mode)
     (evil-define-key 'normal c++-mode-map (kbd "C-}") 'semantic-ia-fast-jump))
-
 #+END_SRC
 
 * Git diff path

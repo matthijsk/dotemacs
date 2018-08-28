@@ -48,6 +48,11 @@ Fix slow redisplay when certain special characters are on screen.
   (setq inhibit-compacting-font-caches t)
 #+END_SRC
 
+Set fill-column to 80 characters.
+#+BEGIN_SRC emacs-lisp
+  (setq fill-column 80)
+#+END_SRC
+
 ** Scrolling
 Settings related to scrolling buffers.
 

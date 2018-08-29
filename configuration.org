@@ -346,6 +346,13 @@ Use a human-readable Size column for =ibuffer=. Taken from [[https://www.emacswi
                   " "
                   filename-and-process))))
 #+END_SRC
+
+** Eww
+Set eww (shr) frame width.
+#+BEGIN_SRC emacs-lisp
+  (setq shr-width 80)
+#+END_SRC
+
 * Smart mode line
 Use [[https://github.com/Malabarba/smart-mode-line][smart-mode-line]] as a mode-line. Nothing too fancy but offers more
 than the default, such as abbreviating =.emacs.d= to =:ED:=.

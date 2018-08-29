@@ -347,6 +347,12 @@ Use a human-readable Size column for =ibuffer=. Taken from [[https://www.emacswi
                   filename-and-process))))
 #+END_SRC
 
+** Ediff
+#+BEGIN_SRC emacs-lisp
+  (setq ediff-split-window-function 'split-window-horizontally)
+  (setq ediff-merge-split-window-function 'split-window-horizontally)
+#+END_SRC
+
 ** Eww
 Set eww (shr) frame width.
 #+BEGIN_SRC emacs-lisp

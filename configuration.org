@@ -411,8 +411,6 @@ modal editing of Vim combined with the extensibility of Emacs.
     (setq evil-want-C-u-scroll t)
     (setq evil-symbol-word-search t)
     (setq evil-shift-width 2)
-    (setq evil-complete-next-func 'hippie-expand)
-    (setq evil-complete-previous-func 'hippie-expand)
 
     :config
     (evil-define-key 'motion Man-mode-map (kbd "RET") 'man-follow)

@@ -513,6 +513,14 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
     (evil-mode))
 #+END_SRC
 
+* Dash
+Ensure dash ("A modern list library for Emacs") is installed. It is used by many
+packages.
+#+BEGIN_SRC emacs-lisp
+  (use-package dash
+    :ensure t)
+#+END_SRC
+
 * Helm
 Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
 #+BEGIN_SRC emacs-lisp
@@ -595,7 +603,7 @@ awesome completion.
   (use-package helm-projectile
     :ensure t
     :defer t
-    :after projectile
+    :after dash projectile
     :bind(:map evil-leader--default-map
                ("pf"  . helm-projectile-find-file)
                ("psg" . helm-projectile-grep)

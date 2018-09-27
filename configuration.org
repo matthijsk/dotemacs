@@ -853,18 +853,20 @@ keeping track of time spent at work.
     (evil-define-key 'normal c++-mode-map (kbd "C-}") 'semantic-ia-fast-jump))
 #+END_SRC
 
-* Git diff path
+* Git for Windows path
 Check if Git for Windows is installed when running on a Windows system. If so,
 add the Git installation to ~exec-path~ and the PATH environment variable. This
-way Emacs can use the diff.exe bundled with the Git installation when running
-Ediff, for example.
+way Emacs can use the various Unix tools (such as diff.exe for running Ediff and
+gpg.exe for EasyPG) bundled with the Git installation.
 #+BEGIN_SRC emacs-lisp
   (when (string-equal system-type "windows-nt")
     (let ((git-path "C:/Program Files/Git/usr/bin"))
       (when (file-exists-p git-path)
         (add-to-list 'exec-path git-path t)
         ;; Also trick the git programs to look in /usr/bin (useful when using diff3).
-        (setenv "PATH" (concat (getenv "PATH") "/usr/bin;")))))
+        (setenv "PATH" (concat (getenv "PATH") "/usr/bin;"))
+        ;; Set the path to gpg.
+        (custom-set-variables '(epg-gpg-program (concat git-path "/gpg"))))))
 #+END_SRC
 
 * Ivy / Counsel / Swiper

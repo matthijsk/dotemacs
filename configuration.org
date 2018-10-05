@@ -873,6 +873,8 @@ gpg.exe for EasyPG) bundled with the Git installation.
         (setenv "PATH" (concat (getenv "PATH") "/usr/bin;"))
         ;; Set the path to gpg.
         (custom-set-variables '(epg-gpg-program (concat git-path "/gpg"))))))
+
+  (add-to-list 'auto-mode-alist '(".gitattributes" . conf-mode))
 #+END_SRC
 
 * Ivy / Counsel / Swiper

@@ -54,6 +54,12 @@ buffer-local when set.
   (setq-default fill-column 80)
 #+END_SRC
 
+Also end sentences with a period and a single space. This affects filling and
+various commands such as ~(backward-sentence)~ and ~(forward-sentence)~.
+#+BEGIN_SRC emacs-lisp
+  (setq sentence-end-double-space nil)
+#+END_SRC
+
 ** Scrolling
 Settings related to scrolling buffers.
 

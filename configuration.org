@@ -355,6 +355,8 @@ Use a human-readable Size column for =ibuffer=. Taken from [[https://www.emacswi
 #+END_SRC
 
 ** Ediff
+Always split windows horizontally when running ediff. This is more comfortable
+to me on modern screens.
 #+BEGIN_SRC emacs-lisp
   (setq ediff-split-window-function 'split-window-horizontally)
   (setq ediff-merge-split-window-function 'split-window-horizontally)

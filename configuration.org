@@ -694,6 +694,9 @@ keeping track of time spent at work.
 
     (org-clock-persistence-insinuate)
 
+    (setq org-clock-clocktable-default-properties
+          '(:maxlevel 2 :scope agenda :block yesterday :narrow 120!))
+
     ;; Org mode babel language support.
     (org-babel-do-load-languages
      'org-babel-load-languages

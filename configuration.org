@@ -564,6 +564,10 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
 
     (helm-mode 1)
 
+    ;; :custom
+    (setq helm-buffer-max-length nil)
+    (setq helm-split-window-inside-p t)
+
     (defun my-setup-eshell-completion ()
       "Setup helm completion for use with eshell."
       (eshell-cmpl-initialize)
@@ -572,11 +576,20 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
 
     (add-hook 'eshell-mode-hook 'my-setup-eshell-completion)
 
-    ;; :custom
-    (setq helm-buffer-max-length nil)
-    (setq helm-split-window-inside-p t)
+    (evil-leader/set-key-for-mode 'org-mode "hs" 'helm-org-in-buffer-headings)
 
-    (evil-leader/set-key-for-mode 'org-mode "hs" 'helm-org-in-buffer-headings))
+    (advice-add 'helm-org-in-buffer-headings
+                :after
+                (lambda ()
+                  "Move selected line to top when helm exits successfully."
+                  (when (= helm-exit-status 0)
+                    (recenter-top-bottom 0))))
+
+    (advice-add 'semantic-go-to-tag
+                :after
+                (lambda (candidate &optional persistent)
+                  "Move selected line to top after selecting a semantic tag."
+                  (recenter-top-bottom 0))))
 #+END_SRC
 
 * Projectile

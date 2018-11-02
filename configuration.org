@@ -229,7 +229,7 @@ Seriously, Emacs is awesome. I love this kind of customization power.
   `comment-region' (unless it only consists of comments, in which
   case it calls `uncomment-region').  Else, it calls
   `comment-line'.  Custom implementation derived from
-  `comment-dwim'. The diffence is that the original function
+  `comment-dwim'. The difference is that the original function
   appends a comment to a line while this functions comments the
   line itself."
     (interactive "*P")
@@ -738,7 +738,10 @@ keeping track of time spent at work.
 #+END_SRC
 
 * Magit
-
+Magit is another (alongside org-mode) compelling reason to use Emacs. Seriously,
+it is the best keyboard driven Git interface I know of. It also integrates very
+nicely into Emacs. Interactive rebasing, cherry-picking or running git blame on
+a single file are a breeze with Magit.
 #+BEGIN_SRC emacs-lisp
   (use-package magit
     :ensure t
@@ -781,7 +784,8 @@ keeping track of time spent at work.
 #+END_SRC
 
 * CMake mode
-
+Make sure cmake-mode is installed. Useful for syntax highlighting of cmake files
+and for the integrated help.
 #+BEGIN_SRC emacs-lisp
   (use-package cmake-mode
     :ensure t
@@ -789,7 +793,7 @@ keeping track of time spent at work.
 #+END_SRC
 
 * Ninja mode
-
+Syntax highlighting for ninja build files.
 #+BEGIN_SRC emacs-lisp
   (use-package ninja-mode
     :ensure t
@@ -919,6 +923,7 @@ Dired-narrow is a nice package to do quick filtering in dired buffers.
 #+END_SRC
 
 * Hackernews
+Emacs can do everything, so why not browse hackernews with it?
 #+BEGIN_SRC emacs-lisp
   (use-package hackernews
     :init

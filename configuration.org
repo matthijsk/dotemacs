@@ -410,9 +410,10 @@ modal editing of Vim combined with the extensibility of Emacs.
     :demand t
     :diminish undo-tree-mode
     :bind (:map evil-normal-state-map
-                ("C-s"   . save-buffer)
-                ("C-/"   . my-comment-dwim)
-                ("C-f"   . my-search)
+                ("C-s"     . save-buffer)
+                ("C-/"     . my-comment-dwim)
+                ("C-f"     . my-search)
+                ("<C-tab>" . evil-switch-to-windows-last-buffer)
 
            :map evil-motion-state-map
                 ("C-f" . my-search)
@@ -542,7 +543,6 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
     :ensure t
     :bind (("M-x"     . helm-M-x)
            ("C-x b"   . helm-mini)
-           ("<C-tab>" . helm-mini)
            ("C-x C-f" . helm-find-files)
            ("C-x C-h" . helm-resume-existing)
            ("C-x r l" . helm-bookmarks)

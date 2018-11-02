@@ -699,16 +699,7 @@ keeping track of time spent at work.
       (org-insert-time-stamp (current-time) nil t)
       (if monday
           (org-demote))
-      (org-clock-in)
-      (org-insert-heading-after-current)
-      (org-demote)
-      (insert " Stand-up")
-      (forward-line)
-      ;; Create table "| todo | in progress | done |".
-      (org-table-create "3x2")
-      (org-table-put 1 1 "todo")
-      (org-table-put 1 2 "in progress")
-      (org-table-put 1 3 "done" t)) ;; set align to auto align table
+      (org-clock-in))
 
     (org-clock-persistence-insinuate)
 

@@ -686,9 +686,9 @@ keeping track of time spent at work.
       (my-clock-in t))
 
     (defun my-clock-in (&optional monday)
-      "Create a heading after the current heading and clock in.
-  The heading has the format \"[timestamp]\", where timestamp is an
-  inactive org timestamp.
+      "Create a heading after the current heading and clock in using
+  `org-clock-in'. The heading has the format \"[timestamp]\", where timestamp is
+  an inactive org timestamp.
 
   If the optional argument MONDAY is t the heading is also
   demoted by one level."

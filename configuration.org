@@ -33,6 +33,11 @@ Start Emacs as server for emacsclient processes.
   (server-start)
 #+END_SRC
 
+Ask for confirmation when leaving Emacs.
+#+BEGIN_SRC emacs-lisp
+  (setq confirm-kill-emacs 'yes-or-no-p)
+#+END_SRC
+
 Allow for basic paging in emacs shells.
 #+BEGIN_SRC emacs-lisp
   (setenv "PAGER" "/bin/cat")

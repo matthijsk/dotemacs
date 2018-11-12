@@ -723,6 +723,9 @@ keeping track of time spent at work.
     (setq org-clock-clocktable-default-properties
           '(:maxlevel 2 :scope agenda :block yesterday :narrow 120!))
 
+    ;; Show total amount of hours and minutes, instead of formatting as "d hh:mm".
+    (setq org-duration-format '((special . h:mm)))
+
     ;; Org mode babel language support.
     (org-babel-do-load-languages
      'org-babel-load-languages

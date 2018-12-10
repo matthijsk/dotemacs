@@ -230,7 +230,7 @@ Seriously, Emacs is awesome. I love this kind of customization power.
   case it calls `uncomment-region').  Else, it calls
   `comment-line'.  Custom implementation derived from
   `comment-dwim'. The difference is that the original function
-  appends a comment to a line while this functions comments the
+  appends a comment to a line while this function comments the
   line itself."
     (interactive "*P")
     (comment-normalize-vars)

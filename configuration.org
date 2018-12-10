@@ -628,12 +628,14 @@ awesome completion.
 #+BEGIN_SRC emacs-lisp
   (use-package helm-projectile
     :ensure t
-    :defer t
-    :after dash projectile
-    :bind(:map evil-leader--default-map
-               ("pf"  . helm-projectile-find-file)
-               ("psg" . helm-projectile-grep)
-               ("pa"  . helm-projectile-find-other-file))
+    :after dash helm projectile
+    :bind 
+    (:map projectile-command-map
+          ("p" . helm-projectile-switch-project)
+          :map evil-leader--default-map
+          ("pf"  . helm-projectile-find-file)
+          ("psg" . helm-projectile-grep)
+          ("pa"  . helm-projectile-find-other-file))
 
     :init
     (setq helm-projectile-fuzzy-match nil)

@@ -928,6 +928,7 @@ Dired-narrow is a nice package to do quick filtering in dired buffers.
 Emacs can do everything, so why not browse hackernews with it?
 #+BEGIN_SRC emacs-lisp
   (use-package hackernews
+    :defer t
     :init
     (evil-set-initial-state 'hackernews-mode 'emacs))
 #+END_SRC

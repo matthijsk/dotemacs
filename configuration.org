@@ -23,6 +23,11 @@ the modeline.
 ** General settings
 General Emacs settings relating to fonts, themes, keybindings, etc.
 
+Set default coding system.
+#+BEGIN_SRC emacs-lisp
+  (set-language-environment "UTF-8")
+#+END_SRC
+
 Display the scratch buffer when starting up.
 #+BEGIN_SRC emacs-lisp
   (setq initial-buffer-choice t)

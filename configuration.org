@@ -28,6 +28,13 @@ Set default coding system.
   (set-language-environment "UTF-8")
 #+END_SRC
 
+Disable automatic backups. See
+http://ergoemacs.org/emacs/emacs_set_backup_into_a_directory.html.
+#+BEGIN_SRC emacs-lisp
+  (setq make-backup-files nil)
+  (setq auto-save-default nil)
+#+END_SRC
+
 Display the scratch buffer when starting up.
 #+BEGIN_SRC emacs-lisp
   (setq initial-buffer-choice t)

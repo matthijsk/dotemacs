@@ -429,7 +429,6 @@ modal editing of Vim combined with the extensibility of Emacs.
                 ("C-s"     . save-buffer)
                 ("C-/"     . my-comment-dwim)
                 ("C-f"     . my-search)
-                ("<C-tab>" . evil-switch-to-windows-last-buffer)
 
            :map evil-motion-state-map
                 ("C-f" . my-search)

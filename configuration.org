@@ -263,10 +263,12 @@ Autoscroll compilation window and stop on first error.
   (setq compilation-scroll-output 'first-error)
 #+END_SRC
 
-Set c indentation to 2.
+Set c and sh indentation to 2.
 #+BEGIN_SRC emacs-lisp
   (setq c-default-style "linux"
         c-basic-offset 2)
+
+  (setq sh-basic-offset 2)
 #+END_SRC
 
 Set some modes for specific file types.

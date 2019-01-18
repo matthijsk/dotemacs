@@ -726,6 +726,12 @@ keeping track of time spent at work.
     ;; Show total amount of hours and minutes, instead of formatting as "d hh:mm".
     (setq org-duration-format '((special . h:mm)))
 
+    ;; Set all agenda files as refile targets.
+    (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+
+    ;; Enable refiling to the top level of an org file.
+    (setq org-refile-use-outline-path 'file)
+
     ;; Org mode babel language support.
     (org-babel-do-load-languages
      'org-babel-load-languages
@@ -748,6 +754,8 @@ keeping track of time spent at work.
     (evil-define-key 'insert org-mode-map [tab] 'org-cycle)
 
     ;; :custom
+
+    ;; Don't complete in steps, works well with narrowing frameworks such as Helm.
     (setq org-outline-path-complete-in-steps nil)
 
     ;; Save the running clock when Emacs exits.

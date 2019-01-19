@@ -591,7 +591,7 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
     (defun my-setup-eshell-completion ()
       "Setup helm completion for use with eshell."
       (eshell-cmpl-initialize)
-      (define-key eshell-mode-map [remap eshell-pcomplete] 'helm-esh-pcomplete)
+      (setq eshell-cmpl-cycle-completions nil)
       (define-key eshell-mode-map (kbd "M-p") 'helm-eshell-history))
 
     (add-hook 'eshell-mode-hook 'my-setup-eshell-completion)

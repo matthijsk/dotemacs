@@ -389,6 +389,14 @@ Set eww (shr) frame width.
   (setq shr-width 80)
 #+END_SRC
 
+** Eshell
+Initialize and set up eshell completion.
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'eshell-mode-hook (lambda ()
+                                (eshell-cmpl-initialize)
+                                (setq eshell-cmpl-cycle-completions nil)))
+#+END_SRC
+
 * Smart mode line
 Use [[https://github.com/Malabarba/smart-mode-line][smart-mode-line]] as a mode-line. Nothing too fancy but offers more
 than the default, such as abbreviating =.emacs.d= to =:ED:=.
@@ -588,13 +596,8 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
     (setq helm-buffer-max-length nil)
     (setq helm-split-window-inside-p t)
 
-    (defun my-setup-eshell-completion ()
-      "Setup helm completion for use with eshell."
-      (eshell-cmpl-initialize)
-      (setq eshell-cmpl-cycle-completions nil)
-      (define-key eshell-mode-map (kbd "M-p") 'helm-eshell-history))
-
-    (add-hook 'eshell-mode-hook 'my-setup-eshell-completion)
+    (add-hook 'eshell-mode-hook (lambda ()
+                                  (define-key eshell-mode-map (kbd "M-p") 'helm-eshell-history)))
 
     (evil-leader/set-key-for-mode 'org-mode "hs" 'helm-org-in-buffer-headings)
 

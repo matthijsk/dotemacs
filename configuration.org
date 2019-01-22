@@ -905,7 +905,14 @@ Syntax highlighting for ninja build files.
     ;; :custom
     :config
     (global-semantic-stickyfunc-mode)
-    (evil-define-key 'normal c++-mode-map (kbd "C-}") 'semantic-ia-fast-jump))
+
+    (defun my-semantic-ia-fast-jump ()
+      "Saves current position in evil jump list, then calls `semantic-ia-fast-jump'."
+      (interactive)
+      (evil--jumps-push)
+      (semantic-ia-fast-jump (point)))
+
+    (evil-define-key 'normal c++-mode-map (kbd "C-}") 'my-semantic-ia-fast-jump))
 #+END_SRC
 
 * Git for Windows path

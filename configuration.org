@@ -606,13 +606,7 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
                 (lambda ()
                   "Move selected line to top when helm exits successfully."
                   (when (= helm-exit-status 0)
-                    (recenter-top-bottom 0))))
-
-    (advice-add 'semantic-go-to-tag
-                :after
-                (lambda (candidate &optional persistent)
-                  "Move selected line to top after selecting a semantic tag."
-                  (recenter-top-bottom 0))))
+                    (recenter-top-bottom 0)))))
 #+END_SRC
 
 * Projectile

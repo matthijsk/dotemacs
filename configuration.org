@@ -233,8 +233,8 @@ Highlight matching parentheses.
 #+END_SRC
 
 Customize comment-dwim so it does exactly what I want it to do:
-- If a region is active comment it if not commented or uncomment if commented.
-- Otherwise comment or uncomment the current line and move to the next line.
+- If a region is active, comment it if not commented or uncomment if commented.
+- Otherwise, comment or uncomment the current line and move to the next line.
 Seriously, Emacs is awesome. I love this kind of customization power.
 #+BEGIN_SRC emacs-lisp
   (defun my-comment-dwim (arg)
@@ -403,6 +403,7 @@ than the default, such as abbreviating =.emacs.d= to =:ED:=.
 #+BEGIN_SRC emacs-lisp
   (use-package smart-mode-line
     :ensure t
+
     :config
     (setq sml/theme 'automatic)
     (sml/setup))
@@ -503,6 +504,7 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
   (use-package evil-leader
     :ensure t
     :after evil
+
     :config
     (evil-leader/set-leader ",")
     (evil-leader/set-key "e"   'my-find-configuration-file
@@ -592,7 +594,6 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
 
     (helm-mode 1)
 
-    ;; :custom
     (setq helm-buffer-max-length nil)
     (setq helm-split-window-inside-p t)
 
@@ -620,6 +621,7 @@ Git repositories for quick navigation.
                 ("<f9>" . projectile-run-project)
                 ("C-<f9>" . projectile-compile-project)
                 ("M-<f9>" . projectile-test-project))
+
     :init
     (add-hook 'c-mode-hook     'projectile-mode)
     (add-hook 'c++-mode-hook   'projectile-mode)
@@ -628,7 +630,6 @@ Git repositories for quick navigation.
     :config
     (projectile-mode 1)
 
-    ;; :custom
     (setq projectile-indexing-method 'hybrid)
     (setq projectile-enable-caching t)
     (setq projectile-use-git-grep t))
@@ -750,8 +751,6 @@ keeping track of time spent at work.
 
     (evil-define-key 'insert org-mode-map [tab] 'org-cycle)
 
-    ;; :custom
-
     ;; Don't complete in steps, works well with narrowing frameworks such as Helm.
     (setq org-outline-path-complete-in-steps nil)
 
@@ -774,6 +773,7 @@ a single file are a breeze with Magit.
     :bind (:map evil-leader--default-map
                 ("st" . magit-staging)
                 ("f"  . magit-file-popup))
+
     :init
     (evil-set-initial-state 'magit-staging-mode 'emacs)
 
@@ -804,7 +804,6 @@ a single file are a breeze with Magit.
 
     (evil-define-key 'normal magit-blame-mode-map (kbd "q") 'magit-blame-quit)
 
-    ;; :custom
     (setq magit-refresh-verbose t))
 #+END_SRC
 
@@ -841,16 +840,17 @@ Syntax highlighting for ninja build files.
     :ensure t
     :defer t
     :diminish helm-gtags-mode
+
     :init
     (add-hook 'c-mode-hook   'helm-gtags-mode)
     (add-hook 'c++-mode-hook 'helm-gtags-mode)
-    ;; :custom
+
     :config
     (setq helm-gtags-path-style 'absolute)
     (setq helm-gtags-use-input-at-cursor t)
     (setq helm-gtags-auto-update t)
     (setq helm-gtags-pulse-at-cursor t)
-    :config
+
     (evil-define-key 'normal c-mode-map   (kbd "C-]") 'helm-gtags-dwim)
     (evil-define-key 'normal c++-mode-map (kbd "C-]") 'helm-gtags-dwim)
 
@@ -863,6 +863,7 @@ Syntax highlighting for ninja build files.
   (use-package company
     :ensure t
     :defer t
+
     :init
     (add-hook 'c-mode-hook          'company-mode)
     (add-hook 'c++-mode-hook        'company-mode)
@@ -874,7 +875,6 @@ Syntax highlighting for ninja build files.
     (setq company-dabbrev-ignore-case t) ;; Ignore case for completion.
     (setq company-dabbrev-code-ignore-case t) ;; Ignore case for completion.
     (setq company-async-timeout 10)
-    ;; :custom
     (setq company-idle-delay nil))
 #+END_SRC
 
@@ -884,6 +884,7 @@ Syntax highlighting for ninja build files.
   (use-package helm-company
    :ensure t
    :after company
+
    :config
    (evil-define-key 'insert c-mode-map                (kbd "TAB") 'helm-company)
    (evil-define-key 'insert c++-mode-map              (kbd "TAB") 'helm-company)
@@ -898,11 +899,12 @@ Syntax highlighting for ninja build files.
   (use-package semantic
     :ensure t
     :defer t
+
     :init
     (add-hook 'c-mode-hook          'semantic-mode)
     (add-hook 'c++-mode-hook        'semantic-mode)
     (add-hook 'emacs-lisp-mode-hook 'semantic-mode)
-    ;; :custom
+
     :config
     (global-semantic-stickyfunc-mode)
 

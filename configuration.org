@@ -253,20 +253,17 @@ Seriously, Emacs is awesome. I love this kind of customization power.
       (comment-line 1)))
 #+END_SRC
 
-Never indent with tabs.
-#+BEGIN_SRC emacs-lisp
-  (setq-default indent-tabs-mode nil)
-#+END_SRC
-
 Autoscroll compilation window and stop on first error.
 #+BEGIN_SRC emacs-lisp
   (setq compilation-scroll-output 'first-error)
 #+END_SRC
 
-Set c and sh indentation to 2.
+Set c and sh indentation to 2, and never indent with tabs.
 #+BEGIN_SRC emacs-lisp
   (setq c-default-style "linux"
         c-basic-offset 2)
+
+  (setq-default indent-tabs-mode nil)
 
   (setq sh-basic-offset 2)
 #+END_SRC

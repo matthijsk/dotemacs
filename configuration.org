@@ -394,6 +394,12 @@ Initialize and set up eshell completion.
                                 (setq eshell-cmpl-cycle-completions nil)))
 #+END_SRC
 
+** Dired
+Use human-readable sizes in dired listings.
+#+begin_src emacs-lisp
+  (setq dired-listing-switches "-alh")
+#+end_src
+
 * Smart mode line
 Use [[https://github.com/Malabarba/smart-mode-line][smart-mode-line]] as a mode-line. Nothing too fancy but offers more
 than the default, such as abbreviating =.emacs.d= to =:ED:=.

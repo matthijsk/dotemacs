@@ -454,6 +454,11 @@ modal editing of Vim combined with the extensibility of Emacs.
     (setq evil-shift-width 2)
 
     :config
+    ;; Ensure the yank register (on Windows, at least) is not overwritten when
+    ;; performing a visual selection.
+    ;; See https://emacs.stackexchange.com/questions/9344/pasting-in-evil-mode-when-theres-an-active-selection-copies-the-selection
+    (fset 'evil-visual-update-x-selection 'ignore)
+
     (evil-define-key 'motion Man-mode-map (kbd "RET") 'man-follow)
 
     ;; Jump to tag and recenter.

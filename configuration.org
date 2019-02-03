@@ -100,6 +100,14 @@ scroll amount of three lines.
 #+END_SRC
 
 ** User interface
+Set the Consolas font when running on Windows.
+#+BEGIN_SRC emacs-lisp
+  (when (string-equal system-type "windows-nt")
+    (let ((my-font "-outline-Consolas-normal-normal-normal-mono-*-*-*-*-c-*-iso8859-1"))
+      (set-frame-font my-font nil t)
+      (set-face-attribute 'default nil :font my-font)))
+#+END_SRC
+
 Set the [[https://pawelbx.github.io/emacs-theme-gallery/screenshots/dark/wombat/el.png][wombat]] builtin theme. Pretty neat.
 #+BEGIN_SRC emacs-lisp
   (load-theme 'wombat)

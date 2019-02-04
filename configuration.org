@@ -946,8 +946,11 @@ gpg.exe for EasyPG) bundled with the Git installation.
         ;; Also trick the git programs to look in /usr/bin (useful when using diff3).
         (setenv "PATH" (concat (getenv "PATH") "/usr/bin;"))
         (setenv "PATH" (concat (getenv "PATH") git-path ";"))
+
         ;; Set the path to gpg.
-        (custom-set-variables '(epg-gpg-program (concat git-path "/gpg"))))))
+        (use-package epg
+          :custom
+          (epg-gpg-program (concat git-path "/gpg"))))))
 
   (add-to-list 'auto-mode-alist '(".gitattributes" . conf-unix-mode))
 #+END_SRC

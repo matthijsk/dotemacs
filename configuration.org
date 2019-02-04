@@ -949,7 +949,7 @@ gpg.exe for EasyPG) bundled with the Git installation.
         ;; Set the path to gpg.
         (custom-set-variables '(epg-gpg-program (concat git-path "/gpg"))))))
 
-  (add-to-list 'auto-mode-alist '(".gitattributes" . conf-mode))
+  (add-to-list 'auto-mode-alist '(".gitattributes" . conf-unix-mode))
 #+END_SRC
 
 * Ivy / Counsel / Swiper

@@ -674,6 +674,16 @@ awesome completion.
     (helm-projectile-on))
 #+END_SRC
 
+* Outline-magic
+The package outline-magic provides ~(outline-cycle)~, which functions similar to
+~(org-cycle)~. This is useful for the odd occasion when I run into an
+outline-mode buffer.
+#+begin_src emacs-lisp
+  (use-package outline-magic
+    :bind (:map outline-mode-map
+                ([tab] . outline-cycle)))
+#+end_src
+
 * Org mode
 [[https://orgmode.org/][Org-mode]] is, for me, a compelling reason to use Emacs. At the very
 least, it is useful for note taking and managing work using TODO

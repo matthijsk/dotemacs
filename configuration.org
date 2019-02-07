@@ -102,7 +102,7 @@ scroll amount of three lines.
 ** User interface
 Set the Consolas font when running on Windows.
 #+BEGIN_SRC emacs-lisp
-  (when (string-equal system-type "windows-nt")
+  (when (eq system-type 'windows-nt)
     (let ((my-font "-outline-Consolas-normal-normal-normal-mono-*-*-*-*-c-*-iso8859-1"))
       (set-face-attribute 'default nil :font my-font)
       (set-frame-font my-font nil t)))
@@ -949,7 +949,7 @@ add the Git installation to ~exec-path~ and the PATH environment variable. This
 way Emacs can use the various Unix tools (such as diff.exe for running Ediff and
 gpg.exe for EasyPG) bundled with the Git installation.
 #+BEGIN_SRC emacs-lisp
-  (when (string-equal system-type "windows-nt")
+  (when (eq system-type 'windows-nt)
     (let ((git-path "C:/Program Files/Git/usr/bin"))
       (when (file-exists-p git-path)
         (add-to-list 'exec-path git-path t)

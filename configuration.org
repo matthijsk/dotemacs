@@ -108,9 +108,17 @@ Set the Consolas font when running on Windows.
       (set-frame-font my-font nil t)))
 #+END_SRC
 
-Set the [[https://pawelbx.github.io/emacs-theme-gallery/screenshots/dark/wombat/el.png][wombat]] builtin theme. Pretty neat.
+Set the [[https://github.com/nashamri/spacemacs-theme][spacemacs]] theme. Pretty neat.
 #+BEGIN_SRC emacs-lisp
-  (load-theme 'wombat)
+  (use-package spacemacs-common
+    :ensure spacemacs-theme
+
+    :custom
+    (spacemacs-theme-org-bold t)
+    (spacemacs-theme-org-height nil)
+
+    :config
+    (load-theme 'spacemacs-dark))
 #+END_SRC
 
 Disable the tool bar, the menu bar and the scroll bars.

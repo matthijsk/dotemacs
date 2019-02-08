@@ -1005,3 +1005,10 @@ Emacs can do everything, so why not browse hackernews with it?
     :init
     (evil-set-initial-state 'hackernews-mode 'emacs))
 #+END_SRC
+
+* Rainbow-delimiters
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-delimiters
+    :config
+    (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+#+END_SRC

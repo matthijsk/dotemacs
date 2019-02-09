@@ -722,6 +722,9 @@ keeping track of time spent at work.
     (setq org-todo-keywords
           '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
 
+    ;; Set org-agenda-files to file with list containing all agenda files.
+    (setq org-agenda-files (concat org-directory "/org-agenda-files.org"))
+
     :config
     (defun my-clock-in-monday ()
       "Create a heading \"Week <WEEK-NUMBER>\" above the current heading,

@@ -108,17 +108,18 @@ Set the Consolas font when running on Windows.
       (set-frame-font my-font nil t)))
 #+END_SRC
 
-Set the [[https://github.com/nashamri/spacemacs-theme][spacemacs]] theme. Pretty neat.
+Set the [[https://github.com/nashamri/spacemacs-theme][spacemacs]] theme when a graphical display is available. Pretty neat.
 #+BEGIN_SRC emacs-lisp
-  (use-package spacemacs-common
-    :ensure spacemacs-theme
+  (when (display-graphic-p)
+    (use-package spacemacs-common
+      :ensure spacemacs-theme
 
-    :custom
-    (spacemacs-theme-org-bold t)
-    (spacemacs-theme-org-height nil)
+      :custom
+      (spacemacs-theme-org-bold t)
+      (spacemacs-theme-org-height nil)
 
-    :config
-    (load-theme 'spacemacs-dark))
+      :config
+      (load-theme 'spacemacs-dark)))
 #+END_SRC
 
 Disable the tool bar, the menu bar and the scroll bars.

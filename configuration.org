@@ -126,7 +126,8 @@ Disable the tool bar, the menu bar and the scroll bars.
 #+BEGIN_SRC emacs-lisp
   (tool-bar-mode -1)
   (menu-bar-mode -1)
-  (set-scroll-bar-mode nil)
+  (when (featurep 'scroll-bar)
+    (set-scroll-bar-mode nil))
 #+END_SRC
 
 Default to displaying line numbers as relative.

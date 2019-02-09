@@ -6,17 +6,14 @@ This configuration file is loaded using ~(org-babel-load-file)~. To ensure
 org-mode is properly initialized before loading this file ~package-archives~
 settings and the call to ~(package-initialize)~ are done in =[[file:init.el][init.el]]=.
 
-[[https://github.com/jwiegley/use-package][Use-package]] allows for automatic installation of packages, which is great when
-you want to use Emacs on multiple systems. Also, it loads packages when needed,
-keeping the Emacs startup time short.
-#+BEGIN_SRC emacs-lisp
-  (require 'use-package)
-#+END_SRC
+Packages are installed and configured using ~use-package~.
 
+** Diminish
 [[https://github.com/myrjola/diminish.el][Diminish]] can be used as part of =use-package= to hide minor mode strings from
 the modeline.
 #+BEGIN_SRC emacs-lisp
   (use-package diminish
+    :pin melpa-stable
     :ensure t)
 #+END_SRC
 
@@ -425,6 +422,7 @@ than the default, such as abbreviating =.emacs.d= to =:ED:=.
 #+BEGIN_SRC emacs-lisp
   (use-package smart-mode-line
     :ensure t
+    :pin melpa-stable
 
     :config
     (setq sml/theme 'automatic)
@@ -439,6 +437,7 @@ scaling.
 #+BEGIN_SRC emacs-lisp
   (use-package default-text-scale
     :ensure t
+    :pin melpa-stable
     :bind (("C-M-="       . default-text-scale-increase)
            ("C-<mouse-4>" . default-text-scale-increase)
            ("C-M--"       . default-text-scale-decrease)
@@ -454,6 +453,7 @@ modal editing of Vim combined with the extensibility of Emacs.
 #+BEGIN_SRC emacs-lisp
   (use-package evil
     :ensure t
+    :pin melpa-stable
     :demand t
     :diminish undo-tree-mode
     :bind (:map evil-normal-state-map
@@ -530,6 +530,7 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
 #+BEGIN_SRC emacs-lisp
   (use-package evil-leader
     :ensure t
+    :pin melpa-stable
     :after evil
 
     :config
@@ -584,7 +585,8 @@ Ensure dash ("A modern list library for Emacs") is installed. It is used by many
 packages.
 #+BEGIN_SRC emacs-lisp
   (use-package dash
-    :ensure t)
+    :ensure t
+    :pin melpa-stable)
 #+END_SRC
 
 * Helm
@@ -593,6 +595,7 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
   (use-package helm
     :diminish helm-mode
     :ensure t
+    :pin melpa-stable
     :bind (("M-x"     . helm-M-x)
            ("C-x b"   . helm-mini)
            ("C-x C-f" . helm-find-files)
@@ -643,6 +646,7 @@ Git repositories for quick navigation.
 #+BEGIN_SRC emacs-lisp
   (use-package projectile
     :ensure t
+    :pin melpa-stable
     :bind-keymap ("C-c p" . projectile-command-map)
     :bind (:map projectile-mode-map
                 ("<f9>" . projectile-run-project)
@@ -668,6 +672,7 @@ awesome completion.
 #+BEGIN_SRC emacs-lisp
   (use-package helm-projectile
     :ensure t
+    :pin melpa-stable
     :after dash helm projectile
     :bind 
     (:map projectile-command-map
@@ -709,9 +714,12 @@ keeping track of time spent at work.
   ;; Org html export requires htmlize.
   (use-package htmlize
     :ensure t
+    :pin melpa-stable
     :defer t)
 
   (use-package org
+    :ensure t
+    :pin gnu
     ;; Global key bindings.
     :bind (("\C-cl" . org-store-link)
            ("\C-ca" . org-agenda)
@@ -809,6 +817,7 @@ a single file are a breeze with Magit.
 #+BEGIN_SRC emacs-lisp
   (use-package magit
     :ensure t
+    :pin melpa-stable
     :defer t
     :bind (:map evil-leader--default-map
                 ("st" . magit-staging)
@@ -861,6 +870,7 @@ Syntax highlighting for ninja build files.
 #+BEGIN_SRC emacs-lisp
   (use-package ninja-mode
     :ensure t
+    :pin melpa-stable
     :defer t)
 #+END_SRC
 
@@ -878,6 +888,7 @@ Syntax highlighting for ninja build files.
 #+BEGIN_SRC emacs-lisp
   (use-package helm-gtags
     :ensure t
+    :pin melpa-stable
     :defer t
     :diminish helm-gtags-mode
 
@@ -902,6 +913,7 @@ Syntax highlighting for ninja build files.
 #+BEGIN_SRC emacs-lisp
   (use-package company
     :ensure t
+    :pin melpa-stable
     :defer t
 
     :init
@@ -987,11 +999,13 @@ I like helm, I like swiper. Combining the two makes me happy.
 #+BEGIN_SRC emacs-lisp
   (use-package swiper
     :defer t
-    :ensure t)
+    :ensure t
+    :pin melpa-stable)
 
   (use-package swiper-helm
     :defer t
-    :ensure t)
+    :ensure t
+    :pin melpa-stable)
 #+END_SRC
 
 * Dired-narrow
@@ -1007,6 +1021,7 @@ Dired-narrow is a nice package to do quick filtering in dired buffers.
 Emacs can do everything, so why not browse hackernews with it?
 #+BEGIN_SRC emacs-lisp
   (use-package hackernews
+    :pin melpa-stable
     :defer t
     :init
     (evil-set-initial-state 'hackernews-mode 'emacs))
@@ -1016,6 +1031,7 @@ Emacs can do everything, so why not browse hackernews with it?
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-delimiters
     :ensure t
+    :pin melpa-stable
     :config
     (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 #+END_SRC

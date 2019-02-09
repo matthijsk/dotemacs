@@ -970,28 +970,29 @@ Syntax highlighting for ninja build files.
 #+END_SRC
 
 * Git for Windows path
-Check if Git for Windows is installed when running on a Windows system. If so,
-add the Git installation to ~exec-path~ and the PATH environment variable. This
-way Emacs can use the various Unix tools (such as diff.exe for running Ediff and
-gpg.exe for EasyPG) bundled with the Git installation.
+Try and determine if Git is available. If it is, and we are on a Windows system,
+also add =git-path/../usr/bin= to =exec-path=, to enable use of =diff=, =gpg=
+and other tools. This way adding =git-path/../usr/bin= to the system PATH
+environment variable can be avoided, which is probably not what you want on a
+Windows system. If a Git executable cannot be found a message is displayed.
+
+Also ensure ~conf-unix-mode~ is used for various git configuration files.
 #+BEGIN_SRC emacs-lisp
   (when (eq system-type 'windows-nt)
-    (let ((git-path "C:/Program Files/Git/usr/bin"))
-      (when (file-exists-p git-path)
-        (add-to-list 'exec-path git-path t)
-        ;; Also trick the git programs to look in /usr/bin (useful when using diff3).
-        (setenv "PATH" (concat (getenv "PATH") "/usr/bin;"))
-        (setenv "PATH" (concat (getenv "PATH") git-path ";"))
-
-        ;; Set the path to gpg.
-        (use-package epg
-          :custom
-          (epg-gpg-program (concat git-path "/gpg"))))))
+    (let* ((git-exe (executable-find "git"))
+           (git-path (concat (file-name-directory git-exe) "../usr/bin")))
+      (if git-exe
+          (progn
+            ;; On Windows installations the git binaries reside in either bin or
+            ;; cmd, so add usr/bin relative to the git executable path.
+            (add-to-list 'exec-path git-path)
+            (setenv "PATH" (concat (getenv "PATH") ";" git-path ";")))
+        (message "Git not found, please update your PATH environment \
+  variable to point to your Git installation."))))
 
   (add-to-list 'auto-mode-alist '(".gitattributes" . conf-unix-mode))
   (add-to-list 'auto-mode-alist '(".git/config" . conf-unix-mode))
   (add-to-list 'auto-mode-alist '(".gitconfig" . conf-unix-mode))
-
 #+END_SRC
 
 * Ivy / Counsel / Swiper

@@ -351,12 +351,13 @@ Emacs init file.
 #+END_SRC
 
 ** Spell check
-Use hunspell as spell checker. Neato.
-Enable flyspell for text mode.
+Use hunspell as spell checker if it is available. Neato. Also enable flyspell
+for text mode.
 #+BEGIN_SRC emacs-lisp
-  (setq ispell-program-name "hunspell")
-  (setq ispell-really-hunspell t)
-  (add-hook 'text-mode-hook 'flyspell-mode)
+  (when (executable-find "hunspell")
+    (setq ispell-program-name "hunspell")
+    (setq ispell-really-hunspell t)
+    (add-hook 'text-mode-hook 'flyspell-mode))
 #+END_SRC
 
 ** IBuffer

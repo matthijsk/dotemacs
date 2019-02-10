@@ -856,6 +856,14 @@ a single file are a breeze with Magit.
     (setq magit-refresh-verbose t))
 #+END_SRC
 
+Also install major modes for editing various git configuration files. See
+[[https://github.com/magit/git-modes]].
+#+BEGIN_SRC emacs-lisp
+  (use-package gitattributes-mode)
+  (use-package gitconfig-mode)
+  (use-package gitignore-mode)
+#+END_SRC
+
 * CMake mode
 Make sure cmake-mode is installed. Useful for syntax highlighting of cmake files
 and for the integrated help.
@@ -989,11 +997,6 @@ Also ensure ~conf-unix-mode~ is used for various git configuration files.
             (setenv "PATH" (concat (getenv "PATH") ";" git-path ";")))
         (message "Git not found, please update your PATH environment \
   variable to point to your Git installation."))))
-
-  (add-to-list 'auto-mode-alist '(".gitattributes" . conf-unix-mode))
-  (add-to-list 'auto-mode-alist '(".git/config" . conf-unix-mode))
-  (add-to-list 'auto-mode-alist '(".gitconfig" . conf-unix-mode))
-  (add-to-list 'auto-mode-alist '(".gitignore" . conf-unix-mode))
 #+END_SRC
 
 * Ivy / Counsel / Swiper

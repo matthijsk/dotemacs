@@ -993,6 +993,7 @@ Also ensure ~conf-unix-mode~ is used for various git configuration files.
   (add-to-list 'auto-mode-alist '(".gitattributes" . conf-unix-mode))
   (add-to-list 'auto-mode-alist '(".git/config" . conf-unix-mode))
   (add-to-list 'auto-mode-alist '(".gitconfig" . conf-unix-mode))
+  (add-to-list 'auto-mode-alist '(".gitignore" . conf-unix-mode))
 #+END_SRC
 
 * Ivy / Counsel / Swiper

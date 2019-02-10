@@ -853,9 +853,12 @@ a single file are a breeze with Magit.
 Also install major modes for editing various git configuration files. See
 [[https://github.com/magit/git-modes]].
 #+BEGIN_SRC emacs-lisp
-  (use-package gitattributes-mode)
-  (use-package gitconfig-mode)
-  (use-package gitignore-mode)
+  (use-package gitattributes-mode
+      :pin melpa-stable)
+  (use-package gitconfig-mode
+      :pin melpa-stable)
+  (use-package gitignore-mode
+      :pin melpa-stable)
 #+END_SRC
 
 * CMake mode

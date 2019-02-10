@@ -1102,7 +1102,12 @@ Also ensure ~conf-unix-mode~ is used for various git configuration files.
             ;; On Windows installations the git binaries reside in either bin or
             ;; cmd, so add usr/bin relative to the git executable path.
             (add-to-list 'exec-path git-path)
-            (setenv "PATH" (concat (getenv "PATH") ";" git-path ";")))
+            (setenv "PATH" (concat (getenv "PATH") ";" git-path ";"))
+
+            ;; Set the path to gpg.
+            (use-package epg
+              :custom
+              (epg-gpg-program (concat git-path "/gpg"))))
         (message "Git not found, please update your PATH environment \
   variable to point to your Git installation."))))
 #+END_SRC

@@ -318,10 +318,10 @@ of having to rebind all keys.
 #+BEGIN_SRC emacs-lisp
   (defun my-search ()
     (interactive)
-    (swiper-helm (word-at-point)))
+    ;; (swiper-helm (word-at-point)))
     ;; (swiper))
     ;; (helm-occur))
-    ;; (helm-swoop))
+    (helm-swoop))
 
   (global-set-key (kbd "C-s") 'my-search)
 #+END_SRC
@@ -988,14 +988,11 @@ Also ensure ~conf-unix-mode~ is used for various git configuration files.
   variable to point to your Git installation."))))
 #+END_SRC
 
-* Ivy / Counsel / Swiper
-I like helm, I like swiper. Combining the two makes me happy.
+* Helm swoop
+Use [[https://github.com/ShingoFukuyama/helm-swoop][helm-swoop]] for listing search matches in another buffer. I used to use
+helm-swiper, but helm-swoop has similar functionality and is much faster.
 #+BEGIN_SRC emacs-lisp
-  (use-package swiper
-    :defer t
-    :pin melpa-stable)
-
-  (use-package swiper-helm
+  (use-package helm-swoop
     :defer t
     :pin melpa-stable)
 #+END_SRC

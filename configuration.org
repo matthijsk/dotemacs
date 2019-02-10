@@ -4,7 +4,7 @@
 ** Packages and use-package
 This configuration file is loaded using ~(org-babel-load-file)~. To ensure
 org-mode is properly initialized before loading this file ~package-archives~
-settings and the call to ~(package-initialize)~ are done in =[[file:init.el][init.el]]=.
+settings and the call to ~(package-initialize)~ are done in [[file:init.el][init.el]].
 
 Packages are installed and configured using ~use-package~.
 
@@ -581,7 +581,7 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
 #+END_SRC
 
 * Dash
-Ensure dash ("A modern list library for Emacs") is installed. It is used by many
+Ensure [[https://github.com/magnars/dash.el][dash]] ("A modern list library for Emacs") is installed. It is used by many
 packages.
 #+BEGIN_SRC emacs-lisp
   (use-package dash
@@ -667,8 +667,8 @@ Git repositories for quick navigation.
 #+END_SRC
 
 * Helm-projectile
-Combine Helm and Projectile for awesome project navigation with
-awesome completion.
+[[https://github.com/bbatsov/helm-projectile][Combine]] Helm and Projectile for awesome project navigation with awesome
+completion.
 #+BEGIN_SRC emacs-lisp
   (use-package helm-projectile
     :ensure t
@@ -691,7 +691,7 @@ awesome completion.
 #+END_SRC
 
 * Outline-magic
-The package outline-magic provides ~(outline-cycle)~, which functions similar to
+The package [[https://github.com/tj64/outline-magic][outline-magic]] provides ~(outline-cycle)~, which functions similar to
 ~(org-cycle)~. This is useful for the odd occasion when I run into an
 outline-mode buffer.
 #+begin_src emacs-lisp
@@ -810,7 +810,7 @@ keeping track of time spent at work.
 #+END_SRC
 
 * Magit
-Magit is another (alongside org-mode) compelling reason to use Emacs. Seriously,
+[[https://magit.vc/][Magit]] is another (alongside org-mode) compelling reason to use Emacs. Seriously,
 it is the best keyboard driven Git interface I know of. It also integrates very
 nicely into Emacs. Interactive rebasing, cherry-picking or running git blame on
 a single file are a breeze with Magit.
@@ -865,7 +865,7 @@ Also install major modes for editing various git configuration files. See
 #+END_SRC
 
 * CMake mode
-Make sure cmake-mode is installed. Useful for syntax highlighting of cmake files
+Make sure [[https://gitlab.kitware.com/cmake/cmake/blob/master/Auxiliary/cmake-mode.el][cmake-mode]] is installed. Useful for syntax highlighting of cmake files
 and for the integrated help.
 #+BEGIN_SRC emacs-lisp
   (use-package cmake-mode
@@ -883,7 +883,8 @@ Syntax highlighting for ninja build files.
 #+END_SRC
 
 * GTAGS / GNU Global
-
+Set [[https://www.gnu.org/software/global/][GNU Global]] environment variables and ensure conf-mode is used for .globalrc
+files.
 #+BEGIN_SRC emacs-lisp
   ;; Force treating of .h files as C++ source.
   (setenv "GTAGSFORCECPP" "true")
@@ -892,7 +893,7 @@ Syntax highlighting for ninja build files.
 #+END_SRC
 
 * Helm gtags
-
+Set up [[https://github.com/syohex/emacs-helm-gtags][helm-gtags]], a Helm interface to GNU Global.
 #+BEGIN_SRC emacs-lisp
   (use-package helm-gtags
     :ensure t
@@ -917,7 +918,7 @@ Syntax highlighting for ninja build files.
 #+END_SRC
 
 * Company
-
+Set up and use [[http://company-mode.github.io/][Company]] as the text completion framework.
 #+BEGIN_SRC emacs-lisp
   (use-package company
     :ensure t
@@ -939,7 +940,7 @@ Syntax highlighting for ninja build files.
 #+END_SRC
 
 * Helm company
-
+Set up [[https://github.com/Sodel-the-Vociferous/helm-company][helm-company]], a Helm interface to Company.
 #+BEGIN_SRC emacs-lisp
   (use-package helm-company
    :ensure t
@@ -1023,7 +1024,7 @@ Dired-narrow is a nice package to do quick filtering in dired buffers.
 #+END_SRC
 
 * Hackernews
-Emacs can do everything, so why not browse hackernews with it?
+Emacs can do everything, so why not [[https://github.com/clarete/hackernews.el][browse]] [[https://news.ycombinator.com/news][hackernews]] with it?
 #+BEGIN_SRC emacs-lisp
   (use-package hackernews
     :pin melpa-stable
@@ -1033,6 +1034,7 @@ Emacs can do everything, so why not browse hackernews with it?
 #+END_SRC
 
 * Rainbow-delimiters
+Set up [[https://github.com/Fanael/rainbow-delimiters][rainbow-delimiters-mode]] for prog-modes.
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-delimiters
     :ensure t

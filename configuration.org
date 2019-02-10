@@ -13,8 +13,7 @@ Packages are installed and configured using ~use-package~.
 the modeline.
 #+BEGIN_SRC emacs-lisp
   (use-package diminish
-    :pin melpa-stable
-    :ensure t)
+    :pin melpa-stable)
 #+END_SRC
 
 ** General settings
@@ -421,7 +420,6 @@ Use [[https://github.com/Malabarba/smart-mode-line][smart-mode-line]] as a mode-
 than the default, such as abbreviating =.emacs.d= to =:ED:=.
 #+BEGIN_SRC emacs-lisp
   (use-package smart-mode-line
-    :ensure t
     :pin melpa-stable
 
     :config
@@ -436,7 +434,6 @@ mini-buffer. The package [[https://github.com/purcell/default-text-scale][defaul
 scaling.
 #+BEGIN_SRC emacs-lisp
   (use-package default-text-scale
-    :ensure t
     :pin melpa-stable
     :bind (("C-M-="       . default-text-scale-increase)
            ("C-<mouse-4>" . default-text-scale-increase)
@@ -452,7 +449,6 @@ Vim emulator for Emacs. This gives me the best of both worlds: the
 modal editing of Vim combined with the extensibility of Emacs.
 #+BEGIN_SRC emacs-lisp
   (use-package evil
-    :ensure t
     :pin melpa-stable
     :demand t
     :diminish undo-tree-mode
@@ -529,7 +525,6 @@ modal editing of Vim combined with the extensibility of Emacs.
 Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys with Evil.
 #+BEGIN_SRC emacs-lisp
   (use-package evil-leader
-    :ensure t
     :pin melpa-stable
     :after evil
 
@@ -585,7 +580,6 @@ Ensure [[https://github.com/magnars/dash.el][dash]] ("A modern list library for 
 packages.
 #+BEGIN_SRC emacs-lisp
   (use-package dash
-    :ensure t
     :pin melpa-stable)
 #+END_SRC
 
@@ -594,7 +588,6 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
 #+BEGIN_SRC emacs-lisp
   (use-package helm
     :diminish helm-mode
-    :ensure t
     :pin melpa-stable
     :bind (("M-x"     . helm-M-x)
            ("C-x b"   . helm-mini)
@@ -645,7 +638,6 @@ Use [[https://github.com/bbatsov/projectile][Projectile]] for project interactio
 Git repositories for quick navigation.
 #+BEGIN_SRC emacs-lisp
   (use-package projectile
-    :ensure t
     :pin melpa-stable
     :bind-keymap ("C-c p" . projectile-command-map)
     :bind (:map projectile-mode-map
@@ -671,7 +663,6 @@ Git repositories for quick navigation.
 completion.
 #+BEGIN_SRC emacs-lisp
   (use-package helm-projectile
-    :ensure t
     :pin melpa-stable
     :after dash helm projectile
     :bind 
@@ -713,12 +704,10 @@ keeping track of time spent at work.
 #+BEGIN_SRC emacs-lisp
   ;; Org html export requires htmlize.
   (use-package htmlize
-    :ensure t
     :pin melpa-stable
     :defer t)
 
   (use-package org
-    :ensure t
     :pin gnu
     ;; Global key bindings.
     :bind (("\C-cl" . org-store-link)
@@ -816,7 +805,6 @@ nicely into Emacs. Interactive rebasing, cherry-picking or running git blame on
 a single file are a breeze with Magit.
 #+BEGIN_SRC emacs-lisp
   (use-package magit
-    :ensure t
     :pin melpa-stable
     :defer t
     :bind (:map evil-leader--default-map
@@ -869,7 +857,6 @@ Make sure [[https://gitlab.kitware.com/cmake/cmake/blob/master/Auxiliary/cmake-m
 and for the integrated help.
 #+BEGIN_SRC emacs-lisp
   (use-package cmake-mode
-    :ensure t
     :defer t)
 #+END_SRC
 
@@ -877,7 +864,6 @@ and for the integrated help.
 Syntax highlighting for ninja build files.
 #+BEGIN_SRC emacs-lisp
   (use-package ninja-mode
-    :ensure t
     :pin melpa-stable
     :defer t)
 #+END_SRC
@@ -896,7 +882,6 @@ files.
 Set up [[https://github.com/syohex/emacs-helm-gtags][helm-gtags]], a Helm interface to GNU Global.
 #+BEGIN_SRC emacs-lisp
   (use-package helm-gtags
-    :ensure t
     :pin melpa-stable
     :defer t
     :diminish helm-gtags-mode
@@ -921,7 +906,6 @@ Set up [[https://github.com/syohex/emacs-helm-gtags][helm-gtags]], a Helm interf
 Set up and use [[http://company-mode.github.io/][Company]] as the text completion framework.
 #+BEGIN_SRC emacs-lisp
   (use-package company
-    :ensure t
     :pin melpa-stable
     :defer t
 
@@ -943,7 +927,6 @@ Set up and use [[http://company-mode.github.io/][Company]] as the text completio
 Set up [[https://github.com/Sodel-the-Vociferous/helm-company][helm-company]], a Helm interface to Company.
 #+BEGIN_SRC emacs-lisp
   (use-package helm-company
-   :ensure t
    :after company
 
    :config
@@ -958,7 +941,6 @@ Set up [[https://github.com/Sodel-the-Vociferous/helm-company][helm-company]], a
 
 #+BEGIN_SRC emacs-lisp
   (use-package semantic
-    :ensure t
     :defer t
 
     :init
@@ -1005,12 +987,10 @@ I like helm, I like swiper. Combining the two makes me happy.
 #+BEGIN_SRC emacs-lisp
   (use-package swiper
     :defer t
-    :ensure t
     :pin melpa-stable)
 
   (use-package swiper-helm
     :defer t
-    :ensure t
     :pin melpa-stable)
 #+END_SRC
 
@@ -1018,7 +998,6 @@ I like helm, I like swiper. Combining the two makes me happy.
 Dired-narrow is a nice package to do quick filtering in dired buffers.
 #+BEGIN_SRC emacs-lisp
   (use-package dired-narrow
-    :ensure t
     :bind (:map dired-mode-map
                 ("/" . dired-narrow)))
 #+END_SRC
@@ -1037,7 +1016,6 @@ Emacs can do everything, so why not [[https://github.com/clarete/hackernews.el][
 Set up [[https://github.com/Fanael/rainbow-delimiters][rainbow-delimiters-mode]] for prog-modes.
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-delimiters
-    :ensure t
     :pin melpa-stable
     :config
     (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))

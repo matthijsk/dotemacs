@@ -17,5 +17,6 @@
 ;; is great when you want to use Emacs on multiple systems. Also, it
 ;; loads packages when needed, keeping the Emacs startup time short.
 (require 'use-package)
+(setq use-package-always-ensure t)
 
 (org-babel-load-file "~/.emacs.d/configuration.org")

@@ -1,0 +1,4 @@
+#+TITLE: README
+
+Personal Emacs configuration. Basic set up is done in [[file:init.el][init.el]], after which
+[[file:configuration.org][configuration.org]] is tangled into an actual elisp file.

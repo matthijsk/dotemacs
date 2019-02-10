@@ -390,9 +390,15 @@ Use a human-readable Size column for =ibuffer=. Taken from [[https://www.emacswi
 ** Ediff
 Always split windows horizontally when running ediff. This is more comfortable
 to me on modern screens.
+
+Also ensure org-mode buffers are fully expanded.
 #+BEGIN_SRC emacs-lisp
   (setq ediff-split-window-function 'split-window-horizontally)
   (setq ediff-merge-split-window-function 'split-window-horizontally)
+
+  (add-hook 'ediff-prepare-buffer-hook '(lambda ()
+                                          (when (eq major-mode 'org-mode)
+                                            (org-show-all))))
 #+END_SRC
 
 ** Eww

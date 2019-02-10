@@ -1,0 +1,8 @@
+auto-save-list/
+configuration.el
+elpa/
+eshell/history
+org-clock-save.el
+projectile-bookmarks.eld
+projectile.cache
+server/

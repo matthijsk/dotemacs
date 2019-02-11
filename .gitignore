@@ -6,3 +6,5 @@ org-clock-save.el
 projectile-bookmarks.eld
 projectile.cache
 server/
+recentf
+srecode-map.el

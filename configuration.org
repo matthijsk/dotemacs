@@ -673,6 +673,7 @@ completion.
     :after dash helm projectile
     :bind 
     (:map projectile-command-map
+          ("f" . helm-projectile-find-file)
           ("p" . helm-projectile-switch-project)
           :map evil-leader--default-map
           ("pf"  . helm-projectile-find-file)

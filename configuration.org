@@ -814,7 +814,7 @@ a single file are a breeze with Magit.
     :pin melpa-stable
     :defer t
     :bind (:map evil-leader--default-map
-                ("st" . magit-staging)
+                ("sg" . magit-staging)
                 ("f"  . magit-file-popup))
 
     :init

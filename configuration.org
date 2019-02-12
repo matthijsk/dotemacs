@@ -421,18 +421,6 @@ Use human-readable sizes in dired listings.
   (setq dired-listing-switches "-alh")
 #+end_src
 
-* Smart mode line
-Use [[https://github.com/Malabarba/smart-mode-line][smart-mode-line]] as a mode-line. Nothing too fancy but offers more
-than the default, such as abbreviating =.emacs.d= to =:ED:=.
-#+BEGIN_SRC emacs-lisp
-  (use-package smart-mode-line
-    :pin melpa-stable
-
-    :config
-    (setq sml/theme 'automatic)
-    (sml/setup))
-#+END_SRC
-
 * Default text scale
 By default, scaling in Emacs (using =text-scale-adjust=) only scales
 the text in the buffer, but not in the modeline or the

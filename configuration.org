@@ -559,6 +559,8 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
                           "hl"  'hl-line-mode
                           "rl"  'display-line-numbers-mode
 
+                          "xd"  'dired
+
                           "m"   'compile
                           "c"   'compile)
 

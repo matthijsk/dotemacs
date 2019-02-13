@@ -635,6 +635,7 @@ Git repositories for quick navigation.
 #+BEGIN_SRC emacs-lisp
   (use-package projectile
     :pin melpa-stable
+    :diminish projectile-mode
     :bind-keymap ("C-c p" . projectile-command-map)
     :bind (:map projectile-mode-map
                 ("<f9>" . projectile-run-project)
@@ -907,6 +908,7 @@ Set up and use [[http://company-mode.github.io/][Company]] as the text completio
 #+BEGIN_SRC emacs-lisp
   (use-package company
     :pin melpa-stable
+    :diminish company-mode
     :defer t
 
     :init

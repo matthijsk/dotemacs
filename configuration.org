@@ -588,7 +588,7 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
     :bind (("M-x"     . helm-M-x)
            ("C-x b"   . helm-mini)
            ("C-x C-f" . helm-find-files)
-           ("C-x C-h" . helm-resume-existing)
+           ("C-x C-h" . my-helm-resume-existing)
            ("C-x r l" . helm-bookmarks)
 
            :map helm-map ;; Use <C-tab> and <C-S-tab> to navigate helm buffers.
@@ -606,7 +606,7 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
            ("xh" . helm-resume-existing))
 
     :config
-    (defun helm-resume-existing ()
+    (defun my-helm-resume-existing ()
       "Resume previous helm session with prefix to choose among existing helm buffers."
       (interactive)
       (helm-resume t))

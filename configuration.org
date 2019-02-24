@@ -450,9 +450,11 @@ modal editing of Vim combined with the extensibility of Emacs.
                 ("C-s"     . save-buffer)
                 ("C-/"     . my-comment-dwim)
                 ("C-f"     . my-search)
+                ("M-e"     . my-evil-forward-sentence)
 
            :map evil-motion-state-map
                 ("C-f" . my-search)
+                ("M-e"     . my-evil-forward-sentence)
 
            :map evil-insert-state-map
                 ("C-s" . save-buffer)
@@ -489,6 +491,14 @@ modal editing of Vim combined with the extensibility of Emacs.
       (define-key keymap-from key nil))
     (my-move-key evil-motion-state-map evil-normal-state-map (kbd "RET"))
     (my-move-key evil-motion-state-map evil-normal-state-map " ")
+
+    (defun my-evil-forward-sentence (&optional arg)
+      "Call `forward-sentence' after incrementing point by 1.
+  Enables use of of this function while in evil normal state. See
+  Info node `(evil)Modes and states'."
+      (interactive)
+      (evil-goto-char (1+ (point)))
+      (call-interactively 'forward-sentence))
 
     (defun my-evil-c-end-of-statement ()
       "Go to the end of the innermost C statement.

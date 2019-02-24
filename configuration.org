@@ -506,8 +506,8 @@ modal editing of Vim combined with the extensibility of Emacs.
   Enables use of of this function while in evil normal state. See
   Info node `(evil)Modes and states'."
       (interactive)
-      (evil-goto-char (+ 1 (point)))
-      (c-end-of-statement))
+      (evil-goto-char (1+ (point)))
+      (call-interactively 'c-end-of-statement))
 
     (evil-define-key 'normal c-mode-map (kbd "M-e") 'my-evil-c-end-of-statement)
     (evil-define-key 'normal c++-mode-map (kbd "M-e") 'my-evil-c-end-of-statement)

@@ -450,15 +450,12 @@ modal editing of Vim combined with the extensibility of Emacs.
                 ("C-s"     . save-buffer)
                 ("C-/"     . my-comment-dwim)
                 ("C-f"     . my-search)
-                ("M-e"     . my-evil-forward-sentence)
 
            :map evil-motion-state-map
                 ("C-f" . my-search)
-                ("M-e"     . my-evil-forward-sentence)
 
            :map evil-insert-state-map
-                ("C-s" . save-buffer)
-           )
+                ("C-s" . save-buffer))
     :init
     (setq evil-want-C-u-scroll t)
     (setq evil-symbol-word-search t)
@@ -499,6 +496,9 @@ modal editing of Vim combined with the extensibility of Emacs.
       (interactive)
       (evil-goto-char (1+ (point)))
       (call-interactively 'forward-sentence))
+
+    (evil-define-key 'normal text-mode-map (kbd "M-e") 'my-evil-forward-sentence)
+    (evil-define-key 'normal emacs-lisp-mode-map (kbd "M-e") 'my-evil-forward-sentence)
 
     (defun my-evil-c-end-of-statement ()
       "Go to the end of the innermost C statement.

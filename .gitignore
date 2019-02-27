@@ -8,6 +8,7 @@ projectile.cache
 server/
 recentf
 srecode-map.el
+*.elc
 bookmarks
 eshell/
 hackernews/

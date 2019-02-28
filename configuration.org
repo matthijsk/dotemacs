@@ -724,7 +724,10 @@ keeping track of time spent at work.
            ("\C-cb" . org-switchb)
            ("\C-ci" . my-clock-in)
            ("\C-cj" . org-clock-goto)
-           ("\C-co" . org-clock-out))
+           ("\C-co" . org-clock-out)
+           :map org-mode-map
+           ("M-p"  . org-previous-visible-heading)
+           ("M-n"  . org-next-visible-heading))
     :init
     (setq org-todo-keywords
           '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))

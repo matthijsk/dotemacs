@@ -774,7 +774,7 @@ keeping track of time spent at work.
     (org-clock-persistence-insinuate)
 
     (setq org-clock-clocktable-default-properties
-          '(:maxlevel 3 :scope agenda :block yesterday :narrow 120!))
+          '(:maxlevel 3 :scope agenda :fileskip0 t :block yesterday :narrow 120!))
 
     ;; Show total amount of hours and minutes, instead of formatting as "d hh:mm".
     (setq org-duration-format '((special . h:mm)))

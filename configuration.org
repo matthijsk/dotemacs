@@ -726,8 +726,9 @@ keeping track of time spent at work.
            ("\C-cj" . org-clock-goto)
            ("\C-co" . org-clock-out)
            :map org-mode-map
-           ("M-p"  . org-previous-visible-heading)
-           ("M-n"  . org-next-visible-heading))
+           ("C-c '" . my-org-edit-special)
+           ("M-p"   . org-previous-visible-heading)
+           ("M-n"   . org-next-visible-heading))
     :init
     (setq org-todo-keywords
           '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
@@ -813,7 +814,19 @@ keeping track of time spent at work.
     (setq org-clock-persist 'clock)
 
     ;; Flushright tags to column 100.
-    (setq org-tags-column -100))
+    (setq org-tags-column -100)
+
+    (defun my-org-edit-special (&optional arg)
+      "Edit source block below current window when calling `org-edit-special'.
+  When editing a source block and more than one window is open
+  `org-src-window-setup' is set to 'split-window-below'. Otherwise,
+  the default value is used."
+      (interactive)
+      (let ((org-src-window-setup
+             (if (> (length (window-list)) 1)
+                 'split-window-below
+               org-src-window-setup)))
+        (call-interactively 'org-edit-special))))
 #+END_SRC
 
 * Magit

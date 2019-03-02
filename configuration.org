@@ -722,7 +722,7 @@ keeping track of time spent at work.
            ("C-c a" . org-agenda)
            ("C-c c" . org-capture)
            ("C-c b" . org-switchb)
-           ("C-c i" . my-clock-in)
+           ("C-c i" . my-org-clock-in)
            ("C-c j" . org-clock-goto)
            ("C-c o" . org-clock-out)
            :map org-mode-map
@@ -744,7 +744,7 @@ keeping track of time spent at work.
     (setq org-agenda-files (concat org-directory "/org-agenda-files.org"))
 
     :config
-    (defun my-clock-in-monday ()
+    (defun my-org-clock-in-monday ()
       "Create a heading \"Week <WEEK-NUMBER>\" above the current heading,
   then calls `my-clock-in' with argument MONDAY set to t. The week
   number is the ISO week number."
@@ -756,7 +756,7 @@ keeping track of time spent at work.
       (insert (format "Week %s" (org-days-to-iso-week (org-today))))
       (my-clock-in t))
 
-    (defun my-clock-in (&optional monday)
+    (defun my-org-clock-in (&optional monday)
       "Create a heading after the current heading and clock in using
   `org-clock-in'. The heading has the format \"[timestamp]\", where timestamp is
   an inactive org timestamp.

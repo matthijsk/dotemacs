@@ -624,7 +624,6 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
     (helm-mode 1)
 
     (setq helm-buffer-max-length nil)
-    (setq helm-split-window-inside-p t)
 
     (add-hook 'eshell-mode-hook (lambda ()
                                   (define-key eshell-mode-map (kbd "M-p") 'helm-eshell-history)))

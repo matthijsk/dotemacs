@@ -744,34 +744,6 @@ keeping track of time spent at work.
     (setq org-agenda-files (concat org-directory "/org-agenda-files.org"))
 
     :config
-    (defun my-org-clock-in-monday ()
-      "Create a heading \"Week <WEEK-NUMBER>\" above the current heading,
-  then calls `my-clock-in' with argument MONDAY set to t. The week
-  number is the ISO week number."
-      (interactive)
-      (if (not (org-at-heading-p))
-          (user-error "Not at a heading"))
-      (beginning-of-line)
-      (org-insert-heading)
-      (insert (format "Week %s" (org-days-to-iso-week (org-today))))
-      (my-clock-in t))
-
-    (defun my-org-clock-in (&optional monday)
-      "Create a heading after the current heading and clock in using
-  `org-clock-in'. The heading has the format \"[timestamp]\", where timestamp is
-  an inactive org timestamp.
-
-  If the optional argument MONDAY is t the heading is also
-  demoted by one level."
-      (interactive)
-      (if (not (org-at-heading-p))
-          (user-error "Not at a heading"))
-      (org-insert-heading-after-current)
-      (org-insert-time-stamp (current-time) nil t)
-      (if monday
-          (org-demote))
-      (org-clock-in))
-
     (org-clock-persistence-insinuate)
 
     (setq org-clock-clocktable-default-properties
@@ -826,7 +798,24 @@ keeping track of time spent at work.
              (if (> (length (window-list)) 1)
                  'split-window-below
                org-src-window-setup)))
-        (call-interactively 'org-edit-special))))
+        (call-interactively 'org-edit-special)))
+
+    (defcustom my-org-worklog (concat org-directory "/worklog.org")
+      "File for logging daily work time."
+      :type 'file)
+
+    (defun my-org-clock-in ()
+      "Visit the file `my-org-worklog' and clock in.
+  The file is created if it does not exist. It is structured as an
+  org mode date tree, the difference being the clock is started on
+  the day heading instead of a subheading, which would be the case
+  if the date tree was created using org-capture. See Info
+  node `(org)Using capture' and Info node
+  `(org)Template elements'."
+      (interactive)
+      (find-file my-org-worklog)
+      (org-datetree-find-iso-week-create (calendar-current-date))
+      (org-clock-in)))
 #+END_SRC
 
 * Magit

@@ -848,6 +848,8 @@ a single file are a breeze with Magit.
                 ("f"  . magit-file-popup))
 
     :init
+    ;; Disable VC git backend. No need when using Magit.
+    (setq vc-handled-backends (delq 'Git vc-handled-backends))
     (evil-set-initial-state 'magit-staging-mode 'emacs)
 
     :config

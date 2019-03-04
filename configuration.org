@@ -879,7 +879,9 @@ a single file are a breeze with Magit.
 
     (evil-define-key 'normal magit-blame-mode-map (kbd "q") 'magit-blame-quit)
 
-    (setq magit-refresh-verbose t))
+    (setq magit-refresh-verbose t)
+
+    (setq auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffer-p))
 #+END_SRC
 
 Also install major modes for editing various git configuration files. See

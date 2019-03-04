@@ -988,7 +988,6 @@ Set up [[https://github.com/Sodel-the-Vociferous/helm-company][helm-company]], a
     :init
     (add-hook 'c-mode-hook          'semantic-mode)
     (add-hook 'c++-mode-hook        'semantic-mode)
-    (add-hook 'emacs-lisp-mode-hook 'semantic-mode)
 
     :config
     (global-semantic-stickyfunc-mode)

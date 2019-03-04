@@ -106,6 +106,9 @@ Set the Consolas font when running on Windows.
 
 Set the [[https://github.com/nashamri/spacemacs-theme][spacemacs]] theme when a graphical display is available. Pretty neat.
 #+BEGIN_SRC emacs-lisp
+  (defvar my-current-theme 'spacemacs-dark
+    "Currently enabled theme.")
+
   (when (display-graphic-p)
     (use-package spacemacs-common
       :ensure spacemacs-theme
@@ -115,7 +118,21 @@ Set the [[https://github.com/nashamri/spacemacs-theme][spacemacs]] theme when a 
       (spacemacs-theme-org-height nil)
 
       :config
-      (load-theme 'spacemacs-dark)))
+      ;; Load both light and dark themes, but don't enable yet.
+      (load-theme 'spacemacs-light t t)
+      (load-theme 'spacemacs-dark t t)
+
+      (enable-theme my-current-theme)))
+
+  (defun my-toggle-theme ()
+    "Toggle between light and dark (spacemacs) themes"
+    (interactive)
+    (disable-theme my-current-theme)
+    (setq my-current-theme (if (eq my-current-theme 'spacemacs-dark)
+                               'spacemacs-light
+                             'spacemacs-dark))
+    (enable-theme my-current-theme))
+  
 #+END_SRC
 
 Disable the tool bar, the menu bar and the scroll bars.

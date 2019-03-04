@@ -13,9 +13,13 @@
         ("gnu" . 5)
         ("melpa" . 0)))
 
-;; Use-package allows for automatic installation of packages, which
-;; is great when you want to use Emacs on multiple systems. Also, it
-;; loads packages when needed, keeping the Emacs startup time short.
+;; Bootstrap use-package. Use-package allows for automatic installation of
+;; packages, which is great when you want to use Emacs on multiple systems.
+;; Also, it loads packages on demand, keeping startup time short.
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
 (require 'use-package)
 (setq use-package-always-ensure t)
 

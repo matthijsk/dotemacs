@@ -122,17 +122,18 @@ Set the [[https://github.com/nashamri/spacemacs-theme][spacemacs]] theme when a 
       (load-theme 'spacemacs-light t t)
       (load-theme 'spacemacs-dark t t)
 
-      (enable-theme my-current-theme)))
+      (enable-theme my-current-theme)
 
-  (defun my-toggle-theme ()
-    "Toggle between light and dark (spacemacs) themes"
-    (interactive)
-    (disable-theme my-current-theme)
-    (setq my-current-theme (if (eq my-current-theme 'spacemacs-dark)
-                               'spacemacs-light
-                             'spacemacs-dark))
-    (enable-theme my-current-theme))
-  
+      (defun my-toggle-theme ()
+        "Toggle between light and dark (spacemacs) themes"
+        (interactive)
+        (disable-theme my-current-theme)
+        (setq my-current-theme (if (eq my-current-theme 'spacemacs-dark)
+                                   'spacemacs-light
+                                 'spacemacs-dark))
+        (enable-theme my-current-theme))))
+
+
 #+END_SRC
 
 Disable the tool bar, the menu bar and the scroll bars.

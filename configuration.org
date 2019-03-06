@@ -755,7 +755,7 @@ keeping track of time spent at work.
            ("C-c c" . org-capture)
            ("C-c b" . org-switchb)
            ("C-c i" . my-org-clock-in)
-           ("C-c j" . org-clock-goto)
+           ("C-c j" . my-org-clock-goto)
            ("C-c o" . org-clock-out)
            :map org-mode-map
            ("C-c '" . my-org-edit-special)
@@ -835,6 +835,11 @@ keeping track of time spent at work.
     (defcustom my-org-worklog (concat org-directory "/worklog.org")
       "File for logging daily work time."
       :type 'file)
+
+    (defun my-org-clock-goto ()
+      "Go to recently clocked tasks by offering a selection."
+      (interactive)
+      (org-clock-goto t))
 
     (defun my-org-clock-in ()
       "Visit the file `my-org-worklog' and clock in.

@@ -537,6 +537,7 @@ modal editing of Vim combined with the extensibility of Emacs.
     (evil-set-initial-state 'eshell-mode           'emacs)
     (evil-set-initial-state 'image-mode            'emacs)
     (evil-set-initial-state 'dired-mode            'emacs)
+    (evil-set-initial-state 'profiler-report-mode  'emacs)
     (evil-set-initial-state 'messages-buffer-mode  'motion)
     (evil-set-initial-state 'eww-mode              'motion)
     (evil-set-initial-state 'eww-buffers-mode      'motion)

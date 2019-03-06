@@ -439,6 +439,20 @@ Use human-readable sizes in dired listings.
   (setq dired-listing-switches "-alh")
 #+end_src
 
+** Convenience
+Various functions to make editing more convenient.
+
+Convenience function to open an OS native explorer window for the currently
+visited file. Yes, I am aware of dired. Sometimes you still need explorer.
+#+begin_src emacs-lisp
+  (defun browse-file-directory ()
+    "Open the current file's directory however the OS would."
+    (interactive)
+    (if default-directory
+        (browse-url-of-file (expand-file-name default-directory))
+      (error "No `default-directory' to open")))
+#+end_src
+
 * Default text scale
 By default, scaling in Emacs (using =text-scale-adjust=) only scales
 the text in the buffer, but not in the modeline or the

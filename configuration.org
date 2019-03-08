@@ -732,6 +732,13 @@ keeping track of time spent at work.
     (setq org-todo-keywords
           '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
 
+    ;; Don't use the user home directory on Windows systems, as Emacs defaults to
+    ;; using AppData/Roaming for $HOME. Otherwise, just use the default (~/org).
+    (when (eq system-type 'windows-nt)
+      (setq org-directory (format "c:/Users/%s/org" user-login-name)))
+
+    (setq org-default-notes-file (concat org-directory "/notes.org"))
+
     ;; Set org-agenda-files to file with list containing all agenda files.
     (setq org-agenda-files (concat org-directory "/org-agenda-files.org"))
 

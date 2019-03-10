@@ -132,8 +132,6 @@ Set the [[https://github.com/nashamri/spacemacs-theme][spacemacs]] theme when a 
                                    'spacemacs-light
                                  'spacemacs-dark))
         (enable-theme my-current-theme))))
-
-
 #+END_SRC
 
 Disable the tool bar, the menu bar and the scroll bars.
@@ -315,9 +313,9 @@ Set some modes for specific file types.
 
   (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
-  (add-to-list 'auto-mode-alist '("Doxyfile" . conf-mode))
+  (add-to-list 'auto-mode-alist '("Doxyfile\\'" . conf-mode))
 
-  (add-to-list 'auto-mode-alist '(".clang-format" . conf-mode))
+  (add-to-list 'auto-mode-alist '("\\.clang-format\\'" . conf-mode))
 #+END_SRC
 
 Highlight TODO keywords in all programming modes using the =org-todo=
@@ -942,7 +940,7 @@ files.
   ;; Force treating of .h files as C++ source.
   (setenv "GTAGSFORCECPP" "true")
 
-  (add-to-list 'auto-mode-alist '("\\.globalrc" . conf-mode))
+  (add-to-list 'auto-mode-alist '("\\.globalrc\\'" . conf-mode))
 #+END_SRC
 
 * Helm gtags

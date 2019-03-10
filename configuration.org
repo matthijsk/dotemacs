@@ -1060,6 +1060,7 @@ helm-swiper, but helm-swoop has similar functionality and is much faster.
 Dired-narrow is a nice package to do quick filtering in dired buffers.
 #+BEGIN_SRC emacs-lisp
   (use-package dired-narrow
+    :after dired
     :bind (:map dired-mode-map
                 ("/" . dired-narrow)))
 #+END_SRC

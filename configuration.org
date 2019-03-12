@@ -827,6 +827,7 @@ keeping track of time spent at work.
 
     (defun my-org-edit-special (&optional arg)
       "Edit source block below current window when calling `org-edit-special'.
+
   When editing a source block and more than one window is open
   `org-src-window-setup' is set to 'split-window-below'. Otherwise,
   the default value is used."
@@ -848,11 +849,15 @@ keeping track of time spent at work.
 
     (defun my-org-clock-in ()
       "Visit the file `my-org-worklog' and clock in.
-  The file is created if it does not exist. It is structured as an
-  org mode date tree, the difference being the clock is started on
-  the day heading instead of a subheading, which would be the case
-  if the date tree was created using org-capture. See Info
-  node `(org)Using capture' and Info node
+
+  The file is created if it does not exist. 
+
+  It is structured as an org mode date tree, the difference being
+  the clock is started on the day heading instead of a subheading,
+  which would be the case if the date tree was created using
+  org-capture. 
+
+  See also Info node `(org)Using capture' and Info node
   `(org)Template elements'."
       (interactive)
       (find-file my-org-worklog)

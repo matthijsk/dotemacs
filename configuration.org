@@ -629,7 +629,7 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
            ("xf" . helm-find-files)
            ("hb" . helm-bookmarks)
            ("hs" . helm-semantic-or-imenu)
-           ("xh" . helm-resume-existing))
+           ("xh" . my-helm-resume-existing))
 
     :config
     (defun my-helm-resume-existing ()

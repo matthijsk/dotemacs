@@ -1039,6 +1039,11 @@ Also ensure ~conf-unix-mode~ is used for various git configuration files.
   variable to point to your Git installation."))))
 #+END_SRC
 
+* GPG
+#+begin_src emacs-lisp
+  (setq epa-pinentry-mode 'loopback)
+#+end_src
+
 * Helm swoop
 Use [[https://github.com/ShingoFukuyama/helm-swoop][helm-swoop]] for listing search matches in another buffer. I used to use
 helm-swiper, but helm-swoop has similar functionality and is much faster.

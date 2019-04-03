@@ -187,11 +187,13 @@ Exhibit expected X clipboard behaviour (yank with middle mouse button).
 
 Bind mouse buttons to Info-mode and help-mode navigation.
 #+BEGIN_SRC emacs-lisp
+  (require 'info)
   (define-key Info-mode-map (kbd "<mouse-4>") 'Info-history-back)
   (define-key Info-mode-map (kbd "<mouse-5>") 'Info-history-forward)
   (define-key Info-mode-map (kbd "<mouse-8>") 'Info-history-back)
   (define-key Info-mode-map (kbd "<mouse-9>") 'Info-history-forward)
 
+  (require 'help-mode)
   (define-key help-mode-map (kbd "<mouse-4>") 'help-go-back)
   (define-key help-mode-map (kbd "<mouse-5>") 'help-go-forward)
   (define-key help-mode-map (kbd "<mouse-8>") 'help-go-back)
@@ -658,52 +660,54 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
 Use [[https://github.com/bbatsov/projectile][Projectile]] for project interaction. Works really well with
 Git repositories for quick navigation.
 #+BEGIN_SRC emacs-lisp
-  (use-package projectile
-    :pin melpa-stable
-    :diminish projectile-mode
-    :bind-keymap ("C-c p" . projectile-command-map)
-    :bind (:map projectile-mode-map
-                ("<f9>" . projectile-run-project)
-                ("C-<f9>" . projectile-compile-project)
-                ("M-<f9>" . projectile-test-project))
+  (when (> emacs-major-version 24)
+    (use-package projectile
+      :pin melpa-stable
+      :diminish projectile-mode
+      :bind-keymap ("C-c p" . projectile-command-map)
+      :bind (:map projectile-mode-map
+                  ("<f9>" . projectile-run-project)
+                  ("C-<f9>" . projectile-compile-project)
+                  ("M-<f9>" . projectile-test-project))
 
-    :init
-    (add-hook 'c-mode-hook     'projectile-mode)
-    (add-hook 'c++-mode-hook   'projectile-mode)
-    (add-hook 'cmake-mode-hook 'projectile-mode)
+      :init
+      (add-hook 'c-mode-hook     'projectile-mode)
+      (add-hook 'c++-mode-hook   'projectile-mode)
+      (add-hook 'cmake-mode-hook 'projectile-mode)
 
-    :config
-    (projectile-mode 1)
+      :config
+      (projectile-mode 1)
 
-    (setq projectile-globally-ignored-files '("TAGS" "GTAGS" "GRTAGS"))
+      (setq projectile-globally-ignored-files '("TAGS" "GTAGS" "GRTAGS"))
 
-    (setq projectile-indexing-method 'hybrid)
-    (setq projectile-enable-caching t)
-    (setq projectile-use-git-grep t))
+      (setq projectile-indexing-method 'hybrid)
+      (setq projectile-enable-caching t)
+      (setq projectile-use-git-grep t)))
 #+END_SRC
 
 * Helm-projectile
 [[https://github.com/bbatsov/helm-projectile][Combine]] Helm and Projectile for awesome project navigation with awesome
 completion.
 #+BEGIN_SRC emacs-lisp
-  (use-package helm-projectile
-    :pin melpa-stable
-    :after dash helm projectile
-    :bind 
-    (:map projectile-command-map
-          ("f" . helm-projectile-find-file)
-          ("p" . helm-projectile-switch-project)
-          :map evil-leader--default-map
-          ("pf"  . helm-projectile-find-file)
-          ("psg" . helm-projectile-grep)
-          ("pa"  . helm-projectile-find-other-file))
+  (when (> emacs-major-version 24)
+    (use-package helm-projectile
+      :pin melpa-stable
+      :after dash helm projectile
+      :bind 
+      (:map projectile-command-map
+            ("f" . helm-projectile-find-file)
+            ("p" . helm-projectile-switch-project)
+            :map evil-leader--default-map
+            ("pf"  . helm-projectile-find-file)
+            ("psg" . helm-projectile-grep)
+            ("pa"  . helm-projectile-find-other-file))
 
-    :init
-    (setq helm-projectile-fuzzy-match nil)
-    (setq projectile-switch-project-action 'helm-projectile)
+      :init
+      (setq helm-projectile-fuzzy-match nil)
+      (setq projectile-switch-project-action 'helm-projectile)
 
-    :config
-    (helm-projectile-on))
+      :config
+      (helm-projectile-on)))
 #+END_SRC
 
 * Outline-magic
@@ -851,49 +855,50 @@ it is the best keyboard driven Git interface I know of. It also integrates very
 nicely into Emacs. Interactive rebasing, cherry-picking or running git blame on
 a single file are a breeze with Magit.
 #+BEGIN_SRC emacs-lisp
-  (use-package magit
-    :pin melpa-stable
-    :defer t
-    :bind (("C-x g" . magit-staging)
-           :map evil-leader--default-map
-           ("sg" . magit-staging)
-           ("f"  . magit-file-popup))
+  (when (> emacs-major-version 24)
+    (use-package magit
+      :pin melpa-stable
+      :defer t
+      :bind (("C-x g" . magit-staging)
+             :map evil-leader--default-map
+             ("sg" . magit-staging)
+             ("f"  . magit-file-popup))
 
-    :init
-    ;; Disable VC git backend. No need when using Magit.
-    (setq vc-handled-backends (delq 'Git vc-handled-backends))
-    (evil-set-initial-state 'magit-staging-mode 'emacs)
+      :init
+      ;; Disable VC git backend. No need when using Magit.
+      (setq vc-handled-backends (delq 'Git vc-handled-backends))
+      (evil-set-initial-state 'magit-staging-mode 'emacs)
 
-    :config
-    ;; Don't show tags when displaying refs.
-    (remove-hook 'magit-refs-sections-hook 'magit-insert-tags)
+      :config
+      ;; Don't show tags when displaying refs.
+      (remove-hook 'magit-refs-sections-hook 'magit-insert-tags)
 
-    ;; Don't show diff when committing (use C-c C-d to show diff anyway).
-    (remove-hook 'server-switch-hook 'magit-commit-diff)
+      ;; Don't show diff when committing (use C-c C-d to show diff anyway).
+      (remove-hook 'server-switch-hook 'magit-commit-diff)
 
-    ;; Improve staging performance on Windows.
-    ;; See https://github.com/magit/magit/issues/2395
-    (define-derived-mode magit-staging-mode magit-status-mode "Magit staging"
-      "Mode for showing staged and unstaged changes."
-      :group 'magit-status)
+      ;; Improve staging performance on Windows.
+      ;; See https://github.com/magit/magit/issues/2395
+      (define-derived-mode magit-staging-mode magit-status-mode "Magit staging"
+        "Mode for showing staged and unstaged changes."
+        :group 'magit-status)
 
-    (defun magit-staging-refresh-buffer ()
-      (magit-insert-section (status)
-        (magit-insert-untracked-files)
-        (magit-insert-unstaged-changes)
-        (magit-insert-staged-changes)))
+      (defun magit-staging-refresh-buffer ()
+        (magit-insert-section (status)
+                              (magit-insert-untracked-files)
+                              (magit-insert-unstaged-changes)
+                              (magit-insert-staged-changes)))
 
-    (defun magit-staging ()
-      (interactive)
-      (magit-mode-setup #'magit-staging-mode))
+      (defun magit-staging ()
+        (interactive)
+        (magit-mode-setup #'magit-staging-mode))
 
-    (magit-define-popup-switch 'magit-log-popup ?f "first parent" "--first-parent")
+      (magit-define-popup-switch 'magit-log-popup ?f "first parent" "--first-parent")
 
-    (evil-define-key 'normal magit-blame-mode-map (kbd "q") 'magit-blame-quit)
+      (evil-define-key 'normal magit-blame-mode-map (kbd "q") 'magit-blame-quit)
 
-    (setq magit-refresh-verbose t)
+      (setq magit-refresh-verbose t)
 
-    (setq auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffer-p))
+      (setq auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffer-p)))
 #+END_SRC
 
 Also install major modes for editing various git configuration files. See

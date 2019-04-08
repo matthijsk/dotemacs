@@ -422,6 +422,22 @@ Also ensure org-mode buffers are fully expanded.
                                             (org-show-all))))
 #+END_SRC
 
+Press =d= to copy both A and B into C. Useful when the changes of both sides in
+a conflict are needed. Taken from
+[[https://stackoverflow.com/questions/9656311/conflict-resolution-with-emacs-ediff-how-can-i-take-the-changes-of-both-version]].
+#+begin_src emacs-lisp
+  (defun my-ediff-copy-both-to-C ()
+    "Copy both A and B into C."
+    (interactive)
+    (ediff-copy-diff ediff-current-difference nil 'C nil
+                     (concat
+                      (ediff-get-region-contents ediff-current-difference 'A ediff-control-buffer)
+                      (ediff-get-region-contents ediff-current-difference 'B ediff-control-buffer))))
+
+  (defun my-add-d-to-ediff-mode-map () (define-key ediff-mode-map "d" 'my-ediff-copy-both-to-C))
+  (add-hook 'ediff-keymap-setup-hook 'my-add-d-to-ediff-mode-map)
+#+end_src
+
 ** Eww
 Set eww (shr) frame width.
 #+BEGIN_SRC emacs-lisp

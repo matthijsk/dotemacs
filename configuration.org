@@ -709,7 +709,7 @@ completion.
     (use-package helm-projectile
       :pin melpa-stable
       :after dash helm projectile
-      :bind 
+      :bind
       (:map projectile-command-map
             ("f" . helm-projectile-find-file)
             ("p" . helm-projectile-switch-project)
@@ -850,12 +850,12 @@ keeping track of time spent at work.
     (defun my-org-clock-in ()
       "Visit the file `my-org-worklog' and clock in.
 
-  The file is created if it does not exist. 
+  The file is created if it does not exist.
 
   It is structured as an org mode date tree, the difference being
   the clock is started on the day heading instead of a subheading,
   which would be the case if the date tree was created using
-  org-capture. 
+  org-capture.
 
   See also Info node `(org)Using capture' and Info node
   `(org)Template elements'."

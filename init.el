@@ -1,7 +1,7 @@
 (require 'package)
 
-(add-to-list 'package-archives'("melpa-stable" . "http://stable.melpa.org/packages/"))
-(add-to-list 'package-archives'("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib

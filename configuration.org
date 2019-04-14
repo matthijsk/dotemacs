@@ -472,6 +472,12 @@ visited file. Yes, I am aware of dired. Sometimes you still need explorer.
       (error "No `default-directory' to open")))
 #+end_src
 
+** Auth sources
+Only ever use encrypted .authinfo.gpg files.
+#+begin_src emacs-lisp
+  (setq auth-sources '("~/.authinfo.gpg"))
+#+end_src
+
 * Default text scale
 By default, scaling in Emacs (using =text-scale-adjust=) only scales
 the text in the buffer, but not in the modeline or the

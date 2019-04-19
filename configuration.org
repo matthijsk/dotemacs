@@ -341,8 +341,8 @@ of having to rebind all keys.
     (interactive)
     ;; (swiper-helm (word-at-point)))
     ;; (swiper))
-    ;; (helm-occur))
-    (helm-swoop))
+    (helm-occur))
+    ;; (helm-swoop))
 
   (global-set-key (kbd "C-s") 'my-search)
 #+END_SRC

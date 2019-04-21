@@ -742,9 +742,10 @@ The package [[https://github.com/tj64/outline-magic][outline-magic]] provides ~(
 ~(org-cycle)~. This is useful for the odd occasion when I run into an
 outline-mode buffer.
 #+begin_src emacs-lisp
-  (use-package outline-magic
-    :bind (:map outline-mode-map
-                ([tab] . outline-cycle)))
+  (when (> emacs-major-version 24)
+    (use-package outline-magic
+      :bind (:map outline-mode-map
+                  ([tab] . outline-cycle))))
 #+end_src
 
 * Org mode
@@ -1080,10 +1081,11 @@ Also ensure ~conf-unix-mode~ is used for various git configuration files.
 * Dired-narrow
 Dired-narrow is a nice package to do quick filtering in dired buffers.
 #+BEGIN_SRC emacs-lisp
-  (use-package dired-narrow
-    :after dired
-    :bind (:map dired-mode-map
-                ("/" . dired-narrow)))
+  (when (> emacs-major-version 24)
+    (use-package dired-narrow
+      :after dired
+      :bind (:map dired-mode-map
+                  ("/" . dired-narrow))))
 #+END_SRC
 
 * Hackernews

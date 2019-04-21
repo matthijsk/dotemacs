@@ -478,6 +478,11 @@ Only ever use encrypted .authinfo.gpg files.
   (setq auth-sources '("~/.authinfo.gpg"))
 #+end_src
 
+** Man
+#+begin_src emacs-lisp
+  (setenv "MANWIDTH" "80")
+#+end_src
+
 * Default text scale
 By default, scaling in Emacs (using =text-scale-adjust=) only scales
 the text in the buffer, but not in the modeline or the

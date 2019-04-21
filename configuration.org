@@ -1077,15 +1077,6 @@ Also ensure ~conf-unix-mode~ is used for various git configuration files.
   (setq epa-pinentry-mode 'loopback)
 #+end_src
 
-* Helm swoop
-Use [[https://github.com/ShingoFukuyama/helm-swoop][helm-swoop]] for listing search matches in another buffer. I used to use
-helm-swiper, but helm-swoop has similar functionality and is much faster.
-#+BEGIN_SRC emacs-lisp
-  (use-package helm-swoop
-    :defer t
-    :pin melpa-stable)
-#+END_SRC
-
 * Dired-narrow
 Dired-narrow is a nice package to do quick filtering in dired buffers.
 #+BEGIN_SRC emacs-lisp

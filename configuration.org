@@ -356,10 +356,10 @@ These functions enable quick access to the configuration file and the
 Emacs init file.
 #+BEGIN_SRC emacs-lisp
   (defun my-find-configuration-file ()
-    "Opens the configuration file in a new buffer.
-  Opens the configuration file that is loaded by
-  `user-init-file'. Use `my-find-init-file' to open
-  `user-init-file'."
+    "Opens configuration.org in a new buffer.
+
+  The file configuration.org is loaded in `user-init-file'. Use
+  `my-find-init-file' to open this file instead."
     (interactive)
     (find-file (concat user-emacs-directory "configuration.org")))
 
@@ -841,7 +841,7 @@ keeping track of time spent at work.
       "Edit source block below current window when calling `org-edit-special'.
 
   When editing a source block and more than one window is open
-  `org-src-window-setup' is set to 'split-window-below'. Otherwise,
+  `org-src-window-setup' is set to `split-window-below'. Otherwise,
   the default value is used."
       (interactive)
       (let ((org-src-window-setup
@@ -855,7 +855,8 @@ keeping track of time spent at work.
       :type 'file)
 
     (defun my-org-clock-goto ()
-      "Go to recently clocked tasks by offering a selection."
+      "Go to recently clocked tasks by offering a selection.
+  Calls `org-clock-goto' with prefix arg SELECT set to t."
       (interactive)
       (org-clock-goto t))
 

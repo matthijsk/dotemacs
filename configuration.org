@@ -483,6 +483,12 @@ Only ever use encrypted .authinfo.gpg files.
   (setenv "MANWIDTH" "80")
 #+end_src
 
+** Abbrev
+Enable ~abbrev-mode~ for ~text-mode~.
+#+begin_src emacs-lisp
+  (add-hook 'text-mode-hook 'abbrev-mode)
+#+end_src
+
 * Default text scale
 By default, scaling in Emacs (using =text-scale-adjust=) only scales
 the text in the buffer, but not in the modeline or the

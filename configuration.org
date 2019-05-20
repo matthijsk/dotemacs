@@ -967,6 +967,9 @@ Make sure [[https://gitlab.kitware.com/cmake/cmake/blob/master/Auxiliary/cmake-m
 and for the integrated help.
 #+BEGIN_SRC emacs-lisp
   (use-package cmake-mode
+    :bind (:map cmake-mode-map
+                ("<f1>" . cmake-help))
+
     :defer t)
 #+END_SRC
 

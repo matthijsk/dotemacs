@@ -1051,6 +1051,7 @@ Set up [[https://github.com/Sodel-the-Vociferous/helm-company][helm-company]], a
    (evil-define-key 'insert c++-mode-map              (kbd "TAB") 'helm-company)
    (evil-define-key 'insert emacs-lisp-mode-map       (kbd "TAB") 'helm-company)
    (evil-define-key 'insert lisp-interaction-mode-map (kbd "TAB") 'helm-company)
+   (evil-define-key 'insert cmake-mode-map            (kbd "TAB") 'helm-company)
    (setq helm-company-fuzzy-match nil))
 #+END_SRC
 

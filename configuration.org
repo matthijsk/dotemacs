@@ -489,6 +489,21 @@ Enable ~abbrev-mode~ for ~text-mode~.
   (add-hook 'text-mode-hook 'abbrev-mode)
 #+end_src
 
+** Calendar
+Add a function to insert the current date into the current buffer. Useful for
+inserting the current date in a written form.
+#+begin_src emacs-lisp
+  (calendar-set-date-style 'european)
+
+  (defun my-insert-current-date (&optional omit-day-of-week-p)
+    "Insert today's date using the current locale.
+    With a prefix argument, the date is inserted without the day of
+    the week."
+    (interactive "P*")
+    (insert (calendar-date-string (calendar-current-date) nil
+                                  omit-day-of-week-p)))
+#+end_src
+
 * Default text scale
 By default, scaling in Emacs (using =text-scale-adjust=) only scales
 the text in the buffer, but not in the modeline or the

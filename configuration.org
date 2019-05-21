@@ -464,7 +464,7 @@ Various functions to make editing more convenient.
 Convenience function to open an OS native explorer window for the currently
 visited file. Yes, I am aware of dired. Sometimes you still need explorer.
 #+begin_src emacs-lisp
-  (defun browse-file-directory ()
+  (defun my-browse-file-directory ()
     "Open the current file's directory however the OS would."
     (interactive)
     (if default-directory

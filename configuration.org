@@ -1136,5 +1136,10 @@ Set up [[https://github.com/Fanael/rainbow-delimiters][rainbow-delimiters-mode]]
 * Markdown mode
 #+begin_src emacs-lisp
   (use-package markdown-mode
-    :pin melpa-stable)
+    :pin melpa-stable
+    :defer t)
+
+  (use-package markdown-toc
+    :pin melpa-stable
+    :defer t)
 #+end_src

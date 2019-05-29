@@ -899,6 +899,11 @@ keeping track of time spent at work.
       (org-clock-in)))
 #+END_SRC
 
+Add ox-gfm to enable exporting of org mode buffers to Github Flavored Markdown.
+#+begin_src emacs-lisp
+  (use-package ox-gfm)
+#+end_src
+
 * Magit
 [[https://magit.vc/][Magit]] is another (alongside org-mode) compelling reason to use Emacs. Seriously,
 it is the best keyboard driven Git interface I know of. It also integrates very

@@ -31,11 +31,6 @@ http://ergoemacs.org/emacs/emacs_set_backup_into_a_directory.html.
   (setq auto-save-default nil)
 #+END_SRC
 
-Display the scratch buffer when starting up.
-#+BEGIN_SRC emacs-lisp
-  (setq initial-buffer-choice t)
-#+END_SRC
-
 Start Emacs as server for emacsclient processes.
 #+BEGIN_SRC emacs-lisp
   (server-start)

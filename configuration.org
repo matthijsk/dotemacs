@@ -901,7 +901,8 @@ keeping track of time spent at work.
 
 Add ox-gfm to enable exporting of org mode buffers to Github Flavored Markdown.
 #+begin_src emacs-lisp
-  (use-package ox-gfm)
+  (use-package ox-gfm
+    :pin melpa-stable)
 #+end_src
 
 * Magit
@@ -972,6 +973,7 @@ Make sure [[https://gitlab.kitware.com/cmake/cmake/blob/master/Auxiliary/cmake-m
 and for the integrated help.
 #+BEGIN_SRC emacs-lisp
   (use-package cmake-mode
+    :pin melpa-stable
     :bind (:map cmake-mode-map
                 ("<f1>" . cmake-help))
 
@@ -1049,6 +1051,7 @@ Set up and use [[http://company-mode.github.io/][Company]] as the text completio
 Set up [[https://github.com/Sodel-the-Vociferous/helm-company][helm-company]], a Helm interface to Company.
 #+BEGIN_SRC emacs-lisp
   (use-package helm-company
+    :pin melpa-stable
     :after company
 
     :config

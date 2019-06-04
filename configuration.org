@@ -1049,15 +1049,15 @@ Set up and use [[http://company-mode.github.io/][Company]] as the text completio
 Set up [[https://github.com/Sodel-the-Vociferous/helm-company][helm-company]], a Helm interface to Company.
 #+BEGIN_SRC emacs-lisp
   (use-package helm-company
-   :after company
+    :after company
 
-   :config
-   (evil-define-key 'insert c-mode-map                (kbd "TAB") 'helm-company)
-   (evil-define-key 'insert c++-mode-map              (kbd "TAB") 'helm-company)
-   (evil-define-key 'insert emacs-lisp-mode-map       (kbd "TAB") 'helm-company)
-   (evil-define-key 'insert lisp-interaction-mode-map (kbd "TAB") 'helm-company)
-   (evil-define-key 'insert cmake-mode-map            (kbd "TAB") 'helm-company)
-   (setq helm-company-fuzzy-match nil))
+    :config
+    (evil-define-key 'insert c-mode-map                (kbd "TAB") 'helm-company)
+    (evil-define-key 'insert c++-mode-map              (kbd "TAB") 'helm-company)
+    (evil-define-key 'insert emacs-lisp-mode-map       (kbd "TAB") 'helm-company)
+    (evil-define-key 'insert lisp-interaction-mode-map (kbd "TAB") 'helm-company)
+    (evil-define-key 'insert cmake-mode-map            (kbd "TAB") 'helm-company)
+    (setq helm-company-fuzzy-match nil))
 #+END_SRC
 
 * Semantic

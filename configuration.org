@@ -633,6 +633,8 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
 
       "xd"  'dired
 
+      "g"   'gnus
+
       "m"   'compile
       "c"   'compile)
 

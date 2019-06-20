@@ -817,6 +817,9 @@ keeping track of time spent at work.
     ;; Show total amount of hours and minutes, instead of formatting as "d hh:mm".
     (setq org-duration-format '((special . h:mm)))
 
+    ;; When using using org-clock-display, display the total time for subtrees.
+    (setq org-clock-display-default-range 'untilnow)
+
     ;; Set all agenda files as refile targets.
     (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
 

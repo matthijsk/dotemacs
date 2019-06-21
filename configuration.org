@@ -1152,3 +1152,10 @@ Set up [[https://github.com/Fanael/rainbow-delimiters][rainbow-delimiters-mode]]
     :pin melpa-stable
     :defer t)
 #+end_src
+
+* JSON mode
+#+begin_src emacs-lisp
+  (use-package json-mode
+    :pin melpa-stable
+    :defer t)
+#+end_src

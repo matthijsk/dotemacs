@@ -19,6 +19,13 @@ the modeline.
 ** General settings
 General Emacs settings relating to fonts, themes, keybindings, etc.
 
+Set full user path (ignoring =$HOME=). Useful on Windows systems where =$HOME=
+is not set or cases where a full path is required.
+#+begin_src emacs-lisp
+  (when (eq system-type 'windows-nt)
+    (setq my-user-dir (format "c:/Users/%s" user-login-name)))
+#+end_src
+
 Set default coding system.
 #+BEGIN_SRC emacs-lisp
   (set-language-environment "UTF-8")
@@ -803,8 +810,8 @@ keeping track of time spent at work.
 
     ;; Don't use the user home directory on Windows systems, as Emacs defaults to
     ;; using AppData/Roaming for $HOME. Otherwise, just use the default (~/org).
-    (when (eq system-type 'windows-nt)
-      (setq org-directory (format "c:/Users/%s/org" user-login-name)))
+    (when (boundp 'my-user-dir)
+      (setq org-directory (concat my-user-dir "/org")))
 
     (setq org-default-notes-file (concat org-directory "/notes.org"))
 

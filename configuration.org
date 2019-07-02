@@ -910,7 +910,8 @@ keeping track of time spent at work.
 Add ox-gfm to enable exporting of org mode buffers to Github Flavored Markdown.
 #+begin_src emacs-lisp
   (use-package ox-gfm
-    :pin melpa-stable)
+    :pin melpa-stable
+    :defer t)
 #+end_src
 
 * Magit
@@ -969,11 +970,14 @@ Also install major modes for editing various git configuration files. See
 [[https://github.com/magit/git-modes]].
 #+BEGIN_SRC emacs-lisp
   (use-package gitattributes-mode
-      :pin melpa-stable)
+    :pin melpa-stable
+    :defer t)
   (use-package gitconfig-mode
-      :pin melpa-stable)
+    :pin melpa-stable
+    :defer t)
   (use-package gitignore-mode
-      :pin melpa-stable)
+    :pin melpa-stable
+    :defer t)
 #+END_SRC
 
 * CMake mode
@@ -1006,7 +1010,8 @@ files.
   (add-to-list 'auto-mode-alist '("\\.globalrc\\'" . conf-mode))
 
   (use-package ggtags
-    :pin melpa-stable)
+    :pin melpa-stable
+    :defer t)
 #+END_SRC
 
 * Helm gtags
@@ -1145,7 +1150,8 @@ Set up [[https://github.com/Fanael/rainbow-delimiters][rainbow-delimiters-mode]]
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-delimiters
     :pin melpa-stable
-    :config
+    :defer t
+    :init
     (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 #+END_SRC
 

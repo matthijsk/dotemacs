@@ -911,7 +911,8 @@ Add ox-gfm to enable exporting of org mode buffers to Github Flavored Markdown.
 #+begin_src emacs-lisp
   (use-package ox-gfm
     :pin melpa-stable
-    :defer t)
+    :defer 10
+    :after ox)
 #+end_src
 
 * Magit

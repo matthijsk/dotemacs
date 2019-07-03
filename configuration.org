@@ -721,7 +721,8 @@ Git repositories for quick navigation.
     :bind (:map projectile-mode-map
                 ("<f9>" . projectile-run-project)
                 ("C-<f9>" . projectile-compile-project)
-                ("M-<f9>" . projectile-test-project))
+                ("M-<f9>" . projectile-test-project)
+                ("C-M-<f9>" . projectile-configure-project))
 
     :init
     (add-hook 'c-mode-hook     'projectile-mode)

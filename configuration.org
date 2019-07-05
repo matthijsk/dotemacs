@@ -327,7 +327,7 @@ face.
 #+BEGIN_SRC emacs-lisp
   (defun my-prog-mode-todo-font-lock ()
     "Font lock for \"TODO\" strings in prog-mode major modes.
-  Sets face to `org-todo'."
+  Sets face to the face `org-todo'."
     (font-lock-add-keywords nil
                             '(("\\<\\(TODO\\).*:" 1 'org-todo prepend))))
 

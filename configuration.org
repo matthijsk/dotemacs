@@ -222,15 +222,9 @@ frame.
 
 When I call kill-buffer I pretty much always mean to kill the current
 buffer. The default functionality is to prompt for a buffer name. Instead, I
-want the buffer to be killed immediately. Inspiration:
-http://pragmaticemacs.com/emacs/dont-kill-buffer-kill-this-buffer-instead/.
+want the current buffer to be killed immediately.
 #+BEGIN_SRC emacs-lisp
-  (defun my-kill-buffer ()
-    "Kill the current buffer without prompting."
-    (interactive)
-    (kill-buffer (current-buffer)))
-
-  (global-set-key (kbd "C-x k") 'my-kill-buffer)
+  (global-set-key (kbd "C-x k") 'kill-current-buffer)
 #+END_SRC
 
 Bind =hippie-expand= to =M-/=.
@@ -628,7 +622,7 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
       "wk"  'evil-window-up
       "wl"  'evil-window-right
 
-      "xk"  'my-kill-buffer
+      "xk"  'kill-current-buffer
       "rb"  'revert-buffer
       "x#"  'server-edit
       "n"   'server-edit

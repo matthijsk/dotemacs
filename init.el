@@ -30,4 +30,11 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-(org-babel-load-file "~/.emacs.d/configuration.org")
+;; To reduce startup time, only tangle configuration when the .org file is newer
+;; than the .el file. Otherwise, simply load the .el file.
+(let* ((my-init-file-org (concat user-emacs-directory "configuration.org"))
+       (my-init-file-el (concat (file-name-sans-extension my-init-file-org) ".el")))
+  (if (file-newer-than-file-p my-init-file-org my-init-file-el)
+      (org-babel-load-file my-init-file-org)
+    (load-file my-init-file-el)))
+

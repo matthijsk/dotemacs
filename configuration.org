@@ -489,15 +489,18 @@ Enable ~abbrev-mode~ for ~text-mode~.
 Add a function to insert the current date into the current buffer. Useful for
 inserting the current date in a written form.
 #+begin_src emacs-lisp
-  (calendar-set-date-style 'european)
+  (use-package calendar
+    :commands (my-insert-current-date)
+    :config
+    (calendar-set-date-style 'european)
 
-  (defun my-insert-current-date (&optional omit-day-of-week-p)
-    "Insert today's date using the current locale.
+    (defun my-insert-current-date (&optional omit-day-of-week-p)
+      "Insert today's date using the current locale.
     With a prefix argument, the date is inserted without the day of
     the week."
-    (interactive "P*")
-    (insert (calendar-date-string (calendar-current-date) nil
-                                  omit-day-of-week-p)))
+      (interactive "*P")
+      (insert (calendar-date-string (calendar-current-date) nil
+                                    omit-day-of-week-p))))
 #+end_src
 
 * Default text scale

@@ -299,7 +299,6 @@ Set c and sh indentation to 2, and never indent with tabs.
 Set some modes for specific file types.
 - Set ~xml-mode~ when loading =cbproj= and =groupproj= files.
 - Set ~c++-mode~ when loading =.rc= and =.rh= files.
-- Set ~c++-mode~ when loading =.h= files. All I do is c++ all day.
 - Set ~conf-mode~ when loading a Doxygen configuration file.
 - Set ~conf-mode~ when loading a .clang-format file.
 #+BEGIN_SRC emacs-lisp

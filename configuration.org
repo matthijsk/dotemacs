@@ -654,6 +654,7 @@ Ensure [[https://github.com/magnars/dash.el][dash]] ("A modern list library for 
 packages.
 #+BEGIN_SRC emacs-lisp
   (use-package dash
+    :defer t
     :pin melpa-stable)
 #+END_SRC
 

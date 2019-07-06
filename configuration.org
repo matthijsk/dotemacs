@@ -327,17 +327,11 @@ face.
 #+END_SRC
 
 ** Default search function
-Just a wrapper around whatever search function strikes my fancy
-today. This makes it easier to change functionality without the tedium
-of having to rebind all keys.
+Define an alias for whatever search function strikes my fancy today. This makes
+it easier to change functionality without the tedium of having to rebind all
+keys.
 #+BEGIN_SRC emacs-lisp
-  (defun my-search ()
-    (interactive)
-    ;; (swiper-helm (word-at-point)))
-    ;; (swiper))
-    (helm-occur))
-    ;; (helm-swoop))
-
+  (defalias 'my-search 'helm-occur)
   (global-set-key (kbd "C-s") 'my-search)
 #+END_SRC
 

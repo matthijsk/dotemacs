@@ -835,13 +835,6 @@ keeping track of time spent at work.
     ;; Enable refiling to the top level of an org file.
     (setq org-refile-use-outline-path 'file)
 
-    ;; Org mode babel language support.
-    (org-babel-do-load-languages
-     'org-babel-load-languages
-     '((emacs-lisp . t)
-       (shell . t)
-       (C . t)))
-
     ;; Do not interpret "_" and "^" for sub and superscript when
     ;; exporting.
     (setq org-export-with-sub-superscripts nil)

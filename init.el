@@ -30,11 +30,13 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+(defcustom my-configuration-file (concat user-emacs-directory "configuration.org")
+  "Custom configuration file, loaded by `user-init-file'.")
+
 ;; To reduce startup time, only tangle configuration when the .org file is newer
 ;; than the .el file. Otherwise, simply load the .el file.
-(let* ((my-init-file-org (concat user-emacs-directory "configuration.org"))
-       (my-init-file-el (concat (file-name-sans-extension my-init-file-org) ".el")))
-  (if (file-newer-than-file-p my-init-file-org my-init-file-el)
-      (org-babel-load-file my-init-file-org)
-    (load-file my-init-file-el)))
+(let* ((my-config-file-el (concat (file-name-sans-extension my-configuration-file) ".el")))
+  (if (file-newer-than-file-p my-configuration-file my-config-file-el)
+      (org-babel-load-file my-configuration-file)
+    (load-file my-config-file-el)))
 

@@ -344,12 +344,12 @@ These functions enable quick access to the configuration file and the
 Emacs init file.
 #+BEGIN_SRC emacs-lisp
   (defun my-find-configuration-file ()
-    "Opens configuration.org in a new buffer.
+    "Opens user configuration file in a new buffer.
 
-  The file configuration.org is loaded in `user-init-file'. Use
-  `my-find-init-file' to open this file instead."
+  The file `my-configuration-file' is loaded in `user-init-file'.
+  Use `my-find-init-file' to open `user-init-file' instead."
     (interactive)
-    (find-file (concat user-emacs-directory "configuration.org")))
+    (find-file my-configuration-file))
 
   (defun my-find-init-file ()
     "Opens `user-init-file' in a new buffer."

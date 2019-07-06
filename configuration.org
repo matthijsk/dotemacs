@@ -309,8 +309,6 @@ Set some modes for specific file types.
   (add-to-list 'auto-mode-alist '("\\.rh\\'" . c++-mode))
   (add-to-list 'auto-mode-alist '("\\.rc\\'" . c++-mode))
 
-  (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-
   (add-to-list 'auto-mode-alist '("Doxyfile\\'" . conf-mode))
 
   (add-to-list 'auto-mode-alist '("\\.clang-format\\'" . conf-mode))

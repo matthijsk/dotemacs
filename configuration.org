@@ -17,8 +17,6 @@ the modeline.
 #+END_SRC
 
 ** General settings
-General Emacs settings relating to fonts, themes, keybindings, etc.
-
 Set full user path (ignoring =$HOME=). Useful on Windows systems where =$HOME=
 is not set or cases where a full path is required.
 #+begin_src emacs-lisp
@@ -98,6 +96,9 @@ scroll amount of three lines.
 #+END_SRC
 
 ** User interface
+General Emacs settings relating to fonts, themes, etc.
+
+*** Font
 Set the Consolas font when running on Windows.
 #+BEGIN_SRC emacs-lisp
   (when (eq system-type 'windows-nt)
@@ -106,6 +107,7 @@ Set the Consolas font when running on Windows.
       (set-frame-font my-font nil t)))
 #+END_SRC
 
+*** Theme
 Set the [[https://github.com/nashamri/spacemacs-theme][spacemacs]] theme when a graphical display is available. Pretty neat.
 #+BEGIN_SRC emacs-lisp
   (when (display-graphic-p)
@@ -136,6 +138,7 @@ Set the [[https://github.com/nashamri/spacemacs-theme][spacemacs]] theme when a 
         (enable-theme my-current-theme))))
 #+END_SRC
 
+*** Miscellaneous
 Disable the tool bar, the menu bar and the scroll bars.
 #+BEGIN_SRC emacs-lisp
   (tool-bar-mode -1)
@@ -164,7 +167,9 @@ Don't blink the cursor.
   (blink-cursor-mode 0)
 #+END_SRC
 
-** Key bindings
+** Global key bindings
+Set global key bindings, not related to any specific packages.
+
 Reload ('revert') a buffer with =F5= without asking for confirmation, and
 preserve all modes.
 #+BEGIN_SRC emacs-lisp

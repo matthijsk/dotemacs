@@ -8,3 +8,10 @@ projectile.cache
 server/
 recentf
 srecode-map.el
+bookmarks
+eshell/
+hackernews/
+semanticdb/
+tutorial/
+network-security.data
+url/

@@ -637,6 +637,8 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
       "m"   'compile
       "c"   'compile)
 
+    (evil-leader/set-key-for-mode 'emacs-lisp-mode "c" 'emacs-lisp-byte-compile)
+
     ;; Enable evil leader.
     (global-evil-leader-mode)
 

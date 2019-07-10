@@ -408,9 +408,9 @@ Also ensure org-mode buffers are fully expanded.
   (setq ediff-split-window-function 'split-window-horizontally)
   (setq ediff-merge-split-window-function 'split-window-horizontally)
 
-  (add-hook 'ediff-prepare-buffer-hook '(lambda ()
-                                          (when (eq major-mode 'org-mode)
-                                            (org-show-all))))
+  (add-hook 'ediff-prepare-buffer-hook (lambda ()
+                                         (when (eq major-mode 'org-mode)
+                                           (org-show-all))))
 #+END_SRC
 
 Press =d= to copy both A and B into C. Useful when the changes of both sides in

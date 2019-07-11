@@ -101,15 +101,6 @@ scroll amount of three lines.
 ** User interface
 General Emacs settings relating to fonts, themes, etc.
 
-*** Font
-Set the Consolas font when running on Windows.
-#+BEGIN_SRC emacs-lisp
-  (when (eq system-type 'windows-nt)
-    (let ((my-font "-outline-Consolas-normal-normal-normal-mono-*-*-*-*-c-*-iso8859-1"))
-      (set-face-attribute 'default nil :font my-font)
-      (set-frame-font my-font nil t)))
-#+END_SRC
-
 *** Theme
 Set the [[https://github.com/nashamri/spacemacs-theme][spacemacs]] theme when a graphical display is available. Pretty neat.
 #+BEGIN_SRC emacs-lisp

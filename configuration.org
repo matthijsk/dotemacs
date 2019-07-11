@@ -19,6 +19,14 @@ the modeline.
 ** General settings
 General Emacs settings that don't fall under any specific category.
 
+Don't litter the init file with customization changes. Instead, write it to a
+different file that is not tracked by version control.
+#+begin_src emacs-lisp
+  (setq custom-file (concat user-emacs-directory "custom.el"))
+  (when (file-exists-p custom-file)
+    (load custom-file))
+#+end_src
+
 Set full user path (ignoring =$HOME=). Useful on Windows systems where =$HOME=
 is not set or cases where a full path is required.
 #+begin_src emacs-lisp

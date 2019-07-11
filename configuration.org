@@ -17,6 +17,8 @@ the modeline.
 #+END_SRC
 
 ** General settings
+General Emacs settings that don't fall under any specific category.
+
 Set full user path (ignoring =$HOME=). Useful on Windows systems where =$HOME=
 is not set or cases where a full path is required.
 #+begin_src emacs-lisp

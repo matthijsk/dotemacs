@@ -27,13 +27,6 @@ different file that is not tracked by version control.
     (load custom-file))
 #+end_src
 
-Set full user path (ignoring =$HOME=). Useful on Windows systems where =$HOME=
-is not set or cases where a full path is required.
-#+begin_src emacs-lisp
-  (when (eq system-type 'windows-nt)
-    (setq my-user-dir (format "c:/Users/%s" user-login-name)))
-#+end_src
-
 Set default coding system.
 #+BEGIN_SRC emacs-lisp
   (set-language-environment "UTF-8")
@@ -809,21 +802,16 @@ keeping track of time spent at work.
            ("C-c '" . my-org-edit-special)
            ("M-p"   . org-previous-visible-heading)
            ("M-n"   . org-next-visible-heading))
-    :init
+
+    :config
     (setq org-todo-keywords
           '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
-
-    ;; Don't use the user home directory on Windows systems, as Emacs defaults to
-    ;; using AppData/Roaming for $HOME. Otherwise, just use the default (~/org).
-    (when (boundp 'my-user-dir)
-      (setq org-directory (concat my-user-dir "/org")))
 
     (setq org-default-notes-file (concat org-directory "/notes.org"))
 
     ;; Set org-agenda-files to file with list containing all agenda files.
     (setq org-agenda-files (concat org-directory "/org-agenda-files.org"))
 
-    :config
     (org-clock-persistence-insinuate)
 
     (setq org-clock-clocktable-default-properties

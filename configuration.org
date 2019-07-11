@@ -6,7 +6,7 @@ This configuration file is loaded using ~(org-babel-load-file)~. To ensure
 org-mode is properly initialized before loading this file ~package-archives~
 settings and the call to ~(package-initialize)~ are done in [[file:init.el][init.el]].
 
-Packages are installed and configured using ~use-package~.
+Packages are installed and configured using the fantastic [[https://github.com/jwiegley/use-package][use-package]].
 
 ** Diminish
 [[https://github.com/myrjola/diminish.el][Diminish]] can be used as part of =use-package= to hide minor mode strings from

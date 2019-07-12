@@ -598,19 +598,14 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
       "sh"  'eshell
 
       "wc"  'evil-window-delete
-      "x0"  'delete-window
 
       "ww"  'evil-window-next
-      "xo"  'other-window
 
       "wo"  'delete-other-windows
-      "x1"  'delete-other-windows
 
       "ws"  'evil-window-split
-      "x2"  'split-window-below
 
       "wv"  'evil-window-vsplit
-      "x3"  'split-window-right
 
       "wh"  'evil-window-left
       "wj"  'evil-window-down
@@ -619,7 +614,6 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
 
       "xk"  'kill-current-buffer
       "rb"  'revert-buffer
-      "x#"  'server-edit
       "n"   'server-edit
       "xc"  'save-buffers-kill-terminal
 
@@ -631,7 +625,6 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
 
       "g"   'gnus
 
-      "m"   'compile
       "c"   'compile)
 
     (evil-leader/set-key-for-mode 'emacs-lisp-mode "c" 'emacs-lisp-byte-compile)

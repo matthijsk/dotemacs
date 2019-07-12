@@ -715,9 +715,7 @@ Git repositories for quick navigation.
                 ("C-M-<f9>" . projectile-configure-project))
 
     :init
-    (add-hook 'c-mode-hook     'projectile-mode)
-    (add-hook 'c++-mode-hook   'projectile-mode)
-    (add-hook 'cmake-mode-hook 'projectile-mode)
+    (add-hook 'prog-mode-hook 'projectile-mode)
 
     :config
     (projectile-mode 1)

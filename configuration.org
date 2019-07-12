@@ -1025,10 +1025,8 @@ Set up and use [[http://company-mode.github.io/][Company]] as the text completio
     :defer t
 
     :init
-    (add-hook 'c-mode-hook          'company-mode)
-    (add-hook 'c++-mode-hook        'company-mode)
-    (add-hook 'emacs-lisp-mode-hook 'company-mode)
-    (add-hook 'cmake-mode-hook      'company-mode)
+    (add-hook 'prog-mode-hook 'company-mode)
+
     :config
     (setq company-backends (delete 'company-semantic company-backends)) ;; Ensure semantic is not used by company.
     (setq company-dabbrev-downcase nil) ;; Do not downcase returned candidates.
@@ -1046,11 +1044,7 @@ Set up [[https://github.com/Sodel-the-Vociferous/helm-company][helm-company]], a
     :after company
 
     :config
-    (evil-define-key 'insert c-mode-map                (kbd "TAB") 'helm-company)
-    (evil-define-key 'insert c++-mode-map              (kbd "TAB") 'helm-company)
-    (evil-define-key 'insert emacs-lisp-mode-map       (kbd "TAB") 'helm-company)
-    (evil-define-key 'insert lisp-interaction-mode-map (kbd "TAB") 'helm-company)
-    (evil-define-key 'insert cmake-mode-map            (kbd "TAB") 'helm-company)
+    (evil-define-key 'insert prog-mode-map (kbd "TAB") 'helm-company)
     (setq helm-company-fuzzy-match nil))
 #+END_SRC
 

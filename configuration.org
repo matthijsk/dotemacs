@@ -1098,6 +1098,7 @@ Also ensure ~conf-unix-mode~ is used for various git configuration files.
 #+END_SRC
 
 * GPG
+Ensure GnuPG password queries go through the minibuffer.
 #+begin_src emacs-lisp
   (setq epa-pinentry-mode 'loopback)
 #+end_src

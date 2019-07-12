@@ -568,15 +568,18 @@ modal editing of Vim combined with the extensibility of Emacs.
     ;; Set custom evil state when in these modes.
     (add-hook 'with-editor-mode-hook 'evil-normal-state)
 
-    (evil-set-initial-state 'shell-mode            'emacs)
-    (evil-set-initial-state 'eshell-mode           'emacs)
-    (evil-set-initial-state 'image-mode            'emacs)
-    (evil-set-initial-state 'dired-mode            'emacs)
-    (evil-set-initial-state 'profiler-report-mode  'emacs)
-    (evil-set-initial-state 'messages-buffer-mode  'motion)
-    (evil-set-initial-state 'eww-mode              'motion)
-    (evil-set-initial-state 'eww-buffers-mode      'motion)
-    (evil-set-initial-state 'elisp-refs-mode       'motion))
+    (dolist (mode '(shell-mode
+                    eshell-mode
+                    image-mode
+                    dired-mode
+                    profiler-report-mode))
+      (evil-set-initial-state mode 'emacs))
+
+    (dolist (mode '(messages-buffer-mode
+                    eww-mode
+                    eww-buffers-mode
+                    elisp-refs-mode))
+      (evil-set-initial-state mode 'motion)))
 #+END_SRC
 
 * Evil-leader

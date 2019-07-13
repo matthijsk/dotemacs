@@ -287,12 +287,17 @@ Autoscroll compilation window and stop on first error.
 
 Set c and sh indentation to 2, and never indent with tabs.
 #+BEGIN_SRC emacs-lisp
-  (setq c-default-style "linux"
-        c-basic-offset 2)
+  (use-package cc-mode
+    :defer t
+    :custom
+    (c-basic-offset 2))
+
+  (use-package sh-script
+    :defer t
+    :custom
+    (sh-basic-offset 2))
 
   (setq-default indent-tabs-mode nil)
-
-  (setq sh-basic-offset 2)
 #+END_SRC
 
 Set some modes for specific file types.

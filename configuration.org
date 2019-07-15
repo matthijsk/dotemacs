@@ -680,6 +680,12 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
            ("hs" . helm-semantic-or-imenu)
            ("xh" . my-helm-resume-existing))
 
+    :init
+    ;; Workaround for slow Helm issue with Emacs 26 on X.
+    ;; See https://github.com/emacs-helm/helm/wiki/FAQ#slow-frame-and-window-popup-in-emacs-26
+    (when (= emacs-major-version 26)
+      (setq x-wait-for-event-timeout nil))
+
     :config
     (defun my-helm-resume-existing ()
       "Resume previous helm session with prefix to choose among existing helm buffers."

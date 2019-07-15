@@ -670,10 +670,6 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
            ("C-x C-h" . my-helm-resume-existing)
            ("C-x r l" . helm-bookmarks)
 
-           :map helm-map ;; Use <C-tab> and <C-S-tab> to navigate helm buffers.
-           ("<C-tab>"   . helm-next-line)
-           ("<C-S-tab>" . helm-previous-line)
-
            :map evil-normal-state-map
            ("<SPC>" . helm-mini)
 

@@ -671,7 +671,7 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
            ("C-x r l" . helm-bookmarks)
 
            :map evil-normal-state-map
-           ("<SPC>" . helm-mini)
+           ("SPC" . helm-mini)
 
            :map evil-leader--default-map
            ("b"  . helm-mini)

@@ -402,17 +402,18 @@ Use a human-readable Size column for =ibuffer=. Taken from [[https://www.emacswi
 
 ** Ediff
 Always split windows horizontally when running ediff. This is more comfortable
-to me on modern screens.
-
-Also ensure org-mode buffers are fully expanded.
+to me on modern high resolution screens.
 #+BEGIN_SRC emacs-lisp
   (setq ediff-split-window-function 'split-window-horizontally)
   (setq ediff-merge-split-window-function 'split-window-horizontally)
+#+END_SRC
 
+Ensure org-mode buffers are fully expanded.
+#+begin_src emacs-lisp
   (add-hook 'ediff-prepare-buffer-hook (lambda ()
                                          (when (eq major-mode 'org-mode)
                                            (org-show-all))))
-#+END_SRC
+#+end_src
 
 Press =d= to copy both A and B into C. Useful when the changes of both sides in
 a conflict are needed. Taken from

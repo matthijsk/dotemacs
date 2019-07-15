@@ -764,6 +764,7 @@ completion.
           ("f" . helm-projectile-find-file)
           ("p" . helm-projectile-switch-project)
           :map evil-leader--default-map
+          ("pp"  . helm-projectile-switch-project)
           ("pf"  . helm-projectile-find-file)
           ("psg" . helm-projectile-grep)
           ("pa"  . helm-projectile-find-other-file))

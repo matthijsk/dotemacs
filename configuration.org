@@ -1157,7 +1157,8 @@ Emacs can do everything, so why not [[https://github.com/clarete/hackernews.el][
 #+END_SRC
 
 * Rainbow-delimiters
-Set up [[https://github.com/Fanael/rainbow-delimiters][rainbow-delimiters-mode]] for prog-modes.
+Set up [[https://github.com/Fanael/rainbow-delimiters][rainbow-delimiters-mode]] for =prog-mode=. Most (if not all) programming
+major modes are derived from =prog-mode=.
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-delimiters
     :pin melpa-stable

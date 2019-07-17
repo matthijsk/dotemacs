@@ -34,7 +34,7 @@
 
 ;; To reduce startup time, only tangle configuration when the .org file is newer
 ;; than the .el file. Otherwise, simply load the .el file.
-(let* ((my-config-file-el (concat (file-name-sans-extension my-configuration-file) ".el")))
+(let ((my-config-file-el (concat (file-name-sans-extension my-configuration-file) ".el")))
   (if (file-newer-than-file-p my-configuration-file my-config-file-el)
       (org-babel-load-file my-configuration-file)
     (load-file my-config-file-el)))

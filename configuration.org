@@ -504,13 +504,13 @@ inserting the current date in a written form.
     :config
     (calendar-set-date-style 'european)
 
-    (defun my-insert-current-date (&optional omit-day-of-week-p)
+    (defun my-insert-current-date (&optional nodayname)
       "Insert today's date using the current locale.
-    With a prefix argument, the date is inserted without the day of
-    the week."
+  With a prefix argument, the date is inserted without the day of
+  the week. See also `calendar-date-string'."
       (interactive "*P")
       (insert (calendar-date-string (calendar-current-date) nil
-                                    omit-day-of-week-p))))
+                                    nodayname))))
 #+end_src
 
 * Default text scale

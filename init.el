@@ -39,3 +39,6 @@
       (org-babel-load-file my-configuration-file)
     (load-file my-config-file-el)))
 
+;; To prevent the initial startup message from stepping over this message,
+;; customize the variable `inhibit-startup-echo-area-message'.
+(message (emacs-init-time))

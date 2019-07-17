@@ -691,7 +691,7 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
     :bind (("M-x"     . helm-M-x)
            ("C-x b"   . helm-mini)
            ("C-x C-f" . helm-find-files)
-           ("C-x C-h" . my-helm-resume-existing)
+           ("C-c r"   . my-helm-resume-existing)
            ("C-x r l" . helm-bookmarks)
 
            :map evil-normal-state-map
@@ -702,7 +702,7 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
            ("xf" . helm-find-files)
            ("hb" . helm-bookmarks)
            ("hs" . helm-semantic-or-imenu)
-           ("xh" . my-helm-resume-existing))
+           ("hr" . my-helm-resume-existing))
 
     :init
     ;; Workaround for slow Helm issue with Emacs 26 on X.

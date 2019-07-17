@@ -1111,8 +1111,6 @@ also add =git-path/../usr/bin= to =exec-path=, to enable use of =diff=, =gpg=
 and other tools. This way adding =git-path/../usr/bin= to the system PATH
 environment variable can be avoided, which is probably not what you want on a
 Windows system. If a Git executable cannot be found a message is displayed.
-
-Also ensure ~conf-unix-mode~ is used for various git configuration files.
 #+BEGIN_SRC emacs-lisp
   (when (eq system-type 'windows-nt)
     (let* ((git-exe (executable-find "git"))

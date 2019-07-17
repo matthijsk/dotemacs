@@ -182,8 +182,8 @@ Load alternate file with =F6= (useful for switching .c and .h).
 
 Exhibit expected X clipboard behaviour (yank with middle mouse button).
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "<mouse-2>") 'x-clipboard-yank)
-  (setq-default x-select-enable-primary t)
+  (global-set-key (kbd "<mouse-2>") 'clipboard-yank)
+  (setq-default select-enable-primary t)
 #+END_SRC
 
 Bind mouse buttons to Info-mode and help-mode navigation.

@@ -160,7 +160,8 @@ Use a visible bell.
 
 Don't blink the cursor.
 #+BEGIN_SRC emacs-lisp
-  (blink-cursor-mode 0)
+  (blink-cursor-mode 0)                   ; Graphical displays
+  (setq visible-cursor nil)               ; Text terminal
 #+END_SRC
 
 ** Global key bindings

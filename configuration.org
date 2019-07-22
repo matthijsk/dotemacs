@@ -570,14 +570,14 @@ modal editing of Vim combined with the extensibility of Emacs.
 
            :map evil-insert-state-map
                 ("C-s" . save-buffer))
-    :init
+    :custom
     ;; Enable C-i when on a graphical display, and disable when on a terminal (to
     ;; enable use of <TAB> in org-mode with evil-mode).
-    (setq evil-want-C-i-jump (display-graphic-p))
-    (setq evil-want-C-u-scroll t)
-    (setq evil-symbol-word-search t)
-    (setq evil-shift-width 2)
-    (setq evil-move-beyond-eol t)
+    (evil-want-C-i-jump (display-graphic-p))
+    (evil-want-C-u-scroll t)
+    (evil-symbol-word-search t)
+    (evil-shift-width 2)
+    (evil-move-beyond-eol t)
 
     :config
     ;; Ensure the yank register (on Windows, at least) is not overwritten when
@@ -756,17 +756,18 @@ Git repositories for quick navigation.
                 ("M-<f9>" . projectile-test-project)
                 ("C-M-<f9>" . projectile-configure-project))
 
+    :custom
+    (projectile-globally-ignored-files '("TAGS" "GTAGS" "GRTAGS" "*.png" "*.ini" "*.dll" "*.lib" "*.bmp" "*.jpg"))
+
+    (projectile-indexing-method 'hybrid)
+    (projectile-enable-caching t)
+    (projectile-use-git-grep t)
+
     :init
     (add-hook 'prog-mode-hook 'projectile-mode)
 
     :config
-    (projectile-mode 1)
-
-    (setq projectile-globally-ignored-files '("TAGS" "GTAGS" "GRTAGS" "*.png" "*.ini" "*.dll" "*.lib" "*.bmp" "*.jpg"))
-
-    (setq projectile-indexing-method 'hybrid)
-    (setq projectile-enable-caching t)
-    (setq projectile-use-git-grep t))
+    (projectile-mode 1))
 #+END_SRC
 
 * Helm-projectile
@@ -787,9 +788,9 @@ completion.
           ("psg" . helm-projectile-grep)
           ("pa"  . helm-projectile-find-other-file))
 
-    :init
-    (setq helm-projectile-fuzzy-match nil)
-    (setq projectile-switch-project-action 'helm-projectile)
+    :custom
+    (helm-projectile-fuzzy-match nil)
+    (projectile-switch-project-action 'helm-projectile)
 
     :config
     (helm-projectile-on))
@@ -837,35 +838,44 @@ keeping track of time spent at work.
            ("M-p"   . org-previous-visible-heading)
            ("M-n"   . org-next-visible-heading))
 
-    :config
-    (setq org-todo-keywords
-          '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
+    :custom
+    (org-todo-keywords '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
 
-    (setq org-default-notes-file (concat org-directory "/notes.org"))
+    (org-default-notes-file (concat org-directory "/notes.org"))
 
     ;; Set org-agenda-files to file with list containing all agenda files.
-    (setq org-agenda-files (concat org-directory "/org-agenda-files.org"))
+    (org-agenda-files (concat org-directory "/org-agenda-files.org"))
 
-    (org-clock-persistence-insinuate)
-
-    (setq org-clock-clocktable-default-properties
-          '(:maxlevel 3 :scope agenda :fileskip0 t :block yesterday :narrow 120!))
+    (org-clock-clocktable-default-properties
+     '(:maxlevel 3 :scope agenda :fileskip0 t :block yesterday :narrow 120!))
 
     ;; Show total amount of hours and minutes, instead of formatting as "d hh:mm".
-    (setq org-duration-format '((special . h:mm)))
+    (org-duration-format '((special . h:mm)))
 
     ;; When using using org-clock-display, display the total time for subtrees.
-    (setq org-clock-display-default-range 'untilnow)
+    (org-clock-display-default-range 'untilnow)
 
     ;; Set all agenda files as refile targets.
-    (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+    (org-refile-targets '((org-agenda-files :maxlevel . 3)))
 
     ;; Enable refiling to the top level of an org file.
-    (setq org-refile-use-outline-path 'file)
+    (org-refile-use-outline-path 'file)
 
     ;; Do not interpret "_" and "^" for sub and superscript when
     ;; exporting.
-    (setq org-export-with-sub-superscripts nil)
+    (org-export-with-sub-superscripts nil)
+
+    ;; Don't complete in steps, works well with narrowing frameworks such as Helm.
+    (org-outline-path-complete-in-steps nil)
+
+    ;; Save the running clock when Emacs exits.
+    (org-clock-persist 'clock)
+
+    ;; Flushright tags to column 100.
+    (org-tags-column -100)
+
+    :config
+    (org-clock-persistence-insinuate)
 
     ;; When in org-mode, use expected org-mode tab behaviour when in
     ;; Normal and Insert state. Set jump keys to navigate org links and
@@ -876,15 +886,6 @@ keeping track of time spent at work.
       (kbd "C-o") 'org-mark-ring-goto)
 
     (evil-define-key 'insert org-mode-map [tab] 'org-cycle)
-
-    ;; Don't complete in steps, works well with narrowing frameworks such as Helm.
-    (setq org-outline-path-complete-in-steps nil)
-
-    ;; Save the running clock when Emacs exits.
-    (setq org-clock-persist 'clock)
-
-    ;; Flushright tags to column 100.
-    (setq org-tags-column -100)
 
     (defun my-org-edit-special (&optional arg)
       "Edit source block below current window when calling `org-edit-special'.
@@ -950,9 +951,15 @@ a single file are a breeze with Magit.
            ("sg" . magit-staging)
            ("f"  . magit-file-popup))
 
-    :init
+    :custom
     ;; Disable VC git backend. No need when using Magit.
-    (setq vc-handled-backends (delq 'Git vc-handled-backends))
+    (vc-handled-backends (delq 'Git vc-handled-backends))
+
+    (magit-refresh-verbose t)
+
+    (auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffer-p)
+
+    :init
     (evil-set-initial-state 'magit-staging-mode 'emacs)
 
     :config
@@ -980,11 +987,7 @@ a single file are a breeze with Magit.
 
     (magit-define-popup-switch 'magit-log-popup ?f "first parent" "--first-parent")
 
-    (evil-define-key 'normal magit-blame-mode-map (kbd "q") 'magit-blame-quit)
-
-    (setq magit-refresh-verbose t)
-
-    (setq auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffer-p))
+    (evil-define-key 'normal magit-blame-mode-map (kbd "q") 'magit-blame-quit))
 #+END_SRC
 
 Also install major modes for editing various git configuration files. See
@@ -1043,15 +1046,15 @@ Set up [[https://github.com/syohex/emacs-helm-gtags][helm-gtags]], a Helm interf
     :defer t
     :diminish helm-gtags-mode
 
+    :custom
+    (helm-gtags-path-style 'absolute)
+    (helm-gtags-use-input-at-cursor t)
+    (helm-gtags-auto-update t)
+    (helm-gtags-pulse-at-cursor t)
+
     :init
     (add-hook 'c-mode-hook   'helm-gtags-mode)
     (add-hook 'c++-mode-hook 'helm-gtags-mode)
-
-    :config
-    (setq helm-gtags-path-style 'absolute)
-    (setq helm-gtags-use-input-at-cursor t)
-    (setq helm-gtags-auto-update t)
-    (setq helm-gtags-pulse-at-cursor t)
 
     (evil-define-key 'normal c-mode-map   (kbd "C-]") 'helm-gtags-dwim)
     (evil-define-key 'normal c++-mode-map (kbd "C-]") 'helm-gtags-dwim)
@@ -1067,16 +1070,19 @@ Set up and use [[http://company-mode.github.io/][Company]] as the text completio
     :diminish company-mode
     :defer t
 
+    :custom
+    (company-dabbrev-downcase nil) ;; Do not downcase returned candidates.
+    (company-dabbrev-ignore-case t) ;; Ignore case for completion.
+    (company-dabbrev-code-ignore-case t) ;; Ignore case for completion.
+    (company-async-timeout 10)
+    (company-idle-delay nil)
+
     :init
     (add-hook 'prog-mode-hook 'company-mode)
 
     :config
-    (setq company-backends (delete 'company-semantic company-backends)) ;; Ensure semantic is not used by company.
-    (setq company-dabbrev-downcase nil) ;; Do not downcase returned candidates.
-    (setq company-dabbrev-ignore-case t) ;; Ignore case for completion.
-    (setq company-dabbrev-code-ignore-case t) ;; Ignore case for completion.
-    (setq company-async-timeout 10)
-    (setq company-idle-delay nil))
+    ;; Ensure semantic is not used by company.
+    (setq company-backends (delete 'company-semantic company-backends)))
 #+END_SRC
 
 * Helm company
@@ -1086,9 +1092,11 @@ Set up [[https://github.com/Sodel-the-Vociferous/helm-company][helm-company]], a
     :pin melpa-stable
     :after company
 
+    :custom
+    (helm-company-fuzzy-match nil)
+
     :config
-    (evil-define-key 'insert prog-mode-map (kbd "TAB") 'helm-company)
-    (setq helm-company-fuzzy-match nil))
+    (evil-define-key 'insert prog-mode-map (kbd "TAB") 'helm-company))
 #+END_SRC
 
 * Semantic

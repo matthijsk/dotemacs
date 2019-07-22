@@ -571,9 +571,9 @@ modal editing of Vim combined with the extensibility of Emacs.
            :map evil-insert-state-map
                 ("C-s" . save-buffer))
     :custom
-    ;; Enable C-i when on a graphical display, and disable when on a terminal (to
-    ;; enable use of <TAB> in org-mode with evil-mode).
-    (evil-want-C-i-jump (display-graphic-p))
+    (evil-want-C-i-jump (display-graphic-p)
+                        "Enable C-i when on a graphical display, and disable when
+    on a terminal (to enable use of <TAB> in org-mode with evil-mode).")
     (evil-want-C-u-scroll t)
     (evil-symbol-word-search t)
     (evil-shift-width 2)
@@ -843,36 +843,34 @@ keeping track of time spent at work.
 
     (org-default-notes-file (concat org-directory "/notes.org"))
 
-    ;; Set org-agenda-files to file with list containing all agenda files.
-    (org-agenda-files (concat org-directory "/org-agenda-files.org"))
+    (org-agenda-files (concat org-directory "/org-agenda-files.org")
+                      "Set org-agenda-files to file with list containing all agenda files.")
 
     (org-clock-clocktable-default-properties
      '(:maxlevel 3 :scope agenda :fileskip0 t :block yesterday :narrow 120!))
 
-    ;; Show total amount of hours and minutes, instead of formatting as "d hh:mm".
-    (org-duration-format '((special . h:mm)))
+    (org-duration-format '((special . h:mm))
+                         "Show total amount of hours and minutes, instead of formatting as \"d hh:mm\".")
 
-    ;; When using using org-clock-display, display the total time for subtrees.
-    (org-clock-display-default-range 'untilnow)
+    (org-clock-display-default-range 'untilnow
+                                     "When using using org-clock-display, display the total time for subtrees.")
 
-    ;; Set all agenda files as refile targets.
-    (org-refile-targets '((org-agenda-files :maxlevel . 3)))
+    (org-refile-targets '((org-agenda-files :maxlevel . 3))
+                        "Set all agenda files as refile targets.")
 
-    ;; Enable refiling to the top level of an org file.
-    (org-refile-use-outline-path 'file)
+    (org-refile-use-outline-path 'file
+                                 "Enable refiling to the top level of an org file.")
 
-    ;; Do not interpret "_" and "^" for sub and superscript when
-    ;; exporting.
-    (org-export-with-sub-superscripts nil)
+    (org-export-with-sub-superscripts nil
+                                      "Do not interpret "_" and "^" for sub and superscript when exporting.")
 
-    ;; Don't complete in steps, works well with narrowing frameworks such as Helm.
-    (org-outline-path-complete-in-steps nil)
+    (org-outline-path-complete-in-steps nil
+                                        "Don't complete in steps, works well with narrowing frameworks such as Helm.")
 
-    ;; Save the running clock when Emacs exits.
-    (org-clock-persist 'clock)
+    (org-clock-persist 'clock
+                       "Save the running clock when Emacs exits.")
 
-    ;; Flushright tags to column 100.
-    (org-tags-column -100)
+    (org-tags-column -100 "Flushright tags to column 100.")
 
     :config
     (org-clock-persistence-insinuate)
@@ -952,8 +950,8 @@ a single file are a breeze with Magit.
            ("f"  . magit-file-popup))
 
     :custom
-    ;; Disable VC git backend. No need when using Magit.
-    (vc-handled-backends (delq 'Git vc-handled-backends))
+    (vc-handled-backends (delq 'Git vc-handled-backends)
+                         "Disable VC git backend. No need when using Magit.")
 
     (magit-refresh-verbose t)
 
@@ -1071,9 +1069,9 @@ Set up and use [[http://company-mode.github.io/][Company]] as the text completio
     :defer t
 
     :custom
-    (company-dabbrev-downcase nil) ;; Do not downcase returned candidates.
-    (company-dabbrev-ignore-case t) ;; Ignore case for completion.
-    (company-dabbrev-code-ignore-case t) ;; Ignore case for completion.
+    (company-dabbrev-downcase nil "Do not downcase returned candidates.")
+    (company-dabbrev-ignore-case t "Ignore case for completion.")
+    (company-dabbrev-code-ignore-case t "Ignore case for completion.")
     (company-async-timeout 10)
     (company-idle-delay nil)
 

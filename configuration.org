@@ -716,9 +716,9 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
            ("hr" . my-helm-resume-existing))
 
     :init
-    ;; Workaround for slow Helm issue with Emacs 26 on X.
+    ;; Workaround for slow Helm issue with Emacs 26.1 on X.
     ;; See https://github.com/emacs-helm/helm/wiki/FAQ#slow-frame-and-window-popup-in-emacs-26
-    (when (= emacs-major-version 26)
+    (when (version= emacs-version "26.1")
       (setq x-wait-for-event-timeout nil))
 
     :config

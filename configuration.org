@@ -415,6 +415,7 @@ to me on modern high resolution screens.
 Ensure org-mode buffers are fully expanded.
 #+begin_src emacs-lisp
   (add-hook 'ediff-prepare-buffer-hook (lambda ()
+                                         "Ensure org-mode buffers are fully expanded."
                                          (when (eq major-mode 'org-mode)
                                            (org-show-all))))
 #+end_src

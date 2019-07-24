@@ -841,8 +841,6 @@ keeping track of time spent at work.
     :custom
     (org-todo-keywords '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
 
-    (org-default-notes-file (concat org-directory "/notes.org"))
-
     (org-agenda-files (concat org-directory "/org-agenda-files.org")
                       "Set org-agenda-files to file with list containing all agenda files.")
 
@@ -873,6 +871,8 @@ keeping track of time spent at work.
     (org-tags-column -100 "Flushright tags to column 100.")
 
     :config
+    (setq org-default-notes-file (concat org-directory "/notes.org"))
+
     (org-clock-persistence-insinuate)
 
     ;; When in org-mode, use expected org-mode tab behaviour when in

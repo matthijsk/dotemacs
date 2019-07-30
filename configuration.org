@@ -1236,6 +1236,16 @@ Set up [[https://github.com/Sodel-the-Vociferous/helm-company][helm-company]], a
     (evil-define-key 'normal c++-mode-map (kbd "C-}") 'semantic-ia-fast-jump))
 #+END_SRC
 
+* Clang format
+With clang format a source file can be automatically formatted according to a
+set of rules (usually defined in a file =.clang-format= in the project root).
+With the clang-format Emacs package it is possible to format the entire buffer,
+but also to format a region or just the current line.
+#+BEGIN_SRC emacs-lisp
+  (use-package clang-format
+    :bind (("C-=" . clang-format-region)))
+#+END_SRC
+
 * Git for Windows path
 Try and determine if Git is available. If it is, and we are on a Windows system,
 also add =git-path/../usr/bin= to =exec-path=, to enable use of =diff=, =gpg=

@@ -1,5 +1,14 @@
 (require 'package)
 
+;; Workaround for issue in Emacs 26 where, depending on the installed version of
+;; GnuTLS, retrieving a package archive over https fails with =bad request=
+;; errors. See
+;; https://www.reddit.com/r/emacs/comments/cdei4p/failed_to_download_gnu_archive_bad_request
+;; and https://debbugs.gnu.org/cgi/bugreport.cgi?bug=34341 for a discussion.
+(when (and (version< emacs-version "26.3")
+           (>= libgnutls-version 30606))
+  (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
+
 (add-to-list 'package-archives'("melpa-stable" . "https://stable.melpa.org/packages/"))
 
 ;; For important compatibility libraries like cl-lib

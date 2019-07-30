@@ -8,16 +8,6 @@ settings and the call to ~(package-initialize)~ are done in [[file:init.el][init
 
 Packages are installed and configured using [[https://github.com/jwiegley/use-package][use-package]].
 
-*** GnuTLS
-Workaround for issue in Emacs 26 where, depending on the installed version of
-GnuTLS, retrieving a package archive over https fails with =bad request= errors.
-See [[https://www.reddit.com/r/emacs/comments/cdei4p/failed_to_download_gnu_archive_bad_request/][this]] Reddit thread and [[https://debbugs.gnu.org/cgi/bugreport.cgi?bug=34341][this]] mailing list discussion.
-#+begin_src emacs-lisp
-  (when (and (version< emacs-version "26.3")
-             (>= libgnutls-version 30606))
-    (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
-#+end_src
-
 ** General settings
 General Emacs settings that don't fall under any specific category.
 

@@ -830,6 +830,8 @@ keeping track of time spent at work.
            ("M-n"   . org-next-visible-heading))
 
     :custom
+    (org-directory "~/org")
+  
     (org-todo-keywords '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
 
     (org-agenda-files (concat org-directory "/org-agenda-files.org")

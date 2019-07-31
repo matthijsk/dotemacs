@@ -823,6 +823,7 @@ keeping track of time spent at work.
            ("C-c i" . my-org-clock-in)
            ("C-c j" . my-org-clock-goto)
            ("C-c o" . org-clock-out)
+           ("C-c t" . my-org-todo-list)
            :map org-mode-map
            ("C-c '" . my-org-edit-special)
            ("M-p"   . org-previous-visible-heading)
@@ -874,6 +875,11 @@ keeping track of time spent at work.
       (kbd "C-o") 'org-mark-ring-goto)
 
     (evil-define-key 'insert org-mode-map [tab] 'org-cycle)
+
+    (defun my-org-todo-list ()
+      "Show org-todo-list with \"IN PROGRESS\" keyword selected."
+      (interactive)
+      (org-todo-list 2))
 
     (defun my-org-edit-special (&optional arg)
       "Edit source block below current window when calling `org-edit-special'.

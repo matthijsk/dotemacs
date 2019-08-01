@@ -1078,8 +1078,12 @@ Set up and use [[http://company-mode.github.io/][Company]] as the text completio
     (add-hook 'prog-mode-hook 'company-mode)
 
     :config
-    ;; Ensure semantic is not used by company.
-    (setq company-backends (delete 'company-semantic company-backends)))
+    ;; Ensure semantic is not used as a company backend.
+    (setq company-backends (delete 'company-semantic company-backends))
+
+    ;; Ensure clang is not used as a company backend when it is not available.
+    (unless (executable-find "clang")
+      (setq company-backends (delete 'company-clang company-backends))))
 #+END_SRC
 
 * Helm company

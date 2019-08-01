@@ -831,7 +831,7 @@ keeping track of time spent at work.
 
     :custom
     (org-directory "~/org")
-  
+
     (org-todo-keywords '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
 
     (org-agenda-files (concat org-directory "/org-agenda-files.org")
@@ -897,8 +897,9 @@ keeping track of time spent at work.
         (call-interactively 'org-edit-special)))
 
     (defcustom my-org-worklog (concat org-directory "/worklog.org")
-      "File for logging daily work time."
-      :type 'file)
+      "Org file for logging daily work time."
+      :type 'file
+      :group 'work)
 
     (defun my-org-clock-goto ()
       "Go to recently clocked tasks by offering a selection.

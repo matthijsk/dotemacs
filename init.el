@@ -39,7 +39,9 @@
 (setq use-package-always-ensure t)
 
 (defcustom my-configuration-file (concat user-emacs-directory "configuration.org")
-  "Custom configuration file, loaded by `user-init-file'.")
+  "Custom configuration file, loaded by `user-init-file'."
+  :type 'file
+  :group 'initialization)
 
 ;; To reduce startup time, only tangle configuration when the .org file is newer
 ;; than the .el file. Otherwise, simply load the .el file.

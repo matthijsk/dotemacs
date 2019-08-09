@@ -1117,13 +1117,9 @@ Set up [[https://github.com/Sodel-the-Vociferous/helm-company][helm-company]], a
     :config
     (global-semantic-stickyfunc-mode)
 
-    (defun my-semantic-ia-fast-jump ()
-      "Saves current position in evil jump list, then calls `semantic-ia-fast-jump'."
-      (interactive)
-      (evil--jumps-push)
-      (semantic-ia-fast-jump (point)))
+    (advice-add #'semantic-ia-fast-jump :before #'evil-set-jump)
 
-    (evil-define-key 'normal c++-mode-map (kbd "C-}") 'my-semantic-ia-fast-jump))
+    (evil-define-key 'normal c++-mode-map (kbd "C-}") 'semantic-ia-fast-jump))
 #+END_SRC
 
 * Git for Windows path

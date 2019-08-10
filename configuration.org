@@ -13,11 +13,11 @@ General Emacs settings that don't fall under any specific category.
 
 Don't litter the init file with customization changes. Instead, write it to a
 different file that is not tracked by version control.
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
   (setq custom-file (concat user-emacs-directory "custom.el"))
   (when (file-exists-p custom-file)
     (load custom-file))
-#+end_src
+#+END_SRC
 
 Set default coding system.
 #+BEGIN_SRC emacs-lisp
@@ -411,12 +411,12 @@ to me on modern high resolution screens.
 #+END_SRC
 
 Ensure org-mode buffers are fully expanded.
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
   (add-hook 'ediff-prepare-buffer-hook (lambda ()
                                          "Ensure org-mode buffers are fully expanded."
                                          (when (eq major-mode 'org-mode)
                                            (org-show-all))))
-#+end_src
+#+END_SRC
 
 Most GNU/Linux systems I use have no window manager installed (such as servers),
 or a tiling window manager (for personal use). When ediff runs in a terminal,
@@ -425,15 +425,15 @@ frame. I would like the same behavior when Emacs runs in a tiling window
 manager, as otherwise the floating control frame is immediately tiled by the
 window manager and thus becomes disproportionately large (depending on how many
 windows are already open).
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
   (when (eq system-type 'gnu/linux)
     (setq ediff-window-setup-function 'ediff-setup-windows-plain))
-#+end_src
+#+END_SRC
 
 Press =d= to copy both A and B into C. Useful when the changes of both sides in
 a conflict are needed. Taken from
 [[https://stackoverflow.com/questions/9656311/conflict-resolution-with-emacs-ediff-how-can-i-take-the-changes-of-both-version]].
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
   (defun my-ediff-copy-both-to-C ()
     "Copy both A and B into C."
     (interactive)
@@ -444,7 +444,7 @@ a conflict are needed. Taken from
 
   (defun my-add-d-to-ediff-mode-map () (define-key ediff-mode-map "d" 'my-ediff-copy-both-to-C))
   (add-hook 'ediff-keymap-setup-hook 'my-add-d-to-ediff-mode-map)
-#+end_src
+#+END_SRC
 
 ** Eww
 Set eww (shr) frame width.
@@ -462,45 +462,45 @@ Initialize and set up eshell completion.
 
 ** Dired
 Use human-readable sizes in dired listings.
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
   (setq dired-listing-switches "-alh")
-#+end_src
+#+END_SRC
 
 ** Convenience
 Various functions to make editing more convenient.
 
 Convenience function to open an OS native explorer window for the currently
 visited file. Yes, I am aware of dired. Sometimes you still need explorer.
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
   (defun my-browse-file-directory ()
     "Open the current file's directory however the OS would."
     (interactive)
     (if default-directory
         (browse-url-of-file (expand-file-name default-directory))
       (error "No `default-directory' to open")))
-#+end_src
+#+END_SRC
 
 ** Auth sources
 Only ever use encrypted .authinfo.gpg files.
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
   (setq auth-sources '("~/.authinfo.gpg"))
-#+end_src
+#+END_SRC
 
 ** Man
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
   (setenv "MANWIDTH" "80")
-#+end_src
+#+END_SRC
 
 ** Abbrev
 Enable ~abbrev-mode~ for ~text-mode~.
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
   (add-hook 'text-mode-hook 'abbrev-mode)
-#+end_src
+#+END_SRC
 
 ** Calendar
 Add a function to insert the current date into the current buffer. Useful for
 inserting the current date in a written form.
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
   (use-package calendar
     :commands (my-insert-current-date)
     :config
@@ -513,7 +513,7 @@ inserting the current date in a written form.
       (interactive "*P")
       (insert (calendar-date-string (calendar-current-date) nil
                                     nodayname))))
-#+end_src
+#+END_SRC
 
 * Diminish
 [[https://github.com/myrjola/diminish.el][Diminish]] can be used as part of =use-package= to hide minor mode strings from
@@ -794,12 +794,12 @@ completion.
 The package [[https://github.com/tj64/outline-magic][outline-magic]] provides ~(outline-cycle)~, which functions similar to
 ~(org-cycle)~. This is useful for the odd occasion when I run into an
 outline-mode buffer.
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
   (use-package outline-magic
     :if (> emacs-major-version 24)
     :bind (:map outline-mode-map
                 ([tab] . outline-cycle)))
-#+end_src
+#+END_SRC
 
 * Org mode
 [[https://orgmode.org/][Org-mode]] is, for me, a compelling reason to use Emacs. At the very
@@ -940,12 +940,12 @@ keeping track of time spent at work.
 #+END_SRC
 
 Add ox-gfm to enable exporting of org mode buffers to Github Flavored Markdown.
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
   (use-package ox-gfm
     :pin melpa-stable
     :defer 10
     :after ox)
-#+end_src
+#+END_SRC
 
 * Magit
 [[https://magit.vc/][Magit]] is another (alongside org-mode) compelling reason to use Emacs. Seriously,
@@ -1159,9 +1159,9 @@ Windows system. If a Git executable cannot be found a message is displayed.
 
 * GPG
 Ensure GnuPG password queries go through the minibuffer.
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
   (setq epa-pinentry-mode 'loopback)
-#+end_src
+#+END_SRC
 
 * Dired-narrow
 Dired-narrow is a nice package to do quick filtering in dired buffers.
@@ -1195,7 +1195,7 @@ major modes are derived from =prog-mode=.
 #+END_SRC
 
 * Markdown mode
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
   (use-package markdown-mode
     :pin melpa-stable
     :defer t)
@@ -1203,11 +1203,11 @@ major modes are derived from =prog-mode=.
   (use-package markdown-toc
     :pin melpa-stable
     :defer t)
-#+end_src
+#+END_SRC
 
 * JSON mode
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
   (use-package json-mode
     :pin melpa-stable
     :defer t)
-#+end_src
+#+END_SRC

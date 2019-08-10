@@ -830,6 +830,7 @@ keeping track of time spent at work.
            ("C-c t" . my-org-todo-list)
            :map org-mode-map
            ("C-c '" . my-org-edit-special)
+           ([remap org-insert-structure-template] . my-org-insert-structure-template)
            ("M-p"   . org-previous-visible-heading)
            ("M-n"   . org-next-visible-heading))
 
@@ -881,6 +882,15 @@ keeping track of time spent at work.
       (kbd "C-o") 'org-mark-ring-goto)
 
     (evil-define-key 'insert org-mode-map [tab] 'org-cycle)
+
+    (defun my-org-insert-structure-template ()
+      "Like `org-insert-structure-template', but upcase all org block structures in current buffer."
+      (interactive)
+      (call-interactively #'org-insert-structure-template)
+      (save-excursion
+        (goto-char (point-min))
+        (while (re-search-forward "#\\+\\(begin\\|end\\)_[[:alnum:]]+" nil t)
+          (replace-match (upcase (match-string 0))))))
 
     (defun my-org-todo-list ()
       "Show org-todo-list with \"IN PROGRESS\" keyword selected."

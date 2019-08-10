@@ -829,7 +829,7 @@ work.
            ("C-c o" . org-clock-out)
            ("C-c t" . my-org-todo-list)
            :map org-mode-map
-           ("C-c '" . my-org-edit-special)
+           ([remap org-edit-special] . my-org-edit-special)
            ([remap org-insert-structure-template] . my-org-insert-structure-template)
            ("M-p"   . org-previous-visible-heading)
            ("M-n"   . org-next-visible-heading))

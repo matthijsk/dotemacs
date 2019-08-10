@@ -809,8 +809,8 @@ of time spent on individual tasks, in addition to simply keeping track
 of the total amount of time spent at work during a day, which I have
 been doing for some years now.
 
-The ~(my-clock-in)~ and ~(my-clock-in-monday)~ functions are used for
-keeping track of time spent at work.
+The ~(my-org-clock-in)~ function is used for keeping track of time spent at
+work.
 #+BEGIN_SRC emacs-lisp
   ;; Org html export requires htmlize.
   (use-package htmlize

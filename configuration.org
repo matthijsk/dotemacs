@@ -183,15 +183,15 @@ Bind mouse buttons to Info-mode and help-mode navigation.
 #+BEGIN_SRC emacs-lisp
   (eval-after-load 'info
     '(if (eq system-type 'windows-nt)
-	 (progn (define-key Info-mode-map (kbd "<mouse-4>") 'Info-history-back)
-		(define-key Info-mode-map (kbd "<mouse-5>") 'Info-history-forward))
+         (progn (define-key Info-mode-map (kbd "<mouse-4>") 'Info-history-back)
+                (define-key Info-mode-map (kbd "<mouse-5>") 'Info-history-forward))
        (define-key Info-mode-map (kbd "<mouse-8>") 'Info-history-back)
        (define-key Info-mode-map (kbd "<mouse-9>") 'Info-history-forward)))
 
   (eval-after-load 'help
     '(if (eq system-type 'windows-nt)
-	 (progn (define-key help-mode-map (kbd "<mouse-4>") 'help-go-back)
-		(define-key help-mode-map (kbd "<mouse-5>") 'help-go-forward))
+         (progn (define-key help-mode-map (kbd "<mouse-4>") 'help-go-back)
+                (define-key help-mode-map (kbd "<mouse-5>") 'help-go-forward))
        (define-key help-mode-map (kbd "<mouse-8>") 'help-go-back)
        (define-key help-mode-map (kbd "<mouse-9>") 'help-go-forward)))
 #+END_SRC

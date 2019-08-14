@@ -823,7 +823,6 @@ work.
     :bind (("C-c l" . org-store-link)
            ("C-c a" . org-agenda)
            ("C-c c" . org-capture)
-           ("C-c b" . org-switchb)
            ("C-c i" . my-org-clock-in)
            ("C-c j" . my-org-clock-goto)
            ("C-c o" . org-clock-out)

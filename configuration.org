@@ -993,15 +993,16 @@ a single file are a breeze with Magit.
         (magit-insert-unstaged-changes)
         (magit-insert-staged-changes)))
 
-    (defun magit-staging ()
+    (defun magit-staging (&optional directory)
       "Depending on OS, use `magit-status-mode' or `magit-staging-mode'.
   The former is the default Magit interface. However, on Windows
   systems Git is annoyingly slow, so instead use the latter as a
   stripped down version for better performance."
       (interactive)
-      (if (eq system-type 'windows-nt)
-          (magit-mode-setup #'magit-staging-mode)
-        (magit-mode-setup #'magit-status-mode)))
+      (let ((default-directory (or directory default-directory)))
+        (if (eq system-type 'windows-nt)
+            (magit-mode-setup #'magit-staging-mode)
+          (magit-mode-setup #'magit-status-mode))))
 
     (magit-define-popup-switch 'magit-log-popup ?f "first parent" "--first-parent")
 

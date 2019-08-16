@@ -894,7 +894,7 @@ work.
     (defun my-org-todo-list ()
       "Show org-todo-list with \"IN PROGRESS\" keyword selected."
       (interactive)
-      (org-todo-list 2))
+      (org-todo-list "IN PROGRESS"))
 
     (defun my-org-edit-special (&optional arg)
       "Edit source block below current window when calling `org-edit-special'.

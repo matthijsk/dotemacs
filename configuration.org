@@ -790,17 +790,6 @@ completion.
     (helm-projectile-on))
 #+END_SRC
 
-* Outline-magic
-The package [[https://github.com/tj64/outline-magic][outline-magic]] provides ~(outline-cycle)~, which functions similar to
-~(org-cycle)~. This is useful for the odd occasion when I run into an
-outline-mode buffer.
-#+BEGIN_SRC emacs-lisp
-  (use-package outline-magic
-    :if (> emacs-major-version 24)
-    :bind (:map outline-mode-map
-                ([tab] . outline-cycle)))
-#+END_SRC
-
 * Org mode
 [[https://orgmode.org/][Org-mode]] is, for me, a compelling reason to use Emacs. At the very
 least, it is useful for note taking and managing work using TODO
@@ -827,11 +816,18 @@ work.
            ("C-c j" . my-org-clock-goto)
            ("C-c o" . org-clock-out)
            ("C-c t" . my-org-todo-list)
+
            :map org-mode-map
            ([remap org-edit-special] . my-org-edit-special)
            ([remap org-insert-structure-template] . my-org-insert-structure-template)
            ("M-p"   . org-previous-visible-heading)
-           ("M-n"   . org-next-visible-heading))
+           ("M-n"   . org-next-visible-heading)
+
+           :map outline-mode-map
+           ([tab] . org-cycle)
+           ("<S-iso-leftab>" . org-shifttab)
+           ("S-<tab>" . org-shifttab)
+           ("<backtab>" . org-shifttab))
 
     :custom
     (org-directory "~/org")

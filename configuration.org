@@ -515,6 +515,14 @@ inserting the current date in a written form.
                                     nodayname))))
 #+END_SRC
 
+** Generic-x
+   Generic modes for common file types. Comes bundled with Emacs.
+   #+BEGIN_SRC emacs-lisp
+  (use-package generic-x
+    ;; Ensure use-package does not try to load generic-x from a package archive.
+    :ensure nil)
+   #+END_SRC
+
 * Diminish
 [[https://github.com/myrjola/diminish.el][Diminish]] can be used as part of =use-package= to hide minor mode strings from
 the modeline.

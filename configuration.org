@@ -838,11 +838,11 @@ work.
            ("<backtab>" . org-shifttab))
 
     :custom
-    (org-directory "~/org")
+    (org-directory "~/org/")
 
     (org-todo-keywords '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
 
-    (org-agenda-files (concat org-directory "/org-agenda-files.org")
+    (org-agenda-files (concat org-directory "org-agenda-files.org")
                       "Set org-agenda-files to file with list containing all agenda files.")
 
     (org-clock-clocktable-default-properties
@@ -872,7 +872,7 @@ work.
     (org-tags-column -100 "Flushright tags to column 100.")
 
     :config
-    (setq org-default-notes-file (concat org-directory "/notes.org"))
+    (setq org-default-notes-file (concat org-directory "notes.org"))
 
     (org-clock-persistence-insinuate)
 
@@ -913,7 +913,7 @@ work.
                org-src-window-setup)))
         (call-interactively 'org-edit-special)))
 
-    (defcustom my-org-worklog (concat org-directory "/worklog.org")
+    (defcustom my-org-worklog (concat org-directory "worklog.org")
       "Org file for logging daily work time."
       :type 'file
       :group 'work)

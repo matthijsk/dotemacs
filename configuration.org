@@ -1010,6 +1010,8 @@ a single file are a breeze with Magit.
 
     (magit-define-popup-switch 'magit-log-popup ?f "first parent" "--first-parent")
 
+    (define-key git-commit-mode-map (kbd "C-c t") 'my-insert-current-date)
+
     (evil-define-key 'normal magit-blame-mode-map (kbd "q") 'magit-blame-quit))
 #+END_SRC
 

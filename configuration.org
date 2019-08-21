@@ -617,6 +617,7 @@ modal editing of Vim combined with the extensibility of Emacs.
     (dolist (mode '(shell-mode
                     eshell-mode
                     term-mode
+                    inferior-emacs-lisp-mode
                     image-mode
                     dired-mode
                     profiler-report-mode))

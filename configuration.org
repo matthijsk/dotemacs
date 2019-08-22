@@ -911,7 +911,7 @@ work.
       (interactive)
       (let ((org-src-window-setup
              (if (> (length (window-list)) 1)
-                 'split-window-below
+                 'current-window
                org-src-window-setup)))
         (call-interactively 'org-edit-special)))
 

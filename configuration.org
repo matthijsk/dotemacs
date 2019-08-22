@@ -1166,6 +1166,7 @@ Windows system. If a Git executable cannot be found a message is displayed.
 
             ;; Set the path to gpg.
             (use-package epg
+              :defer t
               :custom
               (epg-gpg-program (concat git-path "/gpg"))))
         (message "Git not found, please update your PATH environment \

@@ -45,10 +45,10 @@
 
 ;; To reduce startup time, only tangle configuration when the .org file is newer
 ;; than the .el file. Otherwise, simply load the .el file.
-(let ((my-config-file-el (concat (file-name-sans-extension my-configuration-file) ".el")))
-  (if (file-newer-than-file-p my-configuration-file my-config-file-el)
+(let ((tangled-file (concat (file-name-sans-extension my-configuration-file) ".el")))
+  (if (file-newer-than-file-p my-configuration-file tangled-file)
       (org-babel-load-file my-configuration-file)
-    (load-file my-config-file-el)))
+    (load-file tangled-file)))
 
 ;; To prevent the initial startup message from stepping over this message,
 ;; customize the variable `inhibit-startup-echo-area-message'.

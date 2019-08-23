@@ -725,6 +725,10 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
     (when (version= emacs-version "26.1")
       (setq x-wait-for-event-timeout nil))
 
+    :custom
+    (helm-grep-ag-command "rg --color=always --smart-case --no-heading --line-number %s %s %s"
+                          "Use ripgrep instead of ag.")
+
     :config
     (defun my-helm-resume-existing ()
       "Resume previous helm session with prefix to choose among existing helm buffers."
@@ -774,6 +778,16 @@ Git repositories for quick navigation.
     (projectile-mode 1))
 #+END_SRC
 
+* Ripgrep
+  Add ripgrep package for use with =M-x projectile-ripgrep=.
+  Helm-projectile-ripgrep is available in melpa, but not yet in melpa-stable.
+#+BEGIN_SRC emacs-lisp
+  (use-package ripgrep
+    :defer t
+    :custom
+    (ripgrep-arguments '("--smart-case")))
+#+END_SRC
+
 * Helm-projectile
 [[https://github.com/bbatsov/helm-projectile][Combine]] Helm and Projectile for awesome project navigation with awesome
 completion.
@@ -786,6 +800,7 @@ completion.
     (:map projectile-command-map
           ("f" . helm-projectile-find-file)
           ("p" . helm-projectile-switch-project)
+          ("sr" . my-helm-projectile-rg)
           :map evil-leader--default-map
           ("pp"  . helm-projectile-switch-project)
           ("pf"  . helm-projectile-find-file)
@@ -797,6 +812,14 @@ completion.
     (projectile-switch-project-action 'helm-projectile)
 
     :config
+    (defun my-helm-projectile-rg ()
+      "Perform `helm-do-grep-ag' at project root.
+
+    See also `helm-grep-ag-command'. (We use ripgrep)"
+      (interactive)
+      (projectile-with-default-dir (projectile-ensure-project (projectile-project-root))
+        (call-interactively #'helm-do-grep-ag)))
+
     (helm-projectile-on))
 #+END_SRC
 

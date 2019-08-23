@@ -896,6 +896,9 @@ work.
 
     (org-tags-column -100 "Flushright tags to column 100.")
 
+    :init
+    (add-hook 'org-mode-hook #'auto-fill-mode)
+
     :config
     (setq org-default-notes-file (concat org-directory "notes.org"))
 

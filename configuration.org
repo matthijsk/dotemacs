@@ -853,14 +853,14 @@ work.
            :map org-mode-map
            ([remap org-edit-special] . my-org-edit-special)
            ([remap org-insert-structure-template] . my-org-insert-structure-template)
-           ("M-p"   . org-previous-visible-heading)
-           ("M-n"   . org-next-visible-heading)
 
            :map outline-mode-map
            ([tab] . org-cycle)
            ("<S-iso-leftab>" . org-shifttab)
            ("S-<tab>" . org-shifttab)
-           ("<backtab>" . org-shifttab))
+           ("<backtab>" . org-shifttab)
+           ("M-p" . org-previous-visible-heading)
+           ("M-n" . org-next-visible-heading))
 
     :custom
     (org-directory "~/org/")

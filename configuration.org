@@ -621,6 +621,7 @@ modal editing of Vim combined with the extensibility of Emacs.
                     image-mode
                     dired-mode
                     help-mode
+                    calculator-mode
                     profiler-report-mode))
       (evil-set-initial-state mode 'emacs))
 

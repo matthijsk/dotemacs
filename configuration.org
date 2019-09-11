@@ -51,9 +51,11 @@ Increase warning limit to 100 MB for large files.
   (setq large-file-warning-threshold (* 100 1024 1024))
 #+END_SRC
 
-Fix slow redisplay when certain special characters are on screen.
+Fix slow redisplay on Windows for Emacsen older than 27 when certain special
+characters are on screen. Since 27, this value defaults to ~t~ for Windows.
 #+BEGIN_SRC emacs-lisp
-  (setq inhibit-compacting-font-caches t)
+  (when (and (eq system-type 'windows-nt) (< emacs-major-version 27))
+    (setq inhibit-compacting-font-caches t))
 #+END_SRC
 
 Set fill-column to 80 characters. Use ~setq-default~ because fill-column becomes

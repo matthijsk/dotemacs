@@ -935,7 +935,7 @@ work.
       "Edit source block below current window when calling `org-edit-special'.
 
   When editing a source block and more than one window is open
-  `org-src-window-setup' is set to `split-window-below'. Otherwise,
+  `org-src-window-setup' is set to `current-window'. Otherwise,
   the default value is used."
       (interactive)
       (let ((org-src-window-setup

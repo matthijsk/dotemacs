@@ -368,11 +368,10 @@ Emacs init file.
 Use ispell or hunspell as spell checker if available. Also enable flyspell
 for text mode.
 #+BEGIN_SRC emacs-lisp
-  (if (cond ((executable-find "ispell"))
-            ((executable-find "hunspell")
-             (setq ispell-program-name "hunspell")
-             (setq ispell-really-hunspell t)))
-      (add-hook 'text-mode-hook 'flyspell-mode))
+  (cond ((executable-find "ispell"))
+        ((executable-find "hunspell")
+         (setq ispell-program-name "hunspell")
+         (setq ispell-really-hunspell t)))
 #+END_SRC
 
 ** IBuffer

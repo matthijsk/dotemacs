@@ -924,6 +924,13 @@ work.
 
     (evil-define-key 'insert org-mode-map [tab] 'org-cycle)
 
+    (defun my-org-ws-cleanup ()
+      "Clean up whitespace before saving a buffer.
+  Calls `whitespace-cleanup' when the major-mode is `org-mode'."
+      (when (eq major-mode 'org-mode) (whitespace-cleanup)))
+
+    (add-hook 'before-save-hook #'my-org-ws-cleanup)
+
     (defun my-org-insert-structure-template ()
       "Like `org-insert-structure-template', but upcase all org block structures in current buffer."
       (interactive)

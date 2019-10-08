@@ -963,6 +963,24 @@ work.
       :type 'file
       :group 'work)
 
+    (defun my-org-clock-report ()
+      "Show time spent on tasks during previous day.
+  Create new buffer *clocktable.org* and call org-clock-report. With the custom
+  values set in `org-clock-clocktable-default-properties', this is useful to get
+  an overview of time spent on tasks during the previous workday.
+
+  If the current day is Monday, generate a report of last friday
+  and include the weekend."
+      (interactive)
+      (switch-to-buffer "*clocktable*")
+      (org-mode)
+
+      (let ((org-clock-clocktable-default-properties
+             (if (= 1 (calendar-day-of-week (calendar-current-date)))
+                 '(:maxlevel 3 :scope agenda :fileskip0 t :tstart "<-3d>" :tend "<today>" :narrow 120!)
+               org-clock-clocktable-default-properties)))
+        (org-clock-report)))
+
     (defun my-org-clock-goto ()
       "Go to recently clocked tasks by offering a selection.
   Calls `org-clock-goto' with prefix arg SELECT set to t."

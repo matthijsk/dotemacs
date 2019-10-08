@@ -740,8 +740,16 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
 
     (helm-mode 1)
 
-    (setq helm-buffer-max-length nil)
+    (setq helm-buffer-max-length nil))
+#+END_SRC
 
+** Helm Org
+#+BEGIN_SRC emacs-lisp
+  (use-package helm-org
+    :pin melpa-stable
+    :after helm
+
+    :config
     (evil-leader/set-key-for-mode 'org-mode "hs" 'helm-org-in-buffer-headings)
 
     (advice-add 'helm-org-in-buffer-headings

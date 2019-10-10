@@ -365,8 +365,7 @@ Emacs init file.
 #+END_SRC
 
 ** Spell check
-Use ispell or hunspell as spell checker if available. Also enable flyspell
-for text mode.
+Use ispell or hunspell as spell checker if available.
 #+BEGIN_SRC emacs-lisp
   (cond ((executable-find "ispell"))
         ((executable-find "hunspell")

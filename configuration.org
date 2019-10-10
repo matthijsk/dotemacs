@@ -1039,6 +1039,13 @@ a single file are a breeze with Magit.
     (evil-set-initial-state 'magit-staging-mode 'emacs)
 
     :config
+
+    (magit-define-popup-switch 'magit-log-popup ?f "first parent" "--first-parent")
+
+    (define-key git-commit-mode-map (kbd "C-c t") 'my-insert-current-date)
+
+    (evil-define-key 'normal magit-blame-mode-map (kbd "q") 'magit-blame-quit)
+
     ;; Don't show tags when displaying refs.
     (remove-hook 'magit-refs-sections-hook 'magit-insert-tags)
 
@@ -1068,13 +1075,7 @@ a single file are a breeze with Magit.
       (let ((default-directory (or directory default-directory)))
         (if (eq system-type 'windows-nt)
             (magit-mode-setup #'magit-staging-mode)
-          (magit-mode-setup #'magit-status-mode))))
-
-    (magit-define-popup-switch 'magit-log-popup ?f "first parent" "--first-parent")
-
-    (define-key git-commit-mode-map (kbd "C-c t") 'my-insert-current-date)
-
-    (evil-define-key 'normal magit-blame-mode-map (kbd "q") 'magit-blame-quit))
+          (magit-mode-setup #'magit-status-mode)))))
 #+END_SRC
 
 Also install major modes for editing various git configuration files. See

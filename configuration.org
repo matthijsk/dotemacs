@@ -333,6 +333,15 @@ Highlight =TODO= keywords in all programming modes using a special face.
   (add-hook 'prog-mode-hook 'my-prog-mode-todo-font-lock)
 #+END_SRC
 
+Bind ~next-error~ and ~previous-error~ to the easily accessible =M-n= and =M-p=
+in C and C++ mode, respectively.
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'c-mode-common-hook
+            (lambda ()
+              (local-set-key (kbd "M-n") #'next-error)
+              (local-set-key (kbd "M-p") #'previous-error)))
+#+END_SRC
+
 ** Default search function
 Define an alias for whatever search function strikes my fancy today. This makes
 it easier to change functionality without the tedium of having to rebind all

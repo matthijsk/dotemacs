@@ -1217,8 +1217,11 @@ Set up [[https://github.com/Sodel-the-Vociferous/helm-company][helm-company]], a
 #+END_SRC
 
 ** CEDET
+   Set up EDE projects. Useful in combination with Semantic.
 #+BEGIN_SRC emacs-lisp
-  (global-ede-mode t)
+  (require 'ede)
+  (add-hook 'c-mode-hook 'ede-minor-mode)
+  (add-hook 'c++-mode-hook 'ede-minor-mode)
 
   ;; Setup (ede-cpp-root-project) here for projects.
 #+END_SRC

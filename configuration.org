@@ -1217,8 +1217,9 @@ Set up [[https://github.com/Sodel-the-Vociferous/helm-company][helm-company]], a
     (evil-define-key 'normal c++-mode-map (kbd "C-}") 'semantic-ia-fast-jump))
 #+END_SRC
 
-** CEDET
-   Set up EDE projects. Useful in combination with Semantic.
+** EDE
+   Set up EDE projects. Useful in combination with Semantic. For all other
+   project functionality [[*Projectile][Projectile]] is used.
 #+BEGIN_SRC emacs-lisp
   (require 'ede)
   (add-hook 'c-mode-hook 'ede-minor-mode)

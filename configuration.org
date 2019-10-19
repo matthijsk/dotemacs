@@ -1035,7 +1035,9 @@ a single file are a breeze with Magit.
     :bind (("C-x g" . magit-staging)
            :map evil-leader--default-map
            ("sg" . magit-staging)
-           ("f"  . magit-file-popup))
+           ("f"  . magit-file-popup)
+           :map git-commit-mode-map
+           ("C-c t" . my-insert-current-date))
 
     :custom
     (vc-handled-backends (delq 'Git vc-handled-backends)
@@ -1047,14 +1049,11 @@ a single file are a breeze with Magit.
 
     :init
     (evil-set-initial-state 'magit-staging-mode 'emacs)
+    (evil-define-key 'normal magit-blame-mode-map (kbd "q") 'magit-blame-quit)
 
     :config
 
     (magit-define-popup-switch 'magit-log-popup ?f "first parent" "--first-parent")
-
-    (define-key git-commit-mode-map (kbd "C-c t") 'my-insert-current-date)
-
-    (evil-define-key 'normal magit-blame-mode-map (kbd "q") 'magit-blame-quit)
 
     ;; Don't show tags when displaying refs.
     (remove-hook 'magit-refs-sections-hook 'magit-insert-tags)

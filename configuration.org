@@ -630,6 +630,7 @@ modal editing of Vim combined with the extensibility of Emacs.
                     image-mode
                     dired-mode
                     help-mode
+                    compilation-mode
                     calculator-mode
                     semantic-symref-results-mode
                     profiler-report-mode))

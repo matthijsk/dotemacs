@@ -548,8 +548,8 @@ scaling.
 #+BEGIN_SRC emacs-lisp
   (use-package default-text-scale
     :pin melpa-stable
-    :bind (("C-M-="          . default-text-scale-increase)
-           ("C-M--"          . default-text-scale-decrease)))
+    :bind (("C-M-=" . default-text-scale-increase)
+           ("C-M--" . default-text-scale-decrease)))
 
   ;; Bind keys dynamically depending on current OS, while still loading with
   ;; use-package. Hacky, but works.
@@ -560,8 +560,8 @@ scaling.
                ("C-<wheel-down>" . default-text-scale-decrease)))
     (use-package default-text-scale
       :pin melpa-stable
-      :bind (("C-<mouse-4>"    . default-text-scale-increase)
-             ("C-<mouse-5>"    . default-text-scale-decrease))))
+      :bind (("C-<mouse-4>" . default-text-scale-increase)
+             ("C-<mouse-5>" . default-text-scale-decrease))))
 #+END_SRC
 
 * Evil

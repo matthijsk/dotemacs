@@ -348,7 +348,7 @@ it easier to change functionality without the tedium of having to rebind all
 keys.
 #+BEGIN_SRC emacs-lisp
   (defalias 'my-search 'helm-occur)
-  (global-set-key (kbd "C-s") 'my-search)
+  (global-set-key (kbd "M-s o") 'my-search)
 #+END_SRC
 
 ** Find configuration files

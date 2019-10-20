@@ -347,8 +347,8 @@ Define an alias for whatever search function strikes my fancy today. This makes
 it easier to change functionality without the tedium of having to rebind all
 keys.
 #+BEGIN_SRC emacs-lisp
-  (defalias 'my-search 'helm-occur)
-  (global-set-key (kbd "M-s o") 'my-search)
+  (defalias 'my-occur 'helm-occur)
+  (global-set-key (kbd "M-s o") 'my-occur)
 #+END_SRC
 
 ** Find configuration files
@@ -578,10 +578,10 @@ modal editing of Vim combined with the extensibility of Emacs.
     :bind (:map evil-normal-state-map
                 ("C-s"     . save-buffer)
                 ("C-/"     . my-comment-dwim)
-                ("C-f"     . my-search)
+                ("C-f"     . my-occur)
 
            :map evil-motion-state-map
-                ("C-f" . my-search)
+                ("C-f" . my-occur)
 
            :map evil-insert-state-map
                 ("C-s" . save-buffer))

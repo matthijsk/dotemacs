@@ -181,21 +181,33 @@ Exhibit expected X clipboard behaviour (yank with middle mouse button).
   (setq-default select-enable-primary t)
 #+END_SRC
 
+Define OS independent events for mouse forward and back buttons. Inspired by the
+mouse wheel events defined in =mwheel.el=.
+#+BEGIN_SRC emacs-lisp
+  (defvar my-mouse-back-event
+    (if (or (featurep 'w32-win) (featurep 'ns-win))
+        "<mouse-4>"
+      "<mouse-8>")
+    "Event used for mouse back.")
+
+  (defvar my-mouse-forward-event
+    (if (or (featurep 'w32-win) (featurep 'ns-win))
+        "<mouse-5>"
+      "<mouse-9>")
+    "Event used for mouse forward.")
+#+END_SRC
+
 Bind mouse buttons to Info-mode and help-mode navigation.
 #+BEGIN_SRC emacs-lisp
   (eval-after-load 'info
-    '(if (eq system-type 'windows-nt)
-         (eval-when-compile (define-key Info-mode-map (kbd "<mouse-4>") 'Info-history-back)
-                            (define-key Info-mode-map (kbd "<mouse-5>") 'Info-history-forward))
-       (define-key Info-mode-map (kbd "<mouse-8>") 'Info-history-back)
-       (define-key Info-mode-map (kbd "<mouse-9>") 'Info-history-forward)))
+    '(progn
+       (define-key Info-mode-map (kbd my-mouse-back-event) 'Info-history-back)
+       (define-key Info-mode-map (kbd my-mouse-forward-event) 'Info-history-forward)))
 
   (eval-after-load 'help
-    '(if (eq system-type 'windows-nt)
-         (eval-when-compile (define-key help-mode-map (kbd "<mouse-4>") 'help-go-back)
-                            (define-key help-mode-map (kbd "<mouse-5>") 'help-go-forward))
-       (define-key help-mode-map (kbd "<mouse-8>") 'help-go-back)
-       (define-key help-mode-map (kbd "<mouse-9>") 'help-go-forward)))
+    '(progn
+       (define-key help-mode-map (kbd my-mouse-back-event) 'help-go-back)
+       (define-key help-mode-map (kbd my-mouse-forward-event) 'help-go-forward)))
 #+END_SRC
 
 Disable =C-h h=, which is bound to ~view-hello-file~. I sometimes press this

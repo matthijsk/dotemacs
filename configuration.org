@@ -167,17 +167,17 @@ preserve all modes.
     (interactive)
     (revert-buffer nil t t))
 
-  (global-set-key (kbd "<f5>") 'my-revert-buffer)
+  (bind-key "<f5>" #'my-revert-buffer)
 #+END_SRC
 
 Load alternate file with =F6= (useful for switching .c and .h).
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "<f6>") 'ff-find-other-file)
+  (bind-key "<f6>" #'ff-find-other-file)
 #+END_SRC
 
 Exhibit expected X clipboard behaviour (yank with middle mouse button).
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "<mouse-2>") 'clipboard-yank)
+  (bind-key "<mouse-2>" #'clipboard-yank)
   (setq-default select-enable-primary t)
 #+END_SRC
 
@@ -201,20 +201,20 @@ Bind mouse buttons to Info-mode and help-mode navigation.
 #+BEGIN_SRC emacs-lisp
   (eval-after-load 'info
     '(progn
-       (define-key Info-mode-map (kbd my-mouse-back-event) 'Info-history-back)
-       (define-key Info-mode-map (kbd my-mouse-forward-event) 'Info-history-forward)))
+       (bind-key my-mouse-back-event #'Info-history-back Info-mode-map)
+       (bind-key my-mouse-forward-event #'Info-history-forward Info-mode-map)))
 
   (eval-after-load 'help
     '(progn
-       (define-key help-mode-map (kbd my-mouse-back-event) 'help-go-back)
-       (define-key help-mode-map (kbd my-mouse-forward-event) 'help-go-forward)))
+       (bind-key my-mouse-back-event #'help-go-back help-mode-map)
+       (bind-key my-mouse-forward-event #'help-go-forward help-mode-map)))
 #+END_SRC
 
 Disable =C-h h=, which is bound to ~view-hello-file~. I sometimes press this
 accidentally. As opening the HELLO file takes long enough to be annoying disable
 this binding here.
 #+BEGIN_SRC emacs-lisp
-  (global-unset-key (kbd "C-h h"))
+  (unbind-key "C-h h")
 #+END_SRC
 
 Some sane bindings for making and deleting frames (an Emacs 'frame' is a
@@ -222,10 +222,10 @@ Some sane bindings for making and deleting frames (an Emacs 'frame' is a
 instead use =C-c n= for a new frame and =C-c x= (and =M-<f4>=) to delete the
 frame.
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-c n") 'make-frame-command)
+  (bind-key "C-c n" #'make-frame-command)
 
-  (global-set-key (kbd "C-c x") 'delete-frame)
-  (global-set-key (kbd "M-<f4>") 'delete-frame)
+  (bind-key "C-c x" #'delete-frame)
+  (bind-key "M-<f4>" #'delete-frame)
 #+END_SRC
 
 When I call kill-buffer I pretty much always mean to kill the current buffer.
@@ -240,12 +240,12 @@ solution instead.
     (interactive)
     (kill-buffer (current-buffer)))
 
-  (global-set-key (kbd "C-x k") 'my-kill-buffer)
+  (bind-key "C-x k" #'my-kill-buffer)
 #+END_SRC
 
 Bind =hippie-expand= to =M-/=.
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "M-/") 'hippie-expand)
+  (bind-key "M-/" #'hippie-expand)
 #+END_SRC
 
 ** Enable disabled commands
@@ -350,8 +350,8 @@ in C and C++ mode, respectively.
 #+BEGIN_SRC emacs-lisp
   (add-hook 'c-mode-common-hook
             (lambda ()
-              (local-set-key (kbd "M-n") #'next-error)
-              (local-set-key (kbd "M-p") #'previous-error)))
+              (bind-key "M-n" #'next-error c-mode-base-map)
+              (bind-key "M-p" #'previous-error c-mode-base-map)))
 #+END_SRC
 
 ** Default search function
@@ -359,7 +359,7 @@ Define an alias for whatever search function strikes my fancy today. This makes
 it easier to change functionality without the tedium of having to rebind all
 keys.
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "M-s o") 'helm-occur)
+  (bind-key "M-s o" #'helm-occur)
 #+END_SRC
 
 ** Find configuration files
@@ -462,7 +462,7 @@ a conflict are needed. Taken from
                       (ediff-get-region-contents ediff-current-difference 'A ediff-control-buffer)
                       (ediff-get-region-contents ediff-current-difference 'B ediff-control-buffer))))
 
-  (defun my-add-d-to-ediff-mode-map () (define-key ediff-mode-map "d" 'my-ediff-copy-both-to-C))
+  (defun my-add-d-to-ediff-mode-map () (bind-key "d" #'my-ediff-copy-both-to-C ediff-mode-map))
   (add-hook 'ediff-keymap-setup-hook 'my-add-d-to-ediff-mode-map)
 #+END_SRC
 

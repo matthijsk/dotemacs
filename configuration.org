@@ -1065,15 +1065,16 @@ a single file are a breeze with Magit.
     ;; See https://github.com/magit/magit/issues/2395
     (define-derived-mode magit-staging-mode magit-status-mode "Magit staging"
       "Stripped down mode for looking at Git status.
-  Compared to `magit-status-mode', only untracked files and
-  unstaged and staged changes are listed."
+  Compared to `magit-status-mode', only untracked files, unstaged
+  and staged changes and recent commits are listed."
       :group 'magit-status)
 
     (defun magit-staging-refresh-buffer ()
       (magit-insert-section (status)
         (magit-insert-untracked-files)
         (magit-insert-unstaged-changes)
-        (magit-insert-staged-changes)))
+        (magit-insert-staged-changes)
+        (magit-insert-recent-commits)))
 
     (defun magit-staging (&optional directory)
       "Depending on OS, use `magit-status-mode' or `magit-staging-mode'.

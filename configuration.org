@@ -824,7 +824,8 @@ completion.
           ("pp"  . helm-projectile-switch-project)
           ("pf"  . helm-projectile-find-file)
           ("psg" . helm-projectile-grep)
-          ("pa"  . helm-projectile-find-other-file))
+          ("pa"  . helm-projectile-find-other-file)
+          ("psr" . my-helm-projectile-rg))
 
     :custom
     (helm-projectile-fuzzy-match nil)

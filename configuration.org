@@ -560,6 +560,7 @@ scaling.
 #+BEGIN_SRC emacs-lisp
   (use-package default-text-scale
     :pin melpa-stable
+    :if (display-graphic-p)
     :bind (("C-M-=" . default-text-scale-increase)
            ("C-M--" . default-text-scale-decrease))
     :init

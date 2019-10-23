@@ -590,9 +590,9 @@ modal editing of Vim combined with the extensibility of Emacs.
            :map evil-insert-state-map
                 ("C-s" . save-buffer))
     :custom
-    (evil-want-C-i-jump (display-graphic-p)
-                        "Enable C-i when on a graphical display, and disable when
-    on a terminal (to enable use of <TAB> in org-mode with evil-mode).")
+    (evil-want-C-i-jump (display-graphic-p) "Enable C-i when on a graphical
+                        display, and disable when on a terminal (to enable use of
+                        <TAB> in org-mode with evil-mode).")
     (evil-want-C-u-scroll t)
     (evil-symbol-word-search t)
     (evil-shift-width 2)

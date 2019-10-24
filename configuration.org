@@ -883,12 +883,7 @@ work.
            ("M-n" . org-next-visible-heading))
 
     :custom
-    (org-directory "~/org/")
-
     (org-todo-keywords '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
-
-    (org-agenda-files (concat org-directory "org-agenda-files.org")
-                      "Set org-agenda-files to file with list containing all agenda files.")
 
     (org-clock-clocktable-default-properties
      '(:maxlevel 3 :scope agenda :fileskip0 t :block yesterday :narrow 120!))
@@ -920,7 +915,10 @@ work.
     (add-hook 'org-mode-hook #'auto-fill-mode)
 
     :config
-    (setq org-default-notes-file (concat org-directory "notes.org"))
+    (setq org-default-notes-file (concat (file-name-as-directory org-directory) "notes.org"))
+
+    ;; Set org-agenda-files to file with list containing all agenda files.
+    (setq org-agenda-files (concat (file-name-as-directory org-directory) "org-agenda-files.org"))
 
     (org-clock-persistence-insinuate)
 
@@ -968,7 +966,7 @@ work.
                org-src-window-setup)))
         (call-interactively 'org-edit-special)))
 
-    (defcustom my-org-worklog (concat org-directory "worklog.org")
+    (defcustom my-org-worklog (concat (file-name-as-directory org-directory) "worklog.org")
       "Org file for logging daily work time."
       :type 'file
       :group 'work)

@@ -1213,6 +1213,7 @@ Set up [[https://github.com/Sodel-the-Vociferous/helm-company][helm-company]], a
 
     (advice-add #'semantic-ia-fast-jump :before #'evil-set-jump)
 
+    (evil-define-key 'normal c-mode-map (kbd "C-}") 'semantic-ia-fast-jump)
     (evil-define-key 'normal c++-mode-map (kbd "C-}") 'semantic-ia-fast-jump))
 #+END_SRC
 

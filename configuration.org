@@ -107,23 +107,21 @@ set to =xterm-256color= (under =options -> terminal=).
     (spacemacs-theme-org-height nil)
 
     :config
-    (defvar my-current-theme 'spacemacs-dark
-      "Currently enabled theme.")
-
     ;; Load both light and dark themes, but don't enable yet.
     (load-theme 'spacemacs-light t t)
     (load-theme 'spacemacs-dark t t)
 
-    (enable-theme my-current-theme)
+    (enable-theme 'spacemacs-dark)
 
     (defun my-toggle-theme ()
-      "Toggle between light and dark (spacemacs) themes"
+      "Toggle between light and dark (spacemacs) themes.
+  Assumes no other themes are currently enabled."
       (interactive)
-      (disable-theme my-current-theme)
-      (setq my-current-theme (if (eq my-current-theme 'spacemacs-dark)
-                                 'spacemacs-light
-                               'spacemacs-dark))
-      (enable-theme my-current-theme)))
+      (let ((current-theme (car custom-enabled-themes)))
+        (disable-theme current-theme)
+        (enable-theme (if (eq current-theme 'spacemacs-dark)
+                          'spacemacs-light
+                        'spacemacs-dark)))))
 #+END_SRC
 
 *** Miscellaneous

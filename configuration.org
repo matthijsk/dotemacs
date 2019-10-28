@@ -795,7 +795,17 @@ Git repositories for quick navigation.
     (add-hook 'prog-mode-hook 'projectile-mode)
 
     :config
-    (projectile-mode 1))
+    (projectile-mode 1)
+
+    (defun my-projectile-project-find-function (dir)
+      "Return project root dir for use with project.el and ccls."
+      (let* ((root (projectile-project-root dir)))
+        (and root (cons 'transient root))))
+
+    ;; Register `my-projectile-project-find-function' for use with `eglot' and
+    ;; ccls. See https://github.com/MaskRay/ccls/wiki/eglot.
+    (with-eval-after-load 'project
+      (add-to-list 'project-find-functions 'my-projectile-project-find-function)))
 #+END_SRC
 
 * Ripgrep
@@ -1158,7 +1168,7 @@ Set up [[https://github.com/syohex/emacs-helm-gtags][helm-gtags]], a Helm interf
     (add-hook 'c-mode-hook   'helm-gtags-mode)
     (add-hook 'c++-mode-hook 'helm-gtags-mode)
 
-    (evil-define-key 'normal c-mode-map   (kbd "C-]") 'helm-gtags-dwim)
+    (evil-define-key 'normal c-mode-map (kbd "C-]") 'helm-gtags-dwim)
     (evil-define-key 'normal c++-mode-map (kbd "C-]") 'helm-gtags-dwim)
 
     (advice-add #'helm-gtags-dwim :before #'evil-set-jump))
@@ -1183,9 +1193,7 @@ Set up and use [[http://company-mode.github.io/][Company]] as the text completio
     (add-hook 'prog-mode-hook 'company-mode)
 
     :config
-    ;; Ensure clang is not used as a company backend when it is not available.
-    (unless (executable-find "clang")
-      (setq company-backends (delete 'company-clang company-backends))))
+    (setq company-backends '(company-capf)))
 #+END_SRC
 
 * Helm company
@@ -1312,4 +1320,22 @@ major modes are derived from =prog-mode=.
   (use-package json-mode
     :pin melpa-stable
     :defer t)
+#+END_SRC
+
+* Eglot
+#+BEGIN_SRC emacs-lisp
+  (use-package eglot
+    :config
+    (defun my-xref-find-definitions ()
+      "Try `xref-find-definitions'. If that fails, try `semantic-ia-fast-jump'."
+      (interactive)
+      (condition-case nil
+          (call-interactively #'xref-find-definitions)
+        (user-error (call-interactively #'semantic-ia-fast-jump))))
+
+    (add-hook 'eglot-connect-hook
+              (lambda (server)
+                "Use eglot xref backend when eglot is connected."
+                (evil-define-key 'normal c-mode-map   (kbd "C-]") 'my-xref-find-definitions)
+                (evil-define-key 'normal c++-mode-map (kbd "C-]") 'my-xref-find-definitions))))
 #+END_SRC

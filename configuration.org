@@ -840,6 +840,11 @@ completion.
       (projectile-with-default-dir (projectile-ensure-project (projectile-project-root))
         (call-interactively #'helm-do-grep-ag)))
 
+    (add-hook 'helm-before-initialize-hook
+              (lambda ()
+                "Workaround for helm-projectile setting `helm-buffer-max-length'."
+                (setq helm-buffer-max-length nil)))
+
     (helm-projectile-on))
 #+END_SRC
 

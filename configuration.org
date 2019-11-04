@@ -751,7 +751,7 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
     (setq helm-buffer-max-length nil))
 #+END_SRC
 
-** Helm Org
+* Helm Org
 #+BEGIN_SRC emacs-lisp
   (use-package helm-org
     :pin melpa-stable

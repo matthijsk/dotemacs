@@ -632,6 +632,7 @@ modal editing of Vim combined with the extensibility of Emacs.
                     calculator-mode
                     semantic-symref-results-mode
                     xref--xref-buffer-mode
+                    flymake-diagnostics-buffer-mode
                     profiler-report-mode))
       (evil-set-initial-state mode 'emacs))
 

@@ -965,7 +965,7 @@ work.
           (replace-match (upcase (match-string 0))))))
 
     (defun my-org-todo-list ()
-      "Show org-todo-list with \"IN PROGRESS\" keyword selected."
+      "Show `org-todo-list' with \"IN PROGRESS\" keyword selected."
       (interactive)
       (org-todo-list "IN PROGRESS"))
 

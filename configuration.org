@@ -1330,18 +1330,19 @@ major modes are derived from =prog-mode=.
 
 * Eglot
 #+BEGIN_SRC emacs-lisp
-  (use-package eglot
-    :config
-    (defun my-xref-find-definitions ()
-      "Try `xref-find-definitions'. If that fails, try `semantic-ia-fast-jump'."
-      (interactive)
-      (condition-case nil
-          (call-interactively #'xref-find-definitions)
-        (user-error (call-interactively #'semantic-ia-fast-jump))))
+  (when (> emacs-major-version 25)
+    (use-package eglot
+      :config
+      (defun my-xref-find-definitions ()
+        "Try `xref-find-definitions'. If that fails, try `semantic-ia-fast-jump'."
+        (interactive)
+        (condition-case nil
+            (call-interactively #'xref-find-definitions)
+          (user-error (call-interactively #'semantic-ia-fast-jump))))
 
-    (add-hook 'eglot-connect-hook
-              (lambda (server)
-                "Use eglot xref backend when eglot is connected."
-                (evil-define-key 'normal c-mode-map   (kbd "C-]") 'my-xref-find-definitions)
-                (evil-define-key 'normal c++-mode-map (kbd "C-]") 'my-xref-find-definitions))))
+      (add-hook 'eglot-connect-hook
+                (lambda (server)
+                  "Use eglot xref backend when eglot is connected."
+                  (evil-define-key 'normal c-mode-map   (kbd "C-]") 'my-xref-find-definitions)
+                  (evil-define-key 'normal c++-mode-map (kbd "C-]") 'my-xref-find-definitions)))))
 #+END_SRC

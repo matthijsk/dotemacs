@@ -1125,7 +1125,9 @@ and for the integrated help.
     :bind (:map cmake-mode-map
                 ("<f1>" . cmake-help))
 
-    :defer t)
+    :defer t
+    :config
+    (add-to-list 'company-backends 'company-cmake t))
 #+END_SRC
 
 * Ninja mode
@@ -1193,7 +1195,11 @@ Set up and use [[http://company-mode.github.io/][Company]] as the text completio
     (add-hook 'prog-mode-hook 'company-mode)
 
     :config
-    (setq company-backends '(company-capf)))
+    ;; By default, only use `company-capf' backend, which functions as a bridge
+    ;; using standard `completion-at-point-functions' and the `company-keywords',
+    ;; which adds completion for common programming language keywords. Other
+    ;; backends should be added in the appropriate configuration block.
+    (setq company-backends '(company-keywords company-capf)))
 #+END_SRC
 
 * Helm company

@@ -409,15 +409,15 @@ Use a human-readable Size column for =ibuffer=. Taken from [[https://www.emacswi
        (t (format "%8d" (buffer-size)))))
 
     ;; Modify the default ibuffer-formats.
-    (setq ibuffer-formats
-          '((mark modified read-only " "
-                  (name 18 18 :left :elide)
-                  " "
-                  (size-h 9 -1 :right)
-                  " "
-                  (mode 16 16 :left :elide)
-                  " "
-                  filename-and-process))))
+    (add-to-list 'ibuffer-formats
+                 '(mark modified read-only " "
+                        (name 18 18 :left :elide)
+                        " "
+                        (size-h 9 -1 :right)
+                        " "
+                        (mode 16 16 :left :elide)
+                        " "
+                        filename-and-process)))
 #+END_SRC
 
 ** Ediff

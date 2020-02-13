@@ -856,7 +856,9 @@ completion.
                 "Workaround for helm-projectile setting `helm-buffer-max-length'."
                 (setq helm-buffer-max-length nil)))
 
-    (helm-projectile-on))
+    (helm-projectile-on)
+
+    (defalias #'helm-projectile-find-other-file #'projectile-find-other-file))
 #+END_SRC
 
 * Org mode

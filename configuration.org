@@ -846,7 +846,7 @@ completion.
     (defun my-helm-projectile-rg ()
       "Perform `helm-do-grep-ag' at project root.
 
-    See also `helm-grep-ag-command'. (We use ripgrep)"
+  See also `helm-grep-ag-command'. (We use ripgrep)"
       (interactive)
       (projectile-with-default-dir (projectile-ensure-project (projectile-project-root))
         (call-interactively #'helm-do-grep-ag)))

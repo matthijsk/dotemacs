@@ -352,6 +352,19 @@ in C and C++ mode, respectively.
               (bind-key "M-p" #'previous-error c-mode-base-map)))
 #+END_SRC
 
+Set up ~bat-cmd-help~ with ~thing-at-point~ for =bat-mode=.
+#+BEGIN_SRC emacs-lisp
+  (use-package bat-mode
+    :defer t
+    :bind (:map bat-mode-map
+                ("<f1>" . my-bat-cmd-help))
+
+    :config
+    (defun my-bat-cmd-help ()
+      (interactive)
+      (bat-cmd-help (word-at-point))))
+#+END_SRC
+
 ** Default search function
 Define an alias for whatever search function strikes my fancy today. This makes
 it easier to change functionality without the tedium of having to rebind all

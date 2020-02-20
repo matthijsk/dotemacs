@@ -1308,7 +1308,7 @@ Windows system. If a Git executable cannot be found a message is displayed.
   variable to point to your Git installation."))))
 #+END_SRC
 
-* GPG
+* GPG / EasyPG
 Ensure GnuPG password queries go through the minibuffer.
 #+BEGIN_SRC emacs-lisp
   (setq epa-pinentry-mode 'loopback)

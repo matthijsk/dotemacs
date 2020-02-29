@@ -554,6 +554,14 @@ inserting the current date in a written form.
     :ensure nil)
    #+END_SRC
 
+* Dash
+Ensure [[https://github.com/magnars/dash.el][dash]] ("A modern list library for Emacs") is installed. It is used by many
+packages.
+#+BEGIN_SRC emacs-lisp
+  (use-package dash
+    :pin melpa-stable)
+#+END_SRC
+
 * Diminish
 [[https://github.com/myrjola/diminish.el][Diminish]] can be used as part of =use-package= to hide minor mode strings from
 the modeline.
@@ -713,14 +721,6 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
 
     ;; Start evil.
     (evil-mode))
-#+END_SRC
-
-* Dash
-Ensure [[https://github.com/magnars/dash.el][dash]] ("A modern list library for Emacs") is installed. It is used by many
-packages.
-#+BEGIN_SRC emacs-lisp
-  (use-package dash
-    :pin melpa-stable)
 #+END_SRC
 
 * Helm

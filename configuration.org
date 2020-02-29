@@ -102,11 +102,10 @@ set to =xterm-256color= (under =options -> terminal=).
   (use-package spacemacs-common
     :ensure spacemacs-theme
 
-    :custom
-    (spacemacs-theme-org-bold t)
-    (spacemacs-theme-org-height nil)
-
     :config
+    (setq spacemacs-theme-org-bold t)
+    (setq spacemacs-theme-org-height nil)
+
     ;; Load both light and dark themes, but don't enable yet.
     (load-theme 'spacemacs-light t t)
     (load-theme 'spacemacs-dark t t)
@@ -304,13 +303,13 @@ Set c and sh indentation to 2, and never indent with tabs.
 #+BEGIN_SRC emacs-lisp
   (use-package cc-mode
     :defer t
-    :custom
-    (c-basic-offset 2))
+    :config
+    (setq c-basic-offset 2))
 
   (use-package sh-script
     :defer t
-    :custom
-    (sh-basic-offset 2))
+    :config
+    (setq sh-basic-offset 2))
 
   (setq-default indent-tabs-mode nil)
 #+END_SRC
@@ -603,14 +602,15 @@ modal editing of Vim combined with the extensibility of Emacs.
 
            :map evil-insert-state-map
                 ("C-s" . save-buffer))
-    :custom
-    (evil-want-C-i-jump (display-graphic-p) "Enable C-i when on a graphical
-                        display, and disable when on a terminal (to enable use of
-                        <TAB> in org-mode with evil-mode).")
-    (evil-want-C-u-scroll t)
-    (evil-symbol-word-search t)
-    (evil-shift-width 2)
-    (evil-move-beyond-eol t)
+
+    :init
+    ;; Enable C-i when on a graphical display, and disable when on a terminal (to
+    ;; enable use of <TAB> in org-mode with evil-mode).
+    (setq evil-want-C-i-jump (display-graphic-p))
+    (setq evil-want-C-u-scroll t)
+    (setq evil-symbol-word-search t)
+    (setq evil-shift-width 2)
+    (setq evil-move-beyond-eol t)
 
     :config
     ;; Ensure the yank register (on Windows, at least) is not overwritten when
@@ -751,11 +751,10 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
     (when (version= emacs-version "26.1")
       (setq x-wait-for-event-timeout nil))
 
-    :custom
-    (helm-grep-ag-command "rg --color=always --smart-case --no-heading --line-number %s %s %s"
-                          "Use ripgrep instead of ag.")
-
     :config
+    ;; Use ripgrep instead of ag.
+    (setq helm-grep-ag-command "rg --color=always --smart-case --no-heading --line-number %s %s %s")
+
     (defun my-helm-resume-existing ()
       "Resume previous helm session with prefix to choose among existing helm buffers."
       (interactive)
@@ -772,9 +771,10 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
     :pin melpa-stable
     :after helm
 
-    :config
+    :init
     (evil-leader/set-key-for-mode 'org-mode "hs" 'helm-org-in-buffer-headings)
 
+    :config
     (advice-add 'helm-org-in-buffer-headings
                 :after
                 (lambda ()
@@ -798,15 +798,13 @@ Git repositories for quick navigation.
                 ("M-<f9>" . projectile-test-project)
                 ("C-M-<f9>" . projectile-configure-project))
 
-    :custom
-    (projectile-globally-ignored-files '("TAGS" "GTAGS" "GRTAGS" "*.png" "*.ini" "*.dll" "*.lib" "*.bmp" "*.jpg"))
-
-    (projectile-indexing-method 'hybrid)
-    (projectile-enable-caching t)
-    (projectile-use-git-grep t)
-
     :init
-    (add-hook 'prog-mode-hook 'projectile-mode)
+    (add-hook 'prog-mode-hook #'projectile-mode)
+
+    (setq projectile-globally-ignored-files '("TAGS" "GTAGS" "GRTAGS" "*.png" "*.ini" "*.dll" "*.lib" "*.bmp" "*.jpg"))
+    (setq projectile-indexing-method 'hybrid)
+    (setq projectile-enable-caching t)
+    (setq projectile-use-git-grep t)
 
     :config
     (projectile-mode 1)
@@ -828,8 +826,8 @@ Git repositories for quick navigation.
 #+BEGIN_SRC emacs-lisp
   (use-package ripgrep
     :defer t
-    :custom
-    (ripgrep-arguments '("--smart-case")))
+    :init
+    (setq ripgrep-arguments '("--smart-case")))
 #+END_SRC
 
 * Helm-projectile
@@ -852,9 +850,9 @@ completion.
           ("pa"  . helm-projectile-find-other-file)
           ("psr" . my-helm-projectile-rg))
 
-    :custom
-    (helm-projectile-fuzzy-match nil)
-    (projectile-switch-project-action 'helm-projectile)
+    :init
+    (setq helm-projectile-fuzzy-match nil)
+    (setq projectile-switch-project-action 'helm-projectile)
 
     :config
     (defun my-helm-projectile-rg ()
@@ -914,36 +912,36 @@ work.
            ("M-p" . org-previous-visible-heading)
            ("M-n" . org-next-visible-heading))
 
-    :custom
-    (org-todo-keywords '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
-
-    (org-clock-clocktable-default-properties
-     '(:maxlevel 3 :scope agenda :fileskip0 t :block yesterday :narrow 120!))
-
-    (org-duration-format '((special . h:mm))
-                         "Show total amount of hours and minutes, instead of formatting as \"d hh:mm\".")
-
-    (org-clock-display-default-range 'untilnow
-                                     "When using using org-clock-display, display the total time for subtrees.")
-
-    (org-refile-targets '((org-agenda-files :maxlevel . 3))
-                        "Set all agenda files as refile targets.")
-
-    (org-refile-use-outline-path 'file
-                                 "Enable refiling to the top level of an org file.")
-
-    (org-export-with-sub-superscripts nil
-                                      "Do not interpret "_" and "^" for sub and superscript when exporting.")
-
-    (org-outline-path-complete-in-steps nil
-                                        "Don't complete in steps, works well with narrowing frameworks such as Helm.")
-
-    (org-clock-persist 'clock
-                       "Save the running clock when Emacs exits.")
-
-    (org-tags-column -100 "Flushright tags to column 100.")
-
     :init
+    (setq org-todo-keywords '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
+
+    (setq org-clock-clocktable-default-properties
+          '(:maxlevel 3 :scope agenda :fileskip0 t :block yesterday :narrow 120!))
+
+    ;; Show total amount of hours and minutes, instead of formatting as "d hh:mm".
+    (setq org-duration-format '((special . h:mm)))
+
+    ;; When using using org-clock-display, display the total time for subtrees.
+    (setq org-clock-display-default-range 'untilnow)
+
+    ;; Set all agenda files as refile targets.
+    (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+
+    ;; Enable refiling to the top level of an org file.
+    (setq org-refile-use-outline-path 'file)
+
+    ;; Do not interpret "_" and "^" for sub and superscript when exporting.
+    (setq org-export-with-sub-superscripts nil)
+
+    ;; Don't complete in steps, works well with narrowing frameworks such as Helm.
+    (setq org-outline-path-complete-in-steps nil)
+
+    ;; Save the running clock when Emacs exits.
+    (setq org-clock-persist 'clock)
+
+    ;; Flushright tags to column 100.
+    (setq org-tags-column -100)
+
     (add-hook 'org-mode-hook #'auto-fill-mode)
 
     :config
@@ -1069,19 +1067,18 @@ a single file are a breeze with Magit.
            :map git-commit-mode-map
            ("C-c t" . my-insert-current-date))
 
-    :custom
-    (vc-handled-backends (delq 'Git vc-handled-backends)
-                         "Disable VC git backend. No need when using Magit.")
-
-    (magit-refresh-verbose t)
-
-    (auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffer-p)
-
     :init
+    ;; Disable VC git backend. No need when using Magit.
+    (setq vc-handled-backends (delq 'Git vc-handled-backends))
+
+    (setq magit-refresh-verbose t)
+
+    (setq auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffer-p)
+
     (evil-set-initial-state 'magit-staging-mode 'emacs)
-    (evil-define-key 'normal magit-blame-mode-map (kbd "q") 'magit-blame-quit)
 
     :config
+    (evil-define-key 'normal magit-blame-mode-map (kbd "q") 'magit-blame-quit)
 
     (magit-define-popup-switch 'magit-log-popup ?f "first parent" "--first-parent")
 
@@ -1176,12 +1173,6 @@ Set up [[https://github.com/syohex/emacs-helm-gtags][helm-gtags]], a Helm interf
     :defer t
     :diminish helm-gtags-mode
 
-    :custom
-    (helm-gtags-path-style 'absolute)
-    (helm-gtags-use-input-at-cursor t)
-    (helm-gtags-auto-update t)
-    (helm-gtags-pulse-at-cursor t)
-
     :init
     (add-hook 'c-mode-hook   'helm-gtags-mode)
     (add-hook 'c++-mode-hook 'helm-gtags-mode)
@@ -1189,7 +1180,14 @@ Set up [[https://github.com/syohex/emacs-helm-gtags][helm-gtags]], a Helm interf
     (evil-define-key 'normal c-mode-map (kbd "C-]") 'helm-gtags-dwim)
     (evil-define-key 'normal c++-mode-map (kbd "C-]") 'helm-gtags-dwim)
 
-    (advice-add #'helm-gtags-dwim :before #'evil-set-jump))
+    (advice-add #'helm-gtags-dwim :before #'evil-set-jump)
+
+    :config
+    (setq helm-gtags-path-style 'absolute)
+    (setq helm-gtags-use-input-at-cursor t)
+    (setq helm-gtags-auto-update t)
+    (setq helm-gtags-pulse-at-cursor t))
+
 #+END_SRC
 
 * Company
@@ -1200,21 +1198,20 @@ Set up and use [[http://company-mode.github.io/][Company]] as the text completio
     :diminish company-mode
     :defer t
 
-    :custom
-    (company-dabbrev-downcase nil "Do not downcase returned candidates.")
-    (company-dabbrev-ignore-case t "Ignore case for completion.")
-    (company-dabbrev-code-ignore-case t "Ignore case for completion.")
-    (company-async-timeout 10)
-    (company-idle-delay nil)
-
     :init
     (add-hook 'prog-mode-hook 'company-mode)
 
     :config
+    (setq company-dabbrev-downcase nil)
+    (setq company-dabbrev-ignore-case t)
+    (setq company-dabbrev-code-ignore-case t)
+    (setq company-async-timeout 10)
+    (setq company-idle-delay nil)
+
     ;; By default, only use `company-capf' backend, which functions as a bridge
-    ;; using standard `completion-at-point-functions' and the `company-keywords',
-    ;; which adds completion for common programming language keywords. Other
-    ;; backends should be added in the appropriate configuration block.
+    ;; using standard `completion-at-point-functions' and the `company-keywords'
+    ;; backend, which adds completion for common programming language keywords.
+    ;; Other backends should be added in the appropriate configuration block.
     (setq company-backends '(company-keywords company-capf)))
 #+END_SRC
 
@@ -1225,8 +1222,8 @@ Set up [[https://github.com/Sodel-the-Vociferous/helm-company][helm-company]], a
     :pin melpa-stable
     :after company
 
-    :custom
-    (helm-company-fuzzy-match nil)
+    :init
+    (setq helm-company-fuzzy-match nil)
 
     :config
     (evil-define-key 'insert prog-mode-map (kbd "TAB") 'helm-company))
@@ -1282,8 +1279,8 @@ Windows system. If a Git executable cannot be found a message is displayed.
             ;; Set the path to gpg.
             (use-package epg
               :defer t
-              :custom
-              (epg-gpg-program (concat git-path "/gpg"))))
+              :init
+              (setq epg-gpg-program (concat git-path "/gpg"))))
         (message "Git not found, please update your PATH environment \
   variable to point to your Git installation."))))
 #+END_SRC

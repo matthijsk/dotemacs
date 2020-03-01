@@ -26,19 +26,6 @@
           ("gnu" . 5)
           ("melpa" . 0))))
 
-;; Set custom holidays before loading org mode and the calendar.
-(setq holiday-other-holidays '((holiday-fixed 4 27 "King's Day")
-                               (holiday-fixed 5 4 "Remembrance Day")
-                               (holiday-fixed 5 5 "Liberation Day")
-                               (holiday-easter-etc 1 "Easter Monday")
-                               (holiday-easter-etc 39 "Ascension Day") ; 39 days after Easter
-                               (holiday-easter-etc 49 "Whit Sunday")   ; 7th Sunday after Easter
-                               (holiday-easter-etc 50 "Whit Monday")))
-(setq holiday-hebrew-holidays nil)
-(setq holiday-islamic-holidays nil)
-(setq holiday-bahai-holidays nil)
-(setq holiday-oriental-holidays nil)
-
 (package-initialize)
 
 ;; Bootstrap use-package. Use-package allows for automatic installation of

@@ -553,6 +553,20 @@ inserting the current date in a written form.
     :ensure nil)
    #+END_SRC
 
+** Subr-x
+Ensure =subr-x= is loaded. Comes bundled with Emacs.
+
+According to the documentation, "it's almost always correct to use
+~(eval-when-compile (require 'subr-x))~". However, the [[*Magit][Magit]] configuration block
+in this file defines some custom functions (~(magit-staging)~) that also require
+=subr-x= but that, since this configuration file is not byte compiled, will not
+work until this feature is loaded.
+#+BEGIN_SRC emacs-lisp
+  (use-package subr-x
+    ;; Ensure use-package does not try to load subr-x from a package archive.
+    :ensure nil)
+#+END_SRC
+
 * Dash
 Ensure [[https://github.com/magnars/dash.el][dash]] ("A modern list library for Emacs") is installed. It is used by many
 packages.
@@ -1059,7 +1073,7 @@ a single file are a breeze with Magit.
   (use-package magit
     :if (> emacs-major-version 24)
     :pin melpa-stable
-    :defer t
+    :after subr-x
     :bind (("C-x g" . magit-staging)
            :map evil-leader--default-map
            ("sg" . magit-staging)

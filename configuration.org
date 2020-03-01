@@ -550,6 +550,7 @@ inserting the current date in a written form.
    #+BEGIN_SRC emacs-lisp
   (use-package generic-x
     ;; Ensure use-package does not try to load generic-x from a package archive.
+    :defer 5
     :ensure nil)
    #+END_SRC
 
@@ -743,6 +744,7 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
   (use-package helm
     :diminish helm-mode
     :pin melpa-stable
+    :defer 2
     :bind (("M-x"     . helm-M-x)
            ("C-x b"   . helm-mini)
            ("C-x C-f" . helm-find-files)
@@ -783,7 +785,7 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
 #+BEGIN_SRC emacs-lisp
   (use-package helm-org
     :pin melpa-stable
-    :after helm
+    :commands (helm-org-in-buffer-headings)
 
     :init
     (evil-leader/set-key-for-mode 'org-mode "hs" 'helm-org-in-buffer-headings)
@@ -813,8 +815,6 @@ Git repositories for quick navigation.
                 ("C-M-<f9>" . projectile-configure-project))
 
     :init
-    (add-hook 'prog-mode-hook #'projectile-mode)
-
     (setq projectile-globally-ignored-files '("TAGS" "GTAGS" "GRTAGS" "*.png" "*.ini" "*.dll" "*.lib" "*.bmp" "*.jpg"))
     (setq projectile-indexing-method 'hybrid)
     (setq projectile-enable-caching t)
@@ -857,6 +857,7 @@ completion.
           ("f" . helm-projectile-find-file)
           ("p" . helm-projectile-switch-project)
           ("sr" . my-helm-projectile-rg)
+          ("sg" . helm-projectile-grep)
           :map evil-leader--default-map
           ("pp"  . helm-projectile-switch-project)
           ("pf"  . helm-projectile-find-file)
@@ -1061,7 +1062,7 @@ Add ox-gfm to enable exporting of org mode buffers to Github Flavored Markdown.
 #+BEGIN_SRC emacs-lisp
   (use-package ox-gfm
     :pin melpa-stable
-    :after org)
+    :defer 10)
 #+END_SRC
 
 * Magit
@@ -1212,9 +1213,6 @@ Set up and use [[http://company-mode.github.io/][Company]] as the text completio
     :diminish company-mode
     :defer t
 
-    :init
-    (add-hook 'prog-mode-hook 'company-mode)
-
     :config
     (setq company-dabbrev-downcase nil)
     (setq company-dabbrev-ignore-case t)
@@ -1226,7 +1224,9 @@ Set up and use [[http://company-mode.github.io/][Company]] as the text completio
     ;; using standard `completion-at-point-functions' and the `company-keywords'
     ;; backend, which adds completion for common programming language keywords.
     ;; Other backends should be added in the appropriate configuration block.
-    (setq company-backends '(company-keywords company-capf)))
+    (setq company-backends '(company-keywords company-capf))
+
+    (global-company-mode 1))
 #+END_SRC
 
 * Helm company
@@ -1234,13 +1234,11 @@ Set up [[https://github.com/Sodel-the-Vociferous/helm-company][helm-company]], a
 #+BEGIN_SRC emacs-lisp
   (use-package helm-company
     :pin melpa-stable
-    :after company
+    :bind (:map evil-insert-state-map
+                ([tab] . helm-company))
 
     :init
-    (setq helm-company-fuzzy-match nil)
-
-    :config
-    (evil-define-key 'insert prog-mode-map (kbd "TAB") 'helm-company))
+    (setq helm-company-fuzzy-match nil))
 #+END_SRC
 
 * Semantic
@@ -1358,6 +1356,7 @@ major modes are derived from =prog-mode=.
 #+BEGIN_SRC emacs-lisp
   (when (> emacs-major-version 25)
     (use-package eglot
+      :commands (eglot)
       :config
       (add-hook 'eglot-connect-hook
                 (lambda (server)

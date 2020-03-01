@@ -1365,3 +1365,8 @@ major modes are derived from =prog-mode=.
                   (evil-define-key 'normal c-mode-map   (kbd "C-]") 'evil-jump-to-tag)
                   (evil-define-key 'normal c++-mode-map (kbd "C-]") 'evil-jump-to-tag)))))
 #+END_SRC
+
+* COMMENT Local variables
+# Local Variables:
+# org-adapt-indentation: nil
+# End:

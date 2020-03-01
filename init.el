@@ -56,6 +56,12 @@
   :type 'file
   :group 'initialization)
 
+;; Don't litter the init file with customization changes. Instead, write it to a
+;; different file that is not tracked by version control.
+(setq custom-file (concat user-emacs-directory "custom.el"))
+(when (file-exists-p custom-file)
+  (load custom-file))
+
 ;; To reduce startup time, only tangle configuration when the .org file is newer
 ;; than the .el file. Otherwise, simply load the .el file.
 (let ((tangled-file (concat (file-name-sans-extension my-configuration-file) ".el")))

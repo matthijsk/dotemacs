@@ -11,14 +11,6 @@ Packages are installed and configured using [[https://github.com/jwiegley/use-pa
 ** General settings
 General Emacs settings that don't fall under any specific category.
 
-Don't litter the init file with customization changes. Instead, write it to a
-different file that is not tracked by version control.
-#+BEGIN_SRC emacs-lisp
-  (setq custom-file (concat user-emacs-directory "custom.el"))
-  (when (file-exists-p custom-file)
-    (load custom-file))
-#+END_SRC
-
 Set default coding system.
 #+BEGIN_SRC emacs-lisp
   (set-language-environment "UTF-8")

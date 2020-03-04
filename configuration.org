@@ -334,13 +334,29 @@ Highlight =TODO= keywords in all programming modes using a special face.
   (add-hook 'prog-mode-hook 'my-prog-mode-todo-font-lock)
 #+END_SRC
 
-Bind ~next-error~ and ~previous-error~ to the easily accessible =M-n= and =M-p=
-in C and C++ mode, respectively.
+Define a function that searches http://www.cppreference.com for the symbol at
+point.
 #+BEGIN_SRC emacs-lisp
-  (add-hook 'c-mode-common-hook
-            (lambda ()
-              (bind-key "M-n" #'next-error c-mode-base-map)
-              (bind-key "M-p" #'previous-error c-mode-base-map)))
+  (defun my-cppref-lookup (arg)
+    "Search cppreference.com for ARG, using `browse-url'."
+    (interactive (list (read-string "Search cppref: " (thing-at-point 'symbol t))))
+    (browse-url
+     (format "https://en.cppreference.com/mwiki/index.php?title=Special%%3ASearch&search=%s"
+             arg)))
+#+END_SRC
+
+Define key bindings that need to be set after =c-mode= is loaded. Bind
+~next-error~ and ~previous-error~ to the easily accessible =M-n= and =M-p= in C
+and C++ mode, respectively. Also bind =F1= to a C/C++ specific help lookup
+function.
+#+BEGIN_SRC emacs-lisp
+  (defun my-c-mode-bindings ()
+    "Custom `c-mode' bindings."
+    (bind-key "M-n" #'next-error c-mode-base-map)
+    (bind-key "M-p" #'previous-error c-mode-base-map)
+    (bind-key "<f1>" #'my-cppref-lookup c-mode-base-map))
+
+  (add-hook 'c-mode-common-hook #'my-c-mode-bindings)
 #+END_SRC
 
 Set up ~bat-cmd-help~ with ~thing-at-point~ for =bat-mode=.

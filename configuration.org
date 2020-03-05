@@ -1216,8 +1216,7 @@ Set up [[https://github.com/syohex/emacs-helm-gtags][helm-gtags]], a Helm interf
     :diminish helm-gtags-mode
 
     :init
-    (add-hook 'c-mode-hook   'helm-gtags-mode)
-    (add-hook 'c++-mode-hook 'helm-gtags-mode)
+    (add-hook 'c-mode-common-hook #'helm-gtags-mode)
 
     (evil-define-key 'normal c-mode-map (kbd "C-]") 'helm-gtags-dwim)
     (evil-define-key 'normal c++-mode-map (kbd "C-]") 'helm-gtags-dwim)
@@ -1275,8 +1274,7 @@ Set up [[https://github.com/Sodel-the-Vociferous/helm-company][helm-company]], a
     :defer t
 
     :init
-    (add-hook 'c-mode-hook          'semantic-mode)
-    (add-hook 'c++-mode-hook        'semantic-mode)
+    (add-hook 'c-mode-common-hook #'semantic-mode)
 
     :config
     (global-semantic-stickyfunc-mode t)

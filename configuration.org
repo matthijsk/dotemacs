@@ -152,7 +152,8 @@ Reload ('revert') a buffer with =F5= without asking for confirmation, and
 preserve all modes.
 #+BEGIN_SRC emacs-lisp
   (defun my-revert-buffer ()
-    "Revert a buffer without asking for confirmation and preserve all modes."
+    "Revert a buffer without asking for confirmation and preserve all modes.
+  See also `revert-buffer'."
     (interactive)
     (revert-buffer nil t t))
 

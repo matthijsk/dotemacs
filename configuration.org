@@ -368,9 +368,10 @@ Set up ~bat-cmd-help~ with ~thing-at-point~ for =bat-mode=.
                 ("<f1>" . my-bat-cmd-help))
 
     :config
-    (defun my-bat-cmd-help ()
-      (interactive)
-      (bat-cmd-help (word-at-point))))
+    (defun my-bat-cmd-help (cmd)
+      "Show help for batch file command CMD."
+      (interactive (list (read-string "Help for command: " (thing-at-point 'symbol t))))
+      (bat-cmd-help cmd)))
 #+END_SRC
 
 ** Default search function

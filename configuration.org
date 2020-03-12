@@ -1395,6 +1395,16 @@ major modes are derived from =prog-mode=.
                   (evil-define-key 'normal c++-mode-map (kbd "C-]") 'evil-jump-to-tag)))))
 #+END_SRC
 
+* Expand region
+#+BEGIN_SRC emacs-lisp
+  (use-package expand-region
+    :bind (("C-." . er/expand-region)
+           (:map evil-normal-state-map
+                 ("C-." . er/expand-region)))
+    :config
+    (setq expand-region-fast-keys-enabled nil))
+#+END_SRC
+
 * COMMENT Local variables
 # Local Variables:
 # org-adapt-indentation: nil

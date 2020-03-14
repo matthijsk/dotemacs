@@ -641,7 +641,13 @@ modal editing of Vim combined with the extensibility of Emacs.
                 ("C-/"     . my-comment-dwim)
 
            :map evil-insert-state-map
-                ("C-s" . save-buffer))
+                ("C-s" . save-buffer)
+
+           :map evil-ex-completion-map
+                ("C-a" . move-beginning-of-line)
+                ("C-e" . move-end-of-line)
+                ("C-b" . backward-char)
+                ("C-f" . forward-char))
 
     :init
     ;; Enable C-i when on a graphical display, and disable when on a terminal (to

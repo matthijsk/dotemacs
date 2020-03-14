@@ -35,7 +35,9 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-(require 'use-package)
+(eval-when-compile
+  (require 'use-package))
+
 (setq use-package-always-ensure t)
 
 (defcustom my-configuration-file (concat user-emacs-directory "configuration.org")

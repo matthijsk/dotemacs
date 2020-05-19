@@ -921,13 +921,7 @@ completion.
                 "Workaround for helm-projectile setting `helm-buffer-max-length'."
                 (setq helm-buffer-max-length nil)))
 
-    (helm-projectile-on)
-
-    ;; Set up defalias for helm-projectile-find-other-file to
-    ;; projectile-find-other-file. The update to projectile-2.1.0 broke
-    ;; helm-projectile-find-other-file. Workaround until helm-projectile is
-    ;; updated.
-    (defalias #'helm-projectile-find-other-file #'projectile-find-other-file))
+    (helm-projectile-on))
 #+END_SRC
 
 * Org mode

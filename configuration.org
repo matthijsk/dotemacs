@@ -889,19 +889,25 @@ completion.
           ("f" . helm-projectile-find-file)
           ("p" . helm-projectile-switch-project)
           ("sr" . my-helm-projectile-rg)
-          ("sg" . helm-projectile-grep)
+          ("sg" . my-helm-projectile-grep)
           :map evil-leader--default-map
           ("pp"  . helm-projectile-switch-project)
           ("pf"  . helm-projectile-find-file)
-          ("psg" . helm-projectile-grep)
+          ("psg" . my-helm-projectile-grep)
           ("pa"  . helm-projectile-find-other-file)
           ("psr" . my-helm-projectile-rg))
 
     :init
     (setq helm-projectile-fuzzy-match nil)
     (setq projectile-switch-project-action 'helm-projectile)
+    (setq helm-projectile-git-grep-command "git --no-pager grep --no-color -n%c -e %p -- %f %g")
 
     :config
+    (defun my-helm-projectile-grep ()
+      "Call `helm-projectile-grep' non-interactively, to prevent the directory prompt."
+      (interactive)
+      (helm-projectile-grep))
+
     (defun my-helm-projectile-rg ()
       "Perform `helm-do-grep-ag' at project root.
 

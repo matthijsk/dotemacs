@@ -773,24 +773,16 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
 * Helm
 Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
 #+BEGIN_SRC emacs-lisp
-  (use-package helm
+  ;; Load helm autoloads if it is installed.
+  (when (package-installed-p 'helm)
+    (require 'helm-config))
+
+  (use-package helm-mode
     :diminish helm-mode
-    :pin melpa-stable
+    :ensure nil
     :defer 2
-    :bind (("M-x"     . helm-M-x)
-           ("C-x b"   . helm-mini)
-           ("C-x C-f" . helm-find-files)
-           ("C-c r"   . my-helm-resume-existing)
-           ("C-x r l" . helm-bookmarks)
-
-           :map evil-normal-state-map
-           ("SPC" . helm-mini)
-
+    :bind (("C-c r" . my-helm-resume-existing)
            :map evil-leader--default-map
-           ("b"  . helm-mini)
-           ("xf" . helm-find-files)
-           ("hb" . helm-bookmarks)
-           ("hs" . helm-semantic-or-imenu)
            ("hr" . my-helm-resume-existing))
 
     :init
@@ -800,17 +792,54 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
       (setq x-wait-for-event-timeout nil))
 
     :config
-    ;; Use ripgrep instead of ag.
-    (setq helm-grep-ag-command "rg --color=always --smart-case --no-heading --line-number %s %s %s")
-
     (defun my-helm-resume-existing ()
       "Resume previous helm session with prefix to choose among existing helm buffers."
       (interactive)
       (helm-resume t))
 
-    (helm-mode 1)
+    (helm-mode 1))
 
+  (use-package helm-command
+    :ensure nil
+    :bind (("M-x" . helm-M-x)))
+
+  (use-package helm-files
+    :ensure nil
+    :bind (("C-x C-f" . helm-find-files)
+           :map evil-leader--default-map
+           ("xf" . helm-find-files)))
+
+  (use-package helm-bookmark
+    :ensure nil
+    :bind (("C-x r l" . helm-bookmarks)
+           :map evil-leader--default-map
+           ("hb" . helm-bookmarks)))
+
+  (use-package helm-semantic
+    :ensure nil
+    :bind (:map evil-leader--default-map
+           ("hs" . helm-semantic-or-imenu)))
+
+  (use-package helm-buffers
+    :ensure nil
+    :bind (("C-x b" . helm-mini)
+           :map evil-normal-state-map
+           ("SPC" . helm-mini)
+           :map evil-leader--default-map
+           ("b"  . helm-mini))
+
+    :config
     (setq helm-buffer-max-length nil))
+
+  (use-package helm-grep
+    :ensure nil
+    :config
+    ;; Use ripgrep instead of ag.
+    (setq helm-grep-ag-command "rg --color=always --smart-case --no-heading --line-number %s %s %s"))
+
+  (use-package helm
+    :pin melpa-stable
+    :defer t)
 #+END_SRC
 
 * Helm Org

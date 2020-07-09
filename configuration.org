@@ -1163,6 +1163,7 @@ a single file are a breeze with Magit.
 
     :config
     (evil-define-key 'normal magit-blame-mode-map (kbd "q") 'magit-blame-quit)
+    (evil-define-key 'normal magit-blame-mode-map (kbd "c") 'magit-blame-cycle-style)
 
     (magit-define-popup-switch 'magit-log-popup ?f "first parent" "--first-parent")
 

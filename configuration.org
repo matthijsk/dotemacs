@@ -807,6 +807,7 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
     :bind (("M-x" . helm-M-x)))
 
   (use-package helm-files
+    :diminish helm-ff-cache-mode
     :ensure nil
     :bind (("C-x C-f" . helm-find-files)
            :map evil-leader--default-map

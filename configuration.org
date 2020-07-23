@@ -932,6 +932,7 @@ completion.
           ("psr" . my-helm-projectile-rg))
 
     :init
+    (require 'tramp)
     (setq helm-projectile-fuzzy-match nil)
     (setq projectile-switch-project-action 'helm-projectile)
     (setq helm-projectile-git-grep-command "git --no-pager grep --no-color -n%c -e %p -- %f %g")

@@ -1443,6 +1443,13 @@ major modes are derived from =prog-mode=.
                   (evil-define-key 'normal c++-mode-map (kbd "C-]") 'evil-jump-to-tag)))))
 #+END_SRC
 
+* Highlight doxygen mode
+#+BEGIN_SRC emacs-lisp
+  (use-package highlight-doxygen
+    :hook (c-mode-common-hook . highlight-doxygen-mode)
+    :defer t)
+#+END_SRC
+
 * COMMENT Local variables
 # Local Variables:
 # org-adapt-indentation: nil

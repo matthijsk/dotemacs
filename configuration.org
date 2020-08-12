@@ -360,6 +360,15 @@ function.
   (add-hook 'c-mode-common-hook #'my-c-mode-bindings)
 #+END_SRC
 
+Set up a global binding to quickly switch to the compilation buffer.
+#+BEGIN_SRC emacs-lisp
+  (defun my-switch-to-compilation ()
+    (interactive)
+    (switch-to-buffer "*compilation*"))
+
+  (bind-key "C-c b" #'my-switch-to-compilation)
+#+END_SRC
+
 Set up ~bat-cmd-help~ with ~thing-at-point~ for =bat-mode=.
 #+BEGIN_SRC emacs-lisp
   (use-package bat-mode

@@ -374,8 +374,8 @@ Set up ~bat-cmd-help~ with ~thing-at-point~ for =bat-mode=.
       (bat-cmd-help cmd)))
 #+END_SRC
 
-** Default search function
-Define an alias for whatever search function strikes my fancy today. This makes
+** Default occur function
+Define an alias for whatever occur-like function strikes my fancy today. This makes
 it easier to change functionality without the tedium of having to rebind all
 keys.
 #+BEGIN_SRC emacs-lisp
@@ -538,8 +538,10 @@ Enable ~abbrev-mode~ for ~text-mode~.
 #+END_SRC
 
 ** Calendar
-Add a function to insert the current date into the current buffer. Useful for
-inserting the current date in a written form.
+Set up holidays that are commonly observed in my part of the world.
+
+Also, add a function to insert the current date into the current buffer. Useful
+for inserting the current date in a written form.
 #+BEGIN_SRC emacs-lisp
   (use-package calendar
     :commands (my-insert-current-date)

@@ -833,6 +833,7 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
 
   (use-package helm-grep
     :ensure nil
+    :defer t
     :config
     ;; Use ripgrep instead of ag.
     (setq helm-grep-ag-command "rg --color=always --smart-case --no-heading --line-number %s %s %s"))

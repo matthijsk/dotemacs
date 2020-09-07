@@ -295,11 +295,13 @@ Autoscroll compilation window and stop on first error.
 Set c and sh indentation to 2, and never indent with tabs.
 #+BEGIN_SRC emacs-lisp
   (use-package cc-mode
+    :ensure nil
     :defer t
     :config
     (setq c-basic-offset 2))
 
   (use-package sh-script
+    :ensure nil
     :defer t
     :config
     (setq sh-basic-offset 2))
@@ -372,6 +374,7 @@ Set up a global binding to quickly switch to the compilation buffer.
 Set up ~bat-cmd-help~ with ~thing-at-point~ for =bat-mode=.
 #+BEGIN_SRC emacs-lisp
   (use-package bat-mode
+    :ensure nil
     :defer t
     :bind (:map bat-mode-map
                 ("<f1>" . my-bat-cmd-help))
@@ -428,6 +431,7 @@ Remap ~list-buffers~ (=C-x C-b=) to ~ibuffer~.
 Use a human-readable Size column for =ibuffer=. Taken from [[https://www.emacswiki.org/emacs/IbufferMode#toc12][Emacs Wiki]].
 #+BEGIN_SRC emacs-lisp
   (use-package ibuffer
+    :ensure nil
     :bind (([remap list-buffers] . ibuffer))
     :config
     ;; Use human readable Size column instead of original one.
@@ -553,6 +557,7 @@ Also, add a function to insert the current date into the current buffer. Useful
 for inserting the current date in a written form.
 #+BEGIN_SRC emacs-lisp
   (use-package calendar
+    :ensure nil
     :commands (my-insert-current-date)
 
     :init

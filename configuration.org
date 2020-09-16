@@ -1014,6 +1014,8 @@ work.
            ("M-n" . org-next-visible-heading))
 
     :init
+    (setq org-startup-folded t)
+
     (setq org-todo-keywords '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
 
     (setq org-clock-clocktable-default-properties

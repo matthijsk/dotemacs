@@ -1423,12 +1423,6 @@ Emacs can do everything, so why not [[https://github.com/clarete/hackernews.el][
     (evil-set-initial-state 'hackernews-mode 'emacs))
 #+END_SRC
 
-* Jenkinsfile mode
-#+BEGIN_SRC emacs-lisp
-  (use-package jenkinsfile-mode
-    :defer t)
-#+END_SRC
-
 * Rainbow-delimiters
 Set up [[https://github.com/Fanael/rainbow-delimiters][rainbow-delimiters-mode]] for =prog-mode=. Most (if not all) programming
 major modes are derived from =prog-mode=.

@@ -956,7 +956,7 @@ completion.
 
   See also `helm-grep-ag-command'. (We use ripgrep)"
       (interactive)
-      (projectile-with-default-dir (projectile-ensure-project (projectile-project-root))
+      (projectile-with-default-dir (projectile-acquire-root)
         (call-interactively #'helm-do-grep-ag)))
 
     (add-hook 'helm-before-initialize-hook

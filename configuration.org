@@ -1141,6 +1141,8 @@ work.
       (interactive)
       (find-file my-org-worklog)
       (org-datetree-find-iso-week-create (calendar-current-date))
+      (org-reveal)
+      (org-show-entry)
       (org-clock-in)))
 #+END_SRC
 

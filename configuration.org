@@ -515,6 +515,13 @@ Use human-readable sizes in dired listings.
   (setq dired-listing-switches "-alh")
 #+END_SRC
 
+Enable dired-find-alternate-file, to open the currently highlighted file and
+kill the current dired buffer. Useful for browsing through large file trees.
+Using dired-find-file (<RET>) results in many open dired buffers.
+#+BEGIN_SRC emacs-lisp
+  (put 'dired-find-alternate-file 'disabled nil)
+#+END_SRC
+
 ** Convenience
 Various functions to make editing more convenient.
 

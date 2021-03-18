@@ -1154,11 +1154,13 @@ work.
   See also Info node `(org)Using capture' and Info node
   `(org)Template elements'."
       (interactive)
-      (find-file my-org-worklog)
-      (org-datetree-find-iso-week-create (calendar-current-date))
-      (org-reveal)
-      (org-show-entry)
-      (org-clock-in)))
+      (let ((progress-reporter (make-progress-reporter "Clocking in...")))
+        (find-file my-org-worklog)
+        (org-datetree-find-iso-week-create (calendar-current-date))
+        (org-reveal)
+        (org-show-entry)
+        (org-clock-in)
+        (progress-reporter-done progress-reporter))))
 #+END_SRC
 
 Add ox-gfm to enable exporting of org mode buffers to Github Flavored Markdown.

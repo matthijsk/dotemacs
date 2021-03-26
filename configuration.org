@@ -902,6 +902,12 @@ Git repositories for quick navigation.
     :config
     (projectile-mode 1)
 
+    (defun my-projectile-update-tags ()
+      "Runs GTAGS in root of project directory."
+      (interactive)
+      (projectile-with-default-dir (projectile-acquire-root)
+        (compile "gtags.exe -v")))
+
     (defun my-projectile-project-find-function (dir)
       "Return project root dir for use with project.el and ccls."
       (let* ((root (projectile-project-root dir)))

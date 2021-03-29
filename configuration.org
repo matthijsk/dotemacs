@@ -1166,6 +1166,7 @@ work.
         (org-reveal)
         (org-show-entry)
         (org-clock-in)
+        (org-save-all-org-buffers)
         (progress-reporter-done progress-reporter))))
 #+END_SRC
 

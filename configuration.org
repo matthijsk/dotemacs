@@ -1006,7 +1006,7 @@ work.
            ("C-c w" . my-org-clock-in)
            ("C-c i" . org-clock-in-last)
            ("C-c j" . my-org-clock-goto)
-           ("C-c o" . org-clock-out)
+           ("C-c o" . my-org-clock-out)
            ("C-c t" . my-org-todo-list)
 
            :map org-mode-map
@@ -1167,7 +1167,15 @@ work.
         (org-show-entry)
         (org-clock-in)
         (org-save-all-org-buffers)
-        (progress-reporter-done progress-reporter))))
+        (progress-reporter-done progress-reporter)))
+
+    (defun my-org-clock-out ()
+      "Stop the currently running clock and save all org buffers.
+
+  See `org-clock-out' and `org-save-all-org-buffers'"
+      (interactive)
+      (org-clock-out)
+      (org-save-all-org-buffers)))
 #+END_SRC
 
 Add ox-gfm to enable exporting of org mode buffers to Github Flavored Markdown.

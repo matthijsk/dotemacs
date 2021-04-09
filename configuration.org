@@ -1057,6 +1057,8 @@ work.
     (add-hook 'org-agenda-mode-hook #'hl-line-mode)
 
     :config
+    (setq org-priority-default 65)
+
     (setq org-default-notes-file (concat (file-name-as-directory org-directory) "notes.org"))
 
     ;; Set org-agenda-files to file with list containing all agenda files.

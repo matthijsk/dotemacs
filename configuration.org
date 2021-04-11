@@ -1107,6 +1107,14 @@ work.
       :type 'file
       :group 'work)
 
+    (defun my-org-daily-standup ()
+      "Show clock table for yesterday and agenda for current week."
+      (interactive)
+      (delete-other-windows)
+      (my-org-clock-report)
+      (split-window-right)
+      (org-agenda-list))
+
     (defun my-org-clock-report ()
       "Show time spent on tasks during previous day.
   Create new buffer *clocktable.org* and call `org-clock-report'.

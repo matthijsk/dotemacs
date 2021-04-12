@@ -363,6 +363,7 @@ function.
 Set up a global binding to quickly switch to the compilation buffer.
 #+BEGIN_SRC emacs-lisp
   (defun my-switch-to-compilation ()
+    "Switch to *compilation* buffer."
     (interactive)
     (switch-to-buffer "*compilation*"))
 

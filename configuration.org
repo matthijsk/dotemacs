@@ -1011,6 +1011,7 @@ work.
            ("C-c t" . my-org-todo-list)
 
            :map org-mode-map
+           ([remap org-clock-in] . my-org-clock-in)
            ([remap org-edit-special] . my-org-edit-special)
            ([remap org-insert-structure-template] . my-org-insert-structure-template)
 
@@ -1171,6 +1172,14 @@ work.
         (org-clock-in)
         (org-save-all-org-buffers)
         (progress-reporter-done progress-reporter)))
+
+    (defun my-org-clock-in ()
+      "Start the clock on the current item and save all org buffers.
+
+  See `org-clock-in' and `org-save-all-org-buffers'"
+      (interactive)
+      (org-clock-in)
+      (org-save-all-org-buffers))
 
     (defun my-org-clock-out ()
       "Stop the currently running clock and save all org buffers.

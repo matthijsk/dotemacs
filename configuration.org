@@ -1515,6 +1515,12 @@ major modes are derived from =prog-mode=.
                   (evil-define-key 'normal c++-mode-map (kbd "C-]") 'evil-jump-to-tag)))))
 #+END_SRC
 
+* Helm xref
+Helm interface for xref results. Useful in combination with eglot.
+#+BEGIN_SRC emacs-lisp
+  (use-package helm-xref)
+#+END_SRC
+
 * Highlight doxygen mode
 #+BEGIN_SRC emacs-lisp
   (use-package highlight-doxygen

@@ -1187,7 +1187,12 @@ work.
   See `org-clock-out' and `org-save-all-org-buffers'"
       (interactive)
       (org-clock-out)
-      (org-save-all-org-buffers)))
+      ;; We are interested in the clock out message, but org-save-all-org-buffers
+      ;; also displays a message. Save the clock out message for display after
+      ;; saving all buffers.
+      (let ((clock-out-message (current-message)))
+        (org-save-all-org-buffers)
+        (message clock-out-message))))
 #+END_SRC
 
 Add ox-gfm to enable exporting of org mode buffers to Github Flavored Markdown.

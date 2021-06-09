@@ -1202,7 +1202,7 @@ a single file are a breeze with Magit.
     :bind (("C-x g" . magit-staging)
            :map evil-leader--default-map
            ("sg" . magit-staging)
-           ("f"  . magit-file-popup)
+           ("f"  . magit-file-dispatch)
            :map git-commit-mode-map
            ("C-c t" . my-insert-current-date))
 

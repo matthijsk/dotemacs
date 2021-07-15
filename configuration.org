@@ -1049,6 +1049,8 @@ work.
 
     (setq org-default-notes-file (concat (file-name-as-directory org-directory) "notes.org"))
 
+    (setq org-agenda-use-time-grid nil)
+
     ;; Set org-agenda-files to file with list containing all agenda files.
     (setq org-agenda-files (concat (file-name-as-directory org-directory) "org-agenda-files.org"))
 

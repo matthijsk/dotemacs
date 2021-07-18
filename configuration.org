@@ -1508,7 +1508,8 @@ major modes are derived from =prog-mode=.
 * Helm xref
 Helm interface for xref results. Useful in combination with eglot.
 #+BEGIN_SRC emacs-lisp
-  (use-package helm-xref)
+  (use-package helm-xref
+    :defer t)
 #+END_SRC
 
 * Highlight doxygen mode

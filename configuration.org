@@ -1125,6 +1125,7 @@ work.
   and include the weekend."
       (interactive)
       (switch-to-buffer "*clocktable*")
+      (erase-buffer)
       (org-mode)
       (insert "To update the clock table after making changes in its properties run org-dblock-update (C-c C-x C-u).")
 

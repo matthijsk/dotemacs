@@ -87,6 +87,13 @@ scroll amount of three lines.
 ** User interface
 General Emacs settings relating to fonts, themes, etc.
 
+*** Font
+Set the Consolas font when running on Windows.
+#+BEGIN_SRC emacs-lisp
+  (when (eq system-type 'windows-nt)
+    (set-frame-font "Consolas" nil t))
+#+END_SRC
+
 *** Theme
 Load [[https://github.com/nashamri/spacemacs-theme][spacemacs]] theme. When running ssh from a MINGW terminal, make sure it is
 set to =xterm-256color= (under =options -> terminal=).

@@ -265,7 +265,7 @@ Enable eldoc-mode for elisp buffers.
 
 Highlight matching parentheses.
 #+BEGIN_SRC emacs-lisp
-  (show-paren-mode 1)
+  (show-paren-mode t)
 #+END_SRC
 
 Customize comment-dwim so it does exactly what I want it to do:

@@ -1231,7 +1231,7 @@ a single file are a breeze with Magit.
     ;; Disable VC git backend. No need when using Magit.
     (setq vc-handled-backends (delq 'Git vc-handled-backends))
 
-    (setq magit-refresh-verbose t)
+    (setq magit-refresh-verbose nil)
 
     (setq auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffer-p)
 

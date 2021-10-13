@@ -895,7 +895,10 @@ Git repositories for quick navigation.
                 ("<f9>" . projectile-run-project)
                 ("C-<f9>" . projectile-compile-project)
                 ("M-<f9>" . projectile-test-project)
-                ("C-M-<f9>" . projectile-configure-project))
+                ("C-M-<f9>" . projectile-configure-project)
+
+                :map projectile-command-map
+                ("R" . my-projectile-regenerate-tags))
 
     :init
     (setq projectile-globally-ignored-files '("TAGS" "GTAGS" "GRTAGS" "*.png" "*.ini" "*.dll" "*.lib" "*.bmp" "*.jpg"))

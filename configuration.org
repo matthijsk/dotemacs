@@ -539,6 +539,18 @@ visited file. Yes, I am aware of dired. Sometimes you still need explorer.
       (error "No `default-directory' to open")))
 #+END_SRC
 
+Search https://woordenlijst.org for correct spelling and grammar of Dutch words
+and sentences.
+#+BEGIN_SRC emacs-lisp
+  (defun my-search-woordenlijst-org (word)
+    "Search URL `https://woordenlijst.org' for WORD."
+    (interactive (list (read-string "Search woordenlijst.org: " (thing-at-point 'word t))))
+    (browse-url
+     (format "https://woordenlijst.org/#/?q=%s" word)))
+
+  (bind-key "<f2>" #'my-search-woordenlijst-org)
+#+END_SRC
+
 ** Auth sources
 Only ever use encrypted .authinfo.gpg files.
 #+BEGIN_SRC emacs-lisp

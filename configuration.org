@@ -1280,9 +1280,7 @@ a single file are a breeze with Magit.
       (magit-insert-section (status)
         (magit-insert-untracked-files)
         (magit-insert-unstaged-changes)
-        (magit-insert-staged-changes)
-        (let ((magit-buffer-log-args '("--decorate")))
-          (magit-insert-recent-commits))))
+        (magit-insert-staged-changes)))
 
     (defun magit-staging (&optional directory)
       "Depending on OS, use `magit-status-mode' or `magit-staging-mode'.

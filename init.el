@@ -58,7 +58,3 @@
   (if (file-newer-than-file-p my-configuration-file tangled-file)
       (org-babel-load-file my-configuration-file)
     (load-file tangled-file)))
-
-;; To prevent the initial startup message from stepping over this message,
-;; customize the variable `inhibit-startup-echo-area-message'.
-(message (emacs-init-time))

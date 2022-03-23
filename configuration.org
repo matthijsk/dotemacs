@@ -651,6 +651,16 @@ scaling.
     (bind-key (format "C-<%s>" mouse-wheel-up-event) #'default-text-scale-decrease))
 #+END_SRC
 
+* Undo tree
+Undo-tree is a dependency of Evil.
+#+BEGIN_SRC emacs-lisp
+  (use-package undo-tree
+    :diminish undo-tree-mode
+
+    :custom
+    (undo-tree-auto-save-history nil))
+#+END_SRC
+
 * Evil
 I used to be a Vim user. To be honest, I guess I still am. Else why
 commit the sacrilege of using Vim bindings in Emacs? The modal editing
@@ -662,7 +672,6 @@ modal editing of Vim combined with the extensibility of Emacs.
     :pin melpa-stable
     :ensure t
     :demand t
-    :diminish undo-tree-mode
     :bind (:map evil-normal-state-map
                 ("C-s"     . save-buffer)
                 ("C-/"     . my-comment-dwim)

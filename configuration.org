@@ -222,17 +222,9 @@ frame.
 
 When I call kill-buffer I pretty much always mean to kill the current buffer.
 The default functionality is to prompt for a buffer name. Instead, I want the
-current buffer to be killed immediately. Recent versions (26 and higher) have a
-function ~kill-current-buffer~, which appears to do the same, with some extra
-house keeping. However, occasionally I have to use an older Emacs, so use this
-solution instead.
+current buffer to be killed immediately.
 #+BEGIN_SRC emacs-lisp
-  (defun my-kill-buffer ()
-    "Kill current buffer without prompting"
-    (interactive)
-    (kill-buffer (current-buffer)))
-
-  (bind-key "C-x k" #'my-kill-buffer)
+  (bind-key "C-x k" #'kill-current-buffer)
 #+END_SRC
 
 Bind =hippie-expand= to =M-/=.

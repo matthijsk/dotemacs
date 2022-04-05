@@ -779,7 +779,7 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
       "wl"  'evil-window-right
 
       "xs"  'save-some-buffers
-      "xk"  'my-kill-buffer
+      "xk"  'kill-current-buffer
       "rb"  'revert-buffer
       "n"   'server-edit
       "xc"  'save-buffers-kill-terminal

@@ -86,7 +86,7 @@ Don't scroll faster when the mouse wheel is turned faster. Also, use a fixed
 scroll amount of three lines.
 #+BEGIN_SRC emacs-lisp
   (setq mouse-wheel-progressive-speed nil)
-  (setq mouse-wheel-scroll-amount (quote (3 ((shift) . 1))))
+  (setq mouse-wheel-scroll-amount (quote (3 ((shift) . hscroll))))
 #+END_SRC
 
 ** User interface

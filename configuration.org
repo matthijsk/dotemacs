@@ -312,12 +312,6 @@ Set some modes for specific file types.
 - Set ~conf-mode~ when loading a Doxygen configuration file.
 - Set ~conf-mode~ when loading a .clang-format file.
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'auto-mode-alist '("\\.cbproj\\'" . xml-mode))
-  (add-to-list 'auto-mode-alist '("\\.groupproj\\'" . xml-mode))
-
-  (add-to-list 'auto-mode-alist '("\\.rh\\'" . c++-mode))
-  (add-to-list 'auto-mode-alist '("\\.rc\\'" . c++-mode))
-
   (add-to-list 'auto-mode-alist '("Doxyfile\\'" . conf-mode))
 
   (add-to-list 'auto-mode-alist '("\\.clang-format\\'" . conf-mode))

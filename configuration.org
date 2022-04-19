@@ -1090,6 +1090,9 @@ work.
     ;; Set org-agenda-files to file with list containing all agenda files.
     (setq org-agenda-files (concat (file-name-as-directory org-directory) "org-agenda-files.org"))
 
+    ;; Ensure tags in agenda columns are shifted to the agenda item.
+    (setq org-agenda-align-tags-to-column 0)
+
     (org-clock-persistence-insinuate)
 
     ;; When in org-mode, use expected org-mode tab behaviour when in

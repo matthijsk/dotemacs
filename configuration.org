@@ -1193,14 +1193,14 @@ work.
   See also Info node `(org)Using capture' and Info node
   `(org)Template elements'."
       (interactive)
-      (let ((progress-reporter (make-progress-reporter "Clocking in...")))
-        (find-file my-org-worklog)
-        (org-datetree-find-iso-week-create (calendar-current-date))
-        (org-reveal)
-        (org-show-entry)
-        (org-clock-in)
-        (org-save-all-org-buffers)
-        (progress-reporter-done progress-reporter)))
+      (message "Clocking in...")
+      (find-file my-org-worklog)
+      (org-datetree-find-iso-week-create (calendar-current-date))
+      (org-reveal)
+      (org-show-entry)
+      (org-clock-in)
+      (org-save-all-org-buffers)
+      (message "Clocking in...done"))
 
     (defun my-org-clock-in ()
       "Start the clock on the current item and save all org buffers.

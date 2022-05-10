@@ -1140,8 +1140,10 @@ work.
       (interactive)
       (delete-other-windows)
       (my-org-clock-report)
-      (split-window-right)
-      (org-agenda-list))
+      (org-agenda-list)
+      (other-window 1)
+      (split-window-below)
+      (switch-to-buffer-other-window "worklog.org"))
 
     (defun my-org-clock-report ()
       "Show time spent on tasks during previous day.

@@ -650,6 +650,17 @@ scaling.
     (bind-key (format "C-<%s>" mouse-wheel-up-event) #'default-text-scale-decrease))
 #+END_SRC
 
+* Doom-modeline
+Use [[https://github.com/seagle0128/doom-modeline][doom-modeline]] as the modeline. Looks good, while still having good
+performance.
+#+BEGIN_SRC emacs-lisp
+  (use-package doom-modeline
+    :ensure t
+    :pin melpa-stable
+    :init
+    (doom-modeline-mode 1))
+#+END_SRC
+
 * Evil
 I used to be a Vim user. To be honest, I guess I still am. Else why
 commit the sacrilege of using Vim bindings in Emacs? The modal editing

@@ -1350,10 +1350,6 @@ files.
   (setenv "GTAGSFORCECPP" "true")
 
   (add-to-list 'auto-mode-alist '("\\.globalrc\\'" . conf-mode))
-
-  (use-package ggtags
-    :pin melpa-stable
-    :defer t)
 #+END_SRC
 
 * Helm gtags

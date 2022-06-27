@@ -998,6 +998,16 @@ completion.
                 "Workaround for helm-projectile setting `helm-buffer-max-length'."
                 (setq helm-buffer-max-length nil)))
 
+    ;; Override `helm-projectile-switch-to-eshell' (in helm-projectile.el),
+    ;; because the melpa-stable version tries to call `helm-ff-switch-to-eshell',
+    ;; which is no longer available in stable helm. Call `helm-ff-switch-to-shell'
+    ;; instead.
+    (defun helm-projectile-switch-to-eshell (dir)
+      (interactive)
+      (let* ((projectile-require-project-root nil)
+             (helm-ff-default-directory (file-name-directory (projectile-expand-root dir))))
+        (helm-ff-switch-to-shell dir)))
+
     (helm-projectile-on))
 #+END_SRC
 

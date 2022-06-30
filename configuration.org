@@ -797,6 +797,8 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
 
       "g"   'gnus
 
+      "u"   'outline-up-heading
+
       "c"   'compile)
 
     (evil-leader/set-key-for-mode 'emacs-lisp-mode "c" 'emacs-lisp-byte-compile)

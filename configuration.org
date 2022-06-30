@@ -407,9 +407,9 @@ Windows systems. See https://github.com/jorgenschaefer/elpy/issues/733.
 Define an alias for whatever occur-like function strikes my fancy today. This makes
 it easier to change functionality without the tedium of having to rebind all
 keys.
-#+begin_src emacs-lisp
-  (bind-key "M-s o" #'helm-occur)
-#+end_src
+#+begin_SRC emacs-lisp
+  ;; M-s o bound to consult-line. See consult config.
+#+end_SRC
 
 ** Find configuration files
 This configuration file is written in =org-mode=. The file is
@@ -827,87 +827,64 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
     (evil-mode))
 #+end_src
 
-* Helm
-Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
-#+begin_src emacs-lisp
-  (use-package helm
+* Vertico
+#+BEGIN_SRC emacs-lisp
+  ;; Enable vertico
+  (use-package vertico
     :pin melpa-stable
     :ensure t
-    :defer t)
-
-  (use-package helm-mode
-    :diminish helm-mode
-    :defer 2
-    :bind (("C-c r" . my-helm-resume-existing)
-           :map evil-leader--default-map
-           ("hr" . my-helm-resume-existing))
-
     :init
-    ;; Workaround for slow Helm issue with Emacs 26.1 on X.
-    ;; See https://github.com/emacs-helm/helm/wiki/FAQ#slow-frame-and-window-popup-in-emacs-26
-    (when (version= emacs-version "26.1")
-      (setq x-wait-for-event-timeout nil))
+    (vertico-mode)
+    (vertico-buffer-mode)
 
-    :config
-    (defun my-helm-resume-existing ()
-      "Resume previous helm session with prefix to choose among existing helm buffers."
-      (interactive)
-      (helm-resume t))
+    ;; Show more candidates
+    (setq vertico-count 20))
+#+END_SRC
 
-    (helm-mode 1))
-
-  (use-package helm-command
-    :bind (("M-x" . helm-M-x)))
-
-  (use-package helm-files
-    :diminish helm-ff-cache-mode
-    :bind (("C-x C-f" . helm-find-files)
-           :map evil-leader--default-map
-           ("xf" . helm-find-files)))
-
-  (use-package helm-bookmark
-    :bind (("C-x r l" . helm-bookmarks)))
-
-  (use-package helm-semantic
-    :bind (:map evil-leader--default-map
-           ("hs" . helm-semantic-or-imenu)))
-
-  (use-package helm-buffers
-    :bind (("C-x b" . helm-mini)
-           :map evil-normal-state-map
-           ("SPC" . helm-mini))
-
-    :config
-    (setq helm-buffer-max-length nil))
-
-  (use-package helm-grep
-    :defer t
-    :config
-    ;; Use ripgrep instead of ag.
-    (setq helm-grep-ag-command "rg --color=always --smart-case --no-heading --line-number %s %s %s"))
-#+end_src
-
-* Helm Org
-#+begin_src emacs-lisp
-  (use-package helm-org
+* Orderless
+#+BEGIN_SRC emacs-lisp
+  (use-package orderless
     :pin melpa-stable
     :ensure t
-    :commands (helm-org-in-buffer-headings)
-
     :init
-    ;; Load old eieio functions, which were deprecated in Emacs 29.1. See "Support
-    ;; for old EIEIO functions is not autoloaded any more" in etc/NEWS.
-    (use-package eieio-compat)
+    (setq completion-styles '(orderless basic)
+          completion-category-defaults nil
+          completion-category-overrides '((file (styles basic partial-completion)))))
+#+END_SRC
 
-    (evil-leader/set-key-for-mode 'org-mode "hs" 'helm-org-in-buffer-headings)
+* Consult
+#+BEGIN_SRC emacs-lisp
+  (use-package consult
+    :pin melpa-stable
+    :ensure t
+    :bind(("C-x b" . consult-buffer)
+          ("M-s o" . consult-line)
+          :map evil-normal-state-map
+          ("SPC" . consult-buffer)
+          :map evil-leader--default-map
+          ("hs" . consult-imenu))
+    :init
+    (evil-leader/set-key-for-mode 'org-mode "hs" 'consult-org-heading)
 
     :config
-    (advice-add 'helm-org-in-buffer-headings
+    (setq xref-show-xrefs-function #'consult-xref)
+    (setq xref-show-definitions-function #'consult-xref)
+
+    ;; TODO: Can probably be achieved using `consult-after-jump-hook'.
+    (advice-add 'consult-org-heading
                 :after
                 (lambda ()
-                  "Move selected line to top when helm exits successfully."
-                  (when (= helm-exit-status 0)
-                    (recenter-top-bottom 0)))))
+                  "Move selected line to top when consult-org-heading exits."
+                    (recenter-top-bottom 0))))
+#+END_SRC
+
+* Marginalia
+#+begin_src emacs-lisp
+  (use-package marginalia
+    :pin melpa-stable
+    :ensure t
+    :init
+    (marginalia-mode))
 #+end_src
 
 * Projectile
@@ -945,65 +922,13 @@ Git repositories for quick navigation.
     :config
     (projectile-mode 1)
 
+    (setq consult-project-function #'projectile-acquire-root)
+
     (defun my-projectile-regenerate-tags ()
       "Runs GTAGS in root of project directory."
       (interactive)
       (projectile-with-default-dir (projectile-acquire-root)
         (compile "gtags -v"))))
-#+end_src
-
-* Helm-projectile
-[[https://github.com/bbatsov/helm-projectile][Combine]] Helm and Projectile for awesome project navigation with awesome
-completion.
-#+begin_src emacs-lisp
-  (use-package helm-projectile
-    :if (> emacs-major-version 24)
-    :pin melpa-stable
-    :ensure t
-    :bind-keymap ("C-c p" . projectile-command-map)
-    :bind (:map projectile-command-map
-                ("sr" . my-helm-projectile-rg)
-                ("sg" . my-helm-projectile-grep)
-                :map evil-leader--default-map
-                ("psr" . my-helm-projectile-rg)
-                ("psg" . my-helm-projectile-grep))
-
-    :init
-    (require 'tramp)
-    (setq helm-projectile-fuzzy-match nil)
-    (setq projectile-switch-project-action 'helm-projectile)
-    (setq helm-projectile-git-grep-command "git --no-pager grep --no-color -n%c -e %p -- %f %g")
-
-    :config
-    (defun my-helm-projectile-grep ()
-      "Call `helm-projectile-grep' non-interactively, to prevent the directory prompt."
-      (interactive)
-      (helm-projectile-grep))
-
-    (defun my-helm-projectile-rg ()
-      "Perform `helm-do-grep-ag' at project root.
-
-  See also `helm-grep-ag-command'. (We use ripgrep)"
-      (interactive)
-      (projectile-with-default-dir (projectile-acquire-root)
-        (call-interactively #'helm-do-grep-ag)))
-
-    (add-hook 'helm-before-initialize-hook
-              (lambda ()
-                "Workaround for helm-projectile setting `helm-buffer-max-length'."
-                (setq helm-buffer-max-length nil)))
-
-    ;; Override `helm-projectile-switch-to-eshell' (in helm-projectile.el),
-    ;; because the melpa-stable version tries to call `helm-ff-switch-to-eshell',
-    ;; which is no longer available in stable helm. Call `helm-ff-switch-to-shell'
-    ;; instead.
-    (defun helm-projectile-switch-to-eshell (dir)
-      (interactive)
-      (let* ((projectile-require-project-root nil)
-             (helm-ff-default-directory (file-name-directory (projectile-expand-root dir))))
-        (helm-ff-switch-to-shell dir)))
-
-    (helm-projectile-on))
 #+end_src
 
 * Org mode
@@ -1370,31 +1295,6 @@ files.
   (add-to-list 'auto-mode-alist '("\\.globalrc\\'" . conf-mode))
 #+end_src
 
-* Helm gtags
-Set up [[https://github.com/syohex/emacs-helm-gtags][helm-gtags]], a Helm interface to GNU Global.
-#+begin_src emacs-lisp
-  (use-package helm-gtags
-    :pin melpa-stable
-    :ensure t
-    :defer t
-    :diminish helm-gtags-mode
-
-    :init
-    (add-hook 'c-mode-common-hook #'helm-gtags-mode)
-
-    (evil-define-key 'normal c-mode-map (kbd "C-]") 'helm-gtags-dwim)
-    (evil-define-key 'normal c++-mode-map (kbd "C-]") 'helm-gtags-dwim)
-
-    (advice-add #'helm-gtags-dwim :before #'evil-set-jump)
-
-    :config
-    (setq helm-gtags-path-style 'absolute)
-    (setq helm-gtags-use-input-at-cursor t)
-    (setq helm-gtags-auto-update t)
-    (setq helm-gtags-pulse-at-cursor t))
-
-#+end_src
-
 * Semantic
 
 #+begin_src emacs-lisp
@@ -1525,13 +1425,6 @@ major modes are derived from =prog-mode=.
                   "Use eglot xref backend when eglot is connected."
                   (evil-define-key 'normal c-mode-map   (kbd "C-]") 'evil-jump-to-tag)
                   (evil-define-key 'normal c++-mode-map (kbd "C-]") 'evil-jump-to-tag)))))
-#+end_src
-
-* Helm xref
-Helm interface for xref results. Useful in combination with eglot.
-#+begin_src emacs-lisp
-  (use-package helm-xref
-    :defer t)
 #+end_src
 
 * Highlight doxygen mode

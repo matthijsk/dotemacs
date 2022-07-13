@@ -1048,6 +1048,7 @@ work.
            ("C-c j" . my-org-clock-goto)
            ("C-c o" . my-org-clock-out)
            ("C-c t" . my-org-todo-list)
+           ("C-c d" . my-org-daily-standup)
 
            :map org-mode-map
            ([remap org-clock-in] . my-org-clock-in)

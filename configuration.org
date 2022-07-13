@@ -67,6 +67,13 @@ various commands such as ~(backward-sentence)~ and ~(forward-sentence)~.
   (setq sentence-end-double-space nil)
 #+END_SRC
 
+Enable ~repeat-mode~, a new feature in Emacs 28. How could I have lived without
+this?
+#+BEGIN_SRC emacs-lisp
+  (repeat-mode 1)
+#+END_SRC
+
+
 ** Scrolling
 Settings related to scrolling buffers.
 

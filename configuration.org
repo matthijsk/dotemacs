@@ -1066,7 +1066,7 @@ work.
     :init
     (setq org-startup-folded t)
 
-    (setq org-todo-keywords '((sequence "TODO" "IN PROGRESS" "REVIEW" "DONE" )))
+    (setq org-todo-keywords '((sequence "TODO" "IN PROGRESS" "REVIEW" "|" "DONE" "WONTFIX" )))
 
     (setq org-clock-clocktable-default-properties
           '(:maxlevel 3 :scope agenda :fileskip0 t :tstart "<-1d>" :tend "<today>" :narrow 120!))

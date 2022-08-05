@@ -1167,8 +1167,18 @@ work.
       :group 'work)
 
     (defun my-org-daily-standup ()
-      "Show clock table for yesterday and agenda for current week."
+      "Clock in for daily stand-up and clock table and agenda.
+
+  Asks to clock in for the daily stand-up work item. Then displays
+  the clocktable, the agenda and `my-org-worklog'."
       (interactive)
+      (when (message-y-or-n-p "Clock in for daily standup?" nil)
+        (with-current-buffer "agenda.org"
+          (goto-char (point-min))
+          (when (re-search-forward "Daily stand-up")
+            (goto-char (match-beginning 0))
+            (org-clock-in)
+            (save-buffer))))
       (delete-other-windows)
       (my-org-clock-report)
       (org-agenda-list)

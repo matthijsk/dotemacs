@@ -1358,9 +1358,18 @@ and for the integrated help.
     :pin melpa-stable
     :ensure t
     :bind (:map cmake-mode-map
-                ("<f1>" . cmake-help))
+                ("<f1>" . cmake-help-online))
 
-    :defer t)
+    :defer t
+
+    :config
+
+    (defun cmake-help-online (arg)
+      "Query cmake online documentation for ARG, using `browse-url'."
+      (interactive (list (read-string "Search cmake docs: " (cmake-symbol-at-point))))
+      (browse-url
+       (format "https://cmake.org/cmake/help/latest/search.html?q=%s"
+               arg))))
 #+END_SRC
 
 * Ninja mode

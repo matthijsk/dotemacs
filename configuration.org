@@ -70,7 +70,8 @@ various commands such as ~(backward-sentence)~ and ~(forward-sentence)~.
 Enable ~repeat-mode~, a new feature in Emacs 28. How could I have lived without
 this?
 #+BEGIN_SRC emacs-lisp
-  (repeat-mode 1)
+  (when (version<= "28.1" emacs-version)
+    (repeat-mode 1))
 #+END_SRC
 
 

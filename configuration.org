@@ -929,6 +929,7 @@ Git repositories for quick navigation.
     (setq projectile-indexing-method 'hybrid)
     (setq projectile-enable-caching t)
     (setq projectile-use-git-grep t)
+    (setq projectile-auto-update-cache nil)
 
     :config
     (projectile-mode 1)

@@ -74,6 +74,10 @@ this?
     (repeat-mode 1))
 #+END_SRC
 
+Delete duplicates from history.
+#+BEGIN_SRC emacs-lisp
+  (setq history-delete-duplicates t)
+#+END_SRC
 
 ** Scrolling
 Settings related to scrolling buffers.

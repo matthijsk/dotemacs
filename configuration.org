@@ -955,17 +955,6 @@ Git repositories for quick navigation.
       (add-to-list 'project-find-functions 'my-projectile-project-find-function)))
 #+END_SRC
 
-* Ripgrep
-  Add ripgrep package for use with =M-x projectile-ripgrep=.
-  Helm-projectile-ripgrep is available in melpa, but not yet in melpa-stable.
-#+BEGIN_SRC emacs-lisp
-  (use-package ripgrep
-    :ensure t
-    :defer t
-    :init
-    (setq ripgrep-arguments '("--smart-case")))
-#+END_SRC
-
 * Helm-projectile
 [[https://github.com/bbatsov/helm-projectile][Combine]] Helm and Projectile for awesome project navigation with awesome
 completion.

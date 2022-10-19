@@ -748,6 +748,7 @@ modal editing of Vim combined with the extensibility of Emacs.
                     compilation-mode
                     calculator-mode
                     semantic-symref-results-mode
+                    shortdoc-mode
                     xref--xref-buffer-mode
                     flymake-diagnostics-buffer-mode
                     profiler-report-mode))

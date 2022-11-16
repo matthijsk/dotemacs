@@ -1596,6 +1596,23 @@ Helm interface for xref results. Useful in combination with eglot.
     :defer t)
 #+END_SRC
 
+* Elfeed
+#+BEGIN_SRC emacs-lisp
+  (use-package elfeed
+    :pin melpa-stable
+    :defer t
+    :bind (("C-c e" . elfeed))
+    :init
+    (evil-set-initial-state 'elfeed-search-mode 'emacs)
+    (evil-set-initial-state 'elfeed-show-mode 'emacs)
+    :config
+    (setq elfeed-feeds
+          '("https://blogs.nasa.gov/artemis/feed/"
+            "https://feeds.nos.nl/nosnieuwsalgemeen"
+            "https://www.nrc.nl/rss/"
+            "https://github.com/git-for-windows/git/releases.atom")))
+#+END_SRC
+
 * COMMENT Local variables
 # Local Variables:
 # org-adapt-indentation: nil

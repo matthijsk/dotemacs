@@ -14,6 +14,7 @@ General Emacs settings that don't fall under any specific category.
 Set default coding system.
 #+BEGIN_SRC emacs-lisp
   (set-language-environment "UTF-8")
+  (set-default-coding-systems 'utf-8)
 #+END_SRC
 
 Disable automatic backups. See

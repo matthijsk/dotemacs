@@ -1609,9 +1609,10 @@ Helm interface for xref results. Useful in combination with eglot.
     :config
     (setq elfeed-feeds
           '("https://blogs.nasa.gov/artemis/feed/"
-            "https://feeds.nos.nl/nosnieuwsalgemeen"
-            "https://www.nrc.nl/rss/"
-            "https://github.com/git-for-windows/git/releases.atom")))
+            ("https://feeds.nos.nl/nosnieuwsalgemeen" news)
+            ("https://www.nrc.nl/rss/" news)
+            "https://github.com/git-for-windows/git/releases.atom"
+            "https://nullprogram.com/feed/")))
 #+END_SRC
 
 * COMMENT Local variables

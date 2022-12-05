@@ -1614,7 +1614,16 @@ Helm interface for xref results. Useful in combination with eglot.
             ("https://feeds.nos.nl/nosnieuwsalgemeen" news nos)
             ("https://www.nrc.nl/rss/" news nrc)
             "https://github.com/git-for-windows/git/releases.atom"
-            "https://nullprogram.com/feed/")))
+            "https://nullprogram.com/feed/"))
+
+    ;; Tag news entries older than one day as read.
+    (add-hook 'elfeed-new-entry-hook (elfeed-make-tagger :feed-url "nos.nl"
+                                                         :before "1 day ago"
+                                                         :remove 'unread))
+
+    (add-hook 'elfeed-new-entry-hook (elfeed-make-tagger :feed-url "nrc.nl"
+                                                         :before "1 day ago"
+                                                         :remove 'unread)))
 #+END_SRC
 
 * COMMENT Local variables

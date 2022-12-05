@@ -1608,6 +1608,7 @@ Helm interface for xref results. Useful in combination with eglot.
     (evil-set-initial-state 'elfeed-show-mode 'emacs)
     :config
     (setq elfeed-sort-order 'ascending)
+    (setq elfeed-search-title-max-width 120)
     (setq elfeed-feeds
           '("https://blogs.nasa.gov/artemis/feed/"
             ("https://feeds.nos.nl/nosnieuwsalgemeen" news nos)

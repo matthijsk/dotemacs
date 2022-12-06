@@ -1602,7 +1602,9 @@ Helm interface for xref results. Useful in combination with eglot.
   (use-package elfeed
     :pin melpa-stable
     :defer t
-    :bind (("C-c e" . elfeed))
+    :bind (("C-c e" . elfeed)
+           :map elfeed-search-mode-map
+           ("R" . my-elfeed-untag-all-unread))
     :init
     (evil-set-initial-state 'elfeed-search-mode 'emacs)
     (evil-set-initial-state 'elfeed-show-mode 'emacs)
@@ -1623,7 +1625,13 @@ Helm interface for xref results. Useful in combination with eglot.
 
     (add-hook 'elfeed-new-entry-hook (elfeed-make-tagger :feed-url "nrc.nl"
                                                          :before "1 day ago"
-                                                         :remove 'unread)))
+                                                         :remove 'unread))
+
+    (defun my-elfeed-untag-all-unread ()
+      "Remove the `unread' tag from all entries."
+      (interactive)
+      (mark-whole-buffer)
+      (elfeed-search-untag-all-unread)))
 #+END_SRC
 
 * COMMENT Local variables

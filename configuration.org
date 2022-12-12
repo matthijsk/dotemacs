@@ -1606,7 +1606,10 @@ Helm interface for xref results. Useful in combination with eglot.
     :defer t
     :bind (("C-c e" . elfeed)
            :map elfeed-search-mode-map
-           ("R" . my-elfeed-untag-all-unread))
+           ("R" . my-elfeed-untag-all-unread)
+           ("0" . my-elfeed-filter-other)
+           ("1" . my-elfeed-filter-nos)
+           ("2" . my-elfeed-filter-nrc))
     :init
     (evil-set-initial-state 'elfeed-search-mode 'emacs)
     (evil-set-initial-state 'elfeed-show-mode 'emacs)
@@ -1633,7 +1636,26 @@ Helm interface for xref results. Useful in combination with eglot.
       "Remove the `unread' tag from all entries."
       (interactive)
       (mark-whole-buffer)
-      (elfeed-search-untag-all-unread)))
+      (elfeed-search-untag-all-unread))
+
+    (defun my-elfeed-quick-filter (arg)
+      "Reset search filter to to default value of `elfeed-search-filter' and append ARG."
+      (interactive)
+      (elfeed-search-clear-filter)
+      (setq elfeed-search-filter (concat elfeed-search-filter " " arg))
+      (elfeed-search-update :force))
+
+    (defun my-elfeed-filter-nos ()
+      (interactive)
+      (my-elfeed-quick-filter "+nos"))
+
+    (defun my-elfeed-filter-nrc ()
+      (interactive)
+      (my-elfeed-quick-filter "+nrc"))
+
+    (defun my-elfeed-filter-other ()
+      (interactive)
+      (my-elfeed-quick-filter "-news")))
 #+END_SRC
 
 * COMMENT Local variables

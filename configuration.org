@@ -1620,7 +1620,7 @@ Helm interface for xref results. Useful in combination with eglot.
             "https://github.com/git-for-windows/git/releases.atom"
             "https://nullprogram.com/feed/"))
 
-    ;; Tag news entries older than one day as read.
+    ;; Remove unread tag from news entries older than one day.
     (add-hook 'elfeed-new-entry-hook (elfeed-make-tagger :feed-url "nos.nl"
                                                          :before "1 day ago"
                                                          :remove 'unread))

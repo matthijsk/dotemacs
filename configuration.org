@@ -1497,7 +1497,7 @@ Windows system. If a Git executable cannot be found a message is displayed.
           (progn
             ;; On Windows installations the git binaries reside in either bin or
             ;; cmd, so add usr/bin relative to the git executable path.
-            (add-to-list 'exec-path git-path)
+            (add-to-list 'exec-path git-path :append)
             (setenv "PATH" (concat (getenv "PATH") ";" git-path ";"))
 
             ;; Set the path to gpg.

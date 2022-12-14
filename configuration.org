@@ -1502,7 +1502,6 @@ Windows system. If a Git executable cannot be found a message is displayed.
 
             ;; Set the path to gpg.
             (use-package epg
-              :defer t
               :custom
               ;; This variable NEEDS to be set using customize, setting it
               ;; directly has no effect. See (describe-variable 'epg-gpg-program).

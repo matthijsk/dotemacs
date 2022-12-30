@@ -930,7 +930,12 @@ Git repositories for quick navigation.
                 ("C-M-<f9>" . projectile-configure-project)
 
                 :map projectile-command-map
-                ("R" . my-projectile-regenerate-tags))
+                ("R" . my-projectile-regenerate-tags)
+
+                :map evil-leader--default-map
+                ("pp"  . projectile-switch-project)
+                ("pf"  . projectile-find-file)
+                ("pa"  . projectile-find-other-file))
 
     :init
     (setq projectile-globally-ignored-files '("TAGS" "GTAGS" "GRTAGS" "*.png" "*.ini" "*.dll" "*.lib" "*.bmp" "*.jpg"))
@@ -968,19 +973,13 @@ completion.
     :if (> emacs-major-version 24)
     :pin melpa-stable
     :ensure t
-    :after dash helm projectile
-    :bind
-    (:map projectile-command-map
-          ("f" . helm-projectile-find-file)
-          ("p" . helm-projectile-switch-project)
-          ("sr" . my-helm-projectile-rg)
-          ("sg" . my-helm-projectile-grep)
-          :map evil-leader--default-map
-          ("pp"  . helm-projectile-switch-project)
-          ("pf"  . helm-projectile-find-file)
-          ("psg" . my-helm-projectile-grep)
-          ("pa"  . helm-projectile-find-other-file)
-          ("psr" . my-helm-projectile-rg))
+    :bind-keymap ("C-c p" . projectile-command-map)
+    :bind (:map projectile-command-map
+                ("sr" . my-helm-projectile-rg)
+                ("sg" . my-helm-projectile-grep)
+                :map evil-leader--default-map
+                ("psr" . my-helm-projectile-rg)
+                ("psg" . my-helm-projectile-grep))
 
     :init
     (require 'tramp)

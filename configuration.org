@@ -952,17 +952,7 @@ Git repositories for quick navigation.
       "Runs GTAGS in root of project directory."
       (interactive)
       (projectile-with-default-dir (projectile-acquire-root)
-        (compile "gtags -v")))
-
-    (defun my-projectile-project-find-function (dir)
-      "Return project root dir for use with project.el and ccls."
-      (let* ((root (projectile-project-root dir)))
-        (and root (cons 'transient root))))
-
-    ;; Register `my-projectile-project-find-function' for use with `eglot' and
-    ;; ccls. See https://github.com/MaskRay/ccls/wiki/eglot.
-    (with-eval-after-load 'project
-      (add-to-list 'project-find-functions 'my-projectile-project-find-function)))
+        (compile "gtags -v"))))
 #+END_SRC
 
 * Helm-projectile

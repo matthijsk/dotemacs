@@ -1592,6 +1592,7 @@ Helm interface for xref results. Useful in combination with eglot.
 #+BEGIN_SRC emacs-lisp
   (use-package elfeed
     :pin melpa-stable
+    :ensure t
     :defer t
     :bind (("C-c e" . elfeed)
            :map elfeed-search-mode-map

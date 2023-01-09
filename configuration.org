@@ -1042,7 +1042,6 @@ work.
            :map org-mode-map
            ([remap org-clock-in] . my-org-clock-in)
            ([remap org-edit-special] . my-org-edit-special)
-           ([remap org-insert-structure-template] . my-org-insert-structure-template)
 
            :map outline-mode-map
            ([tab] . org-cycle)
@@ -1122,15 +1121,6 @@ work.
       (when (eq major-mode 'org-mode) (whitespace-cleanup)))
 
     (add-hook 'before-save-hook #'my-org-ws-cleanup)
-
-    (defun my-org-insert-structure-template ()
-      "Like `org-insert-structure-template', but upcase all org block structures in current buffer."
-      (interactive)
-      (call-interactively #'org-insert-structure-template)
-      (save-excursion
-        (goto-char (point-min))
-        (while (re-search-forward "#\\+\\(begin\\|end\\)_[[:alnum:]]+" nil t)
-          (replace-match (upcase (match-string 0))))))
 
     (defun my-org-todo-list ()
       "Show `org-todo-list' with \"IN PROGRESS\" keyword selected."

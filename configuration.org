@@ -1146,7 +1146,7 @@ work.
       :group 'work)
 
     (defun my-org-daily-standup ()
-      "Clock in for daily stand-up and clock table and agenda.
+      "Clock in for daily stand-up and display clock table and agenda.
 
   Asks to clock in for the daily stand-up work item. Then displays
   the clocktable, the agenda and `my-org-worklog'."

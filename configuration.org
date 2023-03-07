@@ -238,11 +238,6 @@ current buffer to be killed immediately.
   (bind-key "C-x k" #'kill-current-buffer)
 #+end_src
 
-Bind =hippie-expand= to =M-/=.
-#+begin_src emacs-lisp
-  (bind-key "M-/" #'hippie-expand)
-#+end_src
-
 ** Enable disabled commands
 Some commands are disabled by default, enable these so Emacs doesn't
 ask for confirmation every time the command is executed.

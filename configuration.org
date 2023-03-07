@@ -1454,16 +1454,6 @@ Dired-narrow is a nice package to do quick filtering in dired buffers.
                 ("/" . dired-narrow)))
 #+end_src
 
-* Hackernews
-Emacs can do everything, so why not [[https://github.com/clarete/hackernews.el][browse]] [[https://news.ycombinator.com/news][hackernews]] with it?
-#+begin_src emacs-lisp
-  (use-package hackernews
-    :pin melpa-stable
-    :defer t
-    :init
-    (evil-set-initial-state 'hackernews-mode 'emacs))
-#+end_src
-
 * Rainbow-delimiters
 Set up [[https://github.com/Fanael/rainbow-delimiters][rainbow-delimiters-mode]] for =prog-mode=. Most (if not all) programming
 major modes are derived from =prog-mode=.

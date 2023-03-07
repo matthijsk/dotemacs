@@ -1130,6 +1130,7 @@ work.
   Asks to clock in for the daily stand-up work item. Then displays
   the clocktable, the agenda and `my-org-worklog'."
       (interactive)
+      (find-file (concat (file-name-as-directory org-directory) "agenda.org"))
       (when (message-y-or-n-p "Clock in for daily standup?" nil)
         (with-current-buffer "agenda.org"
           (goto-char (point-min))

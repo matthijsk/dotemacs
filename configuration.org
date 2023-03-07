@@ -1380,44 +1380,6 @@ Set up [[https://github.com/syohex/emacs-helm-gtags][helm-gtags]], a Helm interf
 
 #+end_src
 
-* Company
-Set up and use [[http://company-mode.github.io/][Company]] as the text completion framework.
-#+begin_src emacs-lisp
-  (use-package company
-    :pin melpa-stable
-    :ensure t
-    :diminish company-mode
-    :defer t
-
-    :config
-    (setq company-dabbrev-downcase nil)
-    (setq company-dabbrev-ignore-case t)
-    (setq company-dabbrev-code-ignore-case t)
-    (setq company-async-timeout 10)
-    (setq company-idle-delay nil)
-
-    ;; By default, only use `company-capf' backend, which functions as a bridge
-    ;; using standard `completion-at-point-functions' and the `company-keywords'
-    ;; backend, which adds completion for common programming language keywords.
-    ;; Other backends should be added in the appropriate configuration block.
-    (setq company-backends '(company-keywords company-capf company-cmake))
-
-    (global-company-mode 1))
-#+end_src
-
-* Helm company
-Set up [[https://github.com/Sodel-the-Vociferous/helm-company][helm-company]], a Helm interface to Company.
-#+begin_src emacs-lisp
-  (use-package helm-company
-    :pin melpa-stable
-    :ensure t
-    :bind (:map evil-insert-state-map
-                ([tab] . helm-company))
-
-    :init
-    (setq helm-company-fuzzy-match nil))
-#+end_src
-
 * Semantic
 
 #+begin_src emacs-lisp

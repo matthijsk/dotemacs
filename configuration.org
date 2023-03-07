@@ -68,13 +68,6 @@ various commands such as ~(backward-sentence)~ and ~(forward-sentence)~.
   (setq sentence-end-double-space nil)
 #+end_src
 
-Enable ~repeat-mode~, a new feature in Emacs 28. How could I have lived without
-this?
-#+begin_src emacs-lisp
-  (when (version<= "28.1" emacs-version)
-    (repeat-mode 1))
-#+end_src
-
 Delete duplicates from history.
 #+begin_src emacs-lisp
   (setq history-delete-duplicates t)

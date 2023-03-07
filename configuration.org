@@ -796,12 +796,6 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
       "hl"  'hl-line-mode
       "rl"  'display-line-numbers-mode
 
-      "hf"  'describe-function
-      "hv"  'describe-variable
-      "hm"  'describe-mode
-
-      "xd"  'dired
-
       "g"   'gnus
 
       "u"   'outline-up-heading

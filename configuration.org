@@ -1012,9 +1012,7 @@ work.
     ;; Global key bindings.
     :bind (("C-c l" . org-store-link)
            ("C-c a" . org-agenda)
-           ("C-c c" . org-capture)
            ("C-c w" . my-org-start-day)
-           ("C-c i" . org-clock-in-last)
            ("C-c j" . my-org-clock-goto)
            ("C-c o" . my-org-clock-out)
            ("C-c t" . my-org-todo-list)

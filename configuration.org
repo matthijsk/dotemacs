@@ -854,9 +854,7 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
            ("xf" . helm-find-files)))
 
   (use-package helm-bookmark
-    :bind (("C-x r l" . helm-bookmarks)
-           :map evil-leader--default-map
-           ("hb" . helm-bookmarks)))
+    :bind (("C-x r l" . helm-bookmarks)))
 
   (use-package helm-semantic
     :bind (:map evil-leader--default-map
@@ -865,9 +863,7 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
   (use-package helm-buffers
     :bind (("C-x b" . helm-mini)
            :map evil-normal-state-map
-           ("SPC" . helm-mini)
-           :map evil-leader--default-map
-           ("b"  . helm-mini))
+           ("SPC" . helm-mini))
 
     :config
     (setq helm-buffer-max-length nil))

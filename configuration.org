@@ -584,6 +584,12 @@ for inserting the current date in a written form.
     (setq holiday-bahai-holidays nil)
     (setq holiday-oriental-holidays nil)
 
+    (setq calendar-latitude 52.2)
+    (setq calendar-longitude 5.4)
+    (setq calendar-location-name "Amersfoort")
+
+    (setq calendar-time-display-form '(24-hours ":" minutes))
+
     :config
     (calendar-set-date-style 'european)
 

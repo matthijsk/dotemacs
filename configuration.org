@@ -733,7 +733,8 @@ modal editing of Vim combined with the extensibility of Emacs.
     ;; Set custom evil state when in these modes.
     (add-hook 'with-editor-mode-hook 'evil-normal-state)
 
-    (dolist (mode '(shell-mode
+    (dolist (mode '(calendar-mode
+                    shell-mode
                     eshell-mode
                     eww-mode
                     term-mode

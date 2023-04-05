@@ -1080,6 +1080,12 @@ work.
 
     (add-to-list 'auto-mode-alist '("\\.org_archive\\'" . org-mode))
 
+    (setq org-fold-show-context-detail
+          '((agenda . tree)
+            (bookmark-jump . lineage)
+            (isearch . lineage)
+            (default . ancestors)))
+
     :config
     (setq org-priority-default 65)
 

@@ -238,6 +238,12 @@ current buffer to be killed immediately.
   (bind-key "C-x k" #'kill-current-buffer)
 #+end_src
 
+Bind ~describe-char~ instead of ~describe-key-briefly~ to =C-h c=. I often use
+the former, but never the latter.
+#+begin_src emacs-lisp
+  (bind-key "C-h c" #'describe-char)
+#+end_src
+
 ** Enable disabled commands
 Some commands are disabled by default, enable these so Emacs doesn't
 ask for confirmation every time the command is executed.

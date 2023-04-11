@@ -8,14 +8,17 @@ settings and the call to ~(package-initialize)~ are done in [[file:init.el][init
 
 Packages are installed and configured using [[https://github.com/jwiegley/use-package][use-package]].
 
-** General settings
-General Emacs settings that don't fall under any specific category.
-
-Set default coding system.
+** International
+Set language environment, input method and default coding system.
 #+begin_src emacs-lisp
   (set-language-environment "UTF-8")
+  (setq default-input-method "iso-transl")
+  (setq default-transient-input-method default-input-method)
   (set-default-coding-systems 'utf-8)
 #+end_src
+
+** General settings
+General Emacs settings that don't fall under any specific category.
 
 Disable automatic backups. See
 http://ergoemacs.org/emacs/emacs_set_backup_into_a_directory.html.

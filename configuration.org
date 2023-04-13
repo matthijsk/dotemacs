@@ -1093,7 +1093,7 @@ work.
           '((agenda . tree)
             (bookmark-jump . lineage)
             (isearch . lineage)
-            (default . ancestors)))
+            (default . tree)))
 
     :config
     (setq org-priority-default 65)

@@ -121,7 +121,7 @@ use the default instead of the customized font.
 Load [[https://github.com/nashamri/spacemacs-theme][spacemacs]] theme. When running ssh from a MINGW terminal, make sure it is
 set to =xterm-256color= (under =options -> terminal=).
 #+begin_src emacs-lisp
-  (use-package spacemacs-common
+  (use-package spacemacs-theme
     :ensure spacemacs-theme
 
     :config

@@ -76,6 +76,14 @@ Delete duplicates from history.
   (setq history-delete-duplicates t)
 #+end_src
 
+Ensure ffap doesn't try to be helpful by interpreting some filenames as domain
+names and then pinging them. All this achieves is Emacs blocking until the ping
+command returns with a failure. Reference
+https://github.com/emacs-helm/helm/issues/648
+#+begin_src emacs-lisp
+  (setq ffap-machine-p-known 'reject)
+#+end_src
+
 ** Scrolling
 Settings related to scrolling buffers.
 

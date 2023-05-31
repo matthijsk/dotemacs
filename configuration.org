@@ -1442,7 +1442,16 @@ but also to format a region or just the current line.
 #+begin_src emacs-lisp
   (use-package clang-format
     :ensure t
-    :bind (("C-=" . clang-format-region)))
+    :bind (("C-=" . clang-format-region))
+    :config
+
+    (defun my-clang-format-buffer ()
+      "Clang format entire C++ mode buffer before saving.
+
+    Calls `clang-format-buffer' when the major-mode is `c++-mode'."
+      (when (eq major-mode 'c++-mode) (clang-format-buffer)))
+
+    (add-hook 'before-save-hook #'my-clang-format-buffer))
 #+end_src
 
 * Git for Windows path

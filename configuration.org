@@ -1484,7 +1484,7 @@ Windows system. If a Git executable cannot be found a message is displayed.
 * GPG / EasyPG
 Ensure GnuPG password queries go through the minibuffer.
 #+begin_src emacs-lisp
-  (setq epa-pinentry-mode 'loopback)
+  (setq epg-pinentry-mode 'loopback)
 #+end_src
 
 * Dired-narrow

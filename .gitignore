@@ -19,3 +19,4 @@ url/
 custom.el
 tramp
 transient/history.el
+org-persist/

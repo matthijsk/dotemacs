@@ -745,7 +745,8 @@ modal editing of Vim combined with the extensibility of Emacs.
                     shortdoc-mode
                     xref--xref-buffer-mode
                     flymake-diagnostics-buffer-mode
-                    profiler-report-mode))
+                    profiler-report-mode
+                    epa-key-list-mode))
       (evil-set-initial-state mode 'emacs))
 
     (dolist (mode '(messages-buffer-mode

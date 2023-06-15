@@ -395,6 +395,13 @@ Set up ~bat-cmd-help~ with ~thing-at-point~ for =bat-mode=.
       (bat-cmd-help cmd)))
 #+end_src
 
+Set ~python-shell-unbuffered~ to ~nil~ to prevent =Warning (python): Python
+shell prompts cannot be detected.= warnings when opening a python file on
+Windows systems. See https://github.com/jorgenschaefer/elpy/issues/733.
+#+begin_src emacs-lisp
+  (setq python-shell-unbuffered nil)
+#+end_src
+
 ** Default occur function
 Define an alias for whatever occur-like function strikes my fancy today. This makes
 it easier to change functionality without the tedium of having to rebind all

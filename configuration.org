@@ -131,6 +131,7 @@ set to =xterm-256color= (under =options -> terminal=).
 #+begin_src emacs-lisp
   (use-package spacemacs-theme
     :ensure spacemacs-theme
+    :pin melpa
 
     :config
     (setq spacemacs-theme-org-bold t)

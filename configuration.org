@@ -1336,15 +1336,7 @@ a single file are a breeze with Magit.
 Also install major modes for editing various git configuration files. See
 [[https://github.com/magit/git-modes]].
 #+begin_src emacs-lisp
-  (use-package gitattributes-mode
-    :pin melpa-stable
-    :ensure t
-    :defer t)
-  (use-package gitconfig-mode
-    :pin melpa-stable
-    :ensure t
-    :defer t)
-  (use-package gitignore-mode
+  (use-package git-modes
     :pin melpa-stable
     :ensure t
     :defer t)

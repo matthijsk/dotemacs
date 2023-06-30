@@ -1351,7 +1351,7 @@ and for the integrated help.
     :pin melpa-stable
     :ensure t
     :bind (:map cmake-mode-map
-                ("<f1>" . cmake-help-online))
+                ("<f1>" . my-cmake-help-online))
 
     :defer t
 
@@ -1363,7 +1363,7 @@ and for the integrated help.
             (number-to-string (1- (string-to-number (getenv "NUMBER_OF_PROCESSORS")))))
 
     :config
-    (defun cmake-help-online (arg)
+    (defun my-cmake-help-online (arg)
       "Query cmake online documentation for ARG, using `browse-url'."
       (interactive (list (read-string "Search cmake docs: " (cmake-symbol-at-point))))
       (browse-url

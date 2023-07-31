@@ -849,10 +849,6 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
     :ensure t
     :defer t)
 
-  ;; Load helm autoloads if it is installed.
-  (when (package-installed-p 'helm)
-    (require 'helm-config))
-
   (use-package helm-mode
     :diminish helm-mode
     :defer 2

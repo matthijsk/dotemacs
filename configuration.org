@@ -891,6 +891,10 @@ Use [[https://emacs-helm.github.io/helm/][Helm]] for completion and narrowing.
     :commands (helm-org-in-buffer-headings)
 
     :init
+    ;; Load old eieio functions, which were deprecated in Emacs 29.1. See "Support
+    ;; for old EIEIO functions is not autoloaded any more" in etc/NEWS.
+    (use-package eieio-compat)
+
     (evil-leader/set-key-for-mode 'org-mode "hs" 'helm-org-in-buffer-headings)
 
     :config

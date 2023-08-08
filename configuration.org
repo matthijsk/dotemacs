@@ -1419,15 +1419,17 @@ but also to format a region or just the current line.
   (use-package clang-format
     :ensure t
     :bind (("C-=" . clang-format-region))
-    :config
+    :commands (my-clang-format-buffer)
+    :init
+    (add-hook 'before-save-hook #'my-clang-format-buffer)
 
+    :config
     (defun my-clang-format-buffer ()
       "Clang format entire C++ mode buffer before saving.
 
     Calls `clang-format-buffer' when the major-mode is `c++-mode'."
-      (when (eq major-mode 'c++-mode) (clang-format-buffer)))
+      (when (eq major-mode 'c++-mode) (clang-format-buffer))))
 
-    (add-hook 'before-save-hook #'my-clang-format-buffer))
 #+end_src
 
 * Git for Windows path

@@ -151,7 +151,7 @@ Disable the tool bar, the menu bar and the scroll bars.
 
 Default to displaying line numbers as relative.
 #+begin_src emacs-lisp
-  (setq display-line-numbers-type 'relative)
+  (setq display-line-numbers-type 'visual)
 #+end_src
 
 Display time as 24h.

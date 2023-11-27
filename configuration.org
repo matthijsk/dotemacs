@@ -905,11 +905,13 @@ Git repositories for quick navigation.
 
                 :map projectile-command-map
                 ("R" . my-projectile-regenerate-tags)
+                ("sr" . my-projectile-consult-ripgrep)
 
                 :map evil-leader--default-map
                 ("pp"  . projectile-switch-project)
                 ("pf"  . projectile-find-file)
-                ("pa"  . projectile-find-other-file))
+                ("pa"  . projectile-find-other-file)
+                ("psr"  . my-projectile-consult-ripgrep))
 
     :init
     (setq projectile-globally-ignored-files '("TAGS" "GTAGS" "GRTAGS" "*.png" "*.ini" "*.dll" "*.lib" "*.bmp" "*.jpg"))
@@ -923,6 +925,10 @@ Git repositories for quick navigation.
     (projectile-mode 1)
 
     (setq consult-project-function #'projectile-acquire-root)
+
+    (defun my-projectile-consult-ripgrep ()
+      (interactive)
+      (consult-ripgrep (projectile-acquire-root) (symbol-name (symbol-at-point))))
 
     (defun my-projectile-regenerate-tags ()
       "Runs GTAGS in root of project directory."

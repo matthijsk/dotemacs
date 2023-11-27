@@ -1295,6 +1295,16 @@ files.
   (add-to-list 'auto-mode-alist '("\\.globalrc\\'" . conf-mode))
 #+end_src
 
+* Global-tags:
+Use global-tags as a simple GNU Global backend for xref.
+#+begin_src emacs-lisp
+  (use-package global-tags
+    :ensure t
+    :defer t
+    :init
+    (add-hook 'c++-mode-hook #'global-tags-exclusive-backend-mode))
+#+end_src
+
 * Semantic
 
 #+begin_src emacs-lisp

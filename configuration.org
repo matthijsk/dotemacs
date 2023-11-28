@@ -924,8 +924,6 @@ Git repositories for quick navigation.
     :config
     (projectile-mode 1)
 
-    (setq consult-project-function #'projectile-acquire-root)
-
     (defun my-projectile-consult-ripgrep ()
       (interactive)
       (consult-ripgrep (projectile-acquire-root) (symbol-name (symbol-at-point))))

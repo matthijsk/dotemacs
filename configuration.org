@@ -1306,7 +1306,6 @@ Use global-tags as a simple GNU Global backend for xref.
 #+begin_src emacs-lisp
   (use-package global-tags
     :ensure t
-    :defer t
     :init
     (add-hook 'c++-mode-hook #'global-tags-exclusive-backend-mode))
 #+end_src

@@ -829,13 +829,11 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
 
 * Vertico
 #+BEGIN_SRC emacs-lisp
-  ;; Enable vertico
   (use-package vertico
     :pin melpa-stable
     :ensure t
     :init
     (vertico-mode)
-    (vertico-buffer-mode)
 
     ;; Show more candidates
     (setq vertico-count 20))

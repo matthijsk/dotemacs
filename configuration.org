@@ -1432,7 +1432,8 @@ but also to format a region or just the current line.
       "Clang format entire C++ mode buffer before saving.
 
     Calls `clang-format-buffer' when the major-mode is `c++-mode'."
-      (when (eq major-mode 'c++-mode) (clang-format-buffer))))
+      (when (eq major-mode 'c++-mode)
+        (clang-format-buffer))))
 
 #+end_src
 

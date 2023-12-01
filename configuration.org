@@ -836,7 +836,17 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
     (vertico-mode)
 
     ;; Show more candidates
-    (setq vertico-count 20))
+    (setq vertico-count 20)
+
+    :config
+    (vertico-multiform-mode)
+    (setq vertico-multiform-commands
+          '((consult-imenu buffer)
+            (consult-org-heading buffer)
+            (consult-grep buffer)
+            (consult-git-grep buffer)
+            (consult-ripgrep buffer)
+            (evil-jump-to-tag buffer)))
 #+END_SRC
 
 * Orderless
@@ -925,6 +935,8 @@ Git repositories for quick navigation.
     (defun my-projectile-consult-ripgrep ()
       (interactive)
       (consult-ripgrep (projectile-acquire-root) (symbol-name (symbol-at-point))))
+
+    (add-to-list 'vertico-multiform-commands '(my-projectile-consult-ripgrep buffer))
 
     (defun my-projectile-regenerate-tags ()
       "Runs GTAGS in root of project directory."

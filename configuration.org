@@ -846,6 +846,7 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
             (consult-grep buffer)
             (consult-git-grep buffer)
             (consult-ripgrep buffer)
+            (consult-line buffer)
             (evil-jump-to-tag buffer))))
 #+END_SRC
 

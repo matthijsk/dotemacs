@@ -935,7 +935,8 @@ Git repositories for quick navigation.
 
     (defun my-projectile-consult-ripgrep ()
       (interactive)
-      (consult-ripgrep (projectile-acquire-root) (symbol-name (symbol-at-point))))
+      (let ((symbol (symbol-at-point)))
+            (consult-ripgrep (projectile-acquire-root) (and (not (null symbol)) (symbol-name symbol)))))
 
     (add-to-list 'vertico-multiform-commands '(my-projectile-consult-ripgrep buffer))
 

@@ -767,6 +767,7 @@ modal editing of Vim combined with the extensibility of Emacs.
                     profiler-report-mode
                     comint-mode
                     gud-mode
+                    messages-buffer-mode
                     epa-key-list-mode))
       (evil-set-initial-state mode 'emacs)))
 #+end_src

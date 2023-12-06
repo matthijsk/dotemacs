@@ -897,6 +897,23 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
     (marginalia-mode))
 #+end_src
 
+* Embark
+#+begin_src emacs-lisp
+  (use-package embark
+    :pin melpa-stable
+    :ensure t
+    :bind
+    (("C-." . embark-act)
+     ("C-;" . embark-dwim)
+     ("C-h B" . embark-bindings)
+
+     :map minibuffer-local-map
+           ("C-SPC" . embark-select)))
+
+  (use-package embark-consult
+    :pin melpa-stable
+    :ensure t)
+#+end_src
 * Projectile
 Use [[https://github.com/bbatsov/projectile][Projectile]] for project interaction. Works really well with
 Git repositories for quick navigation.

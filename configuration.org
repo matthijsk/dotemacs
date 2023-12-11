@@ -879,13 +879,7 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
     :config
     (setq xref-show-xrefs-function #'consult-xref)
     (setq xref-show-definitions-function #'consult-xref)
-
-    ;; TODO: Can probably be achieved using `consult-after-jump-hook'.
-    (advice-add 'consult-org-heading
-                :after
-                (lambda ()
-                  "Move selected line to top when consult-org-heading exits."
-                    (recenter-top-bottom 0))))
+    (setq consult-after-jump-hook #'reposition-window))
 #+END_SRC
 
 * Marginalia

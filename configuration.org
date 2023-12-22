@@ -898,6 +898,7 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
     :ensure t
     :bind
     (("C-." . embark-act)
+     ("C->" . embark-act-all)
      ("C-;" . embark-dwim)
      ("C-h B" . embark-bindings)
 

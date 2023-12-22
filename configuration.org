@@ -1292,8 +1292,9 @@ and for the integrated help.
     ;; CMake preset builds use the CMAKE_BUILD_PARALLEL_LEVEL environment variable
     ;; if the --parallel (-j) flag is not provided. Set to a value appropriate for
     ;; the current system.
-    (setenv "CMAKE_BUILD_PARALLEL_LEVEL"
-            (number-to-string (1- (string-to-number (getenv "NUMBER_OF_PROCESSORS")))))
+    (when (eq system-type 'windows-nt)
+      (setenv "CMAKE_BUILD_PARALLEL_LEVEL"
+              (number-to-string (1- (string-to-number (getenv "NUMBER_OF_PROCESSORS"))))))
 
     :config
     (defun my-cmake-help-online (arg)

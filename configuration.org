@@ -84,6 +84,11 @@ https://github.com/emacs-helm/helm/issues/648
   (setq ffap-machine-p-known 'reject)
 #+end_src
 
+Save the bookmarks list to file whenever it is modified.
+#+begin_src emacs-lisp
+  (setq bookmark-save-flag 1)
+#+end_src
+
 ** Scrolling
 Settings related to scrolling buffers.
 

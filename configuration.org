@@ -116,18 +116,9 @@ General Emacs settings relating to fonts, themes, etc.
 
 *** Font
 Set the Consolas font when running on Windows.
-
-Add optional args to enable advising ~default-text-scale-increment~, which is
-the only purpose of this function, really. If ~set-frame-font~ is not called
-after ~default-text-scale~ any new frame created after the initial frame will
-use the default instead of the customized font.
 #+begin_src emacs-lisp
-  (defun my-set-font (&optional args)
-    "Set desired font depending on current OS."
-    (when (eq system-type 'windows-nt)
-      (set-frame-font "Consolas" nil t)))
-
-  (my-set-font)
+  (when (eq system-type 'windows-nt)
+    (set-frame-font "Consolas" nil t))
 #+end_src
 
 *** Theme

@@ -137,10 +137,12 @@ set to =xterm-256color= (under =options -> terminal=).
 #+end_src
 
 *** Miscellaneous
-Disable the tool bar, the menu bar and the scroll bars.
+Disable the tool bar, the menu bar (except on MacOS, where it actually looks
+good) and the scroll bars.
 #+begin_src emacs-lisp
   (tool-bar-mode -1)
-  (menu-bar-mode -1)
+  (unless (eq system-type 'darwin)
+    (menu-bar-mode -1))
   (when (featurep 'scroll-bar)
     (set-scroll-bar-mode nil))
 #+end_src

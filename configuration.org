@@ -157,9 +157,10 @@ Display time as 24h.
   (setq display-time-24hr-format t)
 #+end_src
 
-Use a visible bell.
+Use a visible bell. Usually, this flashes the frame. On MacOS, a big warning
+triangle is displayed, which is annoying, so disable it on those systems.
 #+begin_src emacs-lisp
-  (setq visible-bell t)
+  (setq visible-bell (not (eq system-type 'darwin)))
 #+end_src
 
 Don't blink the cursor.

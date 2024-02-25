@@ -255,6 +255,33 @@ the former, but never the latter.
   (bind-key "C-h c" #'describe-char)
 #+end_src
 
+When using a Mac keyboard, bind the command key (default super) to meta (alt on
+Windows keyboards). Bind the option key (default meta) to control. This way, the
+layout makes sense for me because my muscle memory expects the meta keys to be
+next to the spacebar. I suspect I won't be using the super key much so don't set
+that modifier.
+#+begin_src emacs-lisp
+  (setq my-default-mac-command-modifier mac-command-modifier)
+  (setq my-default-mac-option-modifier mac-option-modifier)
+
+  (defun my-set-mac-modifiers (use-modifiers)
+    "With USE-MODIFIERS, set use of Mac keyboard modifiers.
+
+  Use Mac modifiers when prefix arg USE-MODIFIERS is t. Otherwise,
+  use default modifiers."
+    (interactive "P")
+    (if use-modifiers
+        (setq mac-command-modifier 'meta
+              mac-option-modifier 'control)
+      (setq mac-command-modifier my-default-mac-command-modifier
+            mac-option-modifier my-default-mac-option-modifier))
+
+    (message "Using %s keyboard command modifiers" (if use-modifiers "Mac" "default")))
+
+  (when (eq system-type 'darwin)
+    (my-set-mac-modifiers t))
+#+end_src
+
 ** Enable disabled commands
 Some commands are disabled by default, enable these so Emacs doesn't
 ask for confirmation every time the command is executed.

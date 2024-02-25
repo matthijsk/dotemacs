@@ -1406,7 +1406,6 @@ but also to format a region or just the current line.
     Calls `clang-format-buffer' when the major-mode is `c++-mode'."
       (when (eq major-mode 'c++-mode)
         (clang-format-buffer))))
-
 #+end_src
 
 * Git for Windows path

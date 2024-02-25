@@ -1298,9 +1298,7 @@ a single file are a breeze with Magit.
   stripped down version for better performance."
       (interactive)
       (let ((default-directory (or directory default-directory)))
-        (if (eq system-type 'windows-nt)
-            (magit-mode-setup #'magit-staging-mode)
-          (magit-mode-setup #'magit-status-mode)))))
+        (magit-mode-setup #'magit-staging-mode))))
 #+end_src
 
 Also install major modes for editing various git configuration files. See

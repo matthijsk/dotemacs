@@ -589,7 +589,7 @@ and sentences.
     "Search URL `https://woordenlijst.org' for WORD."
     (interactive (list (read-string "Search woordenlijst.org: " (thing-at-point 'word t))))
     (browse-url
-     (format "https://woordenlijst.org/#/?q=%s" word)))
+     (format "https://woordenlijst.org/zoeken/?q=%s" word)))
 
   (bind-key "<f2>" #'my-search-woordenlijst-org)
 #+end_src

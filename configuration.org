@@ -89,6 +89,21 @@ Save the bookmarks list to file whenever it is modified.
   (setq bookmark-save-flag 1)
 #+end_src
 
+Clean up whitespace when saving certain buffers.
+#+begin_src emacs-lisp
+  (setq my-whitespace-cleanup-modes '(org-mode markdown-mode python-mode))
+
+  (defun my-whitespace-cleanup ()
+    "Clean up whitespace before saving a buffer.
+
+  Calls `whitespace-cleanup' when the major mode is in
+  `my-whitespace-cleanup-modes' or derived from those."
+    (when (cl-some #'derived-mode-p my-whitespace-cleanup-modes)
+      (whitespace-cleanup)))
+
+  (add-hook 'before-save-hook #'my-whitespace-cleanup)
+#+end_src
+
 ** Scrolling
 Settings related to scrolling buffers.
 
@@ -1105,13 +1120,6 @@ work.
       (kbd "C-o") 'org-mark-ring-goto)
 
     (evil-define-key 'insert org-mode-map [tab] 'org-cycle)
-
-    (defun my-org-ws-cleanup ()
-      "Clean up whitespace before saving a buffer.
-  Calls `whitespace-cleanup' when the major-mode is `org-mode'."
-      (when (eq major-mode 'org-mode) (whitespace-cleanup)))
-
-    (add-hook 'before-save-hook #'my-org-ws-cleanup)
 
     (defun my-org-todo-list ()
       "Show `org-todo-list' with \"IN PROGRESS\" keyword selected."

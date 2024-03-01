@@ -414,7 +414,8 @@ function.
   (add-hook 'c-mode-common-hook #'my-c-mode-bindings)
 #+end_src
 
-Set up a global binding to quickly switch to the compilation buffer.
+Set up a global binding to quickly switch to the scratch and compilation
+buffers.
 #+begin_src emacs-lisp
   (defun my-switch-to-compilation ()
     "Switch to *compilation* buffer."
@@ -422,6 +423,7 @@ Set up a global binding to quickly switch to the compilation buffer.
     (switch-to-buffer "*compilation*"))
 
   (bind-key "C-c b" #'my-switch-to-compilation)
+  (bind-key "C-c s" #'scratch-buffer)
 #+end_src
 
 Set up ~bat-cmd-help~ with ~thing-at-point~ for =bat-mode=.

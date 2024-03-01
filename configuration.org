@@ -1486,16 +1486,14 @@ major modes are derived from =prog-mode=.
 
 * Eglot
 #+begin_src emacs-lisp
-  (when (> emacs-major-version 25)
-    (use-package eglot
-      :ensure t
-      :commands (eglot)
-      :config
-      (add-hook 'eglot-connect-hook
-                (lambda (server)
-                  "Use eglot xref backend when eglot is connected."
-                  (evil-define-key 'normal c-mode-map   (kbd "C-]") 'evil-jump-to-tag)
-                  (evil-define-key 'normal c++-mode-map (kbd "C-]") 'evil-jump-to-tag)))))
+  (use-package eglot
+    :commands (eglot)
+    :config
+    (add-hook 'eglot-connect-hook
+              (lambda (server)
+                "Use eglot xref backend when eglot is connected."
+                (evil-define-key 'normal c-mode-map   (kbd "C-]") 'evil-jump-to-tag)
+                (evil-define-key 'normal c++-mode-map (kbd "C-]") 'evil-jump-to-tag))))
 #+end_src
 
 * Elfeed

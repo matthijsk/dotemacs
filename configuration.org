@@ -1346,15 +1346,6 @@ and for the integrated help.
                arg))))
 #+end_src
 
-* Ninja mode
-Syntax highlighting for ninja build files.
-#+begin_src emacs-lisp
-  (use-package ninja-mode
-    :pin melpa-stable
-    :ensure t
-    :defer t)
-#+end_src
-
 * Semantic
 
 #+begin_src emacs-lisp

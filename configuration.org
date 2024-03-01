@@ -1317,35 +1317,6 @@ Also install major modes for editing various git configuration files. See
     :defer t)
 #+end_src
 
-* CMake mode
-Make sure [[https://gitlab.kitware.com/cmake/cmake/blob/master/Auxiliary/cmake-mode.el][cmake-mode]] is installed. Useful for syntax highlighting of cmake files
-and for the integrated help.
-#+begin_src emacs-lisp
-  (use-package cmake-mode
-    :pin melpa-stable
-    :ensure t
-    :bind (:map cmake-mode-map
-                ("<f1>" . my-cmake-help-online))
-
-    :defer t
-
-    :init
-    ;; CMake preset builds use the CMAKE_BUILD_PARALLEL_LEVEL environment variable
-    ;; if the --parallel (-j) flag is not provided. Set to a value appropriate for
-    ;; the current system.
-    (when (eq system-type 'windows-nt)
-      (setenv "CMAKE_BUILD_PARALLEL_LEVEL"
-              (number-to-string (1- (string-to-number (getenv "NUMBER_OF_PROCESSORS"))))))
-
-    :config
-    (defun my-cmake-help-online (arg)
-      "Query cmake online documentation for ARG, using `browse-url'."
-      (interactive (list (read-string "Search cmake docs: " (cmake-symbol-at-point))))
-      (browse-url
-       (format "https://cmake.org/cmake/help/latest/search.html?q=%s"
-               arg))))
-#+end_src
-
 * Semantic
 
 #+begin_src emacs-lisp

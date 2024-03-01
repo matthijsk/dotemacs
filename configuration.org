@@ -1355,25 +1355,6 @@ Syntax highlighting for ninja build files.
     :defer t)
 #+end_src
 
-* GTAGS / GNU Global
-Set [[https://www.gnu.org/software/global/][GNU Global]] environment variables and ensure conf-mode is used for .globalrc
-files.
-#+begin_src emacs-lisp
-  ;; Force treating of .h files as C++ source.
-  (setenv "GTAGSFORCECPP" "true")
-
-  (add-to-list 'auto-mode-alist '("\\.globalrc\\'" . conf-mode))
-#+end_src
-
-* Global-tags:
-Use global-tags as a simple GNU Global backend for xref.
-#+begin_src emacs-lisp
-  (use-package global-tags
-    :ensure t
-    :init
-    (add-hook 'c++-mode-hook #'global-tags-exclusive-backend-mode))
-#+end_src
-
 * Semantic
 
 #+begin_src emacs-lisp

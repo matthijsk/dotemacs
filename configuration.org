@@ -1402,7 +1402,7 @@ major modes are derived from =prog-mode=.
           '("https://blogs.nasa.gov/artemis/feed/"
             ("https://feeds.nos.nl/nosnieuwsalgemeen" news nos)
             ("https://www.nrc.nl/rss/" news nrc)
-            "https://github.com/git-for-windows/git/releases.atom"
+            "https://emacsformacosx.com/atom/release"
             "https://nullprogram.com/feed/"))
 
     ;; Remove unread tag from news entries older than one day.

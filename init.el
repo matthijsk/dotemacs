@@ -29,16 +29,6 @@
 (when (< emacs-major-version 27)
   (package-initialize))
 
-;; Bootstrap use-package. Use-package allows for automatic installation of
-;; packages, which is great when you want to use Emacs on multiple systems.
-;; Also, it loads packages on demand, keeping startup time short.
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
-(eval-when-compile
-  (require 'use-package))
-
 (setq use-package-hook-name-suffix nil)
 
 (defcustom my-configuration-file (concat user-emacs-directory "configuration.org")

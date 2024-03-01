@@ -958,57 +958,6 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
     :pin melpa-stable
     :ensure t)
 #+end_src
-* Projectile
-Use [[https://github.com/bbatsov/projectile][Projectile]] for project interaction. Works really well with
-Git repositories for quick navigation.
-#+begin_src emacs-lisp
-  (use-package projectile
-    :if (> emacs-major-version 24)
-    :pin melpa-stable
-    :ensure t
-    :diminish projectile-mode
-    :bind-keymap ("C-c p" . projectile-command-map)
-    :bind (:map projectile-mode-map
-                ("<f9>" . projectile-run-project)
-                ("C-<f9>" . projectile-compile-project)
-                ("M-<f9>" . projectile-test-project)
-                ("C-M-<f9>" . projectile-configure-project)
-
-                :map projectile-command-map
-                ("R" . my-projectile-regenerate-tags)
-                ("sr" . my-projectile-consult-ripgrep)
-
-                :map evil-leader--default-map
-                ("pp"  . projectile-switch-project)
-                ("pf"  . projectile-find-file)
-                ("pa"  . projectile-find-other-file)
-                ("psr"  . my-projectile-consult-ripgrep))
-
-    :init
-    (setq projectile-globally-ignored-files '("TAGS" "GTAGS" "GRTAGS" "*.png" "*.ini" "*.dll" "*.lib" "*.bmp" "*.jpg"))
-    (setq projectile-indexing-method 'hybrid)
-    (setq projectile-enable-caching t)
-    (setq projectile-use-git-grep t)
-    (setq projectile-auto-update-cache nil)
-    (setq projectile-enable-cmake-presets t)
-
-    :config
-    (projectile-mode 1)
-
-    (defun my-projectile-consult-ripgrep ()
-      (interactive)
-      (let ((symbol (symbol-at-point)))
-            (consult-ripgrep (projectile-acquire-root) (and (not (null symbol)) (symbol-name symbol)))))
-
-    (add-to-list 'vertico-multiform-commands '(my-projectile-consult-ripgrep buffer))
-
-    (defun my-projectile-regenerate-tags ()
-      "Runs GTAGS in root of project directory."
-      (interactive)
-      (projectile-with-default-dir (projectile-acquire-root)
-        (compile "gtags -v"))))
-#+end_src
-
 * Org mode
 [[https://orgmode.org/][Org-mode]] is, for me, a compelling reason to use Emacs. At the very
 least, it is useful for note taking and managing work using TODO
@@ -1261,9 +1210,6 @@ a single file are a breeze with Magit.
            ("C-c t" . my-insert-current-date))
 
     :init
-    ;; Disable VC git backend. No need when using Magit.
-    (setq vc-handled-backends (delq 'Git vc-handled-backends))
-
     (setq magit-refresh-verbose nil)
 
     (setq auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffer-p)

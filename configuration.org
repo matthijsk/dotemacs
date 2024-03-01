@@ -445,14 +445,6 @@ Windows systems. See https://github.com/jorgenschaefer/elpy/issues/733.
   (setq python-shell-unbuffered nil)
 #+end_src
 
-** Default occur function
-Define an alias for whatever occur-like function strikes my fancy today. This makes
-it easier to change functionality without the tedium of having to rebind all
-keys.
-#+begin_SRC emacs-lisp
-  ;; M-s o bound to consult-line. See consult config.
-#+end_SRC
-
 ** Find configuration files
 This configuration file is written in =org-mode=. The file is
 tangled into an =.el= file using an ~(org-babel-load-file)~ call in

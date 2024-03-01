@@ -134,6 +134,9 @@ Set the Consolas font when running on Windows.
 #+begin_src emacs-lisp
   (when (eq system-type 'windows-nt)
     (set-frame-font "Consolas" nil t))
+
+  (when (eq system-type 'darwin)
+    (set-frame-font "Monaco" nil t))
 #+end_src
 
 *** Theme

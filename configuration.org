@@ -1498,14 +1498,6 @@ major modes are derived from =prog-mode=.
                   (evil-define-key 'normal c++-mode-map (kbd "C-]") 'evil-jump-to-tag)))))
 #+end_src
 
-* Highlight doxygen mode
-#+begin_src emacs-lisp
-  (use-package highlight-doxygen
-    :ensure t
-    :hook (c-mode-common-hook . highlight-doxygen-mode)
-    :defer t)
-#+end_src
-
 * Elfeed
 #+begin_src emacs-lisp
   (use-package elfeed

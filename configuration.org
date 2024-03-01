@@ -1484,13 +1484,6 @@ major modes are derived from =prog-mode=.
     :defer t)
 #+end_src
 
-* JSON mode
-#+begin_src emacs-lisp
-  (use-package json-mode
-    :pin melpa-stable
-    :defer t)
-#+end_src
-
 * Eglot
 #+begin_src emacs-lisp
   (when (> emacs-major-version 25)

@@ -1442,6 +1442,17 @@ major modes are derived from =prog-mode=.
       (my-elfeed-quick-filter "-news")))
 #+end_src
 
+* Jinx
+Configure [[https://github.com/minad/jinx][jinx]] for spell checking.
+#+begin_src emacs-lisp
+  (use-package jinx
+    :hook (text-mode-hook . jinx-mode)
+    :bind (("M-$" . jinx-correct)
+           ("C-M-$" . jinx-languages)
+           :map evil-normal-state-map
+           ("z=" . jinx-correct)))
+#+end_src
+
 * COMMENT Local variables
 # Local Variables:
 # org-adapt-indentation: nil

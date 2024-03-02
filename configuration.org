@@ -37,7 +37,7 @@ Ask for confirmation when leaving Emacs.
   (setq confirm-kill-emacs 'yes-or-no-p)
 #+end_src
 
-Allow for basic paging in emacs shells.
+Allow for basic paging in Emacs shells.
 #+begin_src emacs-lisp
   (setenv "PAGER" "/bin/cat")
 #+end_src
@@ -47,7 +47,7 @@ Increase warning limit to 100 MB for large files.
   (setq large-file-warning-threshold (* 100 1024 1024))
 #+end_src
 
-Fix slow redisplay on Windows for Emacsen older than 27 when certain special
+Fix slow display on Windows for Emacsen older than 27 when certain special
 characters are on screen. Since 27, this value defaults to ~t~ for Windows.
 #+begin_src emacs-lisp
   (when (and (eq system-type 'windows-nt) (< emacs-major-version 27))
@@ -89,7 +89,7 @@ Save the bookmarks list to file whenever it is modified.
   (setq bookmark-save-flag 1)
 #+end_src
 
-Clean up whitespace when saving certain buffers.
+Clean up white space when saving certain buffers.
 #+begin_src emacs-lisp
   (setq my-whitespace-cleanup-modes '(org-mode markdown-mode python-mode))
 
@@ -113,7 +113,7 @@ the buffer by three lines.
   (setq scroll-margin 3)
 #+end_src
 
-Scroll by one line when reaching bottom of buffer instead of recentering the
+Scroll by one line when reaching bottom of buffer instead of re-centering the
 buffer.
 #+begin_src emacs-lisp
   (setq scroll-conservatively most-positive-fixnum)
@@ -207,7 +207,7 @@ Load alternate file with =F6= (useful for switching .c and .h).
   (bind-key "<f6>" #'ff-find-other-file)
 #+end_src
 
-Exhibit expected X clipboard behaviour (yank with middle mouse button).
+Exhibit expected X clipboard behavior (yank with middle mouse button).
 #+begin_src emacs-lisp
   (bind-key "<mouse-2>" #'clipboard-yank)
   (setq-default select-enable-primary t)
@@ -276,7 +276,7 @@ the former, but never the latter.
 When using a Mac keyboard, bind the command key (default super) to meta (alt on
 Windows keyboards). Bind the option key (default meta) to control. This way, the
 layout makes sense for me because my muscle memory expects the meta keys to be
-next to the spacebar. I suspect I won't be using the super key much so don't set
+next to the space bar. I suspect I won't be using the super key much so don't set
 that modifier.
 #+begin_src emacs-lisp
   (setq my-default-mac-command-modifier mac-command-modifier)
@@ -309,7 +309,7 @@ Allow narrowing.
   (put 'narrow-to-region 'disabled nil)
 #+end_src
 
-Allow upcasing and lowercasing of regions.
+Allow up casing and lower casing of regions.
 #+begin_src emacs-lisp
   (put 'upcase-region   'disabled nil)
   (put 'downcase-region 'disabled nil)
@@ -349,7 +349,7 @@ Seriously, Emacs is awesome. I love this kind of customization power.
       (comment-line 1)))
 #+end_src
 
-Autoscroll compilation window and stop on first error.
+Auto scroll compilation window and stop on first error.
 #+begin_src emacs-lisp
   (setq compilation-scroll-output 'first-error)
 #+end_src
@@ -470,7 +470,7 @@ Emacs init file.
 #+end_src
 
 ** Spell check
-Use ispell or hunspell as spell checker if available.
+Use Ispell or Hunspell as spell checker if available.
 #+begin_src emacs-lisp
   (cond ((executable-find "ispell"))
         ((executable-find "hunspell")
@@ -508,7 +508,7 @@ Use a human-readable Size column for =ibuffer=. Taken from [[https://www.emacswi
 #+end_src
 
 ** Ediff
-Always split windows horizontally when running ediff. This is more comfortable
+Always split windows horizontally when running Ediff. This is more comfortable
 to me on modern high resolution screens.
 #+begin_src emacs-lisp
   (setq ediff-split-window-function 'split-window-horizontally)
@@ -524,7 +524,7 @@ Ensure org-mode buffers are fully expanded.
 #+end_src
 
 Most GNU/Linux systems I use have no window manager installed (such as servers),
-or a tiling window manager (for personal use). When ediff runs in a terminal,
+or a tiling window manager (for personal use). When Ediff runs in a terminal,
 the control frame is embedded in the current frame, instead of in a separate
 frame. I would like the same behavior when Emacs runs in a tiling window
 manager, as otherwise the floating control frame is immediately tiled by the

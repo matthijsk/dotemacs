@@ -10,3 +10,5 @@
                              (setq gc-cons-threshold     1600000
                                    gc-cons-percentage   0.1
                                    file-name-handler-alist old-file-name-handler)))
+
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))

@@ -27,6 +27,13 @@ http://ergoemacs.org/emacs/emacs_set_backup_into_a_directory.html.
   (setq auto-save-default nil)
 #+end_src
 
+Also disable creation of automatic lock files. They clutter the folder where the
+file is stored. As I run Emacs as a server and edit files using emacsclient,
+there is no way for two processes to have a conflict when editing the same file.
+#+begin_src emacs-lisp
+  (setq create-lockfiles nil)
+#+end_src
+
 Start Emacs as server for emacsclient processes.
 #+begin_src emacs-lisp
   (server-start)

@@ -21,3 +21,4 @@ tramp
 transient/history.el
 org-persist/
 projects
+multisession/

@@ -1008,7 +1008,7 @@ work.
     (setq org-todo-keywords '((sequence "TODO" "IN PROGRESS" "REVIEW" "|" "DONE" "WONTFIX" )))
 
     (setq org-clock-clocktable-default-properties
-          '(:maxlevel 3 :scope agenda :fileskip0 t :tstart "<-1d>" :tend "<today>" :narrow 120!))
+          '(:maxlevel 3 :scope agenda :fileskip0 t :block thisweek :step day :narrow 120!))
 
     ;; Show total amount of hours and minutes, instead of formatting as "d hh:mm".
     (setq org-duration-format '((special . h:mm)))
@@ -1117,26 +1117,18 @@ work.
       (switch-to-buffer-other-window "worklog.org"))
 
     (defun my-org-clock-report ()
-      "Show time spent on tasks during previous day.
+      "Show time spent on tasks during this week.
   Create new buffer *clocktable.org* and call `org-clock-report'.
 
   With the custom values set in
   `org-clock-clocktable-default-properties', this is useful to get
-  an overview of time spent on tasks during the previous workday.
-
-  If the current day is Monday, generate a report of last friday
-  and include the weekend."
+  an overview of time spent on tasks during this week."
       (interactive)
       (switch-to-buffer "*clocktable*")
       (erase-buffer)
       (org-mode)
       (insert "To update the clock table after making changes in its properties run org-dblock-update (C-c C-x C-u).")
-
-      (let ((org-clock-clocktable-default-properties
-             (if (= 1 (calendar-day-of-week (calendar-current-date)))
-                 '(:maxlevel 3 :scope agenda :fileskip0 t :tstart "<-3d>" :tend "<today>" :narrow 120!)
-               org-clock-clocktable-default-properties)))
-        (org-clock-report)))
+      (org-clock-report)))
 
     (defun my-org-clock-goto ()
       "Go to recently clocked tasks by offering a selection.

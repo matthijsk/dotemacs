@@ -1128,7 +1128,7 @@ work.
       (erase-buffer)
       (org-mode)
       (insert "To update the clock table after making changes in its properties run org-dblock-update (C-c C-x C-u).")
-      (org-clock-report)))
+      (org-clock-report))
 
     (defun my-org-clock-goto ()
       "Go to recently clocked tasks by offering a selection.

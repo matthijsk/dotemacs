@@ -1,25 +1,29 @@
-auto-save-list/
+# Extensions
+*.elc
+*.dylib
+
+# Files
+bookmarks
 configuration.el
-elpa/
-eshell/history
+custom.el
+network-security.data
 org-clock-save.el
 projectile-bookmarks.eld
 projectile.cache
-server/
+projects
 recentf
 srecode-map.el
-*.elc
-bookmarks
-eshell/
-hackernews/
-semanticdb/
-tutorial/
-network-security.data
-url/
-custom.el
 tramp
 transient/history.el
-org-persist/
-projects
+
+# Directories
+auto-save-list/
+elpa/
+eshell/
+hackernews/
 multisession/
-*.dylib
+org-persist/
+semanticdb/
+server/
+tutorial/
+url/

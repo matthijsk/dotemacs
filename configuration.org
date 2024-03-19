@@ -286,24 +286,24 @@ layout makes sense for me because my muscle memory expects the meta keys to be
 next to the space bar. I suspect I won't be using the super key much so don't set
 that modifier.
 #+begin_src emacs-lisp
-  (setq my-default-mac-command-modifier mac-command-modifier)
-  (setq my-default-mac-option-modifier mac-option-modifier)
+  (when (eq system-type 'darwin)
+    (setq my-default-mac-command-modifier mac-command-modifier)
+    (setq my-default-mac-option-modifier mac-option-modifier)
 
-  (defun my-set-mac-modifiers (use-modifiers)
-    "With USE-MODIFIERS, set use of Mac keyboard modifiers.
+    (defun my-set-mac-modifiers (use-modifiers)
+      "With USE-MODIFIERS, set use of Mac keyboard modifiers.
 
   Use Mac modifiers when prefix arg USE-MODIFIERS is t. Otherwise,
   use default modifiers."
-    (interactive "P")
-    (if use-modifiers
-        (setq mac-command-modifier 'meta
-              mac-option-modifier 'control)
-      (setq mac-command-modifier my-default-mac-command-modifier
-            mac-option-modifier my-default-mac-option-modifier))
+      (interactive "P")
+      (if use-modifiers
+          (setq mac-command-modifier 'meta
+                mac-option-modifier 'control)
+        (setq mac-command-modifier my-default-mac-command-modifier
+              mac-option-modifier my-default-mac-option-modifier))
 
-    (message "Using %s keyboard command modifiers" (if use-modifiers "Mac" "default")))
+      (message "Using %s keyboard command modifiers" (if use-modifiers "Mac" "default")))
 
-  (when (eq system-type 'darwin)
     (my-set-mac-modifiers t))
 #+end_src
 

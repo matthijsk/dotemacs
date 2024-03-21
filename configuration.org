@@ -963,6 +963,19 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
     :pin melpa-stable
     :ensure t)
 #+end_src
+
+* Corfu
+Use [[https://github.com/minad/corfu][Corfu]] for completion. It integrates well with the existing completion
+functionality of Emacs and with the [[*Orderless][Orderless]] completion style (it is written by
+the same author).
+#+begin_src emacs-lisp
+  (use-package corfu
+    :hook (prog-mode-hook . corfu-mode)
+    :init
+    (setq corfu-quit-at-boundary nil)
+    (setq corfu-auto t))
+#+end_src
+
 * Org mode
 [[https://orgmode.org/][Org-mode]] is, for me, a compelling reason to use Emacs. At the very
 least, it is useful for note taking and managing work using TODO

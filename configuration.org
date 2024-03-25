@@ -900,6 +900,10 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
             (consult-ripgrep buffer)
             (consult-line buffer)
             (my-consult-line buffer)
+            (xref-find-references buffer)
+            (consult-xref buffer)
+            (consult-flymake buffer)
+            (project-find-regexp buffer)
             (evil-jump-to-tag buffer))))
 #+END_SRC
 

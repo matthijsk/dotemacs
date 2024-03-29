@@ -824,6 +824,7 @@ modal editing of Vim combined with the extensibility of Emacs.
                     gud-mode
                     Man-mode
                     messages-buffer-mode
+                    tabulated-list-mode
                     epa-key-list-mode))
       (evil-set-initial-state mode 'emacs)))
 #+end_src

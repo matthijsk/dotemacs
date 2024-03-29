@@ -535,16 +535,9 @@ Ensure org-mode buffers are fully expanded.
                                            (org-show-all))))
 #+end_src
 
-Most GNU/Linux systems I use have no window manager installed (such as servers),
-or a tiling window manager (for personal use). When Ediff runs in a terminal,
-the control frame is embedded in the current frame, instead of in a separate
-frame. I would like the same behavior when Emacs runs in a tiling window
-manager, as otherwise the floating control frame is immediately tiled by the
-window manager and thus becomes disproportionately large (depending on how many
-windows are already open).
+Always embed the Ediff control panel in the same frame.
 #+begin_src emacs-lisp
-  (when (eq system-type 'gnu/linux)
-    (setq ediff-window-setup-function 'ediff-setup-windows-plain))
+  (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 #+end_src
 
 Press =d= to copy both A and B into C. Useful when the changes of both sides in

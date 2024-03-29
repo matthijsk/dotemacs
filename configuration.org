@@ -1422,7 +1422,8 @@ at https://github.com/mickeynp/combobulate.
           (yaml . ("https://github.com/tree-sitter/tree-sitter-yaml" "v0.5.0"))
           (c . ("https://github.com/tree-sitter/tree-sitter-c" "v0.21.0"))
           (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp" "v0.20.5"))
-          (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby" "v0.20.1"))))
+          (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby" "v0.20.1"))
+          (dockerfile . ("https://github.com/camdencheek/tree-sitter-dockerfile" "v0.1.2"))))
 
   (setq major-mode-remap-alist
         '(;;(html-mode . html-ts-mode)
@@ -1435,6 +1436,8 @@ at https://github.com/mickeynp/combobulate.
           (c-mode . c-ts-mode)
           (c++-mode . c++-ts-mode)
           (ruby-mode . ruby-ts-mode)))
+
+  (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-ts-mode))
 #+end_src
 
 * Elfeed

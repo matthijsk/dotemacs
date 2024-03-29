@@ -568,6 +568,11 @@ Initialize and set up eshell completion.
   (add-hook 'eshell-mode-hook (lambda ()
                                 (eshell-cmpl-initialize)
                                 (setq eshell-cmpl-cycle-completions nil)))
+
+  (add-to-list 'eshell-visual-subcommands '("gpg"
+                                            "--generate-key" "--gen-key"
+                                            "--full-generate-key" "--full-gen-key"
+                                            "--edit-key"))
 #+end_src
 
 ** Dired

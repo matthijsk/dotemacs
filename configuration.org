@@ -1272,13 +1272,12 @@ a single file are a breeze with Magit.
         (magit-insert-staged-changes)))
 
     (defun magit-staging (&optional directory)
-      "Depending on OS, use `magit-status-mode' or `magit-staging-mode'.
-  The former is the default Magit interface. However, on Windows
-  systems Git is annoyingly slow, so instead use the latter as a
-  stripped down version for better performance."
+      "A stripped down version of `magit-status' for better performance."
       (interactive)
       (let ((default-directory (or directory default-directory)))
-        (magit-mode-setup #'magit-staging-mode))))
+        (magit-mode-setup #'magit-staging-mode)))
+
+    (defalias #'magit-status #'magit-staging))
 #+end_src
 
 Also install major modes for editing various git configuration files. See

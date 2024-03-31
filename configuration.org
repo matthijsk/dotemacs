@@ -986,6 +986,7 @@ functionality of Emacs and with the [[*Orderless][Orderless]] completion style (
 the same author).
 #+begin_src emacs-lisp
   (use-package corfu
+    :ensure t
     :hook (prog-mode-hook . corfu-mode)
     :init
     (setq corfu-quit-at-boundary nil)

@@ -592,8 +592,9 @@ Using dired-find-file (<RET>) results in many open dired buffers.
 Use GNU Coreutils ls program (installed using Homebrew) on Darwin systems so the
 =--dired= flag can be used.
 #+begin_src emacs-lisp
-  (when (eq system-type 'darwin)
-    (setq insert-directory-program "gls"))
+  (let ((directory-program "gls"))
+    (when (and (eq system-type 'darwin) (executable-find directory-program))
+      (setq insert-directory-program directory-program)))
 #+end_src
 
 ** Convenience

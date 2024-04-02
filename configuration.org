@@ -936,7 +936,12 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
           :map evil-normal-state-map
           ("SPC" . consult-buffer)
           :map evil-leader--default-map
-          ("hs" . consult-imenu))
+          ("hs" . consult-imenu)
+          ;; Override built-in project functions with consult functions as I find
+          ;; these very useful.
+          :map project-prefix-map
+          ("g" . consult-grep)
+          ("r" . consult-ripgrep))
     :init
     (evil-leader/set-key-for-mode 'org-mode "hs" 'consult-org-heading)
 

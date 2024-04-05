@@ -1234,13 +1234,15 @@ a single file are a breeze with Magit.
     :if (> emacs-major-version 24)
     :pin melpa-stable
     :ensure t
-    :after subr-x
+    :after subr-x project
     :bind (("C-x g" . magit-staging)
            :map evil-leader--default-map
            ("sg" . magit-staging)
            ("f"  . magit-file-dispatch)
            :map git-commit-mode-map
-           ("C-c t" . my-insert-current-date))
+           ("C-c t" . my-insert-current-date)
+           :map project-prefix-map
+           ("m" . magit-project-staging))
 
     :init
     (setq magit-refresh-verbose nil)
@@ -1248,6 +1250,10 @@ a single file are a breeze with Magit.
     (setq auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffer-p)
 
     (evil-set-initial-state 'magit-staging-mode 'emacs)
+
+    (setq magit-bind-magit-project-status nil)
+
+    (add-to-list 'project-switch-commands '(magit-project-staging "Magit staging") t)
 
     :config
     (evil-define-key 'normal magit-blame-mode-map (kbd "q") 'magit-blame-quit)
@@ -1282,6 +1288,11 @@ a single file are a breeze with Magit.
       (interactive)
       (let ((default-directory (or directory default-directory)))
         (magit-mode-setup #'magit-staging-mode)))
+
+    (defun magit-project-staging ()
+      "Run `magit-staging' in the current project's root."
+      (interactive)
+      (magit-staging (project-root (project-current t))))
 
     (defalias #'magit-status #'magit-staging))
 #+end_src

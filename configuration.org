@@ -821,6 +821,7 @@ modal editing of Vim combined with the extensibility of Emacs.
                     flymake-diagnostics-buffer-mode
                     profiler-report-mode
                     comint-mode
+                    inferior-python-mode
                     gud-mode
                     Man-mode
                     messages-buffer-mode

@@ -950,6 +950,7 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
     (setq xref-show-xrefs-function #'consult-xref)
     (setq xref-show-definitions-function #'consult-xref)
     (setq consult-after-jump-hook #'reposition-window)
+    (setq consult-line-start-from-top t)
 
     (defun my-consult-line ()
       "Call `consult-line' with symbol at point as argument."

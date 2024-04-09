@@ -952,12 +952,13 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
     (setq consult-after-jump-hook #'reposition-window)
     (setq consult-line-start-from-top t)
 
+    (add-to-list 'consult-preview-excluded-files "\\.gpg\\'")
+
     (defun my-consult-line ()
       "Call `consult-line' with symbol at point as argument."
       (interactive)
       (let ((symbol (symbol-at-point)))
         (consult-line (and (not (null symbol)) (symbol-name symbol))))))
-
 #+END_SRC
 
 * Marginalia

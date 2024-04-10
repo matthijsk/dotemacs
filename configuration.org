@@ -1534,6 +1534,15 @@ Configure [[https://github.com/minad/jinx][jinx]] for spell checking.
            ("z=" . jinx-correct)))
 #+end_src
 
+* Web-mode
+Useful for editing web templates (such as those used by Django, for example).
+#+begin_src elisp
+  (use-package web-mode
+    :ensure t
+    :config
+    (setq web-mode-enable-engine-detection t))
+#+end_src
+
 * COMMENT Local variables
 # Local Variables:
 # org-adapt-indentation: nil

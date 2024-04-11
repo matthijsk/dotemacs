@@ -1543,6 +1543,39 @@ Useful for editing web templates (such as those used by Django, for example).
     (setq web-mode-enable-engine-detection t))
 #+end_src
 
+* CSS mode
+#+begin_src elisp
+  (use-package css-mode
+    :bind (:map css-ts-mode-map
+                ("<f1>" . my-css-lookup-symbol))
+    :config
+
+    ;; Copied and modified from `css-lookup-symbol' in css-mode.el.
+    ;;
+    ;; TODO: maybe patch `css-lookup-symbol' to make this a customizable option
+    ;; where the user can choose between using `eww' or `browse-url' for looking
+    ;; up symbols.
+    (defun my-css-lookup-symbol (symbol)
+      "Display the CSS documentation for SYMBOL in default browser, as found on MDN.
+  Instead of using `eww', use `browse-url'. See `css-lookup-symbol'."
+      (interactive
+       (list
+        (let* ((sym (css--mdn-find-symbol))
+               (enable-recursive-minibuffers t)
+               (value (completing-read (format-prompt "Describe CSS symbol" sym)
+                                       css--mdn-completion-list nil nil nil
+                                       'css--mdn-lookup-history sym)))
+          (if (equal value "") sym value))))
+      (when symbol
+        ;; If we see a single-colon pseudo-element like ":after", turn it
+        ;; into "::after".
+        (when (and (eq (aref symbol 0) ?:)
+                   (member (substring symbol 1) css-pseudo-element-ids))
+          (setq symbol (concat ":" symbol)))
+        (let ((url (format css-lookup-url-format symbol)))
+          (browse-url url)))))
+#+end_src
+
 * COMMENT Local variables
 # Local Variables:
 # org-adapt-indentation: nil

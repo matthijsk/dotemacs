@@ -1167,7 +1167,9 @@ work.
       (switch-to-buffer "*clocktable*")
       (erase-buffer)
       (org-mode)
-      (insert "To update the clock table after making changes in its properties run org-dblock-update (C-c C-x C-u).")
+      (insert "To update the clock table after making changes in its properties run "
+              (substitute-command-keys "\\[org-dblock-update]" t)
+              " on the properties line.")
       (org-clock-report))
 
     (defun my-org-clock-goto ()

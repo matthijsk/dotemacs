@@ -98,7 +98,7 @@ Save the bookmarks list to file whenever it is modified.
 
 Clean up white space when saving certain buffers.
 #+begin_src emacs-lisp
-  (setq my-whitespace-cleanup-modes '(org-mode markdown-mode python-mode))
+  (setq my-whitespace-cleanup-modes '(text-mode prog-mode))
 
   (defun my-whitespace-cleanup ()
     "Clean up whitespace before saving a buffer.

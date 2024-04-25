@@ -1578,6 +1578,13 @@ Useful for editing web templates (such as those used by Django, for example).
           (browse-url url)))))
 #+end_src
 
+* pyvenv
+Python virtual environment support for Emacs.
+#+begin_src emacs-lisp
+  (use-package pyvenv
+    :ensure t)
+#+end_src
+
 * COMMENT Local variables
 # Local Variables:
 # org-adapt-indentation: nil

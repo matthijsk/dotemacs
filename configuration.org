@@ -682,13 +682,6 @@ for inserting the current date in a written form.
                                     nodayname))))
 #+end_src
 
-** Generic-x
-   Generic modes for common file types. Comes bundled with Emacs.
-   #+begin_src emacs-lisp
-  (use-package generic-x
-    :defer 5)
-   #+end_src
-
 ** Subr-x
 Ensure =subr-x= is loaded. Comes bundled with Emacs.
 

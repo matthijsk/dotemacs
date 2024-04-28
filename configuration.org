@@ -932,6 +932,7 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
   (use-package consult
     :pin melpa-stable
     :ensure t
+    :after project
     :bind(("C-x b" . consult-buffer)
           ("M-s o" . my-consult-line)
           :map evil-normal-state-map
@@ -953,6 +954,8 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
     (setq consult-line-start-from-top t)
 
     (add-to-list 'consult-preview-excluded-files "\\.gpg\\'")
+
+    (add-to-list 'project-switch-commands '(consult-ripgrep "Consult ripgrep") t)
 
     (defun my-consult-line ()
       "Call `consult-line' with symbol at point as argument."

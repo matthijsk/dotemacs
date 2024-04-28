@@ -1582,6 +1582,16 @@ Python virtual environment support for Emacs.
     :ensure t)
 #+end_src
 
+* sqlformat
+#+begin_src emacs-lisp
+  (use-package sqlformat
+    :pin melpa
+    :commands (sqlformat sqlformat-buffer sqlformat-region)
+    :config
+    (setq sqlformat-command 'sqlfluff)
+    (setq sqlformat-args '("--nocolor" "--disable-progress-bar")))
+#+end_src
+
 * COMMENT Local variables
 # Local Variables:
 # org-adapt-indentation: nil

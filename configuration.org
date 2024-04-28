@@ -1489,6 +1489,7 @@ at https://github.com/mickeynp/combobulate.
                    ("https://feeds.nos.nl/nosnieuwsalgemeen" news nos)
                    ("https://www.nrc.nl/rss/" news nrc)
                    "https://emacsformacosx.com/atom/release"
+                   "https://www.djangoproject.com/rss/weblog/"
                    "https://nullprogram.com/feed/"))
       (add-to-list 'elfeed-feeds feed))
 

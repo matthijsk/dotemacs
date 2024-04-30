@@ -795,6 +795,9 @@ modal editing of Vim combined with the extensibility of Emacs.
     ;; Set custom evil state when in these modes.
     (add-hook 'with-editor-mode-hook 'evil-normal-state)
 
+    ;; Set shift width to 4 for python buffers to comply with pep8 guidelines.
+    (add-hook 'python-base-mode-hook #'(lambda() (setq evil-shift-width 4)))
+
     (dolist (mode '(minibuffer-mode
                     calendar-mode
                     shell-mode

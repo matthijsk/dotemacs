@@ -323,7 +323,8 @@ Allow up casing and lower casing of regions.
 #+end_src
 
 ** Programming settings
-Settings for setting up a programming environment.
+Settings for setting up a programming environment and for built-in programming
+major modes.
 
 Enable eldoc-mode for elisp buffers.
 #+begin_src emacs-lisp
@@ -452,11 +453,16 @@ Set up ~bat-cmd-help~ with ~thing-at-point~ for =bat-mode=.
       (bat-cmd-help cmd)))
 #+end_src
 
+*** Python
 Set ~python-shell-unbuffered~ to ~nil~ to prevent =Warning (python): Python
 shell prompts cannot be detected.= warnings when opening a python file on
 Windows systems. See https://github.com/jorgenschaefer/elpy/issues/733.
 #+begin_src emacs-lisp
   (setq python-shell-unbuffered nil)
+#+end_src
+
+#+begin_src emacs-lisp
+  (setq python-check-command "flake8 --color never")
 #+end_src
 
 ** Find configuration files

@@ -1493,6 +1493,7 @@ at https://github.com/mickeynp/combobulate.
                    ("https://www.nrc.nl/rss/" news nrc)
                    "https://emacsformacosx.com/atom/release"
                    "https://www.djangoproject.com/rss/weblog/"
+                   "https://github.blog/changelog/label/copilot/feed/"
                    "https://nullprogram.com/feed/"))
       (add-to-list 'elfeed-feeds feed))
 
@@ -1604,6 +1605,16 @@ Python virtual environment support for Emacs.
     (setq sqlformat-args '("--nocolor" "--disable-progress-bar")))
 #+end_src
 
+* github copilot
+#+begin_src emacs-lisp
+  (use-package copilot
+    :load-path "~/dev/copilot.el"
+    :bind (:map copilot-completion-map
+                ([tab] . copilot-accept-completion))
+    :commands (copilot-login copilot-mode copilot-diagnose)
+    :config
+    (add-to-list 'copilot-major-mode-alist '("python-ts" . "python")))
+#+end_src
 * COMMENT Local variables
 # Local Variables:
 # org-adapt-indentation: nil

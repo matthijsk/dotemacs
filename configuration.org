@@ -1548,6 +1548,7 @@ Useful for editing web templates (such as those used by Django, for example).
 #+begin_src elisp
   (use-package web-mode
     :ensure t
+    :mode "\\.djhtml\\'"
     :config
     (setq web-mode-enable-engine-detection t))
 #+end_src
@@ -1589,6 +1590,7 @@ Useful for editing web templates (such as those used by Django, for example).
 Python virtual environment support for Emacs.
 #+begin_src emacs-lisp
   (use-package pyvenv
+    :hook python-base-mode-hook
     :ensure t)
 #+end_src
 

@@ -463,6 +463,7 @@ Windows systems. See https://github.com/jorgenschaefer/elpy/issues/733.
 
 #+begin_src emacs-lisp
   (setq python-check-command "flake8 --color never")
+  (add-to-list 'auto-mode-alist '("\\.flake8\\'" . conf-unix-mode))
 #+end_src
 
 ** Find configuration files
@@ -1461,12 +1462,12 @@ at https://github.com/mickeynp/combobulate.
           (js-mode . js-ts-mode)
           (js-json-mode . json-ts-mode)
           (python-mode . python-ts-mode)
-          (yaml-mode . yaml-ts-mode)
           (c-mode . c-ts-mode)
           (c++-mode . c++-ts-mode)
           (ruby-mode . ruby-ts-mode)))
 
   (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.y?ml\\'" . yaml-ts-mode))
 #+end_src
 
 * Elfeed

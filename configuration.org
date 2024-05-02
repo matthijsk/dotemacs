@@ -1595,6 +1595,13 @@ Python virtual environment support for Emacs.
     :ensure t)
 #+end_src
 
+* py-autopep8
+#+begin_src emacs-lisp
+  (use-package py-autopep8
+    :pin melpa
+    :commands (py-autopep8-buffer py-autopep8-region))
+#+end_src
+
 * sqlformat
 #+begin_src emacs-lisp
   (use-package sqlformat

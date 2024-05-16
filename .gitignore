@@ -17,6 +17,7 @@ tramp
 transient/history.el
 
 # Directories
+.cache/
 auto-save-list/
 elpa/
 eshell/

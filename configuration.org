@@ -704,6 +704,11 @@ loaded.
   (use-package subr-x)
 #+end_src
 
+** VC
+#+begin_src emacs-lisp
+  (setq vc-display-status nil)
+#+end_src
+
 * Dash
 Ensure [[https://github.com/magnars/dash.el][dash]] ("A modern list library for Emacs") is installed. It is used by many
 packages.

@@ -1010,7 +1010,9 @@ the same author).
     :hook (prog-mode-hook . corfu-mode)
     :init
     (setq corfu-quit-at-boundary nil)
-    (setq corfu-auto t))
+    (setq corfu-auto t)
+    :config
+    (setq corfu-auto-delay 0.15))
 #+end_src
 
 * Org mode

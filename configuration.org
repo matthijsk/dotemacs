@@ -1455,6 +1455,7 @@ at https://github.com/mickeynp/combobulate.
           (css . ("https://github.com/tree-sitter/tree-sitter-css" "v0.20.0"))
           (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "v0.20.1"))
           (json . ("https://github.com/tree-sitter/tree-sitter-json" "v0.20.2"))
+          (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.20.4" "typescript/src"))
           (python . ("https://github.com/tree-sitter/tree-sitter-python" "v0.20.4"))
           (yaml . ("https://github.com/tree-sitter/tree-sitter-yaml" "v0.5.0"))
           (c . ("https://github.com/tree-sitter/tree-sitter-c" "v0.21.0"))

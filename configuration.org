@@ -1621,7 +1621,7 @@ Python virtual environment support for Emacs.
     (setq sqlformat-args '("--nocolor" "--disable-progress-bar")))
 #+end_src
 
-* github copilot
+* GitHub copilot
 #+begin_src emacs-lisp
   (use-package copilot
     :load-path "~/dev/copilot.el"

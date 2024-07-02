@@ -1475,11 +1475,13 @@ at https://github.com/mickeynp/combobulate.
           (c++-mode . c++-ts-mode)
           (ruby-mode . ruby-ts-mode)))
 
+  ;; TODO: add typescript-ts-mode to auto-mode-alist?
   (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.y?ml\\'" . yaml-ts-mode))
 #+end_src
 
 * Elfeed
+For formatting entries: see variable elfeed-search-print-entry-function.
 #+begin_src emacs-lisp
   (use-package elfeed
     :pin melpa-stable

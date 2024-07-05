@@ -1618,7 +1618,24 @@ Python virtual environment support for Emacs.
 #+begin_src emacs-lisp
   (use-package pyvenv
     :hook python-base-mode-hook
-    :ensure t)
+    :ensure t
+
+    :config
+    (defun my-venv-activate ()
+      "Activate a python virtual environment and start eglot for the current project.
+  It is assumed the the virtual environment is installed in the
+  .venv folder."
+      (interactive)
+      (let ((current-project (concat (project-root (project-current)) ".venv")))
+        (pyvenv-activate current-project)
+        (call-interactively 'eglot)
+        (message "Activated project environment for %s" current-project)))
+
+    (defun my-venv-deactivate ()
+      "Shut down eglot and deactivate current virtual environment."
+      (interactive)
+      (eglot-shutdown-all)
+      (pyvenv-deactivate)))
 #+end_src
 
 * py-autopep8

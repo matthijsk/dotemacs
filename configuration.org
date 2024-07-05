@@ -1438,6 +1438,8 @@ major modes are derived from =prog-mode=.
 #+begin_src emacs-lisp
   (use-package eglot
     :commands (eglot)
+    :init
+    (setq eglot-report-progress nil)
     :config
     (add-hook 'eglot-connect-hook
               (lambda (server)

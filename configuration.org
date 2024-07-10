@@ -915,6 +915,7 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
             (consult-grep buffer)
             (consult-git-grep buffer)
             (consult-ripgrep buffer)
+            (my-consult-ripgrep buffer)
             (consult-line buffer)
             (my-consult-line buffer)
             (xref-find-references buffer)
@@ -951,7 +952,7 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
           ;; these very useful.
           :map project-prefix-map
           ("g" . consult-grep)
-          ("r" . consult-ripgrep))
+          ("r" . my-consult-ripgrep))
     :init
     (evil-leader/set-key-for-mode 'org-mode "hs" 'consult-org-heading)
 
@@ -965,11 +966,24 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
 
     (add-to-list 'project-switch-commands '(consult-ripgrep "Consult ripgrep") t)
 
+    (defun my-symbol-name-or-nil ()
+      "Return the name of the symbol at point as a string or nil.
+  Useful when passing the current symbol as a string argument to
+  `consult-line' and `consult-ripgrep'. When no symbol is
+  present (on an empty line) pass `nil' (and not the string
+  \"nil\")."
+      (let ((symbol (symbol-at-point)))
+        (and (not (null symbol)) (symbol-name symbol))))
+
     (defun my-consult-line ()
       "Call `consult-line' with symbol at point as argument."
       (interactive)
-      (let ((symbol (symbol-at-point)))
-        (consult-line (and (not (null symbol)) (symbol-name symbol))))))
+      (consult-line (my-symbol-name-or-nil)))
+
+    (defun my-consult-ripgrep ()
+      "Call `consult-ripgrep' in the current project with symbol at point as argument."
+      (interactive)
+      (consult-ripgrep nil (my-symbol-name-or-nil))))
 #+END_SRC
 
 * Marginalia

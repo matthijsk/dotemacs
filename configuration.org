@@ -1579,6 +1579,7 @@ Useful for editing web templates (such as those used by Django, for example).
     :ensure t
     :mode "\\.djhtml\\'"
     :config
+    (setq web-mode-engines-alist '(("django" . "\\.html\\'")))
     (setq web-mode-enable-engine-detection t))
 #+end_src
 

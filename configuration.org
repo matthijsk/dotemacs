@@ -878,6 +878,9 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
       "n"   'server-edit
       "xc"  'save-buffers-kill-terminal
 
+      "pe"  'project-eshell
+      "pf"  'project-find-file
+
       "l"   'whitespace-mode
       "hl"  'hl-line-mode
       "rl"  'display-line-numbers-mode
@@ -956,6 +959,7 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
           ("r" . my-consult-ripgrep))
     :init
     (evil-leader/set-key-for-mode 'org-mode "hs" 'consult-org-heading)
+    (evil-leader/set-key "pr" 'my-consult-ripgrep)
 
     :config
     (setq xref-show-xrefs-function #'consult-xref)

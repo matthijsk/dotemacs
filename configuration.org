@@ -453,6 +453,13 @@ Set up ~bat-cmd-help~ with ~thing-at-point~ for =bat-mode=.
       (bat-cmd-help cmd)))
 #+end_src
 
+#+begin_src emacs-lisp
+  (defun my-indent-buffer ()
+    "Run `indent-region' on the entire visible buffer."
+    (interactive)
+    (indent-region (point-min) (point-max)))
+#+end_src
+
 *** Python
 Set ~python-shell-unbuffered~ to ~nil~ to prevent =Warning (python): Python
 shell prompts cannot be detected.= warnings when opening a python file on
@@ -755,6 +762,7 @@ modal editing of Vim combined with the extensibility of Emacs.
     :bind (:map evil-normal-state-map
                 ("C-s" . save-buffer)
                 ("C-/" . my-comment-dwim)
+                ("+"   . my-indent-buffer)
 
            :map evil-insert-state-map
                 ("C-s" . save-buffer)

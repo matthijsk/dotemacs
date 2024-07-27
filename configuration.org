@@ -753,8 +753,8 @@ modal editing of Vim combined with the extensibility of Emacs.
     :ensure t
     :demand t
     :bind (:map evil-normal-state-map
-                ("C-s"     . save-buffer)
-                ("C-/"     . my-comment-dwim)
+                ("C-s" . save-buffer)
+                ("C-/" . my-comment-dwim)
 
            :map evil-insert-state-map
                 ("C-s" . save-buffer)

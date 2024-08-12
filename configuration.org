@@ -1281,25 +1281,18 @@ a single file are a breeze with Magit.
     :pin melpa-stable
     :ensure t
     :after subr-x project
-    :bind (("C-x g" . magit-staging)
-           :map evil-leader--default-map
-           ("sg" . magit-staging)
+    :bind (:map evil-leader--default-map
+           ("m" . magit-status)
            ("f"  . magit-file-dispatch)
            :map git-commit-mode-map
            ("C-c t" . my-insert-current-date)
            :map project-prefix-map
-           ("m" . magit-project-staging))
+           ("m" . magit-project-status))
 
     :init
     (setq magit-refresh-verbose nil)
 
     (setq auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffer-p)
-
-    (evil-set-initial-state 'magit-staging-mode 'emacs)
-
-    (setq magit-bind-magit-project-status nil)
-
-    (add-to-list 'project-switch-commands '(magit-project-staging "Magit staging") t)
 
     :config
     (evil-define-key 'normal magit-blame-mode-map (kbd "q") 'magit-blame-quit)
@@ -1307,40 +1300,7 @@ a single file are a breeze with Magit.
 
     ;; Add author-headings blame style which is similar to the headings style but
     ;; displays author date instead of committer date.
-    (add-to-list 'magit-blame-styles '(author-headings (heading-format . "%-20a %A %s\n")))
-
-    ;; Don't show tags when displaying refs.
-    (remove-hook 'magit-refs-sections-hook 'magit-insert-tags)
-
-    ;; Don't show diff when committing (use C-c C-d to show diff anyway).
-    (remove-hook 'server-switch-hook 'magit-commit-diff)
-
-    ;; Improve staging performance on Windows.
-    ;; See https://github.com/magit/magit/issues/2395
-    (define-derived-mode magit-staging-mode magit-status-mode "Magit staging"
-      "Stripped down mode for looking at Git status.
-  Compared to `magit-status-mode', only untracked files, unstaged
-  and staged changes and recent commits are listed."
-      :group 'magit-status)
-
-    (defun magit-staging-refresh-buffer ()
-      (magit-insert-section (status)
-        (magit-insert-untracked-files)
-        (magit-insert-unstaged-changes)
-        (magit-insert-staged-changes)))
-
-    (defun magit-staging (&optional directory)
-      "A stripped down version of `magit-status' for better performance."
-      (interactive)
-      (let ((default-directory (or directory default-directory)))
-        (magit-mode-setup #'magit-staging-mode)))
-
-    (defun magit-project-staging ()
-      "Run `magit-staging' in the current project's root."
-      (interactive)
-      (magit-staging (project-root (project-current t))))
-
-    (defalias #'magit-status #'magit-staging))
+    (add-to-list 'magit-blame-styles '(author-headings (heading-format . "%-20a %A %s\n"))))
 #+end_src
 
 Also install major modes for editing various git configuration files. See

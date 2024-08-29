@@ -1331,28 +1331,6 @@ Also install major modes for editing various git configuration files. See
     (evil-define-key 'normal c++-mode-map (kbd "C-}") 'semantic-ia-fast-jump))
 #+end_src
 
-* Clang format
-With clang format a source file can be automatically formatted according to a
-set of rules (usually defined in a file =.clang-format= in the project root).
-With the clang-format Emacs package it is possible to format the entire buffer,
-but also to format a region or just the current line.
-#+begin_src emacs-lisp
-  (use-package clang-format
-    :ensure t
-    :bind (("C-=" . clang-format-region))
-    :commands (my-clang-format-buffer)
-    :init
-    (add-hook 'before-save-hook #'my-clang-format-buffer)
-
-    :config
-    (defun my-clang-format-buffer ()
-      "Clang format entire C++ mode buffer before saving.
-
-    Calls `clang-format-buffer' when the major-mode is `c++-mode'."
-      (when (eq major-mode 'c++-mode)
-        (clang-format-buffer))))
-#+end_src
-
 * Git for Windows path
 Try and determine if Git is available. If it is, and we are on a Windows system,
 also add =git-path/../usr/bin= to =exec-path=, to enable use of =diff=, =gpg=

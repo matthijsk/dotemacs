@@ -587,7 +587,10 @@ Initialize and set up eshell completion.
     (eshell-visual-subcommands '(("gpg"
                                   "--generate-key" "--gen-key"
                                   "--full-generate-key" "--full-gen-key"
-                                  "--edit-key"))))
+                                  "--edit-key")))
+    (eshell-buffer-maximum-lines 4096)
+    :init
+    (add-to-list 'eshell-output-filter-functions #'eshell-truncate-buffer))
 #+end_src
 
 ** Dired

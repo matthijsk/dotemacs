@@ -307,6 +307,14 @@ that modifier.
     (my-set-mac-modifiers t))
 #+end_src
 
+Most of the time I use a US English keyboard layout when working. However, I
+often have to use the Euro symbol (€) which isn't available on that keyboard.
+Using =M-x insert-char= or =C-x 8 * E= all the time gets pretty tedious.
+Instead, bind =C-c E= to do this.
+#+begin_src emacs-lisp
+  (bind-key "C-c E" #'(lambda() (interactive) (insert-char ?€)))
+#+end_src
+
 ** Enable disabled commands
 Some commands are disabled by default, enable these so Emacs doesn't
 ask for confirmation every time the command is executed.

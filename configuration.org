@@ -582,15 +582,15 @@ Initialize and set up eshell completion.
   (use-package eshell
     :hook (eshell-mode-hook . (lambda ()
                                 (eshell-cmpl-initialize)
-                                (setq eshell-cmpl-cycle-completions nil)))
+                                (setq eshell-cmpl-cycle-completions nil)
+                                (add-to-list 'eshell-output-filter-functions #'eshell-truncate-buffer)))
+
     :custom
     (eshell-visual-subcommands '(("gpg"
                                   "--generate-key" "--gen-key"
                                   "--full-generate-key" "--full-gen-key"
                                   "--edit-key")))
-    (eshell-buffer-maximum-lines 4096)
-    :init
-    (add-to-list 'eshell-output-filter-functions #'eshell-truncate-buffer))
+    (eshell-buffer-maximum-lines 4096))
 #+end_src
 
 ** Dired

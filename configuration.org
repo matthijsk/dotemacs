@@ -707,21 +707,6 @@ for inserting the current date in a written form.
                                     nodayname))))
 #+end_src
 
-** Subr-x
-Ensure =subr-x= is loaded. Comes bundled with Emacs.
-
-According to the documentation:
-#+begin_quote
-it's almost always correct to use ~(eval-when-compile (require 'subr-x))~
-#+end_quote
-However, the [[*Magit][Magit]] configuration block in this file defines some custom
-functions (~(magit-staging)~) that also require =subr-x= but that, since this
-configuration file is not byte compiled, will not work until this feature is
-loaded.
-#+begin_src emacs-lisp
-  (use-package subr-x)
-#+end_src
-
 ** VC
 #+begin_src emacs-lisp
   (setq vc-display-status nil)

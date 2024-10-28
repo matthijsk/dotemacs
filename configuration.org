@@ -1050,11 +1050,6 @@ been doing for some years now.
 The ~(my-org-clock-in)~ function is used for keeping track of time spent at
 work.
 #+begin_src emacs-lisp
-  ;; Org html export requires htmlize.
-  (use-package htmlize
-    :pin melpa-stable
-    :defer t)
-
   (use-package org
     :pin gnu
     :ensure t

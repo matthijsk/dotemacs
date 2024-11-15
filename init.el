@@ -1,5 +1,13 @@
 (require 'package)
 
+;; Path injection for emacs-plus on MacOS Sequoia is broken. Copy PATH value
+;; from "/opt/homebrew/opt/emacs-plus@29/Emacs.app/Contents/Info.plist" as a
+;; workaround. See
+;; https://github.com/d12frosted/homebrew-emacs-plus/issues/733#issuecomment-2368746692.
+(when (eq system-type 'darwin)
+  (setenv "PATH" "/opt/homebrew/opt/postgresql@16/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Applications/iTerm.app/Contents/Resources/utilities")
+  (setq exec-path (split-string (getenv "PATH") path-separator)))
+
 ;; Workaround for issue in Emacs 26 where, depending on the installed version of
 ;; GnuTLS, retrieving a package archive over https fails with =bad request=
 ;; errors. See

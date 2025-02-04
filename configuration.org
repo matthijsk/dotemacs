@@ -1031,7 +1031,7 @@ the same author).
 #+begin_src emacs-lisp
   (use-package corfu
     :ensure t
-    :hook (prog-mode-hook . corfu-mode)
+    :hook (prog-mode-hook inferior-python-mode-hook)
     :init
     (setq corfu-quit-at-boundary nil)
     (setq corfu-auto t)

@@ -260,6 +260,8 @@ frame.
 
   (bind-key "C-c x" #'delete-frame)
   (bind-key "M-<f4>" #'delete-frame)
+
+  (bind-key "M-`" #'other-frame)
 #+end_src
 
 When I call kill-buffer I pretty much always mean to kill the current buffer.

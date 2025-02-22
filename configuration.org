@@ -1622,6 +1622,7 @@ Python virtual environment support for Emacs.
 * bicep-ts-mode
 #+begin_src emacs-lisp
   (use-package bicep-ts-mode
+    :mode ("\\.bicep\\'" "\\.bicepparam\\'")
     :pin gnu)
 #+end_src
 

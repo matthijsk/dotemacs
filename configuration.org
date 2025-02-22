@@ -209,11 +209,6 @@ preserve all modes.
   (bind-key "<f5>" #'my-revert-buffer)
 #+end_src
 
-Load alternate file with =F6= (useful for switching .c and .h).
-#+begin_src emacs-lisp
-  (bind-key "<f6>" #'ff-find-other-file)
-#+end_src
-
 Exhibit expected X clipboard behavior (yank with middle mouse button).
 #+begin_src emacs-lisp
   (bind-key "<mouse-2>" #'clipboard-yank)

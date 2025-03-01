@@ -20,6 +20,7 @@ transient/history.el
 .cache/
 auto-save-list/
 elpa/
+eln-cache/
 eshell/
 hackernews/
 multisession/

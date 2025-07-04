@@ -701,7 +701,13 @@ for inserting the current date in a written form.
   the week. See also `calendar-date-string'."
       (interactive "*P")
       (insert (calendar-date-string (calendar-current-date) nil
-                                    nodayname))))
+                                    nodayname)))
+
+    (defun my-insert-iso-date ()
+      "Insert today's date formatted as ISO date (yyyy-mm-dd)."
+      (interactive)
+      (let ((calendar-date-display-form calendar-iso-date-display-form))
+        (insert (calendar-date-string (calendar-current-date))))))
 #+end_src
 
 ** VC

@@ -1643,6 +1643,17 @@ Python virtual environment support for Emacs.
     (add-to-list 'copilot-major-mode-alist '("python-ts" . "python")))
 #+end_src
 
+* gptel
+#+begin_src emacs-lisp
+  (use-package gptel
+    :pin melpa-stable
+    :custom
+    (gptel-default-mode 'org-mode)
+    :config
+    (setq gptel-model 'gpt-4.1)
+    (setq gptel-backend (gptel-make-gh-copilot "Copilot")))
+#+end_src
+
 * COMMENT Local variables
 # Local Variables:
 # org-adapt-indentation: nil

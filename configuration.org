@@ -309,7 +309,7 @@ often have to use the Euro symbol (€) which isn't available on that keyboard.
 Using =M-x insert-char= or =C-x 8 * E= all the time gets pretty tedious.
 Instead, bind =C-c E= to do this.
 #+begin_src emacs-lisp
-  (bind-key "C-c E" #'(lambda() (interactive) (insert-char ?€)))
+  (bind-key "C-c E" #'(lambda () "Insert \"€\" (EURO SIGN) at point." (interactive) (insert-char ?€)))
 #+end_src
 
 ** Enable disabled commands

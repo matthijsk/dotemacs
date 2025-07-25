@@ -116,6 +116,11 @@ Enable global minor mode Editorconfig.
   (editorconfig-mode)
 #+end_src
 
+Enable Which-Key mode
+#+begin_src emacs-lisp
+  (which-key-mode)
+#+end_src
+
 ** Scrolling
 Settings related to scrolling buffers.
 

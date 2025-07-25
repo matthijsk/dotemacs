@@ -1637,17 +1637,6 @@ Python virtual environment support for Emacs.
     :pin gnu)
 #+end_src
 
-* GitHub copilot
-#+begin_src emacs-lisp
-  (use-package copilot
-    :load-path "~/dev/copilot.el"
-    :bind (:map copilot-completion-map
-                ([tab] . copilot-accept-completion))
-    :commands (copilot-login copilot-mode copilot-diagnose)
-    :config
-    (add-to-list 'copilot-major-mode-alist '("python-ts" . "python")))
-#+end_src
-
 * gptel
 #+begin_src emacs-lisp
   (use-package gptel

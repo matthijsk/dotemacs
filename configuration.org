@@ -305,7 +305,7 @@ that modifier.
       (interactive "P")
       (if use-modifiers
           (setq mac-command-modifier 'meta
-                mac-option-modifier 'control)
+                mac-option-modifier 'super)
         (setq mac-command-modifier my-default-mac-command-modifier
               mac-option-modifier my-default-mac-option-modifier))
 

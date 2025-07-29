@@ -207,18 +207,6 @@ Don't blink the cursor.
 ** Global key bindings
 Set global key bindings, not related to any specific packages.
 
-Reload ('revert') a buffer with =F5= without asking for confirmation, and
-preserve all modes.
-#+begin_src emacs-lisp
-  (defun my-revert-buffer ()
-    "Revert a buffer without asking for confirmation and preserve all modes.
-  See also `revert-buffer'."
-    (interactive)
-    (revert-buffer nil t t))
-
-  (bind-key "<f5>" #'my-revert-buffer)
-#+end_src
-
 Exhibit expected X clipboard behavior (yank with middle mouse button).
 #+begin_src emacs-lisp
   (bind-key "<mouse-2>" #'clipboard-yank)

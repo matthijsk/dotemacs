@@ -1646,6 +1646,7 @@ Python virtual environment support for Emacs.
 #+begin_src emacs-lisp
   (use-package gptel
     :pin melpa-stable
+    :bind (("C-c g" . (lambda () "Call `gptel-send' with prefix ARG enabled." (interactive) (gptel-send '(4)))))
     :custom
     (gptel-default-mode 'org-mode)
     :config

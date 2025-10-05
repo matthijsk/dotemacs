@@ -1014,11 +1014,7 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
     :bind
     (("C-." . embark-act)
      ("C->" . embark-act-all)
-     ("C-;" . embark-dwim)
-     ("C-h B" . embark-bindings)
-
-     :map minibuffer-local-map
-           ("C-SPC" . embark-select)))
+     ("C-;" . embark-dwim)))
 
   (use-package embark-consult
     :pin melpa-stable

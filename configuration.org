@@ -1503,7 +1503,7 @@ Configure [[https://github.com/minad/jinx][jinx]] for spell checking.
 #+begin_src emacs-lisp
   (use-package jinx
     :if (memq system-type '(gnu/linux darwin))
-    :hook (text-mode-hook . jinx-mode)
+    :hook (org-mode-hook git-commit-mode-hook)
     :bind (("M-$" . jinx-correct)
            ("C-M-$" . jinx-languages)
            :map evil-normal-state-map

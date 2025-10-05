@@ -649,11 +649,6 @@ Only ever use encrypted .authinfo.gpg files.
   (setq auth-sources '("~/.authinfo.gpg"))
 #+end_src
 
-** Man
-#+begin_src emacs-lisp
-  (setenv "MANWIDTH" "80")
-#+end_src
-
 ** Abbrev
 Enable ~abbrev-mode~ for ~text-mode~.
 #+begin_src emacs-lisp

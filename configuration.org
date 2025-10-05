@@ -1636,7 +1636,12 @@ Python virtual environment support for Emacs.
     (gptel-default-mode 'org-mode)
     :config
     (setq gptel-model 'gpt-4.1)
-    (setq gptel-backend (gptel-make-gh-copilot "Copilot")))
+    (setq gptel-backend (gptel-make-gh-copilot "Copilot"))
+
+    (defun my-gptel-context-remove-all ()
+      "Remove all gptel context without asking for confirmation."
+      (interactive)
+      (gptel-context-remove-all nil)))
 #+end_src
 
 * COMMENT Local variables

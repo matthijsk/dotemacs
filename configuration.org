@@ -1441,7 +1441,6 @@ For formatting entries: see variable elfeed-search-print-entry-function.
   (use-package elfeed
     :pin melpa-stable
     :ensure t
-    :defer t
     :bind (("C-c e" . elfeed)
            :map elfeed-search-mode-map
            ("R" . my-elfeed-untag-all-unread)

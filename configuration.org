@@ -1502,6 +1502,8 @@ For formatting entries: see variable elfeed-search-print-entry-function.
 Configure [[https://github.com/minad/jinx][jinx]] for spell checking.
 #+begin_src emacs-lisp
   (use-package jinx
+    :pin melpa-stable
+    :ensure t
     :if (memq system-type '(gnu/linux darwin))
     :hook (org-mode-hook git-commit-mode-hook)
     :bind (("M-$" . jinx-correct)

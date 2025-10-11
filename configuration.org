@@ -113,12 +113,14 @@ Clean up white space when saving certain buffers.
 
 Enable global minor mode Editorconfig.
 #+begin_src emacs-lisp
-  (editorconfig-mode)
+  (when (>= emacs-major-version 30)
+    (editorconfig-mode))
 #+end_src
 
 Enable Which-Key mode
 #+begin_src emacs-lisp
-  (which-key-mode)
+  (when (>= emacs-major-version 30)
+    (which-key-mode))
 #+end_src
 
 ** Scrolling

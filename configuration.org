@@ -1105,9 +1105,6 @@ work.
 
     (add-to-list 'auto-mode-alist '("\\.org_archive\\'" . org-mode))
 
-    ;; Add "p" menu key to quickly insert python source blocks using `org-insert-structure-template'.
-    (add-to-list 'org-structure-template-alist '("p" . "src python"))
-
     (setq org-fold-show-context-detail
           '((agenda . tree)
             (bookmark-jump . lineage)
@@ -1126,6 +1123,9 @@ work.
 
     ;; Ensure tags in agenda columns are shifted to the agenda item.
     (setq org-agenda-align-tags-to-column 0)
+
+    ;; Add "p" menu key to quickly insert python source blocks using `org-insert-structure-template'.
+    (add-to-list 'org-structure-template-alist '("p" . "src python"))
 
     (org-clock-persistence-insinuate)
 

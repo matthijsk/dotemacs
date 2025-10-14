@@ -1651,11 +1651,15 @@ Python virtual environment support for Emacs.
     (setq gptel-model 'gpt-4.1)
     (setq gptel-backend (gptel-make-gh-copilot "Copilot"))
 
-    (gptel-make-preset 'python-django
-      :description "Python and Django programming"
-      :system "You are a Python programmer and a Django expert.
-  Respond concisely. Never apologize.
-  Cite sources with your answers if possible. Replace version numbers in links to docs.djangoproject.com with \"stable\".")
+    (let ((base-system-message "Respond concisely. Never apologize. Cite sources with your answers if possible.\n"))
+      (gptel-make-preset 'python-django
+        :description "Python and Django programming"
+        :system (concat base-system-message "You are a Python programmer and a Django expert.
+  Replace version numbers in links to docs.djangoproject.com with \"stable\"."))
+
+      (gptel-make-preset 'bash-shell
+        :description "Bash shell scripting"
+        :system (concat base-system-message "You are a Bash scripting expert.")))
 
     (defun my-gptel-context-remove-all ()
       "Remove all gptel context without asking for confirmation."

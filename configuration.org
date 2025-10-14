@@ -1164,15 +1164,26 @@ work.
       :type 'file
       :group 'work)
 
+    (defcustom my-org-agenda (concat (file-name-as-directory org-directory) "agenda.org")
+      "Org file for logging repeating work items, such as stand-ups and other
+  repeating meetings."
+      :type 'file
+      :group 'work)
+
     (defun my-org-daily-standup ()
       "Clock in for daily stand-up and display clock table and agenda.
 
-  Asks to clock in for the daily stand-up work item. Then displays
-  the clocktable, the agenda and `my-org-worklog'."
+  Asks to clock in for the \"Daily stand-up\" work item in file
+  `my-org-agenda' Then displays the clocktable, the agenda and
+  `my-org-worklog' in a split window with the following layout:
+
+  | Clock report | Agenda |
+  | -------------|        |
+  | Worklog      |        |
+  "
       (interactive)
-      (find-file (concat (file-name-as-directory org-directory) "agenda.org"))
       (when (message-y-or-n-p "Clock in for daily standup?" nil)
-        (with-current-buffer "agenda.org"
+        (with-current-buffer (find-file-noselect my-org-agenda)
           (goto-char (point-min))
           (when (re-search-forward "Daily stand-up")
             (goto-char (match-beginning 0))
@@ -1183,7 +1194,8 @@ work.
       (org-agenda-list)
       (other-window 1)
       (split-window-below)
-      (switch-to-buffer-other-window "worklog.org"))
+      (switch-to-buffer-other-window (find-file-noselect my-org-worklog))
+      (org-save-all-org-buffers))
 
     (defun my-org-clock-report ()
       "Show time spent on tasks during this week.

@@ -1420,17 +1420,17 @@ List of tree-sitter grammar versions that work with Emacs 29, helpfully compiled
 at https://github.com/mickeynp/combobulate.
 #+begin_src emacs-lisp
   (setq treesit-language-source-alist
-        '((html . ("https://github.com/tree-sitter/tree-sitter-html" "v0.20.1")) ;; html-ts-mode not yet available in Emacs 29
-          (css . ("https://github.com/tree-sitter/tree-sitter-css" "v0.20.0"))
-          (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "v0.20.1"))
-          (json . ("https://github.com/tree-sitter/tree-sitter-json" "v0.20.2"))
-          (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.20.4" "typescript/src"))
-          (python . ("https://github.com/tree-sitter/tree-sitter-python" "v0.20.4"))
-          (yaml . ("https://github.com/tree-sitter/tree-sitter-yaml" "v0.5.0"))
-          (c . ("https://github.com/tree-sitter/tree-sitter-c" "v0.21.0"))
-          (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp" "v0.20.5"))
-          (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby" "v0.20.1"))
-          (dockerfile . ("https://github.com/camdencheek/tree-sitter-dockerfile" "v0.1.2"))
+        '((html . ("https://github.com/tree-sitter/tree-sitter-html" "v0.23.2"))
+          (css . ("https://github.com/tree-sitter/tree-sitter-css" "v0.25.0"))
+          (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "v0.25.0"))
+          (json . ("https://github.com/tree-sitter/tree-sitter-json" "v0.24.8"))
+          (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "typescript/src"))
+          (python . ("https://github.com/tree-sitter/tree-sitter-python" "v0.25.0"))
+          (yaml . ("https://github.com/ikatyang/tree-sitter-yaml" "v0.5.0"))
+          (c . ("https://github.com/tree-sitter/tree-sitter-c" "v0.24.1"))
+          (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp" "v0.23.4"))
+          (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby" "v0.23.1"))
+          (dockerfile . ("https://github.com/camdencheek/tree-sitter-dockerfile" "v0.2.0"))
           (bicep . ("https://github.com/tree-sitter-grammars/tree-sitter-bicep" "v1.1.0"))))
 
   (setq major-mode-remap-alist

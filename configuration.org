@@ -1434,9 +1434,7 @@ at https://github.com/mickeynp/combobulate.
           (bicep . ("https://github.com/tree-sitter-grammars/tree-sitter-bicep" "v1.1.0"))))
 
   (setq major-mode-remap-alist
-        '(;;(html-mode . html-ts-mode)
-          ;;(mhtml-mode . html-ts-mode)
-          (css-mode . css-ts-mode)
+        '((css-mode . css-ts-mode)
           (js-mode . js-ts-mode)
           (javascript-mode . js-ts-mode)
           (js-json-mode . json-ts-mode)
@@ -1444,6 +1442,10 @@ at https://github.com/mickeynp/combobulate.
           (c-mode . c-ts-mode)
           (c++-mode . c++-ts-mode)
           (ruby-mode . ruby-ts-mode)))
+
+  (when (>= emacs-major-version 30)
+    (add-to-list 'major-mode-remap-alist '(html-mode . html-ts-mode))
+    (add-to-list 'major-mode-remap-alist '(mhtml-mode . html-ts-mode)))
 
   (add-to-list 'auto-mode-alist '(".ts\\'" . typescript-ts-mode))
   (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-ts-mode))

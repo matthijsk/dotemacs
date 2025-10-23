@@ -739,7 +739,7 @@ performance.
     (setq doom-modeline-icon nil)
     (doom-modeline-mode 1)
     :config
-    (setq doom-modeline-buffer-file-name-style 'relative-to-project))
+    (setq doom-modeline-buffer-file-name-style 'relative-from-project))
 #+end_src
 
 * Evil

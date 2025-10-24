@@ -972,7 +972,7 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
 
     (add-to-list 'consult-preview-excluded-files "\\.gpg\\'")
 
-    (add-to-list 'project-switch-commands '(consult-ripgrep "Consult ripgrep") t)
+    (add-to-list 'project-switch-commands '(consult-ripgrep "Consult ripgrep" "r") t)
 
     (defun my-symbol-name-or-nil ()
       "Return the name of the symbol at point as a string or nil.

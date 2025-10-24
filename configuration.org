@@ -1127,7 +1127,7 @@ work.
     (setq org-agenda-align-tags-to-column 0)
 
     ;; Add "p" menu key to quickly insert python source blocks using `org-insert-structure-template'.
-    (add-to-list 'org-structure-template-alist '("p" . "src python"))
+    (add-to-list 'org-structure-template-alist '("p" . "src python-ts"))
 
     (org-clock-persistence-insinuate)
 

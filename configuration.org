@@ -301,6 +301,34 @@ that modifier.
 
       (message "Using %s keyboard command modifiers" (if use-modifiers "Mac" "default")))
 
+    ;; Custom move frame commands. Emacs eats some keys so the frame can be moved
+    ;; using the OS keys.
+    (defun my-move-frame (position)
+      "Resize current frame to half the screen width and position it at the left or right edge.
+  POSITION is a symbol: 'left or 'right."
+      (interactive
+       (list (intern (completing-read "Position: " '(left right) nil t))))
+      (let* ((display-pixel-width (display-pixel-width))
+             (display-pixel-height (display-pixel-height))
+             (half-width (/ display-pixel-width 2))
+             (x (if (eq position 'left) 0 (- display-pixel-width half-width))))
+        (set-frame-size (selected-frame) half-width display-pixel-height t)
+        (set-frame-position (selected-frame) x 0)))
+
+    (defun my-move-frame-left ()
+      "Move frame to the left."
+      (interactive)
+      (my-move-frame 'left))
+
+    (defun my-move-frame-right ()
+      "Move frame to the right."
+      (interactive)
+      (my-move-frame 'right))
+
+    (bind-key "s-<left>" #'my-move-frame-left)
+    (bind-key "s-<right>" #'my-move-frame-right)
+    (bind-key "s-<up>" #'toggle-frame-maximized)
+
     (my-set-mac-modifiers t))
 #+end_src
 
@@ -1290,6 +1318,8 @@ a single file are a breeze with Magit.
     :config
     (evil-define-key 'normal magit-blame-mode-map (kbd "q") 'magit-blame-quit)
     (evil-define-key 'normal magit-blame-mode-map (kbd "c") 'magit-blame-cycle-style)
+
+    (add-to-list 'project-switch-commands '(magit-project-status "Magit" "m") t)
 
     ;; Add author-headings blame style which is similar to the headings style but
     ;; displays author date instead of committer date.

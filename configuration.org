@@ -833,6 +833,7 @@ modal editing of Vim combined with the extensibility of Emacs.
     (add-hook 'python-base-mode-hook #'(lambda() (setq evil-shift-width 4)))
 
     (dolist (mode '(minibuffer-mode
+                    diff-mode
                     special-mode
                     calendar-mode
                     shell-mode

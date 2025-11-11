@@ -271,10 +271,10 @@ current buffer to be killed immediately.
   (bind-key "C-x k" #'kill-current-buffer)
 #+end_src
 
-Bind ~describe-char~ instead of ~describe-key-briefly~ to =C-h c=. I often use
-the former, but never the latter.
+Show character names in ~what-cursor-position~. Very useful for hard to
+distinguish characters such as =ZERO WIDTH SPACE=.
 #+begin_src emacs-lisp
-  (bind-key "C-h c" #'describe-char)
+  (setq what-cursor-show-names t)
 #+end_src
 
 When using a Mac keyboard, bind the command key (default super) to meta (alt on

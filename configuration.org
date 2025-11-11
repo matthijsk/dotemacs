@@ -44,11 +44,6 @@ Ask for confirmation when leaving Emacs.
   (setq confirm-kill-emacs 'yes-or-no-p)
 #+end_src
 
-Allow for basic paging in Emacs shells.
-#+begin_src emacs-lisp
-  (setenv "PAGER" "/bin/cat")
-#+end_src
-
 Increase warning limit to 100 MB for large files.
 #+begin_src emacs-lisp
   (setq large-file-warning-threshold (* 100 1024 1024))

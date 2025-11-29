@@ -400,7 +400,6 @@ Set some modes for specific file types.
 - Set ~conf-mode~ when loading a .clang-format file.
 #+begin_src emacs-lisp
   (add-to-list 'auto-mode-alist '("Doxyfile\\'" . conf-mode))
-
   (add-to-list 'auto-mode-alist '("\\.clang-format\\'" . conf-mode))
 #+end_src
 
@@ -471,7 +470,8 @@ Set ~python-shell-unbuffered~ to ~nil~ to prevent =Warning (python): Python
 shell prompts cannot be detected.= warnings when opening a python file on
 Windows systems. See https://github.com/jorgenschaefer/elpy/issues/733.
 #+begin_src emacs-lisp
-  (setq python-shell-unbuffered nil)
+  (when (eq system-type 'windows-nt)
+    (setq python-shell-unbuffered nil))
 #+end_src
 
 #+begin_src emacs-lisp

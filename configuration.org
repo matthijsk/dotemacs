@@ -475,7 +475,6 @@ Windows systems. See https://github.com/jorgenschaefer/elpy/issues/733.
 #+end_src
 
 #+begin_src emacs-lisp
-  (setq python-check-command "flake8 --color never")
   (add-to-list 'auto-mode-alist '("\\.flake8\\'" . conf-unix-mode))
 #+end_src
 

@@ -390,23 +390,8 @@ Auto scroll compilation window and stop on first error.
   (setq compilation-scroll-output 'first-error)
 #+end_src
 
-Set indentation to 2, and never indent with tabs.
+Never indent with tabs.
 #+begin_src emacs-lisp
-  (use-package cc-mode
-    :defer t
-    :config
-    (setq c-basic-offset 2))
-
-  (use-package sh-script
-    :defer t
-    :config
-    (setq sh-basic-offset 2))
-
-  (use-package css-mode
-    :defer t
-    :config
-    (setq css-indent-offset 2))
-
   (setq-default indent-tabs-mode nil)
 #+end_src
 

@@ -708,15 +708,6 @@ packages.
     :pin melpa-stable)
 #+end_src
 
-* Diminish
-[[https://github.com/myrjola/diminish.el][Diminish]] can be used as part of =use-package= to hide minor mode strings from
-the modeline.
-#+begin_src emacs-lisp
-  (use-package diminish
-    :ensure t
-    :pin melpa-stable)
-#+end_src
-
 * Doom-modeline
 Use [[https://github.com/seagle0128/doom-modeline][doom-modeline]] as the modeline. Looks good, while still having good
 performance.

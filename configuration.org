@@ -622,17 +622,6 @@ Use GNU Coreutils ls program (installed using Homebrew) on Darwin systems so the
 ** Convenience
 Various functions to make editing more convenient.
 
-Convenience function to open an OS native explorer window for the currently
-visited file. Yes, I am aware of dired. Sometimes you still need explorer.
-#+begin_src emacs-lisp
-  (defun my-browse-file-directory ()
-    "Browse `default-directory' using the default file manager."
-    (interactive)
-    (if default-directory
-        (browse-url-of-file (expand-file-name default-directory))
-      (error "No `default-directory' to open")))
-#+end_src
-
 Search https://woordenlijst.org for correct spelling and grammar of Dutch words
 and sentences.
 #+begin_src emacs-lisp

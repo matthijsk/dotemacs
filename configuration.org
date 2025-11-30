@@ -1449,9 +1449,8 @@ For formatting entries: see variable elfeed-search-print-entry-function.
 #+begin_src emacs-lisp
   (use-package elfeed
     :pin melpa-stable
-    :ensure t
-    :bind (("C-c e" . elfeed)
-           :map elfeed-search-mode-map
+    :commands elfeed
+    :bind (:map elfeed-search-mode-map
            ("R" . my-elfeed-untag-all-unread)
            ("0" . my-elfeed-filter-other)
            ("1" . my-elfeed-filter-nos)

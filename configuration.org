@@ -1563,20 +1563,6 @@ Useful for editing web templates (such as those used by Django, for example).
           (browse-url url)))))
 #+end_src
 
-* HTML Tidy
-#+begin_src emacs-lisp
-  (defun my-tidy ()
-    (interactive)
-    (compile (concat "tidy -errors -quiet --gnu-emacs t " buffer-file-name)))
-#+end_src
-
-* CSS Stylelint
-#+begin_src emacs-lisp
-  (defun my-stylelint ()
-    (interactive)
-    (compile (concat "npx stylelint --formatter unix --fix " buffer-file-name)))
-#+end_src
-
 * pyvenv
 Python virtual environment support for Emacs.
 #+begin_src emacs-lisp
@@ -1600,13 +1586,6 @@ Python virtual environment support for Emacs.
       (interactive)
       (eglot-shutdown-all)
       (pyvenv-deactivate)))
-#+end_src
-
-* py-autopep8
-#+begin_src emacs-lisp
-  (use-package py-autopep8
-    :pin melpa
-    :commands (py-autopep8-buffer py-autopep8-region))
 #+end_src
 
 * sqlformat

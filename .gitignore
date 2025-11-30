@@ -14,7 +14,6 @@ projects
 recentf
 srecode-map.el
 tramp
-transient/history.el
 
 # Directories
 .cache/
@@ -27,5 +26,6 @@ multisession/
 org-persist/
 semanticdb/
 server/
+transient/
 tutorial/
 url/

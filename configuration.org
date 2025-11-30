@@ -776,6 +776,19 @@ modal editing of Vim combined with the extensibility of Emacs.
     (evil-define-key 'motion help-mode-map (kbd "TAB") 'forward-button)
     (evil-define-key 'motion help-mode-map (kbd "S-TAB") 'backward-button)
 
+    ;; When in org-mode, use expected org-mode tab behaviour when in
+    ;; Normal and Insert state. Set jump keys to navigate org links and
+    ;; the mark ring.
+    (evil-define-key 'normal org-mode-map
+      [tab] 'org-cycle
+      (kbd "C-]") 'org-open-at-point
+      (kbd "C-o") 'org-mark-ring-goto)
+
+    (evil-define-key 'insert org-mode-map [tab] 'org-cycle)
+
+    (evil-define-key 'normal c-mode-map (kbd "C-}") 'semantic-ia-fast-jump)
+    (evil-define-key 'normal c++-mode-map (kbd "C-}") 'semantic-ia-fast-jump)
+
     ;; Undo remapping of yank-pop to evil-paste-pop. I like yank-pop.
     (define-key evil-normal-state-map [remap yank-pop] 'nil)
 
@@ -1121,16 +1134,6 @@ work.
 
     (org-clock-persistence-insinuate)
 
-    ;; When in org-mode, use expected org-mode tab behaviour when in
-    ;; Normal and Insert state. Set jump keys to navigate org links and
-    ;; the mark ring.
-    (evil-define-key 'normal org-mode-map
-      [tab] 'org-cycle
-      (kbd "C-]") 'org-open-at-point
-      (kbd "C-o") 'org-mark-ring-goto)
-
-    (evil-define-key 'insert org-mode-map [tab] 'org-cycle)
-
     (defun my-org-todo-list ()
       "Show `org-todo-list' with \"IN PROGRESS\" keyword selected."
       (interactive)
@@ -1318,10 +1321,7 @@ Also install major modes for editing various git configuration files. See
     (global-semantic-stickyfunc-mode t)
     (global-semanticdb-minor-mode t)
 
-    (advice-add #'semantic-ia-fast-jump :before #'evil-set-jump)
-
-    (evil-define-key 'normal c-mode-map (kbd "C-}") 'semantic-ia-fast-jump)
-    (evil-define-key 'normal c++-mode-map (kbd "C-}") 'semantic-ia-fast-jump))
+    (advice-add #'semantic-ia-fast-jump :before #'evil-set-jump))
 #+end_src
 
 * Git for Windows path
@@ -1398,13 +1398,7 @@ major modes are derived from =prog-mode=.
   (use-package eglot
     :commands (eglot)
     :init
-    (setq eglot-report-progress nil)
-    :config
-    (add-hook 'eglot-connect-hook
-              (lambda (server)
-                "Use eglot xref backend when eglot is connected."
-                (evil-define-key 'normal c-mode-map   (kbd "C-]") 'evil-jump-to-tag)
-                (evil-define-key 'normal c++-mode-map (kbd "C-]") 'evil-jump-to-tag))))
+    (setq eglot-report-progress nil))
 #+end_src
 
 * Tree-sitter

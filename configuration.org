@@ -478,6 +478,16 @@ Windows systems. See https://github.com/jorgenschaefer/elpy/issues/733.
   (add-to-list 'auto-mode-alist '("\\.flake8\\'" . conf-unix-mode))
 #+end_src
 
+Convenience function to start an interactive shell in a Django project.
+#+begin_src emacs-lisp
+  (defun my-project-django-shell ()
+    "Start an interactive shell in a django project."
+    (interactive)
+    (let ((default-directory (project-root (project-current t)))
+          (python-shell-interpreter-interactive-arg "-i python"))
+      (run-python "./manage.py shell" 'project t)))
+#+end_src
+
 ** Find configuration files
 This configuration file is written in =org-mode=. The file is
 tangled into an =.el= file using an ~(org-babel-load-file)~ call in

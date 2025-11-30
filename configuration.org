@@ -551,7 +551,7 @@ Ensure org-mode buffers are fully expanded.
   (add-hook 'ediff-prepare-buffer-hook (lambda ()
                                          "Ensure org-mode buffers are fully expanded."
                                          (when (eq major-mode 'org-mode)
-                                           (org-show-all))))
+                                           (org-fold-show-all))))
 #+end_src
 
 Always embed the Ediff control panel in the same frame.

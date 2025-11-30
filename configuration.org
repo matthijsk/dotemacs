@@ -8,6 +8,10 @@ settings and the call to ~(package-initialize)~ are done in [[file:init.el][init
 
 Packages are installed and configured using [[https://github.com/jwiegley/use-package][use-package]].
 
+#+begin_src emacs-lisp
+  (use-package use-package)
+#+end_src
+
 ** International
 Set language environment, input method and default coding system.
 #+begin_src emacs-lisp
@@ -158,14 +162,19 @@ Load [[https://github.com/nashamri/spacemacs-theme][spacemacs]] theme. When runn
 set to =xterm-256color= (under =options -> terminal=).
 #+begin_src emacs-lisp
   (use-package spacemacs-theme
-    :ensure spacemacs-theme
+    :if (package-installed-p 'spacemacs-theme)
     :pin melpa
 
-    :config
-    (setq spacemacs-theme-org-bold t)
-    (setq spacemacs-theme-org-height nil)
+    :custom
+    (spacemacs-theme-org-bold t)
+    (spacemacs-theme-org-height nil)
 
+    :config
     (load-theme 'spacemacs-dark t))
+
+  ;; Fall back if spacemacs-theme is not available.
+  (unless (package-installed-p 'spacemacs-theme)
+    (load-theme 'tango-dark))
 #+end_src
 
 *** Miscellaneous
@@ -602,6 +611,7 @@ Set eww (shr) frame width.
 Initialize and set up eshell completion.
 #+begin_src emacs-lisp
   (use-package eshell
+    :commands (eshell project-eshell)
     :hook (eshell-mode-hook . (lambda ()
                                 (eshell-cmpl-initialize)
                                 (setq eshell-cmpl-cycle-completions nil)
@@ -716,27 +726,17 @@ for inserting the current date in a written form.
   (setq vc-display-status nil)
 #+end_src
 
-* Dash
-Ensure [[https://github.com/magnars/dash.el][dash]] ("A modern list library for Emacs") is installed. It is used by many
-packages.
-#+begin_src emacs-lisp
-  (use-package dash
-    :ensure t
-    :pin melpa-stable)
-#+end_src
-
 * Doom-modeline
 Use [[https://github.com/seagle0128/doom-modeline][doom-modeline]] as the modeline. Looks good, while still having good
 performance.
 #+begin_src emacs-lisp
   (use-package doom-modeline
-    :ensure t
+    :if (package-installed-p 'doom-modeline)
     :pin melpa-stable
-    :init
-    (setq doom-modeline-icon nil)
-    (doom-modeline-mode 1)
-    :config
-    (setq doom-modeline-buffer-file-name-style 'relative-from-project))
+    :hook emacs-startup-hook
+    :custom
+    (doom-modeline-icon nil)
+    (doom-modeline-buffer-file-name-style 'relative-from-project))
 #+end_src
 
 * Evil
@@ -747,9 +747,9 @@ Vim emulator for Emacs. This gives me the best of both worlds: the
 modal editing of Vim combined with the extensibility of Emacs.
 #+begin_src emacs-lisp
   (use-package evil
+    :if (package-installed-p 'evil)
     :pin melpa-stable
-    :ensure t
-    :demand t
+    :hook emacs-startup-hook
     :bind (:map evil-normal-state-map
                 ("C-s" . save-buffer)
                 ("C-/" . my-comment-dwim)
@@ -763,15 +763,15 @@ modal editing of Vim combined with the extensibility of Emacs.
                 ("C-b" . backward-char)
                 ("C-f" . forward-char))
 
-    :init
+    :custom
     ;; Enable C-i when on a graphical display, and disable when on a terminal (to
     ;; enable use of <TAB> in org-mode with evil-mode).
-    (setq evil-want-C-i-jump (display-graphic-p))
-    (setq evil-want-C-u-scroll t)
-    (setq evil-symbol-word-search t)
-    (setq evil-shift-width 2)
-    (setq evil-move-beyond-eol t)
-    (setq evil-undo-system 'undo-redo)
+    (evil-want-C-i-jump (display-graphic-p))
+    (evil-want-C-u-scroll t)
+    (evil-symbol-word-search t)
+    (evil-shift-width 2)
+    (evil-move-beyond-eol t)
+    (evil-undo-system 'undo-redo)
 
     :config
     ;; Ensure the yank register (on Windows, at least) is not overwritten when
@@ -856,9 +856,7 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
 #+begin_src emacs-lisp
   (use-package evil-leader
     :pin melpa-stable
-    :ensure t
     :after evil
-
     :config
     (evil-leader/set-leader ",")
     (evil-leader/set-key
@@ -905,59 +903,55 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
 
     (evil-leader/set-key-for-mode 'emacs-lisp-mode "c" 'emacs-lisp-byte-compile)
 
-    ;; Enable evil leader.
-    (global-evil-leader-mode)
-
-    ;; Start evil.
-    (evil-mode))
+    (global-evil-leader-mode))
 #+end_src
 
 * Vertico
 #+BEGIN_SRC emacs-lisp
   (use-package vertico
+    :if (package-installed-p 'vertico)
     :pin melpa-stable
-    :ensure t
-    :init
-    (vertico-mode)
-
+    :hook ((emacs-startup-hook . vertico-mode)
+           (emacs-startup-hook . vertico-multiform-mode))
+    :custom
     ;; Show more candidates
-    (setq vertico-count 20)
+    (vertico-count 20)
+    (vertico-multiform-commands
+     '((consult-imenu buffer)
+       (consult-org-heading buffer)
+       (consult-grep buffer)
+       (consult-git-grep buffer)
+       (consult-ripgrep buffer)
+       (my-consult-ripgrep buffer)
+       (consult-line buffer)
+       (my-consult-line buffer)
+       (xref-find-references buffer)
+       (consult-xref buffer)
+       (consult-flymake buffer)
+       (project-find-regexp buffer)
+       (evil-jump-to-tag buffer))))
 
-    :config
-    (vertico-multiform-mode)
-    (setq vertico-multiform-commands
-          '((consult-imenu buffer)
-            (consult-org-heading buffer)
-            (consult-grep buffer)
-            (consult-git-grep buffer)
-            (consult-ripgrep buffer)
-            (my-consult-ripgrep buffer)
-            (consult-line buffer)
-            (my-consult-line buffer)
-            (xref-find-references buffer)
-            (consult-xref buffer)
-            (consult-flymake buffer)
-            (project-find-regexp buffer)
-            (evil-jump-to-tag buffer))))
+  (unless (package-installed-p 'vertico)
+    (fido-vertical-mode 1))
 #+END_SRC
 
 * Orderless
 #+BEGIN_SRC emacs-lisp
   (use-package orderless
+    :if (package-installed-p 'orderless)
     :pin melpa-stable
-    :ensure t
-    :init
-    (setq completion-styles '(orderless basic)
-          completion-category-defaults nil
-          completion-category-overrides '((file (styles basic partial-completion)))))
+    :custom
+    (completion-styles '(orderless basic))
+    (completion-category-defaults nil)
+    (completion-category-overrides '((file (styles basic partial-completion)))))
 #+END_SRC
 
 * Consult
 #+BEGIN_SRC emacs-lisp
   (use-package consult
+    :if (package-installed-p 'consult)
     :pin melpa-stable
-    :ensure t
-    :after project
+    :after (project evil-leader)
     :bind(("C-x b" . consult-buffer)
           ("M-s o" . my-consult-line)
           ("C-c f" . consult-flymake)
@@ -974,12 +968,13 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
     (evil-leader/set-key-for-mode 'org-mode "hs" 'consult-org-heading)
     (evil-leader/set-key "pr" 'my-consult-ripgrep)
 
-    :config
-    (setq xref-show-xrefs-function #'consult-xref)
-    (setq xref-show-definitions-function #'consult-xref)
-    (setq consult-after-jump-hook #'recenter)
-    (setq consult-line-start-from-top nil)
+    :custom
+    (xref-show-xrefs-function #'consult-xref)
+    (xref-show-definitions-function #'consult-xref)
+    (consult-after-jump-hook #'recenter)
+    (consult-line-start-from-top nil)
 
+    :config
     (add-to-list 'consult-preview-excluded-files "\\.gpg\\'")
 
     (add-to-list 'project-switch-commands '(consult-ripgrep "Consult ripgrep" "r") t)
@@ -1007,25 +1002,24 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
 * Marginalia
 #+begin_src emacs-lisp
   (use-package marginalia
+    :if (package-installed-p 'marginalia)
     :pin melpa-stable
-    :ensure t
-    :init
-    (marginalia-mode))
+    :hook emacs-startup-hook)
 #+end_src
 
 * Embark
 #+begin_src emacs-lisp
   (use-package embark
     :pin melpa-stable
-    :ensure t
+    :after embark-consult
     :bind
     (("C-." . embark-act)
      ("C->" . embark-act-all)
      ("C-;" . embark-dwim)))
 
   (use-package embark-consult
-    :pin melpa-stable
-    :ensure t)
+    :if (package-installed-p 'embark-consult)
+    :pin melpa-stable)
 #+end_src
 
 * Corfu
@@ -1034,13 +1028,11 @@ functionality of Emacs and with the [[*Orderless][Orderless]] completion style (
 the same author).
 #+begin_src emacs-lisp
   (use-package corfu
-    :ensure t
+    :if (package-installed-p 'corfu)
     :hook (prog-mode-hook inferior-python-mode-hook)
-    :init
-    (setq corfu-quit-at-boundary nil)
-    (setq corfu-auto t)
-    :config
-    (setq corfu-auto-delay 0.15))
+    :custom
+    (corfu-quit-at-boundary nil)
+    (corfu-auto-delay 0.15))
 #+end_src
 
 * Org mode
@@ -1056,7 +1048,6 @@ work.
 #+begin_src emacs-lisp
   (use-package org
     :pin gnu
-    :ensure t
     ;; Global key bindings.
     :bind (("C-c l" . org-store-link)
            ("C-c a" . org-agenda)
@@ -1078,63 +1069,63 @@ work.
            ("M-p" . org-previous-visible-heading)
            ("M-n" . org-next-visible-heading))
 
-    :init
-    (setq org-startup-folded t)
+    :custom
+    (org-startup-folded t)
 
-    (setq org-todo-keywords '((sequence "TODO" "IN PROGRESS" "REVIEW" "|" "DONE" "WONTFIX" )))
+    (org-todo-keywords '((sequence "TODO" "IN PROGRESS" "REVIEW" "|" "DONE" "WONTFIX" )))
 
-    (setq org-clock-clocktable-default-properties
-          '(:maxlevel 3 :scope agenda :fileskip0 t :block today :step day :narrow 120!))
+    (org-clock-clocktable-default-properties
+     '(:maxlevel 3 :scope agenda :fileskip0 t :block today :step day :narrow 120!))
 
     ;; Show total amount of hours and minutes, instead of formatting as "d hh:mm".
-    (setq org-duration-format '((special . h:mm)))
+    (org-duration-format '((special . h:mm)))
 
     ;; When using using org-clock-display, display the total time for subtrees.
-    (setq org-clock-display-default-range 'untilnow)
+    (org-clock-display-default-range 'untilnow)
 
     ;; Set all agenda files as refile targets.
-    (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+    (org-refile-targets '((org-agenda-files :maxlevel . 3)))
 
     ;; Enable refiling to the top level of an org file.
-    (setq org-refile-use-outline-path 'file)
+    (org-refile-use-outline-path 'file)
 
     ;; Do not interpret "_" and "^" for sub and superscript when exporting.
-    (setq org-export-with-sub-superscripts nil)
+    (org-export-with-sub-superscripts nil)
 
     ;; Don't complete in steps, works well with narrowing frameworks such as Helm.
-    (setq org-outline-path-complete-in-steps nil)
+    (org-outline-path-complete-in-steps nil)
 
     ;; Save the running clock when Emacs exits.
-    (setq org-clock-persist 'clock)
+    (org-clock-persist 'clock)
 
     ;; Flushright tags to column 100.
-    (setq org-tags-column -100)
+    (org-tags-column -100)
 
+    (org-adapt-indentation t)
+
+    (org-fold-show-context-detail
+     '((agenda . tree)
+       (bookmark-jump . lineage)
+       (isearch . lineage)
+       (default . tree)))
+
+    (org-priority-default 65)
+
+    (org-default-notes-file (concat (file-name-as-directory org-directory) "notes.org"))
+
+    (org-agenda-use-time-grid nil)
+
+    ;; Set org-agenda-files to file with list containing all agenda files.
+    (org-agenda-files (concat (file-name-as-directory org-directory) "org-agenda-files.org"))
+
+    ;; Ensure tags in agenda columns are shifted to the agenda item.
+    (org-agenda-align-tags-to-column 0)
+
+    :config
     (add-hook 'org-mode-hook #'auto-fill-mode)
     (add-hook 'org-agenda-mode-hook #'hl-line-mode)
 
-    (setq org-adapt-indentation t)
-
     (add-to-list 'auto-mode-alist '("\\.org_archive\\'" . org-mode))
-
-    (setq org-fold-show-context-detail
-          '((agenda . tree)
-            (bookmark-jump . lineage)
-            (isearch . lineage)
-            (default . tree)))
-
-    :config
-    (setq org-priority-default 65)
-
-    (setq org-default-notes-file (concat (file-name-as-directory org-directory) "notes.org"))
-
-    (setq org-agenda-use-time-grid nil)
-
-    ;; Set org-agenda-files to file with list containing all agenda files.
-    (setq org-agenda-files (concat (file-name-as-directory org-directory) "org-agenda-files.org"))
-
-    ;; Ensure tags in agenda columns are shifted to the agenda item.
-    (setq org-agenda-align-tags-to-column 0)
 
     ;; Add "p" menu key to quickly insert python source blocks using `org-insert-structure-template'.
     (add-to-list 'org-structure-template-alist '("p" . "src python-ts"))
@@ -1267,8 +1258,9 @@ work.
 Add ox-gfm to enable exporting of org mode buffers to Github Flavored Markdown.
 #+begin_src emacs-lisp
   (use-package ox-gfm
+    :if (package-installed-p 'ox-gfm)
     :pin melpa-stable
-    :defer 10)
+    :after org)
 #+end_src
 
 * Magit
@@ -1278,10 +1270,8 @@ nicely into Emacs. Interactive rebasing, cherry-picking or running git blame on
 a single file are a breeze with Magit.
 #+begin_src emacs-lisp
   (use-package magit
-    :if (> emacs-major-version 24)
     :pin melpa-stable
-    :ensure t
-    :after subr-x project
+    :after project
     :bind (:map evil-leader--default-map
            ("m" . magit-status)
            ("f"  . magit-file-dispatch)
@@ -1290,10 +1280,9 @@ a single file are a breeze with Magit.
            :map project-prefix-map
            ("m" . magit-project-status))
 
-    :init
-    (setq magit-refresh-verbose nil)
-
-    (setq auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffer-p)
+    :custom
+    (magit-refresh-verbose nil)
+    (auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffer-p)
 
     :config
     (add-to-list 'project-switch-commands '(magit-project-status "Magit" "m") t)
@@ -1308,7 +1297,6 @@ Also install major modes for editing various git configuration files. See
 #+begin_src emacs-lisp
   (use-package git-modes
     :pin melpa-stable
-    :ensure t
     :defer t)
 #+end_src
 
@@ -1349,8 +1337,6 @@ Ensure GnuPG password queries go through the minibuffer.
 Dired-narrow is a nice package to do quick filtering in dired buffers.
 #+begin_src emacs-lisp
   (use-package dired-narrow
-    :ensure t
-    :if (> emacs-major-version 24)
     :after dired
     :bind (:map dired-mode-map
                 ("/" . dired-narrow)))
@@ -1361,64 +1347,70 @@ Set up [[https://github.com/Fanael/rainbow-delimiters][rainbow-delimiters-mode]]
 major modes are derived from =prog-mode=.
 #+begin_src emacs-lisp
   (use-package rainbow-delimiters
-    :ensure t
+    :if (package-installed-p 'rainbow-delimiters)
     :pin melpa-stable
-    :defer t
-    :init
-    (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+    :hook prog-mode-hook)
 #+end_src
 
 * Markdown mode
 #+begin_src emacs-lisp
   (use-package markdown-mode
-    :ensure t
     :pin melpa-stable
-    :defer t)
+    :mode "\\.md\\'")
 #+end_src
 
 * Eglot
 #+begin_src emacs-lisp
   (use-package eglot
     :commands (eglot)
-    :init
-    (setq eglot-report-progress nil))
+    :custom
+    (eglot-report-progress nil))
 #+end_src
 
 * Tree-sitter
 List of tree-sitter grammar versions that work with Emacs 29, helpfully compiled
 at https://github.com/mickeynp/combobulate.
 #+begin_src emacs-lisp
-  (setq treesit-language-source-alist
-        '((html . ("https://github.com/tree-sitter/tree-sitter-html" "v0.23.2"))
-          (css . ("https://github.com/tree-sitter/tree-sitter-css" "v0.25.0"))
-          (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "v0.25.0"))
-          (json . ("https://github.com/tree-sitter/tree-sitter-json" "v0.24.8"))
-          (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "typescript/src"))
-          (python . ("https://github.com/tree-sitter/tree-sitter-python" "v0.25.0"))
-          (yaml . ("https://github.com/ikatyang/tree-sitter-yaml" "v0.5.0"))
-          (c . ("https://github.com/tree-sitter/tree-sitter-c" "v0.24.1"))
-          (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp" "v0.23.4"))
-          (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby" "v0.23.1"))
-          (dockerfile . ("https://github.com/camdencheek/tree-sitter-dockerfile" "v0.2.0"))
-          (bicep . ("https://github.com/tree-sitter-grammars/tree-sitter-bicep" "v1.1.0"))))
+  (defcustom my-use-tree-sitter nil
+    "Use tree-sitter enhanced modes and grammars."
+    :type 'boolean
+    :group 'initialization)
 
-  (setq major-mode-remap-alist
-        '((css-mode . css-ts-mode)
-          (js-mode . js-ts-mode)
-          (javascript-mode . js-ts-mode)
-          (js-json-mode . json-ts-mode)
-          (python-mode . python-ts-mode)
-          (c-mode . c-ts-mode)
-          (c++-mode . c++-ts-mode)
-          (ruby-mode . ruby-ts-mode)))
+  (use-package treesit
+    :if my-use-tree-sitter
+    :ensure nil
+    :config
+    (progn (setq treesit-language-source-alist
+                 '((html . ("https://github.com/tree-sitter/tree-sitter-html" "v0.23.2"))
+                   (css . ("https://github.com/tree-sitter/tree-sitter-css" "v0.25.0"))
+                   (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "v0.25.0"))
+                   (json . ("https://github.com/tree-sitter/tree-sitter-json" "v0.24.8"))
+                   (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.23.2" "typescript/src"))
+                   (python . ("https://github.com/tree-sitter/tree-sitter-python" "v0.25.0"))
+                   (yaml . ("https://github.com/ikatyang/tree-sitter-yaml" "v0.5.0"))
+                   (c . ("https://github.com/tree-sitter/tree-sitter-c" "v0.24.1"))
+                   (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp" "v0.23.4"))
+                   (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby" "v0.23.1"))
+                   (dockerfile . ("https://github.com/camdencheek/tree-sitter-dockerfile" "v0.2.0"))
+                   (bicep . ("https://github.com/tree-sitter-grammars/tree-sitter-bicep" "v1.1.0"))))
 
-  (when (>= emacs-major-version 30)
-    (add-to-list 'major-mode-remap-alist '(html-mode . html-ts-mode))
-    (add-to-list 'major-mode-remap-alist '(mhtml-mode . html-ts-mode)))
+           (setq major-mode-remap-alist
+                 '((css-mode . css-ts-mode)
+                   (js-mode . js-ts-mode)
+                   (javascript-mode . js-ts-mode)
+                   (js-json-mode . json-ts-mode)
+                   (python-mode . python-ts-mode)
+                   (c-mode . c-ts-mode)
+                   (c++-mode . c++-ts-mode)
+                   (ruby-mode . ruby-ts-mode)))
 
-  (add-to-list 'auto-mode-alist '(".ts\\'" . typescript-ts-mode))
-  (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-ts-mode))
-  (add-to-list 'auto-mode-alist '("\\.y?ml\\'" . yaml-ts-mode))
+           (when (>= emacs-major-version 30)
+             (add-to-list 'major-mode-remap-alist '(html-mode . html-ts-mode))
+             (add-to-list 'major-mode-remap-alist '(mhtml-mode . html-ts-mode)))
+
+           (add-to-list 'auto-mode-alist '(".ts\\'" . typescript-ts-mode))
+           (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-ts-mode))
+           (add-to-list 'auto-mode-alist '("\\.y?ml\\'" . yaml-ts-mode))))
 #+end_src
 
 * Elfeed
@@ -1432,12 +1424,15 @@ For formatting entries: see variable elfeed-search-print-entry-function.
            ("0" . my-elfeed-filter-other)
            ("1" . my-elfeed-filter-nos)
            ("2" . my-elfeed-filter-nrc))
-    :init
-    (evil-set-initial-state 'elfeed-search-mode 'emacs)
-    (evil-set-initial-state 'elfeed-show-mode 'emacs)
+    :custom
+    (elfeed-sort-order 'ascending)
+    (elfeed-search-title-max-width 120)
+
     :config
-    (setq elfeed-sort-order 'ascending)
-    (setq elfeed-search-title-max-width 120)
+    (when (package-installed-p 'evil)
+      (evil-set-initial-state 'elfeed-search-mode 'emacs)
+      (evil-set-initial-state 'elfeed-show-mode 'emacs))
+
     (dolist (feed '("https://blogs.nasa.gov/artemis/feed/"
                    ("https://feeds.nos.nl/nosnieuwsalgemeen" news nos)
                    ("https://www.nrc.nl/rss/" news nrc)
@@ -1487,8 +1482,7 @@ Configure [[https://github.com/minad/jinx][jinx]] for spell checking.
 #+begin_src emacs-lisp
   (use-package jinx
     :pin melpa-stable
-    :ensure t
-    :if (memq system-type '(gnu/linux darwin))
+    :if (and (memq system-type '(gnu/linux darwin)) (package-installed-p 'jinx))
     :hook (org-mode-hook git-commit-mode-hook)
     :bind (("M-$" . jinx-correct)
            ("C-M-$" . jinx-languages)
@@ -1500,11 +1494,11 @@ Configure [[https://github.com/minad/jinx][jinx]] for spell checking.
 Useful for editing web templates (such as those used by Django, for example).
 #+begin_src elisp
   (use-package web-mode
-    :ensure t
+    :if (package-installed-p 'web-mode)
     :mode "\\.djhtml\\'"
-    :config
-    (setq web-mode-engines-alist '(("django" . "\\.html\\'")))
-    (setq web-mode-enable-engine-detection t))
+    :custom
+    (web-mode-engines-alist '(("django" . "\\.html\\'")))
+    (web-mode-enable-engine-detection t))
 #+end_src
 
 * CSS mode
@@ -1544,9 +1538,8 @@ Useful for editing web templates (such as those used by Django, for example).
 Python virtual environment support for Emacs.
 #+begin_src emacs-lisp
   (use-package pyvenv
+    :commands (my-venv-activate my-venv-deactivate)
     :hook python-base-mode-hook
-    :ensure t
-
     :config
     (defun my-venv-activate ()
       "Activate a python virtual environment and start eglot for the current project.
@@ -1570,9 +1563,9 @@ Python virtual environment support for Emacs.
   (use-package sqlformat
     :pin melpa
     :commands (sqlformat sqlformat-buffer sqlformat-region)
-    :config
-    (setq sqlformat-command 'sqlfluff)
-    (setq sqlformat-args '("--nocolor" "--disable-progress-bar")))
+    :custom
+    (sqlformat-command 'sqlfluff)
+    (sqlformat-args '("--nocolor" "--disable-progress-bar")))
 #+end_src
 
 * flymake-shellcheck
@@ -1597,10 +1590,10 @@ Python virtual environment support for Emacs.
     :bind (("C-c g" . (lambda () "Call `gptel-send' with prefix ARG enabled." (interactive) (gptel-send '(4)))))
     :custom
     (gptel-default-mode 'org-mode)
-    :config
-    (setq gptel-model 'gpt-4.1)
-    (setq gptel-backend (gptel-make-gh-copilot "Copilot"))
+    (gptel-model 'gpt-4.1)
 
+    :config
+    (setq gptel-backend (gptel-make-gh-copilot "Copilot"))
     (let ((base-system-message "Respond concisely. Never apologize. Cite sources with your answers if possible.\n"))
       (gptel-make-preset 'python-django
         :description "Python and Django programming"

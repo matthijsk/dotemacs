@@ -41,7 +41,7 @@ Start Emacs as server for emacsclient processes.
 
 Ask for confirmation when leaving Emacs.
 #+begin_src emacs-lisp
-  (setq confirm-kill-emacs 'yes-or-no-p)
+  (setq confirm-kill-emacs 'y-or-n-p)
 #+end_src
 
 Increase warning limit to 100 MB for large files.

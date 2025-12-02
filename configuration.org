@@ -1175,7 +1175,7 @@ work.
   | Worklog      |        |
   "
       (interactive)
-      (when (message-y-or-n-p "Clock in for daily standup?" nil)
+      (when (y-or-n-p "Clock in for daily standup?")
         (with-current-buffer (find-file-noselect my-org-agenda)
           (goto-char (point-min))
           (when (re-search-forward "Daily stand-up")

@@ -204,6 +204,13 @@ Don't blink the cursor.
 ** Global key bindings
 Set global key bindings, not related to any specific packages.
 
+Most of the time I'm interested in the number of lines in a buffer, not the
+number of lines on a page (an Emacs concept I never use). So remap count-lines
+to count-words, which displays the number of lines in a buffer.
+#+begin_src emacs-lisp
+  (bind-key [remap count-lines-page] 'count-words)
+#+end_src
+
 Exhibit expected X clipboard behavior (yank with middle mouse button).
 #+begin_src emacs-lisp
   (bind-key "<mouse-2>" #'clipboard-yank)

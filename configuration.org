@@ -1377,11 +1377,6 @@ major modes are derived from =prog-mode=.
     :ensure t
     :pin melpa-stable
     :defer t)
-
-  (use-package markdown-toc
-    :ensure t
-    :pin melpa-stable
-    :defer t)
 #+end_src
 
 * Eglot

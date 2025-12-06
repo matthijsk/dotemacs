@@ -1315,22 +1315,6 @@ Also install major modes for editing various git configuration files. See
     :defer t)
 #+end_src
 
-* Semantic
-
-#+begin_src emacs-lisp
-  (use-package semantic
-    :defer t
-
-    :init
-    (add-hook 'c-mode-common-hook #'semantic-mode)
-
-    :config
-    (global-semantic-stickyfunc-mode t)
-    (global-semanticdb-minor-mode t)
-
-    (advice-add #'semantic-ia-fast-jump :before #'evil-set-jump))
-#+end_src
-
 * Git for Windows path
 Try and determine if Git is available. If it is, and we are on a Windows system,
 also add =git-path/../usr/bin= to =exec-path=, to enable use of =diff=, =gpg=

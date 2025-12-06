@@ -1296,9 +1296,6 @@ a single file are a breeze with Magit.
     (setq auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffer-p)
 
     :config
-    (evil-define-key 'normal magit-blame-mode-map (kbd "q") 'magit-blame-quit)
-    (evil-define-key 'normal magit-blame-mode-map (kbd "c") 'magit-blame-cycle-style)
-
     (add-to-list 'project-switch-commands '(magit-project-status "Magit" "m") t)
 
     ;; Add author-headings blame style which is similar to the headings style but

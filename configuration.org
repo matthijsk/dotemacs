@@ -1315,6 +1315,12 @@ a single file are a breeze with Magit.
     :config
     (add-to-list 'project-switch-commands '(magit-project-status "Magit" "m") t)
 
+    (add-hook 'magit-blame-mode-hook (lambda ()
+                                       "Ensure org-mode buffers are fully expanded."
+                                       (when (eq major-mode 'org-mode)
+                                         (org-fold-show-all))))
+
+
     ;; Add author-headings blame style which is similar to the headings style but
     ;; displays author date instead of committer date.
     (add-to-list 'magit-blame-styles '(author-headings (heading-format . "%-20a %A %s\n"))))

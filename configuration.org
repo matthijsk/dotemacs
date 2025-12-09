@@ -907,6 +907,12 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
 #+end_src
 
 * Vertico
+#+begin_quote
+Vertico provides a performant and minimalistic vertical completion UI based on
+the default completion system.
+#+end_quote
+Set fido-vertical-mode as fallback for when Vertico, Orderless, Consult and
+Marginalia (great combo!) are not available.
 #+BEGIN_SRC emacs-lisp
   (use-package vertico
     :if (package-installed-p 'vertico)
@@ -936,6 +942,11 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
 #+END_SRC
 
 * Orderless
+#+begin_quote
+This package provides an orderless completion style that divides the pattern
+into space-separated components, and matches candidates that match all of the
+components in any order.
+#+end_quote
 #+BEGIN_SRC emacs-lisp
   (use-package orderless
     :if (package-installed-p 'orderless)
@@ -947,6 +958,11 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
 #+END_SRC
 
 * Consult
+#+begin_quote
+Consult provides search and navigation commands based on the Emacs completion
+function completing-read documented in the Elisp manual.
+#+end_quote
+
 #+BEGIN_SRC emacs-lisp
   (use-package consult
     :if (package-installed-p 'consult)
@@ -1000,6 +1016,12 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
 #+END_SRC
 
 * Marginalia
+#+begin_quote
+ Marginalia are marks or annotations placed at the margin of the page of a book
+ or in this case helpful colorful annotations placed at the margin of the
+ minibuffer for your completion candidates.
+#+end_quote
+
 #+begin_src emacs-lisp
   (use-package marginalia
     :if (package-installed-p 'marginalia)
@@ -1008,6 +1030,12 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
 #+end_src
 
 * Embark
+#+begin_quote
+Embark makes it easy to choose a command to run based on what is near point,
+both during a minibuffer completion session (in a way familiar to Helm or
+Counsel users) and in normal buffers.
+#+end_quote
+
 #+begin_src emacs-lisp
   (use-package embark
     :pin melpa-stable

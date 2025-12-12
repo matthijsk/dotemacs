@@ -880,16 +880,8 @@ Configure [[https://github.com/cofi/evil-leader][evil-leader]] for leader keys w
       "wk"  'evil-window-up
       "wl"  'evil-window-right
 
-      "xd"  'dired
-      "xf"  'find-file
-      "xs"  'save-some-buffers
-      "xk"  'kill-current-buffer
       "rb"  'revert-buffer
       "n"   'server-edit
-      "xc"  'save-buffers-kill-terminal
-
-      "pe"  'project-eshell
-      "pf"  'project-find-file
 
       "l"   'whitespace-mode
       "hl"  'hl-line-mode

@@ -118,8 +118,11 @@ Enable global minor mode Editorconfig.
 
 Enable Which-Key mode
 #+begin_src emacs-lisp
-  (when (>= emacs-major-version 30)
-    (which-key-mode))
+  (use-package which-key
+    :if (>= emacs-major-version 30)
+    :hook emacs-startup-hook
+    :custom
+    (which-key-idle-delay 0.5))
 #+end_src
 
 ** Scrolling

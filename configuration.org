@@ -729,6 +729,13 @@ for inserting the current date in a written form.
   (setq vc-display-status nil)
 #+end_src
 
+** Project
+#+begin_src emacs-lisp
+  (use-package project
+    :config
+    (add-to-list 'project-switch-commands '(consult-ripgrep "Consult ripgrep" "r") t)
+    (add-to-list 'project-switch-commands '(magit-project-status "Magit" "m") t))
+#+end_src
 * Doom-modeline
 Use [[https://github.com/seagle0128/doom-modeline][doom-modeline]] as the modeline. Looks good, while still having good
 performance.
@@ -963,6 +970,7 @@ function completing-read documented in the Elisp manual.
     :if (package-installed-p 'consult)
     :pin melpa-stable
     :after (project evil-leader)
+    :commands (my-consult-line consult-ripgrep)
     :bind(("C-x b" . consult-buffer)
           ("M-s o" . my-consult-line)
           ("C-c f" . consult-flymake)
@@ -975,10 +983,6 @@ function completing-read documented in the Elisp manual.
           :map project-prefix-map
           ("g" . consult-grep)
           ("r" . my-consult-ripgrep))
-    :init
-    (evil-leader/set-key-for-mode 'org-mode "hs" 'consult-org-heading)
-    (evil-leader/set-key "pr" 'my-consult-ripgrep)
-
     :custom
     (xref-show-xrefs-function #'consult-xref)
     (xref-show-definitions-function #'consult-xref)
@@ -988,7 +992,7 @@ function completing-read documented in the Elisp manual.
     :config
     (add-to-list 'consult-preview-excluded-files "\\.gpg\\'")
 
-    (add-to-list 'project-switch-commands '(consult-ripgrep "Consult ripgrep" "r") t)
+    (evil-leader/set-key-for-mode 'org-mode "hs" 'consult-org-heading)
 
     (defun my-symbol-name-or-nil ()
       "Return the name of the symbol at point as a string or nil.
@@ -1295,6 +1299,7 @@ a single file are a breeze with Magit.
   (use-package magit
     :pin melpa-stable
     :after project
+    :commands (magit-status magit-project-status)
     :bind (:map evil-leader--default-map
            ("m" . magit-status)
            ("f"  . magit-file-dispatch)
@@ -1308,8 +1313,6 @@ a single file are a breeze with Magit.
     (auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffer-p)
 
     :config
-    (add-to-list 'project-switch-commands '(magit-project-status "Magit" "m") t)
-
     (add-hook 'magit-blame-mode-hook (lambda ()
                                        "Ensure org-mode buffers are fully expanded."
                                        (when (eq major-mode 'org-mode)

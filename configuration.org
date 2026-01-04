@@ -1643,6 +1643,16 @@ Python virtual environment support for Emacs.
       (gptel-context-remove-all nil)))
 #+end_src
 
+* Racket-mode
+#+begin_src emacs-lisp
+  (use-package racket-mode
+    :after evil
+    :mode "\\.rkt\\'"
+    :config
+    (when (package-installed-p 'evil)
+      (evil-set-initial-state 'racket-repl-mode 'emacs)))
+#+end_src
+
 * COMMENT Local variables
 # Local Variables:
 # org-adapt-indentation: nil

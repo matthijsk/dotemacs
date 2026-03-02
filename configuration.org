@@ -1208,7 +1208,11 @@ work.
             (org-clock-in)
             (save-buffer))))
       (delete-other-windows)
-      (let ((org-clock-clocktable-default-properties '(:maxlevel 3 :scope agenda :fileskip0 t :block yesterday :step day :narrow 120!)))
+      (let ((org-clock-clocktable-default-properties
+             ;; Show clock table for past three days when today is Monday.
+             (if (= (calendar-day-of-week (calendar-current-date)) 1)
+                 '(:maxlevel 3 :scope agenda :fileskip0 t :tstart "<-3d>" :tend "<today>" :step day :narrow 120!)
+               '(:maxlevel 3 :scope agenda :fileskip0 t :block yesterday :step day :narrow 120!))))
         (my-org-clock-report))
       (org-agenda-list)
       (other-window 1)
